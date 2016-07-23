@@ -1,6 +1,6 @@
 importScripts('js/cache-polyfill.js');
 
-var CACHE_VERSION = 'app-v7';
+var CACHE_VERSION = 'app-v8';
 var CACHE_FILES = [
     '/',
     'index.html',
@@ -8,7 +8,9 @@ var CACHE_FILES = [
     'js/jquery.min.js',
     'js/bootstrap.min.js',
     'css/bootstrap.min.css',
-    'css/style.css'
+    'css/style.css',
+    'favicon.ico',
+    'manifest.json'
 ];
 
 self.addEventListener('install', function (event) {
