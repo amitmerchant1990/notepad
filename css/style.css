@@ -1,12 +1,18 @@
 body{
   padding-top: 50px;
 }
-textarea.form-control {
+textarea:hover,textarea {
   width:100%;
   height: 100%;
   font-size: 18px;
   border:none;
   outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  outline:0px !important;
+  -webkit-appearance:none;
+  border-color: Transparent;
 }
 .starter-template {
   text-align: center;

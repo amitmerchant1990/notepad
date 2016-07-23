@@ -1,13 +1,27 @@
 <html>
   <head>
-    <title>Notepad</title>
+    <title>Notepad - Offline capable</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#9b59b6">
-    <meta name="description" content="An offline notepad powered by ServiceWorker">
+    <meta name="description" content="An offline capable notepad powered by ServiceWorker">
+    <meta name="keywords" content="note,offline,mobile,web,notepad" />
     <meta name="author" content="Amit Merchant">
+    <meta name="application-name" content="Notepad" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <!-- for Facebook -->
+    <meta property="og:title" content="Notepad - Offline capable" />
+    <meta property="og:type" content="appliction" />
+    <meta property="og:image" content="img/icon-144.png" />
+    <meta property="og:url" content="https://www.amitmerchant.com/notepad" />
+    <meta property="og:description" content="An offline capable notepad powered by ServiceWorker" />
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Notepad - Offline capable" />
+    <meta name="twitter:description" content="An offline capable notepad powered by ServiceWorker" />
+    <meta name="twitter:image" content="img/icon-144.png" />
   </head>
   <body>
     <nav class="navbar-default navbar-inverse navbar-fixed-top">
@@ -19,11 +33,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Notepad</a>
+          <a class="navbar-brand" href="#">Notepad - Offline capable</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#about">About</a></li>
+            <li><a href="#about" data-toggle="modal" data-target="#myModal">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -31,7 +45,27 @@
 
     <div class="container">
       <div class="starter-template">
-        <textarea class="form-control" id="note" style=""></textarea>
+        <textarea id="note" placeholder="Type your notes here and when you come back all your notes will be right here..."></textarea>
+      </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Notepad - Offline capable</h4>
+          </div>
+          <div class="modal-body">
+            <p>An offline capable notepad powered by ServiceWorker</p>
+            <a href="https://github.com/amitmerchant1990/notepad" target="_blank">Go to the repository</a>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
       </div>
     </div>
     <script src="js/jquery.min.js"></script>

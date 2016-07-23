@@ -1,0 +1,30 @@
+{
+  "short_name": "Notepad",
+  "name": "Notepad",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "img/icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon-196.png",
+      "sizes": "196x196",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "theme_color": "#9b59b6",
+  "background_color": "#EEEEEE"
+}
