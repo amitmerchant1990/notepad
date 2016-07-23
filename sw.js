@@ -14,7 +14,7 @@ var CACHE_FILES = [
     'img/icon-48.png',
     'img/icon-96.png',
     'img/icon-144.png',
-    'img/icon-196.png',
+    'img/icon-196.png'
 ];
 
 self.addEventListener('install', function (event) {
