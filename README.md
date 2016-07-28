@@ -9,6 +9,8 @@ This is an offline-capable Notepad which is based on the [ServiceWorker](https:/
   - Works and fetches notes offline-capable thanks to ServiceWorker.
   - "Add To Home Screen" feature on Android supported devices to launch the app from home screen.
 
+[View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
+
 ## License
 
 MIT
