@@ -18,8 +18,8 @@ textarea:hover,textarea {
   text-align: center;
 }
 .navbar-default {
-  background-color: #9b59b6;
-  border-color: #8e44ad;
+  background-color: #3F51B5;
+  border-color: #3F51B5;
 }
 .navbar-default .navbar-brand {
   color: #ecf0f1;
@@ -51,11 +51,11 @@ textarea:hover,textarea {
   background-color: #8e44ad;
 }
 .navbar-default .navbar-toggle {
-  border-color: #8e44ad;
+  border-color: #3F51B5;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #8e44ad;
+  background-color: #3F51B5;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #ecf0f1;
@@ -69,6 +69,11 @@ textarea:hover,textarea {
 }
 .navbar-default .navbar-link:hover {
   color: #ecdbff;
+}
+
+#flash{
+  color: #64ff6a;
+  font-weight: bold;
 }
 
 @media (max-width: 767px) {
