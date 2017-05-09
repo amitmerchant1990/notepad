@@ -91,3 +91,10 @@ textarea:hover,textarea {
     background-color: #8e44ad;
   }
 }
+
+@media (min-width: 768px){
+.navbar-nav {
+    float: right;
+    margin: 0;
+}
+}
