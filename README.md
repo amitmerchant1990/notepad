@@ -11,6 +11,8 @@ This is an offline-capable Notepad which is based on the [ServiceWorker](https:/
 
 [View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
 
+Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
+
 ## License
 
 MIT
