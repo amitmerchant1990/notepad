@@ -5,17 +5,13 @@ textarea:hover,textarea {
   width:100%;
   height: 100%;
   font-size: 18px;
-  border:none;
   outline: none;
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   outline:0px !important;
   -webkit-appearance:none;
-  border-color: Transparent;
-}
-.starter-template {
-  text-align: center;
+  resize: none;
 }
 .navbar-default {
   background-color: #3F51B5;
@@ -76,6 +72,26 @@ textarea:hover,textarea {
   font-weight: bold;
 }
 
+.btn-custom {
+  margin-top: 8px;
+}
+
+.app-heading {
+  margin-left: 8px;
+}
+
+.container {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+textarea {
+  padding: 8px;
+  border: 1px solid #e6e4e4;
+}
+
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #ecf0f1;
@@ -93,8 +109,8 @@ textarea:hover,textarea {
 }
 
 @media (min-width: 768px){
-.navbar-nav {
-    float: right;
-    margin: 0;
-}
+  .navbar-nav {
+      float: right;
+      margin: 0;
+  }
 }
