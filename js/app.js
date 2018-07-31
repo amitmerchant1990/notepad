@@ -1,20 +1,32 @@
 $(document).ready(function(){
   $('#note').keyup(debounce(function(){
     localStorage.setItem("note", $(this).val());
-    console.log('dbounce test..');
-    $("#flash").removeClass('hidden');
   },500));
+
+  let initialText = `This is an offline-capable Notepad which is based on the ServiceWorker.
+
+  The app serves following features:
+    
+    - Write notes which then saved to the localStorage.
+    - Installable on supported browsers for offline usage.
+    - "Add To Home Screen" feature on Android supported devices to launch the app from home screen.
+    - it's light-weight.
+  
+  ** Start writing your notes **`;
 
   if(localStorage.getItem("note") && localStorage.getItem("note")!=''){
     var noteItem = localStorage.getItem("note")
     $('#note').val(noteItem);
+  } else {
+    $('#note').val(initialText);
   }
-});
 
-setInterval(function() {
-      $("#flash").addClass('hidden');
-      //alert('test');
-  }, 5000);
+  $('#clearNotes').on('click', function(){
+    $('#note').val('').focus();
+    localStorage.setItem("note", '');
+  });
+
+});
 
 function debounce(func, wait, immediate) {
 	var timeout;
