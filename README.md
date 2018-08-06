@@ -3,6 +3,10 @@ Nodepad
 
 This is an offline-capable Notepad which is based on the [ServiceWorker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 
+<a href="https://www.patreon.com/amitmerchant">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
 ## The app serves following features
 
   - Write notes which then saved to the [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage).
