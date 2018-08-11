@@ -100,9 +100,10 @@ textarea {
     background: #ffffff;
     padding: 5px;
     text-align: center;
-    width: 99%;
+    width: 100%;
     color: #ffffff;
     float: left;
+    border-top: 1px solid #f0f0f0;
 }
 
 @media (max-width: 767px) {
