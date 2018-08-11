@@ -92,6 +92,19 @@ textarea {
   border: 1px solid #e6e4e4;
 }
 
+.adFooter {
+    position: fixed;
+    bottom: 0px;
+    font-size: 0.8em;
+    z-index: 1000;
+    background: #ffffff;
+    padding: 5px;
+    text-align: center;
+    width: 99%;
+    color: #ffffff;
+    float: left;
+}
+
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #ecf0f1;
