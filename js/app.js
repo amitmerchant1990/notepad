@@ -25,6 +25,12 @@ $(document).ready(function(){
     $('#note').val('').focus();
     localStorage.setItem("note", '');
   });
+	
+	
+  $('.cookie_box_close').click(function(){
+    $('.adFooter').animate({opacity:0 }, "slow");
+    return false;
+  });
 
 });
 
