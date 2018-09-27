@@ -10,7 +10,8 @@ $(document).ready(function(){
     - Write notes which then saved to the localStorage.
     - Installable on supported browsers for offline usage.
     - "Add To Home Screen" feature on Android supported devices to launch the app from home screen.
-    - it's light-weight.
+    - Privacy focused - We'll never collect your precious data.
+    - Light-weight - Loads almost instantly.
   
   ** Start writing your notes **`;
 
