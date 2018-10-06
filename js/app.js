@@ -15,6 +15,8 @@ $(document).ready(function(){
     - Light-weight - Loads almost instantly.
   
   ** Start writing your notes **`;
+  let darkmodeText = 'Enable dark mode';
+  let lightmodeText = 'Enable light mode';
 
   if(localStorage.getItem('note') && localStorage.getItem('note')!=''){
     var noteItem = localStorage.getItem('note');
@@ -26,10 +28,10 @@ $(document).ready(function(){
   if(localStorage.getItem('mode') && localStorage.getItem('mode')!=''){
     if(localStorage.getItem('mode') == 'dark'){
       $(document.body).addClass('dark');
-      $('#mode').html('☀️');
+      $('#mode').html('☀️').attr('title', lightmodeText);
     }else{
       $(document.body).removeClass('dark');
-      $('#mode').html('🌘');
+      $('#mode').html('🌘').attr('title', darkmodeText);
     }
   }
 
@@ -50,10 +52,10 @@ $(document).ready(function(){
 
     if(bodyClass == 'dark'){
       localStorage.setItem('mode', 'dark');
-      $(this).html('☀️');
+      $(this).html('☀️').attr('title', lightmodeText);
     } else {
       localStorage.setItem('mode', 'light');
-      $(this).html('🌘');
+      $(this).html('🌘').attr('title', darkmodeText);
     }
   });
 
