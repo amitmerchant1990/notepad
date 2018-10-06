@@ -92,6 +92,17 @@ textarea {
   border: 1px solid #e6e4e4;
 }
 
+.dark textarea {
+  padding: 8px;
+  border: #000000;
+  background-color: #171616;
+  color: #dedede;
+}
+
+.dark{
+  background-color: #171616;
+}
+
 .adFooter {
     position: fixed;
     bottom: 0px;
@@ -104,6 +115,14 @@ textarea {
     color: #ffffff;
     float: left;
     border-top: 1px solid #f0f0f0;
+}
+
+#mode{
+  font-size: 23px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  float: right;
 }
 
 @media (max-width: 767px) {
@@ -121,6 +140,8 @@ textarea {
     background-color: #8e44ad;
   }
 }
+
+
 
 @media (min-width: 768px){
   .navbar-nav {
