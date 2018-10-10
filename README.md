@@ -7,9 +7,9 @@ This is an offline-capable Notepad which is based on the [ServiceWorker](https:/
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
-## The app serves following features
+## The app serves the following features
 
-  - Write notes which then saved to the [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage).
+  - Writes notes which are then saved to the [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage).
   - Works and fetches notes offline-capable thanks to ServiceWorker.
   - "Add To Home Screen" feature on Android supported devices to launch the app from home screen.
   - Dark mode.
