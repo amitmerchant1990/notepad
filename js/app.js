@@ -76,6 +76,16 @@ function debounce(func, wait, immediate) {
 	};
 };
 
+window.matchMedia('(prefers-color-scheme: dark)').addListener(({ matches }) => {
+	if (matches) {
+		$(document.body).addClass('dark');
+		localStorage.setItem('mode', 'dark');
+	}else{
+		$(document.body).removeClass('dark');
+		localStorage.setItem('mode', 'light');
+	}
+});
+
 // Registering ServiceWorker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').then(function(registration) {
