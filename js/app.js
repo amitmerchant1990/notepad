@@ -19,18 +19,18 @@ $(document).ready(function(){
 	let darkmodeText = 'Enable dark mode';
 	let lightmodeText = 'Enable light mode';
 
-	if(localStorage.getItem('note') && localStorage.getItem('note')!=''){
-	var noteItem = localStorage.getItem('note');
+	if (localStorage.getItem('note') && localStorage.getItem('note')!='') {
+		let noteItem = localStorage.getItem('note');
 		$('#note').val(noteItem);
 	} else {
 		$('#note').val(initialText);
 	}
 
-	if(localStorage.getItem('mode') && localStorage.getItem('mode')!=''){
-		if(localStorage.getItem('mode') == 'dark'){
+	if (localStorage.getItem('mode') && localStorage.getItem('mode')!='') {
+		if (localStorage.getItem('mode') == 'dark') {
 			$(document.body).addClass('dark');
 			$('#mode').html('☀️').attr('title', lightmodeText);
-		}else{
+		} else {
 			$(document.body).removeClass('dark');
 			$('#mode').html('🌘').attr('title', darkmodeText);
 		}
@@ -50,7 +50,7 @@ $(document).ready(function(){
 		$(document.body).toggleClass('dark');
 		let bodyClass = $(document.body).attr('class');
 
-		if(bodyClass == 'dark'){
+		if (bodyClass == 'dark') {
 			localStorage.setItem('mode', 'dark');
 			$(this).html('☀️').attr('title', lightmodeText);
 		} else {
@@ -63,7 +63,7 @@ $(document).ready(function(){
 		if (matches) {
 			$(document.body).addClass('dark');
 			localStorage.setItem('mode', 'dark');
-		}else{
+		} else {
 			$(document.body).removeClass('dark');
 			localStorage.setItem('mode', 'light');
 		}
@@ -71,7 +71,8 @@ $(document).ready(function(){
 
 });
 
-function debounce(func, wait, immediate) {
+function debounce(func, wait, immediate) 
+{
 	var timeout;
 	return function() {
 		var context = this, args = arguments;
