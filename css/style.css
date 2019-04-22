@@ -197,14 +197,20 @@ textarea {
 
 .cookie_box_close{
   display: inline-block;
-  width: 100%;
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 16px;
+  color: black;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 759px) {
   #carbonads {
     float: none;
     margin: 0 auto;
-    max-width: 330px;
+    max-width: 320px;
   }
   #carbonads span {
     position: relative;
@@ -225,7 +231,7 @@ textarea {
     margin-bottom: 0;
     padding: 8px 20px;
     text-align: left;
-    max-width: calc(100% - 130px - 3em);
+    max-width: calc(100% - 129px - 3em);
   }
   .carbon-poweredby {
     left: 130px;
