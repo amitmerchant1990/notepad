@@ -1,4 +1,4 @@
-Nodepad
+Notepad
 ========
 
 This is an offline-capable Notepad which is based on the [ServiceWorker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
