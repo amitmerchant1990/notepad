@@ -51,9 +51,11 @@ $(document).ready(function(){
 		let bodyClass = $(document.body).attr('class');
 
 		if (bodyClass == 'dark') {
+			$('.navbar').removeClass('navbar-default');
 			localStorage.setItem('mode', 'dark');
 			$(this).html('☀️').attr('title', lightmodeText);
 		} else {
+			$('.navbar').addClass('navbar-default');
 			localStorage.setItem('mode', 'light');
 			$(this).html('🌘').attr('title', darkmodeText);
 		}
