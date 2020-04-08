@@ -73,11 +73,29 @@ textarea:hover,textarea {
 }
 
 .btn-custom {
-  margin-top: 8px;
+  margin-top: 9px;
+}
+
+#Rectangle {
+  fill: lightgreen;
+}
+
+#trash{
+  fill: lightcoral;
+}
+
+.trash-icon{
+  cursor: pointer;
+}
+
+.download-icon{
+  margin-top: 2px;
+  cursor: pointer;
 }
 
 .app-heading {
   margin-left: 8px;
+  font-weight: bold;
 }
 
 .container {
@@ -97,6 +115,9 @@ textarea {
   border: #000000;
   background-color: #171616;
   color: #dedede;
+
+  border-right: 1px solid #777777;
+  border-left: 1px solid #777777;
 }
 
 .dark{
@@ -117,8 +138,7 @@ textarea {
 }
 
 #mode{
-  font-size: 23px;
-  padding: 10px;
+  padding: 17px;
   cursor: pointer;
   display: flex;
   float: right;

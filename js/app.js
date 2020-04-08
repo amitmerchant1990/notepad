@@ -3,24 +3,24 @@ $(document).ready(function(){
 		localStorage.setItem('note', $(this).val());
 	},500));
 
-	let initialText = `This is an offline-capable Notepad which is based on the ServiceWorker.
+	const initialText = `This is an offline-capable Notepad which is a Progressive Web App.
 
-	The app serves following features:
+	The app serves the following features:
 
 	- Write notes which then saved to the localStorage.
 	- Installable on supported browsers for offline usage.
-	- "Add To Home Screen" feature on Android supported devices to launch the app from home screen.
+	- "Add To Home Screen" feature on Android supported devices to launch the app from the home screen.
 	- Dark mode.
-	- Privacy focused - We'll never collect your precious data.
+	- Privacy-focused - We'll never collect your precious data.
 	- Light-weight - Loads almost instantly.
 
 	** Start writing your notes **`;
 	
-	let darkmodeText = 'Enable dark mode';
-	let lightmodeText = 'Enable light mode';
+	const darkmodeText = 'Enable dark mode';
+	const lightmodeText = 'Enable light mode';
 
 	if (localStorage.getItem('note') && localStorage.getItem('note')!='') {
-		let noteItem = localStorage.getItem('note');
+		const noteItem = localStorage.getItem('note');
 		$('#note').val(noteItem);
 	} else {
 		$('#note').val(initialText);
@@ -28,9 +28,11 @@ $(document).ready(function(){
 
 	if (localStorage.getItem('mode') && localStorage.getItem('mode')!='') {
 		if (localStorage.getItem('mode') == 'dark') {
+			$('.navbar').removeClass('navbar-default');
 			$(document.body).addClass('dark');
 			$('#mode').html('☀️').attr('title', lightmodeText);
 		} else {
+			$('.navbar').addClass('navbar-default');
 			$(document.body).removeClass('dark');
 			$('#mode').html('🌘').attr('title', darkmodeText);
 		}
@@ -38,15 +40,15 @@ $(document).ready(function(){
 
 	$('#clearNotes').on('click', function(){
 		$('#note').val('').focus();
-			localStorage.setItem("note", '');
-		});
+		localStorage.setItem("note", '');
+	});
 
-		$('.cookie_box_close').click(function(){
+	$('.cookie_box_close').click(function(){
 		$('.adFooter').animate({opacity:0 }, "slow");
-			return false;
-		});
+		return false;
+	});
 
-		$('#mode').click(function(){
+	$('#mode').click(function(){
 		$(document.body).toggleClass('dark');
 		let bodyClass = $(document.body).attr('class');
 
@@ -87,7 +89,32 @@ function debounce(func, wait, immediate)
 		timeout = setTimeout(later, wait);
 		if (callNow) func.apply(context, args);
 	};
-};
+}
+
+function saveTextAsFile(textToWrite, fileNameToSaveAs)
+{
+	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'}); 
+	var downloadLink = document.createElement("a");
+	downloadLink.download = fileNameToSaveAs;
+	downloadLink.innerHTML = "Download File";
+	if (window.webkitURL != null)
+	{
+		// Chrome allows the link to be clicked
+		// without actually adding it to the DOM.
+		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+	}
+	else
+	{
+		// Firefox requires the link to be added to the DOM
+		// before it can be clicked.
+		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+		downloadLink.onclick = destroyClickedElement;
+		downloadLink.style.display = "none";
+		document.body.appendChild(downloadLink);
+	}
+
+	downloadLink.click();
+}
 
 // Registering ServiceWorker
 if ('serviceWorker' in navigator) {
