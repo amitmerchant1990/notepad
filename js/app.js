@@ -13,6 +13,7 @@ $(document).ready(function(){
 	- Dark mode.
 	- Privacy-focused - We'll never collect your precious data.
 	- Light-weight - Loads almost instantly.
+	- It's open-source!
 
 	** Start writing your notes **`;
 	
