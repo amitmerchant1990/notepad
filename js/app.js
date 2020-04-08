@@ -40,7 +40,7 @@ $(document).ready(function(){
 
 	$('#clearNotes').on('click', function(){
 		Swal.fire({
-			title: 'Are you sure?',
+			title: 'Want to delete notes?',
 			text: "You won't be able to revert this!",
 			icon: 'warning',
 			showCancelButton: true,
