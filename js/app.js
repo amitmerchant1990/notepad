@@ -39,8 +39,26 @@ $(document).ready(function(){
 	}
 
 	$('#clearNotes').on('click', function(){
-		$('#note').val('').focus();
-		localStorage.setItem("note", '');
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			if (result.value) {
+				$('#note').val('').focus();
+				localStorage.setItem("note", '');
+				
+				Swal.fire(
+					'Deleted!',
+					'Your notes has been deleted.',
+					'success'
+				)
+			}
+		})
 	});
 
 	$('.cookie_box_close').click(function(){
