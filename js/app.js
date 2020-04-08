@@ -34,7 +34,7 @@ $(document).ready(function(){
 		} else {
 			$('.navbar').addClass('navbar-default');
 			$(document.body).removeClass('dark');
-			$('#mode').html('🌘').attr('title', darkmodeText);
+			$('#mode').html('🌙').attr('title', darkmodeText);
 		}
 	}
 
@@ -59,7 +59,7 @@ $(document).ready(function(){
 		} else {
 			$('.navbar').addClass('navbar-default');
 			localStorage.setItem('mode', 'light');
-			$(this).html('🌘').attr('title', darkmodeText);
+			$(this).html('🌙').attr('title', darkmodeText);
 		}
 	});
 	
