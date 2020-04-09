@@ -15,6 +15,7 @@ $(document).ready(function(){
 	
 	const darkmodeText = 'Enable dark mode';
 	const lightmodeText = 'Enable light mode';
+	const metaThemeColor = document.querySelector("meta[name=theme-color]");
 
 	$('#note').keyup(debounce(function(){
 		localStorage.setItem('note', $(this).val());
@@ -29,10 +30,12 @@ $(document).ready(function(){
 
 	if (localStorage.getItem('mode') && localStorage.getItem('mode')!='') {
 		if (localStorage.getItem('mode') == 'dark') {
+			metaThemeColor.setAttribute("content", '#000000');
 			$('.navbar').removeClass('navbar-default');
 			$(document.body).addClass('dark');
 			$('#mode').html('☀️').attr('title', lightmodeText);
 		} else {
+			metaThemeColor.setAttribute("content", '#3F51B5');
 			$('.navbar').addClass('navbar-default');
 			$(document.body).removeClass('dark');
 			$('#mode').html('🌙').attr('title', darkmodeText);
@@ -72,10 +75,12 @@ $(document).ready(function(){
 		let bodyClass = $(document.body).attr('class');
 
 		if (bodyClass == 'dark') {
+			metaThemeColor.setAttribute("content", '#000000');
 			$('.navbar').removeClass('navbar-default');
 			localStorage.setItem('mode', 'dark');
 			$(this).html('☀️').attr('title', lightmodeText);
 		} else {
+			metaThemeColor.setAttribute("content", '#3F51B5');
 			$('.navbar').addClass('navbar-default');
 			localStorage.setItem('mode', 'light');
 			$(this).html('🌙').attr('title', darkmodeText);
