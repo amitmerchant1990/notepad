@@ -1,8 +1,4 @@
 $(document).ready(function(){
-	$('#note').keyup(debounce(function(){
-		localStorage.setItem('note', $(this).val());
-	},500));
-
 	const initialText = `This is an offline-capable Notepad which is a Progressive Web App.
 
 	The app serves the following features:
@@ -19,6 +15,10 @@ $(document).ready(function(){
 	
 	const darkmodeText = 'Enable dark mode';
 	const lightmodeText = 'Enable light mode';
+
+	$('#note').keyup(debounce(function(){
+		localStorage.setItem('note', $(this).val());
+	},500));
 
 	if (localStorage.getItem('note') && localStorage.getItem('note')!='') {
 		const noteItem = localStorage.getItem('note');
@@ -116,14 +116,12 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs)
 	var downloadLink = document.createElement("a");
 	downloadLink.download = fileNameToSaveAs;
 	downloadLink.innerHTML = "Download File";
-	if (window.webkitURL != null)
-	{
+
+	if (window.webkitURL != null) {
 		// Chrome allows the link to be clicked
 		// without actually adding it to the DOM.
 		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-	}
-	else
-	{
+	} else {
 		// Firefox requires the link to be added to the DOM
 		// before it can be clicked.
 		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);

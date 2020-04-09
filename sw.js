@@ -1,12 +1,13 @@
 importScripts('js/cache-polyfill.js');
 
-var CACHE_VERSION = 'app-v19';
+var CACHE_VERSION = 'app-v20';
 var CACHE_FILES = [
     '/',
     'index.html',
     'js/app.js',
     'js/jquery.min.js',
     'js/bootstrap.min.js',
+    'js/sweetalert2.all.min.js',
     'css/bootstrap.min.css',
     'css/style.css',
     'favicon.ico',
