@@ -1,7 +1,7 @@
 Notepad
 ========
 
-This is an offline-capable Notepad which is based on the [ServiceWorker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
+This is an offline-capable [Notepad](https://notepad.js.org/) which is based on the [ServiceWorker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 
 <a href="https://www.patreon.com/amitmerchant">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
