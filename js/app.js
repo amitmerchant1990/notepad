@@ -66,7 +66,7 @@ $(document).ready(function(){
 	});
 
 	$('.cookie_box_close').click(function(){
-		$('.adFooter').animate({opacity:0 }, "slow");
+		$('.adFooter').animate({ opacity:0 }, "slow");
 		return false;
 	});
 
@@ -74,7 +74,7 @@ $(document).ready(function(){
 		$(document.body).toggleClass('dark');
 		let bodyClass = $(document.body).attr('class');
 
-		if (bodyClass == 'dark') {
+		if (bodyClass === 'dark') {
 			metaThemeColor.setAttribute("content", '#000000');
 			$('.navbar').removeClass('navbar-default');
 			localStorage.setItem('mode', 'dark');
