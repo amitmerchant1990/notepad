@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	const initialText = `This is an offline-capable Notepad which is a Progressive Web App.
+	const welcomeText = `This is an offline-capable Notepad which is a Progressive Web App.
 
 	The app serves the following features:
 
@@ -15,34 +15,30 @@ $(document).ready(function(){
 	
 	const darkmodeText = 'Enable dark mode';
 	const lightmodeText = 'Enable light mode';
+	const darkMetaColor = '#000000';
+	const lightMetaColor = '#795548';
 	const metaThemeColor = document.querySelector("meta[name=theme-color]");
 
-	$('#note').keyup(debounce(function(){
-		localStorage.setItem('note', $(this).val());
-	},500));
-
-	if (localStorage.getItem('note') && localStorage.getItem('note')!='') {
+	if (localStorage.getItem('note') && localStorage.getItem('note') != '') {
 		const noteItem = localStorage.getItem('note');
 		$('#note').val(noteItem);
 	} else {
-		$('#note').val(initialText);
+		$('#note').val(welcomeText);
 	}
 
-	if (localStorage.getItem('mode') && localStorage.getItem('mode')!='') {
+	if (localStorage.getItem('mode') && localStorage.getItem('mode') != '') {
 		if (localStorage.getItem('mode') == 'dark') {
-			metaThemeColor.setAttribute("content", '#000000');
-			$('.navbar').removeClass('navbar-default');
-			$(document.body).addClass('dark');
-			$('#mode').html('☀️').attr('title', lightmodeText);
+			enableDarkMode()
 		} else {
-			metaThemeColor.setAttribute("content", '#795548');
-			$('.navbar').addClass('navbar-default');
-			$(document.body).removeClass('dark');
-			$('#mode').html('🌙').attr('title', darkmodeText);
+			enableLightMode()
 		}
 	}
 
-	$('#clearNotes').on('click', function(){
+	$('#note').keyup(debounce(function() {
+		localStorage.setItem('note', $(this).val());
+	}, 500));
+
+	$('#clearNotes').on('click', function() {
 		Swal.fire({
 			title: 'Want to delete notes?',
 			text: "You won't be able to revert this!",
@@ -65,42 +61,45 @@ $(document).ready(function(){
 		})
 	});
 
-	$('.cookie_box_close').click(function(){
-		$('.adFooter').animate({ opacity:0 }, "slow");
-		return false;
-	});
-
-	$('#mode').click(function(){
+	$('#mode').click(function() {
 		$(document.body).toggleClass('dark');
 		let bodyClass = $(document.body).attr('class');
 
 		if (bodyClass === 'dark') {
-			metaThemeColor.setAttribute("content", '#000000');
-			$('.navbar').removeClass('navbar-default');
-			localStorage.setItem('mode', 'dark');
-			$(this).html('☀️').attr('title', lightmodeText);
+			enableDarkMode()
 		} else {
-			metaThemeColor.setAttribute("content", '#795548');
-			$('.navbar').addClass('navbar-default');
-			localStorage.setItem('mode', 'light');
-			$(this).html('🌙').attr('title', darkmodeText);
+			enableLightMode()
 		}
 	});
+
+	function enableDarkMode() {
+		$(document.body).addClass('dark');
+		$('.navbar').removeClass('navbar-default');
+		$('#mode').html('☀️').attr('title', lightmodeText);
+		metaThemeColor.setAttribute('content', darkMetaColor);
+		localStorage.setItem('mode', 'dark');
+	}
+
+	function enableLightMode() {
+		$(document.body).removeClass('dark');
+		$('.navbar').addClass('navbar-default');
+		$('#mode').html('🌙').attr('title', darkmodeText);
+		metaThemeColor.setAttribute('content', lightMetaColor);
+		localStorage.setItem('mode', 'light');
+	}
 	
+	// This sets the editor's theme based 
+	// on the device's theme preference
 	window.matchMedia('(prefers-color-scheme: dark)').addListener(({ matches }) => {
 		if (matches) {
-			$(document.body).addClass('dark');
-			localStorage.setItem('mode', 'dark');
+			enableDarkMode()
 		} else {
-			$(document.body).removeClass('dark');
-			localStorage.setItem('mode', 'light');
+			enableLightMode()
 		}
 	});
-
 });
 
-function debounce(func, wait, immediate) 
-{
+function debounce(func, wait, immediate) {
 	var timeout;
 	return function() {
 		var context = this, args = arguments;
@@ -115,20 +114,15 @@ function debounce(func, wait, immediate)
 	};
 }
 
-function saveTextAsFile(textToWrite, fileNameToSaveAs)
-{
-	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'}); 
-	var downloadLink = document.createElement("a");
+function saveTextAsFile(textToWrite, fileNameToSaveAs) {
+	let textFileAsBlob = new Blob([textToWrite], {type:'text/plain'}); 
+	let downloadLink = document.createElement("a");
 	downloadLink.download = fileNameToSaveAs;
 	downloadLink.innerHTML = "Download File";
 
 	if (window.webkitURL != null) {
-		// Chrome allows the link to be clicked
-		// without actually adding it to the DOM.
 		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
 	} else {
-		// Firefox requires the link to be added to the DOM
-		// before it can be clicked.
 		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
 		downloadLink.onclick = destroyClickedElement;
 		downloadLink.style.display = "none";
@@ -142,7 +136,7 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs)
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js').then(function(registration) {
 		// Registration was successful
-		console.log('ServiceWorker registration successful with scope: ',    registration.scope);
+		console.log('ServiceWorker registration successful with scope: ', registration.scope);
 	}).catch(function(err) {
 		// registration failed :(
 		console.log('ServiceWorker registration failed: ', err);
