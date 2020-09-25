@@ -13,10 +13,20 @@ textarea:hover,textarea {
   -webkit-appearance:none;
   resize: none;
 }
+
 .navbar-default {
-  background-color: #3F51B5;
-  border-color: #3F51B5;
+  background-color:#795548;
+  border-color:#795548;
 }
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #795548 !important;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #A1887F;
+}
+
 .navbar-default .navbar-brand {
   color: #ecf0f1;
 }
@@ -47,11 +57,11 @@ textarea:hover,textarea {
   background-color: #8e44ad;
 }
 .navbar-default .navbar-toggle {
-  border-color: #3F51B5;
+  border-color: #A1887F;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #3F51B5;
+  background-color: #795548;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #ecf0f1;
