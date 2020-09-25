@@ -35,7 +35,7 @@ $(document).ready(function(){
 			$(document.body).addClass('dark');
 			$('#mode').html('☀️').attr('title', lightmodeText);
 		} else {
-			metaThemeColor.setAttribute("content", '#3F51B5');
+			metaThemeColor.setAttribute("content", '#795548');
 			$('.navbar').addClass('navbar-default');
 			$(document.body).removeClass('dark');
 			$('#mode').html('🌙').attr('title', darkmodeText);
@@ -80,7 +80,7 @@ $(document).ready(function(){
 			localStorage.setItem('mode', 'dark');
 			$(this).html('☀️').attr('title', lightmodeText);
 		} else {
-			metaThemeColor.setAttribute("content", '#3F51B5');
+			metaThemeColor.setAttribute("content", '#795548');
 			$('.navbar').addClass('navbar-default');
 			localStorage.setItem('mode', 'light');
 			$(this).html('🌙').attr('title', darkmodeText);
