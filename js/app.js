@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 	const welcomeText = `This is an offline-capable Notepad which is a Progressive Web App.
 
 	The app serves the following features:
@@ -12,7 +12,7 @@ $(document).ready(function(){
 	- It's open-source!
 
 	** Start writing your notes **`;
-	
+
 	const darkmodeText = 'Enable dark mode';
 	const lightmodeText = 'Enable light mode';
 	const darkMetaColor = '#000000';
@@ -34,11 +34,11 @@ $(document).ready(function(){
 		}
 	}
 
-	$('#note').keyup(debounce(function() {
+	$('#note').keyup(debounce(function () {
 		localStorage.setItem('note', $(this).val());
 	}, 500));
 
-	$('#clearNotes').on('click', function() {
+	$('#clearNotes').on('click', function () {
 		Swal.fire({
 			title: 'Want to delete notes?',
 			text: "You won't be able to revert this!",
@@ -51,7 +51,7 @@ $(document).ready(function(){
 			if (result.value) {
 				$('#note').val('').focus();
 				localStorage.setItem("note", '');
-				
+
 				Swal.fire(
 					'Deleted!',
 					'Your notes has been deleted.',
@@ -61,7 +61,7 @@ $(document).ready(function(){
 		})
 	});
 
-	$('#mode').click(function() {
+	$('#mode').click(function () {
 		$(document.body).toggleClass('dark');
 		let bodyClass = $(document.body).attr('class');
 
@@ -87,7 +87,7 @@ $(document).ready(function(){
 		metaThemeColor.setAttribute('content', lightMetaColor);
 		localStorage.setItem('mode', 'light');
 	}
-	
+
 	// This sets the editor's theme based 
 	// on the device's theme preference
 	window.matchMedia('(prefers-color-scheme: dark)').addListener(({ matches }) => {
@@ -101,9 +101,9 @@ $(document).ready(function(){
 
 function debounce(func, wait, immediate) {
 	var timeout;
-	return function() {
+	return function () {
 		var context = this, args = arguments;
-		var later = function() {
+		var later = function () {
 			timeout = null;
 			if (!immediate) func.apply(context, args);
 		};
@@ -115,7 +115,7 @@ function debounce(func, wait, immediate) {
 }
 
 function saveTextAsFile(textToWrite, fileNameToSaveAs) {
-	let textFileAsBlob = new Blob([textToWrite], {type:'text/plain'}); 
+	let textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
 	let downloadLink = document.createElement("a");
 	downloadLink.download = fileNameToSaveAs;
 	downloadLink.innerHTML = "Download File";
@@ -134,10 +134,10 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs) {
 
 // Registering ServiceWorker
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('sw.js').then(function(registration) {
+	navigator.serviceWorker.register('sw.js').then(function (registration) {
 		// Registration was successful
 		console.log('ServiceWorker registration successful with scope: ', registration.scope);
-	}).catch(function(err) {
+	}).catch(function (err) {
 		// registration failed :(
 		console.log('ServiceWorker registration failed: ', err);
 	});
