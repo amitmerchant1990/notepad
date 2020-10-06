@@ -88,15 +88,23 @@ $(document).ready(function () {
 		localStorage.setItem('mode', 'light');
 	}
 
-	// This sets the editor's theme based 
-	// on the device's theme preference
-	window.matchMedia('(prefers-color-scheme: dark)').addListener(({ matches }) => {
+	// This changes the editor's theme when 
+	// user toggles device's theme preference
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
 		if (matches) {
 			enableDarkMode()
 		} else {
 			enableLightMode()
 		}
 	});
+
+	// This sets the editor's theme based on the device's 
+	// theme preference when the application loads
+	if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		enableDarkMode()
+	} else {
+		enableLightMode()
+	}
 });
 
 function debounce(func, wait, immediate) {
