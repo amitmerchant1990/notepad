@@ -17,7 +17,7 @@ $(document).ready(function () {
 	const lightmodeText = 'Enable light mode';
 	const darkMetaColor = '#000000';
 	const lightMetaColor = '#795548';
-	const metaThemeColor = document.querySelector("meta[name=theme-color]");
+	const metaThemeColor = document.querySelector('meta[name=theme-color]');
 
 	if (localStorage.getItem('note') && localStorage.getItem('note') != '') {
 		const noteItem = localStorage.getItem('note');
@@ -50,7 +50,7 @@ $(document).ready(function () {
 		}).then((result) => {
 			if (result.value) {
 				$('#note').val('').focus();
-				localStorage.setItem("note", '');
+				localStorage.setItem('note', '');
 
 				Swal.fire(
 					'Deleted!',
@@ -124,16 +124,16 @@ function debounce(func, wait, immediate) {
 
 function saveTextAsFile(textToWrite, fileNameToSaveAs) {
 	let textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
-	let downloadLink = document.createElement("a");
+	let downloadLink = document.createElement('a');
 	downloadLink.download = fileNameToSaveAs;
-	downloadLink.innerHTML = "Download File";
+	downloadLink.innerHTML = 'Download File';
 
 	if (window.webkitURL != null) {
 		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
 	} else {
 		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
 		downloadLink.onclick = destroyClickedElement;
-		downloadLink.style.display = "none";
+		downloadLink.style.display = 'none';
 		document.body.appendChild(downloadLink);
 	}
 
