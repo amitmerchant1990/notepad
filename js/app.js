@@ -100,7 +100,10 @@ $(document).ready(function () {
 
 	// This sets the editor's theme based on the device's 
 	// theme preference when the application loads
-	if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+	if (
+		(localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark')
+		|| window.matchMedia('(prefers-color-scheme: dark)').matches
+	) {
 		enableDarkMode()
 	} else {
 		enableLightMode()
