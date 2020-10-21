@@ -1,120 +1,202 @@
 <html lang="en">
-  <head>
-    <title>Notepad - Offline capable</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#795548">
-    <meta name="description" content="An offline capable notepad powered by ServiceWorker. It's quick, distraction-free, dark mode enabled, mobile compatible(Android, iOS) and minimalist in nature.">
-    <meta name="keywords" content="note,offline,mobile,web,notepad,android,ios,desktop" />
-    <meta name="author" content="Amit Merchant">
-    <meta name="application-name" content="Notepad" />
-    <meta name="google-site-verification" content="ulSTJh7j6NN54_KiZAJePCb_lYYbyvN28efzvScizHw" />
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="icon" href="favicon.ico">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="img/notepad-apple-icon.png">
-    <link rel="mask-icon" href="img/icon-mask.svg" color="black">
-    <!-- for Facebook -->
-    <meta property="og:title" content="Notepad - Offline capable" />
-    <meta property="og:type" content="appliction" />
-    <meta property="og:image" content="https://notepad.js.org/img/icon-144.png" />
-    <meta property="og:url" content="https://www.amitmerchant.com/notepad" />
-    <meta property="og:description" content="An offline capable notepad powered by ServiceWorker. It's quick, distraction-free, dark mode enabled, mobile compatible(Android, iOS) and minimalist in nature." />
-    <!-- for Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Notepad - Offline capable" />
-    <meta name="twitter:description" content="An offline capable notepad powered by ServiceWorker. It's quick, distraction-free, dark mode enabled, mobile compatible(Android, iOS) and minimalist in nature." />
-    <meta name="twitter:image" content="https://notepad.js.org/img/icon-144.png" />
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-            <span>
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </span>
-            <span><a class="navbar-brand app-heading" href="#">Notepad</a></span>
-            <span>
-              <a id="clearNotes" class="navbar-brand trash-icon" title="Delete Notes">
-                <svg height="18px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="trash"><path d="M89.4,100l26.2,347.9c2.5,32.5,29.6,58.1,60.7,58.1h159.3c31.1,0,58.2-25.6,60.7-58.1L422.6,100H89.4z M190.1,460.8   c0.3,7.1-5.1,12.7-12,12.7s-12.7-5.7-13.1-12.7l-14.6-296.6c-0.5-9.6,5.7-17.4,13.8-17.4s14.9,7.8,15.3,17.4L190.1,460.8z    M268.5,460.8c0,7.1-5.7,12.7-12.5,12.7s-12.5-5.7-12.5-12.7l-2-296.6c-0.1-9.6,6.4-17.4,14.5-17.4c8.1,0,14.6,7.8,14.5,17.4   L268.5,460.8z M346.9,460.8c-0.3,7.1-6.2,12.7-13.1,12.7s-12.2-5.7-12-12.7l10.6-296.6c0.3-9.6,7.2-17.4,15.3-17.4   c8.1,0,14.3,7.8,13.8,17.4L346.9,460.8z"/><path d="M445.3,82.8H66.7v0c-1.8-21.1,10.7-38.4,27.9-38.4h322.9C434.6,44.4,447.1,61.8,445.3,82.8L445.3,82.8z" id="XMLID_2_"/><path d="M324.3,58.6H187.7l-0.2-7.8C186.7,26.3,202.1,6,221.9,6h68.3c19.7,0,35.1,20.3,34.4,44.7L324.3,58.6z" id="XMLID_1_"/></g></svg>
-              </a>
-            </span>
-            <span>
-              <a onclick=saveTextAsFile(note.value,'download.txt') class="navbar-brand download-icon" title="Download Notes">
-                <svg height="16px" version="1.1" viewBox="0 0 16 16" width="18px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs/><g fill="none" fill-rule="evenodd" id="Icons with numbers" stroke="none" stroke-width="1"><g fill="#000000" id="Group" transform="translate(-720.000000, -432.000000)"><path d="M721,446 L733,446 L733,443 L735,443 L735,446 L735,448 L721,448 Z M721,443 L723,443 L723,446 L721,446 Z M726,433 L730,433 L730,440 L732,440 L728,445 L724,440 L726,440 Z M726,433" id="Rectangle"/></g></g></svg>
-              </a>
-            </span>
-            <span title="Enable dark mode">
-              <span id="mode" class="navbar-brand">🌙</span>
-            </span>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#about" data-toggle="modal" data-target="#myModal">About</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
+<head>
+  <title>Notepad - Offline capable</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#795548">
+  <meta name="description"
+    content="An offline capable notepad powered by ServiceWorker. It's quick, distraction-free, dark mode enabled, mobile compatible(Android, iOS) and minimalist in nature.">
+  <meta name="keywords" content="note,offline,mobile,web,notepad,android,ios,desktop" />
+  <meta name="author" content="Amit Merchant">
+  <meta name="application-name" content="Notepad" />
+  <meta name="google-site-verification" content="ulSTJh7j6NN54_KiZAJePCb_lYYbyvN28efzvScizHw" />
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="img/notepad-apple-icon.png">
+  <link rel="mask-icon" href="img/icon-mask.svg" color="black">
+  <!-- for Facebook -->
+  <meta property="og:title" content="Notepad - Offline capable" />
+  <meta property="og:type" content="appliction" />
+  <meta property="og:image" content="https://notepad.js.org/img/icon-144.png" />
+  <meta property="og:url" content="https://www.amitmerchant.com/notepad" />
+  <meta property="og:description"
+    content="An offline capable notepad powered by ServiceWorker. It's quick, distraction-free, dark mode enabled, mobile compatible(Android, iOS) and minimalist in nature." />
+  <!-- for Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notepad - Offline capable" />
+  <meta name="twitter:description"
+    content="An offline capable notepad powered by ServiceWorker. It's quick, distraction-free, dark mode enabled, mobile compatible(Android, iOS) and minimalist in nature." />
+  <meta name="twitter:image" content="https://notepad.js.org/img/icon-144.png" />
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
     <div class="container">
-      <div class="starter-template">
-        <textarea id="note" placeholder="Type your notes here and when you come back all your notes will be right here..." autofocus></textarea>
+      <div class="navbar-header">
+        <span>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </span>
+        <span><a class="navbar-brand app-heading" href="#">Notepad</a></span>
+        <span>
+          <a id="clearNotes" class="navbar-brand trash-icon" title="Delete Notes">
+            <svg height="18px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1"
+              viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="trash">
+                <path
+                  d="M89.4,100l26.2,347.9c2.5,32.5,29.6,58.1,60.7,58.1h159.3c31.1,0,58.2-25.6,60.7-58.1L422.6,100H89.4z M190.1,460.8   c0.3,7.1-5.1,12.7-12,12.7s-12.7-5.7-13.1-12.7l-14.6-296.6c-0.5-9.6,5.7-17.4,13.8-17.4s14.9,7.8,15.3,17.4L190.1,460.8z    M268.5,460.8c0,7.1-5.7,12.7-12.5,12.7s-12.5-5.7-12.5-12.7l-2-296.6c-0.1-9.6,6.4-17.4,14.5-17.4c8.1,0,14.6,7.8,14.5,17.4   L268.5,460.8z M346.9,460.8c-0.3,7.1-6.2,12.7-13.1,12.7s-12.2-5.7-12-12.7l10.6-296.6c0.3-9.6,7.2-17.4,15.3-17.4   c8.1,0,14.3,7.8,13.8,17.4L346.9,460.8z" />
+                <path
+                  d="M445.3,82.8H66.7v0c-1.8-21.1,10.7-38.4,27.9-38.4h322.9C434.6,44.4,447.1,61.8,445.3,82.8L445.3,82.8z"
+                  id="XMLID_2_" />
+                <path
+                  d="M324.3,58.6H187.7l-0.2-7.8C186.7,26.3,202.1,6,221.9,6h68.3c19.7,0,35.1,20.3,34.4,44.7L324.3,58.6z"
+                  id="XMLID_1_" />
+              </g>
+            </svg>
+          </a>
+        </span>
+        <span>
+          <a onclick=saveTextAsFile(note.value,'download.txt') class="navbar-brand download-icon"
+            title="Download Notes">
+            <svg height="16px" version="1.1" viewBox="0 0 16 16" width="18px" xmlns="http://www.w3.org/2000/svg"
+              xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title />
+              <defs />
+              <g fill="none" fill-rule="evenodd" id="Icons with numbers" stroke="none" stroke-width="1">
+                <g fill="#000000" id="Group" transform="translate(-720.000000, -432.000000)">
+                  <path
+                    d="M721,446 L733,446 L733,443 L735,443 L735,446 L735,448 L721,448 Z M721,443 L723,443 L723,446 L721,446 Z M726,433 L730,433 L730,440 L732,440 L728,445 L724,440 L726,440 Z M726,433"
+                    id="Rectangle" />
+                </g>
+              </g>
+            </svg>
+          </a>
+        </span>
+        <span title="Enable dark mode">
+          <span id="mode" class="navbar-brand">🌙</span>
+        </span>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#about" data-toggle="modal" data-target="#myModal">About</a></li>
+        </ul>
       </div>
     </div>
-    
-    <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+  </nav>
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Notepad - Offline capable</h4>
-          </div>
-          <div class="modal-body">
-            <p>An offline-capable Notepad app which is a Progressive Web App.</p>
+  <div class="container">
+    <div class="starter-template">
+      <textarea id="note" placeholder="Type your notes here and when you come back all your notes will be right here..."
+        autofocus></textarea>
+    </div>
+  </div>
 
-            <p>The app serves the following features:</p>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-            <ul>
-              <li>Write notes which then saved to the localStorage.</li>
-              <li>Installable on supported browsers for offline usage.</li>
-              <li>"Add To Home Screen" feature on Android supported devices to launch the app from the home screen.</li>
-              <li>Dark mode.</li>
-              <li>Privacy-focused - We'll never collect your precious data.</li>
-              <li>Light-weight - Loads almost instantly.</li>
-              <li>It's <a href="https://github.com/amitmerchant1990/notepad" target="_blank">open-source</a>!</li>
-            </ul>
-
-            <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#ffffff !important;background-color:#000000 !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 23px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#ffffff !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
-            <p>If you liked using this app,
-            <p style="text-align:center;"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/5Zn8Xh3l9"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Notepad - Offline capable</h4>
         </div>
+        <div class="modal-body">
+          <p>An offline-capable Notepad app which is a Progressive Web App.</p>
 
+          <p>The app serves the following features:</p>
+
+          <ul>
+            <li>Write notes which then saved to the localStorage.</li>
+            <li>Installable on supported browsers for offline usage.</li>
+            <li>"Add To Home Screen" feature on Android supported devices to launch the app from the home screen.</li>
+            <li>Dark mode.</li>
+            <li>Privacy-focused - We'll never collect your precious data.</li>
+            <li>Light-weight - Loads almost instantly.</li>
+            <li>It's <a href="https://github.com/amitmerchant1990/notepad" target="_blank">open-source</a>!</li>
+          </ul>
+
+          <style>
+            .bmc-button img {
+              width: 27px !important;
+              margin-bottom: 1px !important;
+              box-shadow: none !important;
+              border: none !important;
+              vertical-align: middle !important;
+            }
+
+            .bmc-button {
+              line-height: 36px !important;
+              height: 37px !important;
+              text-decoration: none !important;
+              display: inline-flex !important;
+              color: #ffffff !important;
+              background-color: #000000 !important;
+              border-radius: 3px !important;
+              border: 1px solid transparent !important;
+              padding: 1px 9px !important;
+              font-size: 23px !important;
+              letter-spacing: 0.6px !important;
+              box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;
+              -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+              margin: 0 auto !important;
+              font-family: 'Cookie', cursive !important;
+              -webkit-box-sizing: border-box !important;
+              box-sizing: border-box !important;
+              -o-transition: 0.3s all linear !important;
+              -webkit-transition: 0.3s all linear !important;
+              -moz-transition: 0.3s all linear !important;
+              -ms-transition: 0.3s all linear !important;
+              transition: 0.3s all linear !important;
+            }
+
+            .bmc-button:hover,
+            .bmc-button:active,
+            .bmc-button:focus {
+              -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+              text-decoration: none !important;
+              box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+              opacity: 0.85 !important;
+              color: #ffffff !important;
+            }
+          </style>
+          <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+          <p>If you liked using this app,
+          <p style="text-align:center;"><a class="bmc-button" target="_blank"
+              href="https://www.buymeacoffee.com/5Zn8Xh3l9"><img
+                src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span
+                style="margin-left:5px">Buy me a coffee</span></a></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
-    </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/sweetalert2.all.min.js"></script>
-    <script src="js/app.js"></script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-43339302-6', 'auto');
-      ga('send', 'pageview');
-    </script>
-  </body>
+    </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/sweetalert2.all.min.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-43339302-6', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+
 </html>
