@@ -236,6 +236,10 @@ textarea {
   color: black;
 }
 
+.modal-container {
+  padding: 10px 20px;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 759px) {
   #carbonads {
     float: none;
