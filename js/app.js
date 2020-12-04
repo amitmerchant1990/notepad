@@ -118,6 +118,13 @@ $(document).ready(function () {
 	} else {
 		enableLightMode()
 	}
+
+	document.onkeydown = function(evt) {
+		evt = evt || window.event;
+		if (evt.key == 'Escape') {
+			$('#myModal').modal('hide');
+		}
+	};
 });
 
 function debounce(func, wait, immediate) {
