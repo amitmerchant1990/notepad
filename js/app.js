@@ -100,7 +100,7 @@ $(document).ready(function () {
 		localStorage.setItem('mode', 'light');
 	}
 
-	// This changes the editor's theme when 
+	// This changes the application's theme when 
 	// user toggles device's theme preference
 	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
 		if (matches) {
@@ -110,8 +110,8 @@ $(document).ready(function () {
 		}
 	});
 
-	// This sets the editor's theme based on the device's 
-	// theme preference when the application loads
+	// This sets the application's theme based on
+	// the device's theme preference when it loads
 	if (
 		(localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark')
 		|| window.matchMedia('(prefers-color-scheme: dark)').matches
