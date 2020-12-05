@@ -74,9 +74,11 @@ $(document).ready(function () {
 
 	$('#copyToClipboard').click(function() {
 		navigator.clipboard.writeText($('#note').val()).then(function () {
-			var x = document.getElementById("snackbar");
-			x.className = "show";
-			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+			let snackbar = document.getElementById('snackbar');
+			snackbar.className = 'show';
+			setTimeout(function() { 
+				snackbar.className = snackbar.className.replace('show', ''); 
+			}, 2000);
 		}, function () {
 			alert('Failure to copy. Check permissions for clipboard')
 		});
