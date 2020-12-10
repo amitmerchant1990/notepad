@@ -124,7 +124,7 @@ textarea {
 .dark textarea {
   padding: 8px;
   border: #000000;
-  background-color: #171616;
+  background-color: #0d1117;
   color: #dedede;
 
   border-right: 1px solid #3e3e3e;
@@ -132,7 +132,7 @@ textarea {
 }
 
 .dark{
-  background-color: #171616;
+  background-color: #0d1117;
 }
 
 .adFooter {

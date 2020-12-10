@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 	const darkmodeText = 'Enable dark mode';
 	const lightmodeText = 'Enable light mode';
-	const darkMetaColor = '#000000';
+	const darkMetaColor = '#0d1117';
 	const lightMetaColor = '#795548';
 	const metaThemeColor = document.querySelector('meta[name=theme-color]');
 
