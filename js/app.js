@@ -126,6 +126,10 @@ $(document).ready(function () {
 		if (evt.key == 'Escape') {
 			$('#myModal').modal('hide');
 		}
+		else if(evt.ctrlKey && evt.keyCode == 'S'.charCodeAt(0)){
+            		saveTextAsFile(note.value,'download.txt');
+            		evt.preventDefault();
+        	}
 	};
 });
 
