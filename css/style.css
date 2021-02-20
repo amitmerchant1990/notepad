@@ -109,6 +109,16 @@ textarea:hover,textarea {
   font-size: 16px;
 }
 
+.navbar-inverse .app-heading {
+  color: #7cc5ff;
+  text-shadow: 0px 0px 3px #2196F3;
+}
+
+.navbar-default .app-heading {
+  color: #ecf0f1;
+  text-shadow: none;
+}
+
 .container {
   padding-right: 0px;
   padding-left: 0px;
