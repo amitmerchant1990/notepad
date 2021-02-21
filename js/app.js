@@ -87,7 +87,9 @@ $(document).ready(function () {
 	function enableDarkMode() {
 		$(document.body).addClass('dark');
 		$('.navbar').removeClass('navbar-default');
-		$('#mode').html('☀️').attr('title', lightmodeText);
+		$('#mode').attr('title', lightmodeText);
+		$('#light').show();
+		$('#dark').hide();
 		metaThemeColor.setAttribute('content', darkMetaColor);
 		localStorage.setItem('mode', 'dark');
 	}
@@ -95,7 +97,9 @@ $(document).ready(function () {
 	function enableLightMode() {
 		$(document.body).removeClass('dark');
 		$('.navbar').addClass('navbar-default');
-		$('#mode').html('🌙').attr('title', darkmodeText);
+		$('#mode').attr('title', darkmodeText);
+		$('#light').hide();
+		$('#dark').show();
 		metaThemeColor.setAttribute('content', lightMetaColor);
 		localStorage.setItem('mode', 'light');
 	}
