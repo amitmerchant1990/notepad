@@ -107,6 +107,7 @@ textarea:hover,textarea {
   margin-left: 8px;
   font-weight: bold;
   font-size: 16px;
+  letter-spacing: 1px;
 }
 
 .navbar-inverse .app-heading {
