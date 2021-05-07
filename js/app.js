@@ -11,6 +11,10 @@ $(document).ready(function () {
 	- Light-weight - Loads almost instantly.
 	- It's open-source!
 
+	CAUTION: Since the app uses the browser's localStorage to store your notes, 
+	it's recommended that you take backup of your notes more often using the 
+	"Download Notes" button or by pressing "Ctrl/Cmd + S" keys.
+
 	** Start writing your notes **`;
 
 	const darkmodeText = 'Enable dark mode';
@@ -84,6 +88,10 @@ $(document).ready(function () {
 		});
 	})
 
+	$('#downloadNotes').click(function() {
+		saveTextAsFile(note.value, getFileName());
+	})
+
 	function enableDarkMode() {
 		$(document.body).addClass('dark');
 		$('.navbar').removeClass('navbar-default');
@@ -130,10 +138,20 @@ $(document).ready(function () {
 		if (evt.key == 'Escape') {
 			$('#myModal').modal('hide');
 		} else if (evt.ctrlKey && evt.keyCode == 'S'.charCodeAt(0)) {
-			saveTextAsFile(note.value,'download.txt');
+			saveTextAsFile(note.value, getFileName());
 			evt.preventDefault();
 		}
 	};
+
+	function getFileName() {
+		return 'Notes-' + getCurrentDate() + '.txt';
+	}
+
+	function getCurrentDate() {
+		const currentDate = new Date();
+
+		return currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();
+	}
 });
 
 function debounce(func, wait, immediate) {
