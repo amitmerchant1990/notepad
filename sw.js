@@ -1,7 +1,7 @@
 importScripts('js/cache-polyfill.js');
 
-var CACHE_VERSION = 'app-v20';
-var CACHE_FILES = [
+let CACHE_VERSION = 'app-v20';
+let CACHE_FILES = [
     '/',
     'index.html',
     'js/app.js',
@@ -42,6 +42,18 @@ self.addEventListener('fetch', function (event) {
     }
 });
 
+self.addEventListener('activate', function (event) {
+    event.waitUntil(
+        caches.keys().then(function(keys){
+            return Promise.all(keys.map(function(key, i){
+                if(key !== CACHE_VERSION){
+                    return caches.delete(keys[i]);
+                }
+            }))
+        })
+    )
+});
+
 function requestBackend(event){
     var url = event.request.clone();
     return fetch(url).then(function(res){
@@ -59,15 +71,3 @@ function requestBackend(event){
         return res;
     })
 }
-
-self.addEventListener('activate', function (event) {
-    event.waitUntil(
-        caches.keys().then(function(keys){
-            return Promise.all(keys.map(function(key, i){
-                if(key !== CACHE_VERSION){
-                    return caches.delete(keys[i]);
-                }
-            }))
-        })
-    )
-});

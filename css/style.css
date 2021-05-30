@@ -252,7 +252,7 @@ textarea {
   padding: 10px 20px;
 }
 
-#snackbar {
+#toast {
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
@@ -267,10 +267,33 @@ textarea {
   bottom: 30px;
 }
 
-#snackbar.show {
+#toast.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
   animation: fadein 0.5s, fadeout 0.5s 1.5s;
+}
+
+.custom-modal-title {
+  display: inline-block;
+}
+
+.install-app-btn-container {
+  margin-left: 5px;
+}
+
+.install-app-btn {
+  padding: 5px 10px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.install-app-btn:hover, .install-app-btn:focus {
+  text-decoration: none;
+  color: white;
+  transform: scale(1.05);
 }
 
 @-webkit-keyframes fadein {

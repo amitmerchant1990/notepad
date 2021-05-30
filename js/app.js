@@ -78,11 +78,7 @@ $(document).ready(function () {
 
 	$('#copyToClipboard').click(function() {
 		navigator.clipboard.writeText($('#note').val()).then(function () {
-			let snackbar = document.getElementById('snackbar');
-			snackbar.className = 'show';
-			setTimeout(function() { 
-				snackbar.className = snackbar.className.replace('show', ''); 
-			}, 2000);
+			showToast('Notes copied to clipboard!')
 		}, function () {
 			alert('Failure to copy. Check permissions for clipboard')
 		});
@@ -154,6 +150,15 @@ $(document).ready(function () {
 	}
 });
 
+function showToast(message) {
+	let toast = document.getElementById('toast');
+	toast.className = 'show';
+	toast.innerHTML = message;
+	setTimeout(function() { 
+		toast.className = toast.className.replace('show', ''); 
+	}, 2000);
+}
+
 function debounce(func, wait, immediate) {
 	var timeout;
 	return function () {
@@ -197,3 +202,28 @@ if ('serviceWorker' in navigator) {
 		console.log('ServiceWorker registration failed: ', err);
 	});
 }
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+	deferredPrompt = e;
+	e.userChoice.then(function(choiceResult) {
+		if (choiceResult.outcome === 'accepted') {
+			deferredPrompt = null;
+		}
+	});
+});
+
+const installApp = document.getElementById('installApp');
+
+installApp.addEventListener('click', async () => {
+    if (deferredPrompt !== null) {
+		deferredPrompt.prompt();
+		const { outcome } = await deferredPrompt.userChoice;
+		if (outcome === 'accepted') {
+			deferredPrompt = null;
+		}
+	} else {
+		showToast('Notepad is already installed.')
+	}
+});
