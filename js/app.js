@@ -30,6 +30,10 @@ $(document).ready(function () {
 		$('#note').val(welcomeText);
 	}
 
+	if (!localStorage.getItem('isUserPreferredTheme')) {
+		localStorage.setItem('isUserPreferredTheme', 'false');
+	}
+
 	if (localStorage.getItem('mode') && localStorage.getItem('mode') != '') {
 		if (localStorage.getItem('mode') == 'dark') {
 			enableDarkMode()
@@ -74,6 +78,8 @@ $(document).ready(function () {
 		} else {
 			enableLightMode()
 		}
+
+		localStorage.setItem('isUserPreferredTheme', 'true');
 	});
 
 	$('#copyToClipboard').click(function() {
@@ -111,6 +117,12 @@ $(document).ready(function () {
 	// This changes the application's theme when 
 	// user toggles device's theme preference
 	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+		// To override device's theme preference
+		// if user sets theme manually in the app
+		if (localStorage.getItem('isUserPreferredTheme') === 'true') {
+			return;
+		}
+
 		if (matches) {
 			enableDarkMode()
 		} else {
@@ -120,14 +132,27 @@ $(document).ready(function () {
 
 	// This sets the application's theme based on
 	// the device's theme preference when it loads
-	if (
-		(localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark')
-		|| window.matchMedia('(prefers-color-scheme: dark)').matches
-	) {
-		enableDarkMode()
-	} else {
-		enableLightMode()
+	if (localStorage.getItem('isUserPreferredTheme') === 'false') {
+		if (
+			window.matchMedia('(prefers-color-scheme: dark)').matches
+		) {
+			enableDarkMode()
+		} else {
+			enableLightMode()
+		}
 	}
+
+	if (getPWADisplayMode() === 'standalone') {
+		$('#installApp').hide();
+	}
+
+	window.matchMedia('(display-mode: standalone)').addEventListener('change', ({matches}) => {
+		if (matches) {
+			$('#installApp').hide();
+		} else {
+			$('#installApp').show();
+		}
+	});
 
 	document.onkeydown = function(evt) {
 		evt = evt || window.event;
@@ -190,6 +215,16 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs) {
 	}
 
 	downloadLink.click();
+}
+
+function getPWADisplayMode() {
+	const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+	if (document.referrer.startsWith('android-app://')) {
+		return 'twa';
+	} else if (navigator.standalone || isStandalone) {
+		return 'standalone';
+	}
+	return 'browser';
 }
 
 // Registering ServiceWorker
