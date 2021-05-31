@@ -1,9 +1,10 @@
 importScripts('js/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v20';
+let CACHE_VERSION = 'app-v21';
 let CACHE_FILES = [
     '/',
     'index.html',
+    'js/utils.js',
     'js/app.js',
     'js/jquery.min.js',
     'js/bootstrap.min.js',
@@ -30,10 +31,10 @@ self.addEventListener('install', function (event) {
 
 self.addEventListener('fetch', function (event) {
     let online = navigator.onLine
-    if(!online){
+    if (!online) {
         event.respondWith(
-            caches.match(event.request).then(function(res){
-                if(res){
+            caches.match(event.request).then(function (res) {
+                if (res) {
                     return res;
                 }
                 requestBackend(event);
@@ -44,9 +45,9 @@ self.addEventListener('fetch', function (event) {
 
 self.addEventListener('activate', function (event) {
     event.waitUntil(
-        caches.keys().then(function(keys){
-            return Promise.all(keys.map(function(key, i){
-                if(key !== CACHE_VERSION){
+        caches.keys().then(function (keys) {
+            return Promise.all(keys.map(function (key, i) {
+                if (key !== CACHE_VERSION) {
                     return caches.delete(keys[i]);
                 }
             }))
@@ -54,17 +55,17 @@ self.addEventListener('activate', function (event) {
     )
 });
 
-function requestBackend(event){
+function requestBackend(event) {
     var url = event.request.clone();
-    return fetch(url).then(function(res){
+    return fetch(url).then(function (res) {
         //if not a valid response send the error
-        if(!res || res.status !== 200 || res.type !== 'basic'){
+        if (!res || res.status !== 200 || res.type !== 'basic') {
             return res;
         }
 
         var response = res.clone();
 
-        caches.open(CACHE_VERSION).then(function(cache){
+        caches.open(CACHE_VERSION).then(function (cache) {
             cache.put(event.request, response);
         });
 

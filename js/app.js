@@ -34,11 +34,11 @@ $(document).ready(function () {
 		localStorage.setItem('isUserPreferredTheme', 'false');
 	}
 
-	if (localStorage.getItem('mode') && localStorage.getItem('mode') != '') {
-		if (localStorage.getItem('mode') == 'dark') {
-			enableDarkMode()
+	if (localStorage.getItem('mode') && localStorage.getItem('mode') !== '') {
+		if (localStorage.getItem('mode') === 'dark') {
+			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
 		} else {
-			enableLightMode()
+			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 		}
 	}
 
@@ -74,45 +74,25 @@ $(document).ready(function () {
 		let bodyClass = $(document.body).attr('class');
 
 		if (bodyClass === 'dark') {
-			enableDarkMode()
+			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
 		} else {
-			enableLightMode()
+			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 		}
 
 		localStorage.setItem('isUserPreferredTheme', 'true');
 	});
 
-	$('#copyToClipboard').click(function() {
+	$('#copyToClipboard').click(function () {
 		navigator.clipboard.writeText($('#note').val()).then(function () {
 			showToast('Notes copied to clipboard!')
 		}, function () {
-			alert('Failure to copy. Check permissions for clipboard')
+			showToast('Failure to copy. Check permissions for clipboard.')
 		});
 	})
 
-	$('#downloadNotes').click(function() {
+	$('#downloadNotes').click(function () {
 		saveTextAsFile(note.value, getFileName());
 	})
-
-	function enableDarkMode() {
-		$(document.body).addClass('dark');
-		$('.navbar').removeClass('navbar-default');
-		$('#mode').attr('title', lightmodeText);
-		$('#light').show();
-		$('#dark').hide();
-		metaThemeColor.setAttribute('content', darkMetaColor);
-		localStorage.setItem('mode', 'dark');
-	}
-
-	function enableLightMode() {
-		$(document.body).removeClass('dark');
-		$('.navbar').addClass('navbar-default');
-		$('#mode').attr('title', darkmodeText);
-		$('#light').hide();
-		$('#dark').show();
-		metaThemeColor.setAttribute('content', lightMetaColor);
-		localStorage.setItem('mode', 'light');
-	}
 
 	// This changes the application's theme when 
 	// user toggles device's theme preference
@@ -124,9 +104,9 @@ $(document).ready(function () {
 		}
 
 		if (matches) {
-			enableDarkMode()
+			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
 		} else {
-			enableLightMode()
+			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 		}
 	});
 
@@ -136,9 +116,9 @@ $(document).ready(function () {
 		if (
 			window.matchMedia('(prefers-color-scheme: dark)').matches
 		) {
-			enableDarkMode()
+			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
 		} else {
-			enableLightMode()
+			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 		}
 	}
 
@@ -146,7 +126,7 @@ $(document).ready(function () {
 		$('#installApp').hide();
 	}
 
-	window.matchMedia('(display-mode: standalone)').addEventListener('change', ({matches}) => {
+	window.matchMedia('(display-mode: standalone)').addEventListener('change', ({ matches }) => {
 		if (matches) {
 			$('#installApp').hide();
 		} else {
@@ -154,86 +134,23 @@ $(document).ready(function () {
 		}
 	});
 
-	document.onkeydown = function(evt) {
-		evt = evt || window.event;
-		if (evt.key == 'Escape') {
-			$('#myModal').modal('hide');
-		} else if (evt.ctrlKey && evt.keyCode == 'S'.charCodeAt(0)) {
+	document.onkeydown = function (event) {
+		event = event || window.event;
+
+		if (event.key === 'Escape') {
+			$('#aboutModal').modal('hide');
+		} else if (event.ctrlKey && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
-			evt.preventDefault();
+			event.preventDefault();
 		}
 	};
-
-	function getFileName() {
-		return 'Notes-' + getCurrentDate() + '.txt';
-	}
-
-	function getCurrentDate() {
-		const currentDate = new Date();
-
-		return currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();
-	}
 });
-
-function showToast(message) {
-	let toast = document.getElementById('toast');
-	toast.className = 'show';
-	toast.innerHTML = message;
-	setTimeout(function() { 
-		toast.className = toast.className.replace('show', ''); 
-	}, 2000);
-}
-
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function () {
-		var context = this, args = arguments;
-		var later = function () {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-}
-
-function saveTextAsFile(textToWrite, fileNameToSaveAs) {
-	let textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
-	let downloadLink = document.createElement('a');
-	downloadLink.download = fileNameToSaveAs;
-	downloadLink.innerHTML = 'Download File';
-
-	if (window.webkitURL != null) {
-		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-	} else {
-		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-		downloadLink.onclick = destroyClickedElement;
-		downloadLink.style.display = 'none';
-		document.body.appendChild(downloadLink);
-	}
-
-	downloadLink.click();
-}
-
-function getPWADisplayMode() {
-	const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-	if (document.referrer.startsWith('android-app://')) {
-		return 'twa';
-	} else if (navigator.standalone || isStandalone) {
-		return 'standalone';
-	}
-	return 'browser';
-}
 
 // Registering ServiceWorker
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js').then(function (registration) {
-		// Registration was successful
 		console.log('ServiceWorker registration successful with scope: ', registration.scope);
 	}).catch(function (err) {
-		// registration failed :(
 		console.log('ServiceWorker registration failed: ', err);
 	});
 }
@@ -242,7 +159,7 @@ let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (e) => {
 	deferredPrompt = e;
-	e.userChoice.then(function(choiceResult) {
+	e.userChoice.then(function (choiceResult) {
 		if (choiceResult.outcome === 'accepted') {
 			deferredPrompt = null;
 		}
