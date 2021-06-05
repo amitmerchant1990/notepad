@@ -156,26 +156,55 @@ if ('serviceWorker' in navigator) {
 }
 
 let deferredPrompt;
+let installSource;
 
 window.addEventListener('beforeinstallprompt', (e) => {
 	deferredPrompt = e;
+	installSource = 'nativeInstallCard';
+
 	e.userChoice.then(function (choiceResult) {
 		if (choiceResult.outcome === 'accepted') {
 			deferredPrompt = null;
 		}
+
+		ga('send', {
+			hitType: 'event',
+			eventCategory: 'pwa-install',
+			eventAction: 'native-installation-card-prompted',
+			eventLabel: installSource,
+			eventValue: choiceResult.outcome === 'accepted' ? 1 : 0
+		});
 	});
 });
 
 const installApp = document.getElementById('installApp');
 
 installApp.addEventListener('click', async () => {
+	installSource = 'customInstallationButton';
+
 	if (deferredPrompt !== null) {
 		deferredPrompt.prompt();
 		const { outcome } = await deferredPrompt.userChoice;
 		if (outcome === 'accepted') {
 			deferredPrompt = null;
 		}
+
+		ga('send', {
+			hitType: 'event',
+			eventCategory: 'pwa-install',
+			eventAction: 'custom-installation-button-clicked',
+			eventLabel: installSource,
+			eventValue: outcome === 'accepted' ? 1 : 0
+		});
 	} else {
 		showToast('Notepad is already installed.')
 	}
+});
+
+window.addEventListener('appinstalled', () => {
+	deferredPrompt = null;
+
+	const source = installSource || 'browser';
+
+	ga('send', 'event', 'pwa-install', 'installed', source);
 });
