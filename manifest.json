@@ -1,6 +1,7 @@
 {
   "short_name": "Notepad",
   "name": "Notepad",
+  "description": "An offline-capable, quick, and distraction-free Notepad",
   "display": "standalone",
   "icons": [
     {
@@ -22,6 +23,18 @@
       "src": "img/icon-196.png",
       "sizes": "196x196",
       "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "img/screenshot1.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    },
+    {
+      "src": "img/screenshot2.png",
+      "type": "image/png",
+      "sizes": "540x720"
     }
   ],
   "start_url": "index.html",
