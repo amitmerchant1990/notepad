@@ -278,6 +278,7 @@ textarea {
 }
 
 .install-app-btn-container {
+  display: none;
   margin-left: 5px;
 }
 
