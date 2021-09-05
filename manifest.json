@@ -39,5 +39,10 @@
   ],
   "start_url": "index.html",
   "theme_color": "#3F51B5",
-  "background_color": "#EEEEEE"
+  "background_color": "#EEEEEE",
+  "url_handlers": [
+    {
+      "origin": "https://notepad.js.org"
+    }
+  ]
 }
