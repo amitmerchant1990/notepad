@@ -1,0 +1,10 @@
+{
+  "web_apps": [
+    {
+      "manifest": "https://notepad.js.org/manifest.json",
+      "details": {
+        "paths": ["/*"]
+      }
+    }
+  ]
+}
