@@ -3,7 +3,7 @@ Notepad
 
 This is an offline-capable [Notepad](https://notepad.js.org/) which is based on the [ServiceWorker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 
-> Like this app? If so, consider donating a small amount that will help my maintaining this project further.
+> Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
 >
 > You can support me via [Paypal](https://paypal.me/AmitMerchant).
 
