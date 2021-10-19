@@ -16,7 +16,12 @@ let CACHE_FILES = [
     'img/icon-48.png',
     'img/icon-96.png',
     'img/icon-144.png',
-    'img/icon-196.png'
+    'img/icon-196.png',
+    'img/navbar/copy.svg',
+    'img/navbar/delete.svg',
+    'img/navbar/download.svg',
+    'img/navbar/dark-theme.svg',
+    'img/navbar/light-theme.svg'
 ];
 
 self.addEventListener('install', function (event) {
