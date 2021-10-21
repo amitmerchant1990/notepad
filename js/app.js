@@ -3,7 +3,7 @@ $(document).ready(function () {
 
 	The app serves the following features:
 
-	- Write notes which then saved to the localStorage.
+	- Write notes which are then saved to the localStorage.
 	- Installable on supported browsers for offline usage.
 	- "Add To Home Screen" feature on Android-supported devices to launch the app from the home screen.
 	- Dark mode.
