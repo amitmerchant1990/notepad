@@ -94,6 +94,17 @@ $(document).ready(function () {
 		saveTextAsFile(note.value, getFileName());
 	})
 
+	setTimeout(function() {
+		if (!localStorage.getItem('hasUserDismissedDonationPopup')) {
+			$('.sticky-notice').toggleClass('make-hidden');
+		}
+	}, 30000);
+
+	$('#closeDonationPopup').click(function () {
+		$('.sticky-notice').remove();
+		localStorage.setItem('hasUserDismissedDonationPopup', 'true');
+	})
+	
 	// This changes the application's theme when 
 	// user toggles device's theme preference
 	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {

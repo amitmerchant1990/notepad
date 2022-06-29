@@ -1,4 +1,5 @@
 body{
+  position: relative;
   padding-top: 50px;
 }
 textarea:hover,textarea {
@@ -122,10 +123,55 @@ textarea:hover,textarea {
 }
 
 .container {
+  position: relative;
   padding-right: 0px;
   padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
+}
+
+.make-hidden {
+  display: none !important;
+}
+
+.sticky-notice {
+  position: absolute;
+  background: #009688;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 10px 16px;
+  border-radius: 10px;
+  box-shadow: 3px 2px 6px 0px #abababc9;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  gap: 14px;
+}
+
+.sticky-notice p {
+  margin: 0;
+  line-height: 26px;
+} 
+
+.sticky-notice a {
+  color: #ffeb3b;
+}
+
+.dark .sticky-notice {
+  background: #7bff7b;
+  box-shadow: 3px 2px 6px 0px #abababc9;
+  color: #272727;
+  font-weight: bold;
+}
+
+.dark .sticky-notice a {
+  color: #93103d;
 }
 
 textarea {
