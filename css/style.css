@@ -415,7 +415,11 @@ textarea {
   }
 }
 
-
+@media (max-width: 450px){
+  .sticky-notice {
+    width: 75%;
+  }
+}
 
 @media (min-width: 768px){
   .navbar-nav {
