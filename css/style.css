@@ -415,6 +415,14 @@ textarea {
   }
 }
 
+.navbar-toggle {
+  margin-right: 24px;
+}
+
+.navbar-nav>li>a {
+  padding-left: 24px;
+}
+
 @media (max-width: 450px){
   .sticky-notice {
     width: 75%;
