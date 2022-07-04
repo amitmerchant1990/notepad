@@ -73,8 +73,7 @@ function enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor) {
     $(document.body).addClass('dark');
     $('.navbar').removeClass('navbar-default');
     $('#mode').attr('title', lightmodeText);
-    $('#light').show();
-    $('#dark').hide();
+    $('#themeIcon').attr('src', 'img/navbar/light-theme.svg')
     metaThemeColor.setAttribute('content', darkMetaColor);
     localStorage.setItem('mode', 'dark');
 }
@@ -83,8 +82,7 @@ function enableLightMode(darkmodeText, lightMetaColor, metaThemeColor) {
     $(document.body).removeClass('dark');
     $('.navbar').addClass('navbar-default');
     $('#mode').attr('title', darkmodeText);
-    $('#light').hide();
-    $('#dark').show();
+    $('#themeIcon').attr('src', 'img/navbar/dark-theme.svg')
     metaThemeColor.setAttribute('content', lightMetaColor);
     localStorage.setItem('mode', 'light');
 }
