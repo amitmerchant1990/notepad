@@ -88,3 +88,18 @@ function enableLightMode(darkmodeText, lightMetaColor, metaThemeColor) {
     metaThemeColor.setAttribute('content', lightMetaColor);
     localStorage.setItem('mode', 'light');
 }
+
+function resetFontSize(defaultFontSize) {
+    $('#note').css('font-size', defaultFontSize + "px");
+    $('#fontSize').val(defaultFontSize);
+}
+
+function resetLineHeight(defaultLineHeight) {
+    $('#note').css('line-height', defaultLineHeight + "px");
+    $('#lineHeight').val(defaultLineHeight);
+}
+
+function resetFontWeight(defaultFontWeight) {
+    $('#note').css('font-weight', defaultFontWeight);
+    $('#fontWeight').val(defaultFontWeight);
+}

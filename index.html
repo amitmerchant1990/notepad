@@ -46,35 +46,47 @@
           </button>
         </span>
         <span><a class="navbar-brand app-heading" href="#">Notepad</a></span>
-        <span>
-          <a id="clearNotes" class="navbar-brand trash-icon" title="Delete Notes">
-            <img src="img/navbar/delete.svg" alt="Delete Icon" />
-          </a>
-        </span>
-        <span>
-          <a id="downloadNotes" class="navbar-brand download-icon" title="Download Notes [Ctrl/Cmd + S]">
-            <img src="img/navbar/download.svg" alt="Download Icon" />
-          </a>
-        </span>
-        <span>
-          <a href="javascript:void(0);" id="copyToClipboard" class="navbar-brand" title="Copy notes to clipboard">
-            <img src="img/navbar/copy.svg" alt="Copy Icon" />
-          </a>
-        </span>
-        <span title="Enable dark mode">
-          <a id="mode" class="navbar-brand">
-            <img
-                src="img/navbar/light-theme.svg"
-                alt="Light theme Icon"
-                id="light"
-              />
+        <span class="icon-container">
+          <span>
+            <a id="clearNotes" class="navbar-brand trash-icon" title="Delete Notes">
+              <img src="img/navbar/delete.svg" alt="Delete Icon" />
+            </a>
+          </span>
+          <span>
+            <a id="downloadNotes" class="navbar-brand download-icon" title="Download Notes [Ctrl/Cmd + S]">
+              <img src="img/navbar/download.svg" alt="Download Icon" />
+            </a>
+          </span>
+          <span>
+            <a href="javascript:void(0);" id="copyToClipboard" class="navbar-brand" title="Copy notes to clipboard">
+              <img src="img/navbar/copy.svg" alt="Copy Icon" />
+            </a>
+          </span>
+          <span title="Enable dark mode">
+            <a id="mode" class="navbar-brand">
               <img
-                src="img/navbar/dark-theme.svg"
-                alt="Dark theme Icon"
-                id="dark"
+                  src="img/navbar/light-theme.svg"
+                  alt="Light theme Icon"
+                  id="light"
+                />
+                <img
+                  src="img/navbar/dark-theme.svg"
+                  alt="Dark theme Icon"
+                  id="dark"
+                />
+            </a>
+          </span>
+          <span title="Preferences">
+            <a id="mode" class="navbar-brand preference-icon">
+              <img
+                src="img/navbar/preferences.svg"
+                alt="Preferences"
+                id="Preferences"
+                data-toggle="modal" data-target="#preferencesModal"
               />
-          </a>
-        </span>
+            </a>
+          </span>
+        </span>  
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -140,6 +152,74 @@
 
     </div>
   </div>
+
+  <div id="preferencesModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title custom-modal-title">Preferences</h4>
+        </div>
+        <div class="modal-body modal-container form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="company">Font size</label>
+            <div class="col-sm-6 col-md-4">
+              <select name="fontSize" id="fontSize" class="form-control">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14">14</option>
+                <option value="16">16</option>
+                <option value="18">18</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+                <option value="24">24</option>
+                <option value="26">26</option>
+              </select> 
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="company">Font weight</label>
+            <div class="col-sm-6 col-md-4">
+              <select name="fontWeight" id="fontWeight" class="form-control">
+                <option value="normal">Normal</option>
+                <option value="bold">Bold</option>
+              </select> 
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="company">Line height</label>
+            <div class="col-sm-6 col-md-4">
+              <select name="lineHeight" id="lineHeight" class="form-control">
+                <option value="18">18</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+                <option value="24">24</option>
+                <option value="26">26</option>
+                <option value="28">28</option>
+                <option value="30">30</option>
+                <option value="32">32</option>
+              </select> 
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="company">&nbsp;</label>
+            <div class="col-sm-6 col-md-4">
+              <a href="javascript:void(0);" id="resetPreferences" title="Reset to default preferences">Reset preferences</a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="toast"></div>
 
   <script src="js/jquery.min.js"></script>

@@ -415,6 +415,10 @@ textarea {
   }
 }
 
+.form-horizontal .control-label {
+  text-align: left !important; 
+}
+
 .navbar-toggle {
   margin-right: 24px;
 }
@@ -426,6 +430,10 @@ textarea {
 @media (max-width: 450px){
   .sticky-notice {
     width: 75%;
+  }
+
+  .navbar-brand {
+    padding: 15px 12px;
   }
 }
 
