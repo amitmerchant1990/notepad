@@ -12,8 +12,8 @@ $(document).ready(function () {
 	- It's open-source!
 
 	CAUTION: Since the app uses the browser's localStorage to store your notes, 
-	it's recommended that you take backup of your notes more often using the 
-	"Download Notes" button or by pressing "Ctrl/Cmd + S" keys.
+	it's recommended that you take a backup of your notes more often using the 
+	"Download Notes" button or by pressing the "Ctrl/Cmd + S" keys.
 
 	** Start writing your notes **`;
 
@@ -22,6 +22,9 @@ $(document).ready(function () {
 	const darkMetaColor = '#0d1117';
 	const lightMetaColor = '#795548';
 	const metaThemeColor = document.querySelector('meta[name=theme-color]');
+	const defaultFontSize = 18;
+	const defaultLineHeight = 26;
+	const defaultFontWeight = 'normal';
 
 	if (localStorage.getItem('note') && localStorage.getItem('note') != '') {
 		const noteItem = localStorage.getItem('note');
@@ -32,6 +35,27 @@ $(document).ready(function () {
 
 	if (!localStorage.getItem('isUserPreferredTheme')) {
 		localStorage.setItem('isUserPreferredTheme', 'false');
+	}
+
+	if (localStorage.getItem('userChosenFontSize')) {
+		$('#note').css('font-size', localStorage.getItem('userChosenFontSize') + "px");
+		$('#fontSize').val(localStorage.getItem('userChosenFontSize'));
+	} else {
+		resetFontSize(defaultFontSize);
+	}
+
+	if (localStorage.getItem('userChosenFontWeight')) {
+		$('#note').css('font-weight', localStorage.getItem('userChosenFontWeight'));
+		$('#fontWeight').val(localStorage.getItem('userChosenFontWeight'));
+	} else {
+		resetFontWeight(defaultFontWeight);
+	}
+
+	if (localStorage.getItem('userChosenLineHeight')) {
+		$('#note').css('line-height', localStorage.getItem('userChosenLineHeight') + "px");
+		$('#lineHeight').val(localStorage.getItem('userChosenLineHeight'));
+	} else {
+		resetLineHeight(defaultLineHeight);
 	}
 
 	if (localStorage.getItem('mode') && localStorage.getItem('mode') !== '') {
@@ -94,7 +118,7 @@ $(document).ready(function () {
 		saveTextAsFile(note.value, getFileName());
 	})
 
-	setTimeout(function() {
+	setTimeout(function () {
 		if (!localStorage.getItem('hasUserDismissedDonationPopup')) {
 			$('.sticky-notice').toggleClass('make-hidden');
 		}
@@ -103,8 +127,46 @@ $(document).ready(function () {
 	$('#closeDonationPopup').click(function () {
 		$('.sticky-notice').remove();
 		localStorage.setItem('hasUserDismissedDonationPopup', 'true');
-	})
-	
+	});
+
+	$('#fontSize').on('change', function (e) {
+		const fontSizeSelected = this.value;
+
+		$('#note').css('font-size', fontSizeSelected + "px");
+		localStorage.setItem('userChosenFontSize', fontSizeSelected);
+	});
+
+	$('#lineHeight').on('change', function (e) {
+		const lineHeightSelected = this.value;
+
+		$('#note').css('line-height', lineHeightSelected + "px");
+		localStorage.setItem('userChosenLineHeight', lineHeightSelected);
+	});
+
+	$('#fontWeight').on('change', function (e) {
+		const fontWeightSelected = this.value;
+
+		$('#note').css('font-weight', fontWeightSelected);
+		localStorage.setItem('userChosenFontWeight', fontWeightSelected);
+	});
+
+	$('#resetPreferences').click(function () {
+		if (localStorage.getItem('userChosenFontSize')) {	
+			localStorage.removeItem('userChosenFontSize');
+			resetFontSize(defaultFontSize);
+		}
+			
+		if (localStorage.getItem('userChosenLineHeight')) {
+			localStorage.removeItem('userChosenLineHeight');
+			resetLineHeight(defaultLineHeight);
+		}
+
+		if (localStorage.getItem('userChosenFontWeight')) {
+			localStorage.removeItem('userChosenFontWeight');
+			resetFontWeight(defaultFontWeight);
+		}
+	});
+
 	// This changes the application's theme when 
 	// user toggles device's theme preference
 	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
@@ -150,6 +212,7 @@ $(document).ready(function () {
 
 		if (event.key === 'Escape') {
 			$('#aboutModal').modal('hide');
+			$('#preferencesModal').modal('hide');
 		} else if (event.ctrlKey && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
