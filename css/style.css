@@ -150,7 +150,7 @@ textarea:hover,textarea {
   font-weight: bold;
   display: flex;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: 14px;
   gap: 14px;
 }
 
