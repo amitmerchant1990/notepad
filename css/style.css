@@ -175,12 +175,12 @@ textarea:hover,textarea {
 }
 
 textarea {
-  padding: 8px;
+  padding: 15px;
   border: 1px solid #e6e4e4;
 }
 
 .dark textarea {
-  padding: 8px;
+  padding: 15px;
   border: #000000;
   background-color: #0d1117;
   color: #dedede;
