@@ -22,6 +22,9 @@ Read about the [story of how I built it](https://www.amitmerchant.com/Building-S
 
 MIT
 
+> **Note**
+> Please use the [Discussions](https://github.com/amitmerchant1990/notepad/discussions) tab to submit new feature requests. Don't raise issues for the same.
+
 ---
 
 > [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
