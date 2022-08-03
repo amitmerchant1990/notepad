@@ -154,6 +154,28 @@ textarea:hover,textarea {
   gap: 14px;
 }
 
+.word-count-container {
+  position: absolute;
+  display: inline-block;
+  background: #e0ceff;
+  bottom: 12px;
+  right: 0;
+  margin-left: auto;
+  margin-right: 3%;
+  padding: 5px 14px;
+  border-radius: 20px;
+  color: #403333;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  gap: 14px;
+}
+
+.word-count-container p {
+  margin: 0;
+}
+
 .sticky-notice p {
   margin: 0;
   line-height: 26px;
@@ -175,12 +197,11 @@ textarea:hover,textarea {
 }
 
 textarea {
-  padding: 15px;
+  padding: 15px 15px 40px 15px;
   border: 1px solid #e6e4e4;
 }
 
 .dark textarea {
-  padding: 15px;
   border: #000000;
   background-color: #0d1117;
   color: #dedede;
