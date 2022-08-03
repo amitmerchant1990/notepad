@@ -25,11 +25,21 @@ $(document).ready(function () {
 	const defaultFontSize = 18;
 	const defaultLineHeight = 26;
 	const defaultFontWeight = 'normal';
+	const defaultShowWordCountPill = 'Yes';
 
 	if (localStorage.getItem('note') && localStorage.getItem('note') != '') {
 		const noteItem = localStorage.getItem('note');
+
+		const characterAndWordCountText = calculateCharactersAndWords(noteItem);
+
+		$('#wordCount').text(characterAndWordCountText);
+
 		$('#note').val(noteItem);
 	} else {
+		const characterAndWordCountText = calculateCharactersAndWords(welcomeText);
+
+		$('#wordCount').text(characterAndWordCountText);
+
 		$('#note').val(welcomeText);
 	}
 
@@ -58,6 +68,15 @@ $(document).ready(function () {
 		resetLineHeight(defaultLineHeight);
 	}
 
+	const userChosenWordCountPillSelected = localStorage.getItem('userChosenWordCountPillSelected')
+
+	if (userChosenWordCountPillSelected) {
+		userChosenWordCountPillSelected === 'Yes' ? $('.word-count-container').show() : $('.word-count-container').hide();
+		$('#showWordCountPill').val(localStorage.getItem('userChosenWordCountPillSelected'));
+	} else {
+		resetShowWordCountPill(defaultShowWordCountPill);
+	}
+
 	if (localStorage.getItem('mode') && localStorage.getItem('mode') !== '') {
 		if (localStorage.getItem('mode') === 'dark') {
 			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
@@ -67,6 +86,10 @@ $(document).ready(function () {
 	}
 
 	$('#note').keyup(debounce(function () {
+		const characterAndWordCountText = calculateCharactersAndWords($(this).val());
+
+		$('#wordCount').text(characterAndWordCountText);
+			
 		localStorage.setItem('note', $(this).val());
 	}, 500));
 
@@ -150,6 +173,13 @@ $(document).ready(function () {
 		localStorage.setItem('userChosenFontWeight', fontWeightSelected);
 	});
 
+	$('#showWordCountPill').on('change', function (e) {
+		const showWordCountPillSelected = this.value;
+
+		showWordCountPillSelected === 'Yes' ? $('.word-count-container').show() : $('.word-count-container').hide();
+		localStorage.setItem('userChosenWordCountPillSelected', showWordCountPillSelected);
+	});
+
 	$('#resetPreferences').click(function () {
 		if (localStorage.getItem('userChosenFontSize')) {	
 			localStorage.removeItem('userChosenFontSize');
@@ -164,6 +194,11 @@ $(document).ready(function () {
 		if (localStorage.getItem('userChosenFontWeight')) {
 			localStorage.removeItem('userChosenFontWeight');
 			resetFontWeight(defaultFontWeight);
+		}
+
+		if (localStorage.getItem('userChosenWordCountPillSelected')) {
+			localStorage.removeItem('userChosenWordCountPillSelected');
+			resetShowWordCountPill(defaultShowWordCountPill);
 		}
 	});
 

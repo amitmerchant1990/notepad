@@ -101,3 +101,20 @@ function resetFontWeight(defaultFontWeight) {
     $('#note').css('font-weight', defaultFontWeight);
     $('#fontWeight').val(defaultFontWeight);
 }
+
+function resetShowWordCountPill(defaultShowWordCountPill) {
+    defaultShowWordCountPill === 'Yes' ? $('.word-count-container').show() : $('.word-count-container').hide();
+    $('#showWordCountPill').val(defaultShowWordCountPill);
+}
+
+function countWords(str) {
+    return str.trim().split(/\s+/).length;
+}
+
+function calculateCharactersAndWords(str) {
+    const characterCount = str.length;
+    const wordCount = str !== '' ? countWords(str) : 0;
+    const wordCountText = `${characterCount} character(s), ${wordCount} word(s)`;
+    
+    return wordCountText;
+}

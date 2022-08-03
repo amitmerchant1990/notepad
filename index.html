@@ -96,6 +96,9 @@
       <textarea id="note" placeholder="Type your notes here and when you come back all your notes will be right here..."
         autofocus></textarea>
     </div>
+    <div class="word-count-container">
+      <p id="wordCount">0 chracter(s), 0 word(s)</p>
+    </div>
     <div class="sticky-notice make-hidden">
       <p>
         Enjoy using this app? If yes, consider <a href="https://www.paypal.com/paypalme/AmitMerchant" target="_blank">donating</a> so that the experience remains ad-free! :)
@@ -159,7 +162,7 @@
         </div>
         <div class="modal-body modal-container form-horizontal">
           <div class="form-group">
-            <label class="control-label col-sm-4" for="company">Font size</label>
+            <label class="control-label col-sm-4" for="fontSize">Font size</label>
             <div class="col-sm-6 col-md-4">
               <select name="fontSize" id="fontSize" class="form-control">
                 <option value="10">10</option>
@@ -176,7 +179,7 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="company">Font weight</label>
+            <label class="control-label col-sm-4" for="fontWeight">Font weight</label>
             <div class="col-sm-6 col-md-4">
               <select name="fontWeight" id="fontWeight" class="form-control">
                 <option value="normal">Normal</option>
@@ -186,7 +189,7 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="company">Line height</label>
+            <label class="control-label col-sm-4" for="lineHeight">Line height</label>
             <div class="col-sm-6 col-md-4">
               <select name="lineHeight" id="lineHeight" class="form-control">
                 <option value="18">18</option>
@@ -197,6 +200,16 @@
                 <option value="28">28</option>
                 <option value="30">30</option>
                 <option value="32">32</option>
+              </select> 
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="showWordCountPill">Show character and word count</label>
+            <div class="col-sm-6 col-md-4">
+              <select name="showWordCountPill" id="showWordCountPill" class="form-control">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select> 
             </div>
           </div>
