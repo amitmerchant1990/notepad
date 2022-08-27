@@ -93,6 +93,18 @@ $(document).ready(function () {
 		localStorage.setItem('note', $(this).val());
 	}, 500));
 
+	$('#note').keydown(function (e) {
+		if (e.key == 'Tab') {
+			e.preventDefault();
+			let start = this.selectionStart;
+			let end = this.selectionEnd;	  
+			this.value = this.value.substring(0, start) +
+				'\t' + this.value.substring(end);
+			this.selectionStart =
+				this.selectionEnd = start + 1;
+		}
+	});
+	
 	$('#clearNotes').on('click', function () {
 		Swal.fire({
 			title: 'Want to delete notes?',
