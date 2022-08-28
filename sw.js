@@ -8,6 +8,7 @@ let CACHE_FILES = [
     'js/app.js',
     'js/jquery.min.js',
     'js/bootstrap.min.js',
+    'js/selector.js',
     'js/sweetalert2.all.min.js',
     'css/bootstrap.min.css',
     'css/style.css',
