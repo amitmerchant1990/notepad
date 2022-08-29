@@ -26,86 +26,68 @@ $(document).ready(function () {
 	const defaultLineHeight = 26;
 	const defaultFontWeight = 'normal';
 	const defaultShowWordCountPill = 'Yes';
+	const { notepad: _, state, setState, removeState, get } = selector();
 
-	if (localStorage.getItem('note') && localStorage.getItem('note') != '') {
-		const noteItem = localStorage.getItem('note');
-
+	if (state.note && state.note != '') {
+		const noteItem = state.note;
 		const characterAndWordCountText = calculateCharactersAndWords(noteItem);
-
-		$('#wordCount').text(characterAndWordCountText);
-
-		$('#note').val(noteItem);
+		_.wordCount.text(characterAndWordCountText);
+		_.note.val(noteItem);
 	} else {
 		const characterAndWordCountText = calculateCharactersAndWords(welcomeText);
-
-		$('#wordCount').text(characterAndWordCountText);
-
-		$('#note').val(welcomeText);
+		_.wordCount.text(characterAndWordCountText);
+		_.note.val(welcomeText);
 	}
 
-	if (!localStorage.getItem('isUserPreferredTheme')) {
-		localStorage.setItem('isUserPreferredTheme', 'false');
+	if (!state.isUserPreferredTheme) {
+		setState('isUserPreferredTheme', 'false');
 	}
 
-	if (localStorage.getItem('userChosenFontSize')) {
-		$('#note').css('font-size', localStorage.getItem('userChosenFontSize') + "px");
-		$('#fontSize').val(localStorage.getItem('userChosenFontSize'));
+	if (state.userChosenFontSize) {
+		_.note.css('font-size', state.userChosenFontSize + 'px');
+		_.fontSize.val(state.userChosenFontSize);
 	} else {
 		resetFontSize(defaultFontSize);
 	}
 
-	if (localStorage.getItem('userChosenFontWeight')) {
-		$('#note').css('font-weight', localStorage.getItem('userChosenFontWeight'));
-		$('#fontWeight').val(localStorage.getItem('userChosenFontWeight'));
+	if (state.userChosenFontWeight) {
+		_.note.css('font-weight', state.userChosenFontWeight);
+		_.fontWeight.val(state.userChosenFontWeight);
 	} else {
 		resetFontWeight(defaultFontWeight);
 	}
 
-	if (localStorage.getItem('userChosenLineHeight')) {
-		$('#note').css('line-height', localStorage.getItem('userChosenLineHeight') + "px");
-		$('#lineHeight').val(localStorage.getItem('userChosenLineHeight'));
+	if (state.userChosenLineHeight) {
+		_.note.css('line-height', state.userChosenLineHeight + 'px');
+		_.lineHeight.val(state.userChosenLineHeight);
 	} else {
 		resetLineHeight(defaultLineHeight);
 	}
 
-	const userChosenWordCountPillSelected = localStorage.getItem('userChosenWordCountPillSelected')
+	const userChosenWordCountPillSelected = state.userChosenWordCountPillSelected
 
 	if (userChosenWordCountPillSelected) {
-		userChosenWordCountPillSelected === 'Yes' ? $('.word-count-container').show() : $('.word-count-container').hide();
-		$('#showWordCountPill').val(localStorage.getItem('userChosenWordCountPillSelected'));
+		userChosenWordCountPillSelected === 'Yes' ? _.wordCountContainer.show() : _.wordCountContainer.hide();
+		_.showWordCountPill.val(userChosenWordCountPillSelected);
 	} else {
 		resetShowWordCountPill(defaultShowWordCountPill);
 	}
 
-	if (localStorage.getItem('mode') && localStorage.getItem('mode') !== '') {
-		if (localStorage.getItem('mode') === 'dark') {
+	if (state.mode && state.mode !== '') {
+		if (state.mode === 'dark') {
 			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
 		} else {
 			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 		}
 	}
 
-	$('#note').keyup(debounce(function () {
-		const characterAndWordCountText = calculateCharactersAndWords($(this).val());
-
-		$('#wordCount').text(characterAndWordCountText);
-			
-		localStorage.setItem('note', $(this).val());
+	_.note.keyup(debounce(function () {
+		const characterAndWordCountText = calculateCharactersAndWords(get(this).val());
+		_.wordCount.text(characterAndWordCountText);
+		setState('note', get(this).val());
 	}, 500));
-
-	$('#note').keydown(function (e) {
-		if (e.key == 'Tab') {
-			e.preventDefault();
-			let start = this.selectionStart;
-			let end = this.selectionEnd;	  
-			this.value = this.value.substring(0, start) +
-				'\t' + this.value.substring(end);
-			this.selectionStart =
-				this.selectionEnd = start + 1;
-		}
-	});
 	
-	$('#clearNotes').on('click', function () {
+	_.clearNotes.on('click', function () {
 		Swal.fire({
 			title: 'Want to delete notes?',
 			text: "You won't be able to revert this!",
@@ -116,8 +98,8 @@ $(document).ready(function () {
 			confirmButtonText: 'Delete'
 		}).then((result) => {
 			if (result.value) {
-				$('#note').val('').focus();
-				localStorage.setItem('note', '');
+				_.note.val('').focus();
+				setState('note', '');
 
 				Swal.fire(
 					'Deleted!',
@@ -128,9 +110,9 @@ $(document).ready(function () {
 		})
 	});
 
-	$('#mode').click(function () {
-		$(document.body).toggleClass('dark');
-		let bodyClass = $(document.body).attr('class');
+	_.mode.click(function () {
+		get(document.body).toggleClass('dark');
+		let bodyClass = get(document.body).attr('class');
 
 		if (bodyClass === 'dark') {
 			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
@@ -138,78 +120,78 @@ $(document).ready(function () {
 			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 		}
 
-		localStorage.setItem('isUserPreferredTheme', 'true');
+		setState('isUserPreferredTheme', 'true');
 	});
 
-	$('#copyToClipboard').click(function () {
-		navigator.clipboard.writeText($('#note').val()).then(function () {
+	_.copyToClipboard.click(function () {
+		navigator.clipboard.writeText(_.note.val()).then(function () {
 			showToast('Notes copied to clipboard!')
 		}, function () {
 			showToast('Failure to copy. Check permissions for clipboard.')
 		});
 	})
 
-	$('#downloadNotes').click(function () {
+	_.downloadNotes.click(function () {
 		saveTextAsFile(note.value, getFileName());
 	})
 
 	setTimeout(function () {
-		if (!localStorage.getItem('hasUserDismissedDonationPopup')) {
-			$('.sticky-notice').toggleClass('make-hidden');
+		if (!state.hasUserDismissedDonationPopup) {
+			_.stickyNotice.toggleClass('make-hidden');
 		}
 	}, 30000);
 
-	$('#closeDonationPopup').click(function () {
-		$('.sticky-notice').remove();
-		localStorage.setItem('hasUserDismissedDonationPopup', 'true');
+	_.closeDonationPopup.click(function () {
+		_.stickyNotice.remove();
+		setState('hasUserDismissedDonationPopup', 'true');
 	});
 
-	$('#fontSize').on('change', function (e) {
+	_.fontSize.on('change', function (e) {
 		const fontSizeSelected = this.value;
 
-		$('#note').css('font-size', fontSizeSelected + "px");
-		localStorage.setItem('userChosenFontSize', fontSizeSelected);
+		_.note.css('font-size', fontSizeSelected + 'px');
+		setState('userChosenFontSize', fontSizeSelected);
 	});
 
-	$('#lineHeight').on('change', function (e) {
+	_.lineHeight.on('change', function (e) {
 		const lineHeightSelected = this.value;
 
-		$('#note').css('line-height', lineHeightSelected + "px");
-		localStorage.setItem('userChosenLineHeight', lineHeightSelected);
+		_.note.css('line-height', lineHeightSelected + 'px');
+		setState('userChosenLineHeight', lineHeightSelected);
 	});
 
-	$('#fontWeight').on('change', function (e) {
+	_.fontWeight.on('change', function (e) {
 		const fontWeightSelected = this.value;
 
-		$('#note').css('font-weight', fontWeightSelected);
-		localStorage.setItem('userChosenFontWeight', fontWeightSelected);
+		_.note.css('font-weight', fontWeightSelected);
+		setState('userChosenFontWeight', fontWeightSelected);
 	});
 
-	$('#showWordCountPill').on('change', function (e) {
+	_.showWordCountPill.on('change', function (e) {
 		const showWordCountPillSelected = this.value;
 
-		showWordCountPillSelected === 'Yes' ? $('.word-count-container').show() : $('.word-count-container').hide();
-		localStorage.setItem('userChosenWordCountPillSelected', showWordCountPillSelected);
+		showWordCountPillSelected === 'Yes' ? _.wordCountContainer.show() : _.wordCountContainer.hide();
+		setState('userChosenWordCountPillSelected', showWordCountPillSelected);
 	});
 
-	$('#resetPreferences').click(function () {
-		if (localStorage.getItem('userChosenFontSize')) {	
-			localStorage.removeItem('userChosenFontSize');
+	_.resetPreferences.click(function () {
+		if (state.userChosenFontSize) {	
+			removeState('userChosenFontSize');
 			resetFontSize(defaultFontSize);
 		}
 			
-		if (localStorage.getItem('userChosenLineHeight')) {
-			localStorage.removeItem('userChosenLineHeight');
+		if (state.userChosenLineHeight) {
+			removeState('userChosenLineHeight');
 			resetLineHeight(defaultLineHeight);
 		}
 
-		if (localStorage.getItem('userChosenFontWeight')) {
-			localStorage.removeItem('userChosenFontWeight');
+		if (state.userChosenFontWeight) {
+			removeState('userChosenFontWeight');
 			resetFontWeight(defaultFontWeight);
 		}
 
-		if (localStorage.getItem('userChosenWordCountPillSelected')) {
-			localStorage.removeItem('userChosenWordCountPillSelected');
+		if (state.userChosenWordCountPillSelected) {
+			removeState('userChosenWordCountPillSelected');
 			resetShowWordCountPill(defaultShowWordCountPill);
 		}
 	});
@@ -219,7 +201,7 @@ $(document).ready(function () {
 	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
 		// To override device's theme preference
 		// if user sets theme manually in the app
-		if (localStorage.getItem('isUserPreferredTheme') === 'true') {
+		if (state.isUserPreferredTheme === 'true') {
 			return;
 		}
 
@@ -232,7 +214,7 @@ $(document).ready(function () {
 
 	// This sets the application's theme based on
 	// the device's theme preference when it loads
-	if (localStorage.getItem('isUserPreferredTheme') === 'false') {
+	if (state.isUserPreferredTheme === 'false') {
 		if (
 			window.matchMedia('(prefers-color-scheme: dark)').matches
 		) {
@@ -243,14 +225,14 @@ $(document).ready(function () {
 	}
 
 	if (getPWADisplayMode() === 'standalone') {
-		$('#installApp').hide();
+		_.installApp.hide();
 	}
 
 	window.matchMedia('(display-mode: standalone)').addEventListener('change', ({ matches }) => {
 		if (matches) {
-			$('#installApp').hide();
+			_.installApp.hide();
 		} else {
-			$('#installApp').show();
+			_.installApp.show();
 		}
 	});
 
@@ -258,8 +240,8 @@ $(document).ready(function () {
 		event = event || window.event;
 
 		if (event.key === 'Escape') {
-			$('#aboutModal').modal('hide');
-			$('#preferencesModal').modal('hide');
+			_.aboutModal.modal('hide');
+			_.preferencesModal.modal('hide');
 		} else if (event.ctrlKey && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
@@ -280,7 +262,7 @@ let deferredPrompt;
 let installSource;
 
 window.addEventListener('beforeinstallprompt', (e) => {
-	$('.install-app-btn-container').show();
+	_.installAppButtonContainer.show();
 	deferredPrompt = e;
 	installSource = 'nativeInstallCard';
 
