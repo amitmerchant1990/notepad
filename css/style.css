@@ -448,6 +448,13 @@ textarea {
   padding-left: 24px;
 }
 
+@media (max-width: 766px){
+  .dark textarea {
+    border-right: 1px solid #0d1117;
+    border-left: 1px solid #0d1117;
+  }
+}
+
 @media (max-width: 450px){
   .sticky-notice {
     width: 75%;
