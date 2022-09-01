@@ -262,7 +262,7 @@ let deferredPrompt;
 let installSource;
 
 window.addEventListener('beforeinstallprompt', (e) => {
-	_.installAppButtonContainer.show();
+	selector().notepad.installAppButtonContainer.show();
 	deferredPrompt = e;
 	installSource = 'nativeInstallCard';
 
