@@ -175,22 +175,22 @@ $(document).ready(function () {
 	});
 
 	_.resetPreferences.click(function () {
-		if (state.userChosenFontSize) {	
+		if (selector().state.userChosenFontSize) {	
 			removeState('userChosenFontSize');
 			resetFontSize(defaultFontSize);
 		}
 			
-		if (state.userChosenLineHeight) {
+		if (selector().state.userChosenLineHeight) {
 			removeState('userChosenLineHeight');
 			resetLineHeight(defaultLineHeight);
 		}
 
-		if (state.userChosenFontWeight) {
+		if (selector().state.userChosenFontWeight) {
 			removeState('userChosenFontWeight');
 			resetFontWeight(defaultFontWeight);
 		}
 
-		if (state.userChosenWordCountPillSelected) {
+		if (selector().state.userChosenWordCountPillSelected) {
 			removeState('userChosenWordCountPillSelected');
 			resetShowWordCountPill(defaultShowWordCountPill);
 		}
