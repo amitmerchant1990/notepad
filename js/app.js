@@ -206,11 +206,11 @@ $(document).ready(function () {
 
 	// This sets the application's theme based on
 	// the device's theme preference when it loads
-	if (state.isUserPreferredTheme === 'false' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
-	} else {
-		enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
-	}
+	if (state.isUserPreferredTheme === 'false') {
+		window.matchMedia('(prefers-color-scheme: dark)').matches
+			? enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
+			: enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
+	} 
 
 	if (getPWADisplayMode() === 'standalone') {
 		notepad.installApp.hide();
