@@ -28,16 +28,10 @@ $(document).ready(function () {
 	const defaultShowWordCountPill = 'Yes';
 	const { notepad, state, setState, removeState, get } = selector();
 
-	if (state.note && state.note != '') {
-		const noteItem = state.note;
-		const characterAndWordCountText = calculateCharactersAndWords(noteItem);
-		notepad.wordCount.text(characterAndWordCountText);
-		notepad.note.val(noteItem);
-	} else {
-		const characterAndWordCountText = calculateCharactersAndWords(welcomeText);
-		notepad.wordCount.text(characterAndWordCountText);
-		notepad.note.val(welcomeText);
-	}
+	const noteItem = state.note && state.note != '' ? state.note : welcomeText;
+	const characterAndWordCountText = calculateCharactersAndWords(noteItem);
+	notepad.wordCount.text(characterAndWordCountText);
+	notepad.note.val(noteItem);
 
 	if (!state.isUserPreferredTheme) {
 		setState('isUserPreferredTheme', 'false');
@@ -73,12 +67,10 @@ $(document).ready(function () {
 		resetShowWordCountPill(defaultShowWordCountPill);
 	}
 
-	if (state.mode && state.mode !== '') {
-		if (state.mode === 'dark') {
-			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
-		} else {
-			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
-		}
+	if (state.mode && state.mode === 'dark') {
+		enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
+	} else {
+		enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
 	}
 
 	notepad.note.keyup(debounce(function () {
@@ -214,14 +206,10 @@ $(document).ready(function () {
 
 	// This sets the application's theme based on
 	// the device's theme preference when it loads
-	if (state.isUserPreferredTheme === 'false') {
-		if (
-			window.matchMedia('(prefers-color-scheme: dark)').matches
-		) {
-			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
-		} else {
-			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
-		}
+	if (state.isUserPreferredTheme === 'false' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
+	} else {
+		enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
 	}
 
 	if (getPWADisplayMode() === 'standalone') {
