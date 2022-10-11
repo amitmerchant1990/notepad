@@ -26,17 +26,17 @@ $(document).ready(function () {
 	const defaultLineHeight = 26;
 	const defaultFontWeight = 'normal';
 	const defaultShowWordCountPill = 'Yes';
-	const { notepad: _, state, setState, removeState, get } = selector();
+	const { notepad, state, setState, removeState, get } = selector();
 
 	if (state.note && state.note != '') {
 		const noteItem = state.note;
 		const characterAndWordCountText = calculateCharactersAndWords(noteItem);
-		_.wordCount.text(characterAndWordCountText);
-		_.note.val(noteItem);
+		notepad.wordCount.text(characterAndWordCountText);
+		notepad.note.val(noteItem);
 	} else {
 		const characterAndWordCountText = calculateCharactersAndWords(welcomeText);
-		_.wordCount.text(characterAndWordCountText);
-		_.note.val(welcomeText);
+		notepad.wordCount.text(characterAndWordCountText);
+		notepad.note.val(welcomeText);
 	}
 
 	if (!state.isUserPreferredTheme) {
@@ -44,22 +44,22 @@ $(document).ready(function () {
 	}
 
 	if (state.userChosenFontSize) {
-		_.note.css('font-size', state.userChosenFontSize + 'px');
-		_.fontSize.val(state.userChosenFontSize);
+		notepad.note.css('font-size', state.userChosenFontSize + 'px');
+		notepad.fontSize.val(state.userChosenFontSize);
 	} else {
 		resetFontSize(defaultFontSize);
 	}
 
 	if (state.userChosenFontWeight) {
-		_.note.css('font-weight', state.userChosenFontWeight);
-		_.fontWeight.val(state.userChosenFontWeight);
+		notepad.note.css('font-weight', state.userChosenFontWeight);
+		notepad.fontWeight.val(state.userChosenFontWeight);
 	} else {
 		resetFontWeight(defaultFontWeight);
 	}
 
 	if (state.userChosenLineHeight) {
-		_.note.css('line-height', state.userChosenLineHeight + 'px');
-		_.lineHeight.val(state.userChosenLineHeight);
+		notepad.note.css('line-height', state.userChosenLineHeight + 'px');
+		notepad.lineHeight.val(state.userChosenLineHeight);
 	} else {
 		resetLineHeight(defaultLineHeight);
 	}
@@ -67,8 +67,8 @@ $(document).ready(function () {
 	const userChosenWordCountPillSelected = state.userChosenWordCountPillSelected
 
 	if (userChosenWordCountPillSelected) {
-		userChosenWordCountPillSelected === 'Yes' ? _.wordCountContainer.show() : _.wordCountContainer.hide();
-		_.showWordCountPill.val(userChosenWordCountPillSelected);
+		userChosenWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.show() : notepad.wordCountContainer.hide();
+		notepad.showWordCountPill.val(userChosenWordCountPillSelected);
 	} else {
 		resetShowWordCountPill(defaultShowWordCountPill);
 	}
@@ -81,13 +81,13 @@ $(document).ready(function () {
 		}
 	}
 
-	_.note.keyup(debounce(function () {
+	notepad.note.keyup(debounce(function () {
 		const characterAndWordCountText = calculateCharactersAndWords(get(this).val());
-		_.wordCount.text(characterAndWordCountText);
+		notepad.wordCount.text(characterAndWordCountText);
 		setState('note', get(this).val());
 	}, 500));
 	
-	_.clearNotes.on('click', function () {
+	notepad.clearNotes.on('click', function () {
 		Swal.fire({
 			title: 'Want to delete notes?',
 			text: "You won't be able to revert this!",
@@ -98,7 +98,7 @@ $(document).ready(function () {
 			confirmButtonText: 'Delete'
 		}).then((result) => {
 			if (result.value) {
-				_.note.val('').focus();
+				notepad.note.val('').focus();
 				setState('note', '');
 
 				Swal.fire(
@@ -110,7 +110,7 @@ $(document).ready(function () {
 		})
 	});
 
-	_.mode.click(function () {
+	notepad.mode.click(function () {
 		get(document.body).toggleClass('dark');
 		let bodyClass = get(document.body).attr('class');
 
@@ -123,58 +123,58 @@ $(document).ready(function () {
 		setState('isUserPreferredTheme', 'true');
 	});
 
-	_.copyToClipboard.click(function () {
-		navigator.clipboard.writeText(_.note.val()).then(function () {
+	notepad.copyToClipboard.click(function () {
+		navigator.clipboard.writeText(notepad.note.val()).then(function () {
 			showToast('Notes copied to clipboard!')
 		}, function () {
 			showToast('Failure to copy. Check permissions for clipboard.')
 		});
 	})
 
-	_.downloadNotes.click(function () {
+	notepad.downloadNotes.click(function () {
 		saveTextAsFile(note.value, getFileName());
 	})
 
 	setTimeout(function () {
 		if (!state.hasUserDismissedDonationPopup) {
-			_.stickyNotice.toggleClass('make-hidden');
+			notepad.stickyNotice.toggleClass('make-hidden');
 		}
 	}, 30000);
 
-	_.closeDonationPopup.click(function () {
-		_.stickyNotice.remove();
+	notepad.closeDonationPopup.click(function () {
+		notepad.stickyNotice.remove();
 		setState('hasUserDismissedDonationPopup', 'true');
 	});
 
-	_.fontSize.on('change', function (e) {
+	notepad.fontSize.on('change', function (e) {
 		const fontSizeSelected = this.value;
 
-		_.note.css('font-size', fontSizeSelected + 'px');
+		notepad.note.css('font-size', fontSizeSelected + 'px');
 		setState('userChosenFontSize', fontSizeSelected);
 	});
 
-	_.lineHeight.on('change', function (e) {
+	notepad.lineHeight.on('change', function (e) {
 		const lineHeightSelected = this.value;
 
-		_.note.css('line-height', lineHeightSelected + 'px');
+		notepad.note.css('line-height', lineHeightSelected + 'px');
 		setState('userChosenLineHeight', lineHeightSelected);
 	});
 
-	_.fontWeight.on('change', function (e) {
+	notepad.fontWeight.on('change', function (e) {
 		const fontWeightSelected = this.value;
 
-		_.note.css('font-weight', fontWeightSelected);
+		notepad.note.css('font-weight', fontWeightSelected);
 		setState('userChosenFontWeight', fontWeightSelected);
 	});
 
-	_.showWordCountPill.on('change', function (e) {
+	notepad.showWordCountPill.on('change', function (e) {
 		const showWordCountPillSelected = this.value;
 
-		showWordCountPillSelected === 'Yes' ? _.wordCountContainer.show() : _.wordCountContainer.hide();
+		showWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.show() : notepad.wordCountContainer.hide();
 		setState('userChosenWordCountPillSelected', showWordCountPillSelected);
 	});
 
-	_.resetPreferences.click(function () {
+	notepad.resetPreferences.click(function () {
 		if (selector().state.userChosenFontSize) {	
 			removeState('userChosenFontSize');
 			resetFontSize(defaultFontSize);
@@ -225,14 +225,14 @@ $(document).ready(function () {
 	}
 
 	if (getPWADisplayMode() === 'standalone') {
-		_.installApp.hide();
+		notepad.installApp.hide();
 	}
 
 	window.matchMedia('(display-mode: standalone)').addEventListener('change', ({ matches }) => {
 		if (matches) {
-			_.installApp.hide();
+			notepad.installApp.hide();
 		} else {
-			_.installApp.show();
+			notepad.installApp.show();
 		}
 	});
 
@@ -240,8 +240,8 @@ $(document).ready(function () {
 		event = event || window.event;
 
 		if (event.key === 'Escape') {
-			_.aboutModal.modal('hide');
-			_.preferencesModal.modal('hide');
+			notepad.aboutModal.modal('hide');
+			notepad.preferencesModal.modal('hide');
 		} else if (event.ctrlKey && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
