@@ -137,7 +137,7 @@ textarea:hover,textarea {
 .sticky-notice {
   position: absolute;
   background: #009688;
-  bottom: 24px;
+  bottom: 48px;
   left: 0;
   right: 0;
   margin-left: auto;
