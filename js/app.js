@@ -190,18 +190,16 @@ $(document).ready(function () {
 
 	// This changes the application's theme when 
 	// user toggles device's theme preference
-	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isSystemDarkModeEnabled }) => {
 		// To override device's theme preference
 		// if user sets theme manually in the app
 		if (state.isUserPreferredTheme === 'true') {
 			return;
 		}
 
-		if (matches) {
-			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
-		} else {
-			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
-		}
+		isSystemDarkModeEnabled
+			? enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
+			: enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 	});
 
 	// This sets the application's theme based on
