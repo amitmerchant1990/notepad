@@ -134,6 +134,12 @@ textarea:hover,textarea {
   display: none !important;
 }
 
+.about-notice {
+  background-color: #d6d6d6;
+  padding: 14px;
+  border-radius: 10px;
+}
+
 .sticky-notice {
   position: absolute;
   background: #009688;
