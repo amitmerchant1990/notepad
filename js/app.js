@@ -20,7 +20,7 @@ $(document).ready(function () {
 	const darkmodeText = 'Enable dark mode';
 	const lightmodeText = 'Enable light mode';
 	const darkMetaColor = '#0d1117';
-	const lightMetaColor = '#795548';
+	const lightMetaColor = '#4d4d4d';
 	const metaThemeColor = document.querySelector('meta[name=theme-color]');
 	const defaultFontSize = 18;
 	const defaultLineHeight = 26;
