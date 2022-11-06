@@ -135,13 +135,14 @@ textarea:hover,textarea {
 }
 
 .about-notice {
-  background-color: #d6d6d6;
+  background-color: #7a7777;
   padding: 14px;
   border-radius: 10px;
 }
 
 .modal-content {
   border-radius: 14px;
+  border: none;
 }
 
 .btn {
