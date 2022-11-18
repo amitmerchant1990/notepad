@@ -242,7 +242,7 @@ $(document).ready(function () {
 		if (event.key === 'Escape') {
 			_.aboutModal.modal('hide');
 			_.preferencesModal.modal('hide');
-		} else if (event.ctrlKey && event.code === 'KeyS') {
+		} else if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
 		}
