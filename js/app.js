@@ -228,7 +228,7 @@ $(document).ready(function () {
 		if (event.key === 'Escape') {
 			notepad.aboutModal.modal('hide');
 			notepad.preferencesModal.modal('hide');
-		} else if (event.ctrlKey && event.code === 'KeyS') {
+		} else if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
 		}
