@@ -4,7 +4,7 @@
   <title>Notepad - Offline capable</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#795548">
+  <meta name="theme-color" content="#4d4d4d">
   <meta name="description"
     content="An offline capable notepad powered by ServiceWorker. It's quick, distraction-free, dark mode enabled, mobile compatible(Android, iOS) and minimalist in nature.">
   <meta name="keywords" content="note,offline,mobile,web,notepad,android,ios,desktop" />
@@ -138,13 +138,13 @@
             <li>It's <a href="https://github.com/amitmerchant1990/notepad" target="_blank">open-source</a>!</li>
           </ul>
           <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
-          <p>If you liked using this app, consider a small <a href="https://www.paypal.com/paypalme/AmitMerchant"
-              target="_blank">donation</a> so that I keep working on improving it further and the experience remains ad-free. Icons from <a href="https://www.flaticon.com/" target="_blank">Flaticon</a> and <a href="https://iconduck.com" target="_blank">Iconduck</a>.</p>
+          <p class="about-notice">Enjoy using this app? If so, consider a small <a href="https://www.paypal.com/paypalme/AmitMerchant"
+              target="_blank">donation</a> so that I keep working on improving it further and the experience remains ad-free. Icons from <a href="https://www.flaticon.com/" target="_blank">Flaticon</a>, <a href="https://www.svgrepo.com">SVGRepo</a> and <a href="https://iconduck.com" target="_blank">Iconduck</a>.</p>
           <p style="text-align:center; margin-top: 10px;"><b>Made with ❤️ by <a href="https://www.amitmerchant.com/"
                 target="_blank">Amit Merchant</a></b></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
 
@@ -162,7 +162,7 @@
         </div>
         <div class="modal-body modal-container form-horizontal">
           <div class="form-group">
-            <label class="control-label col-sm-4" for="fontSize">Font size</label>
+            <label class="control-label col-sm-6 col-md-6" for="fontSize">Font size</label>
             <div class="col-sm-6 col-md-4">
               <select name="fontSize" id="fontSize" class="form-control">
                 <option value="10">10</option>
@@ -179,7 +179,7 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="fontWeight">Font weight</label>
+            <label class="control-label col-sm-6 col-md-6" for="fontWeight">Font weight</label>
             <div class="col-sm-6 col-md-4">
               <select name="fontWeight" id="fontWeight" class="form-control">
                 <option value="normal">Normal</option>
@@ -189,7 +189,7 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="lineHeight">Line height</label>
+            <label class="control-label col-sm-6 col-md-6" for="lineHeight">Line height</label>
             <div class="col-sm-6 col-md-4">
               <select name="lineHeight" id="lineHeight" class="form-control">
                 <option value="18">18</option>
@@ -205,7 +205,7 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="showWordCountPill">Show character and word count</label>
+            <label class="control-label col-sm-6 col-md-6" for="showWordCountPill">Show character and word count</label>
             <div class="col-sm-6 col-md-4">
               <select name="showWordCountPill" id="showWordCountPill" class="form-control">
                 <option value="Yes">Yes</option>
@@ -215,14 +215,14 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="company">&nbsp;</label>
+            <label class="control-label col-sm-6 col-md-6" for="company">&nbsp;</label>
             <div class="col-sm-6 col-md-4">
               <a href="javascript:void(0);" id="resetPreferences" title="Reset to default preferences">Reset preferences</a>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -230,9 +230,9 @@
 
   <div id="toast"></div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/sweetalert2.all.min.js"></script>
+  <script src="js/libraries/jquery.min.js"></script>
+  <script src="js/libraries/bootstrap.min.js"></script>
+  <script src="js/libraries/sweetalert2.all.min.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/selector.js"></script>
   <script src="js/app.js"></script>

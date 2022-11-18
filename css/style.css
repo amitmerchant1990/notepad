@@ -17,12 +17,12 @@ textarea:hover,textarea {
 }
 
 .navbar-default {
-  background-color:#795548;
-  border-color:#795548;
+  background-color:#4d4d4d;
+  border-color:#4d4d4d;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #795548 !important;
+  background-color: #4d4d4d !important;
 }
 
 .navbar-default .navbar-toggle {
@@ -63,7 +63,7 @@ textarea:hover,textarea {
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #795548;
+  background-color: #4d4d4d;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #ecf0f1;
@@ -134,10 +134,37 @@ textarea:hover,textarea {
   display: none !important;
 }
 
+.about-notice {
+  background-color: #d6d6d6;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.modal-content {
+  border-radius: 14px;
+  border: none;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.swal2-popup {
+  border-radius: 1.3125em !important;
+}
+
+.swal2-styled.swal2-confirm, .swal2-styled.swal2-cancel {
+  border-radius: 0.55em !important;
+}
+
+.form-control {
+  border-radius: 8px;
+}
+
 .sticky-notice {
   position: absolute;
   background: #009688;
-  bottom: 24px;
+  bottom: 48px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -199,6 +226,10 @@ textarea:hover,textarea {
 textarea {
   padding: 15px 15px 40px 15px;
   border: 1px solid #e6e4e4;
+}
+
+a {
+  font-weight: bold;
 }
 
 .dark textarea {
@@ -327,12 +358,13 @@ textarea {
   background-color: #333;
   color: #fff;
   text-align: center;
-  border-radius: 2px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 14px;
   position: fixed;
   z-index: 1;
   left: 50%;
   bottom: 30px;
+  font-weight: bold;
 }
 
 #toast.show {
@@ -356,7 +388,7 @@ textarea {
   color: white;
   font-weight: bold;
   font-size: 13px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .install-app-btn:hover, .install-app-btn:focus {
@@ -446,6 +478,13 @@ textarea {
 
 .navbar-nav>li>a {
   padding-left: 24px;
+}
+
+@media (max-width: 766px){
+  .dark textarea {
+    border-right: 1px solid #0d1117;
+    border-left: 1px solid #0d1117;
+  }
 }
 
 @media (max-width: 450px){

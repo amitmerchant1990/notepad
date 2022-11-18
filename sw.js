@@ -1,15 +1,15 @@
-importScripts('js/cache-polyfill.js');
+importScripts('js/libraries/cache-polyfill.js');
 
 let CACHE_VERSION = 'app-v21';
 let CACHE_FILES = [
     '/',
     'index.html',
-    'js/utils.js',
+    'js/libraries/jquery.min.js',
+    'js/libraries/bootstrap.min.js',
+    'js/libraries/sweetalert2.all.min.js',
     'js/app.js',
-    'js/jquery.min.js',
-    'js/bootstrap.min.js',
+    'js/utils.js',
     'js/selector.js',
-    'js/sweetalert2.all.min.js',
     'css/bootstrap.min.css',
     'css/style.css',
     'favicon.ico',
