@@ -231,6 +231,16 @@
 
   <div id="toast"></div>
 
+  <script>
+    if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark') {
+      document.body.classList.add("dark");
+      document.querySelector('.navbar').classList.remove("navbar-default");
+    } else {
+      document.body.classList.remove("dark");
+      document.querySelector('.navbar').classList.add("navbar-default");
+    }
+  </script>
+
   <script src="js/libraries/jquery.min.js"></script>
   <script src="js/libraries/bootstrap.min.js"></script>
   <script src="js/libraries/sweetalert2.all.min.js"></script>
