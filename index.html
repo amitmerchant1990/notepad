@@ -232,12 +232,22 @@
   <div id="toast"></div>
 
   <script>
-    if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark') {
-      document.body.classList.add("dark");
-      document.querySelector('.navbar').classList.remove("navbar-default");
+    if (localStorage.getItem('mode')) {
+      if (localStorage.getItem('mode') == 'dark') {
+        document.body.classList.add("dark");
+        document.querySelector('.navbar').classList.remove("navbar-default");
+      } else  {
+        document.body.classList.remove("dark");
+        document.querySelector('.navbar').classList.add("navbar-default");
+      }
     } else {
-      document.body.classList.remove("dark");
-      document.querySelector('.navbar').classList.add("navbar-default");
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add("dark");
+        document.querySelector('.navbar').classList.remove("navbar-default");
+      } else {
+        document.body.classList.remove("dark");
+        document.querySelector('.navbar').classList.add("navbar-default");
+      }
     }
   </script>
 
