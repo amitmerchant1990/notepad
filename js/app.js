@@ -1,5 +1,6 @@
 $(document).ready(function () {
-	const welcomeText = `This is an offline-capable Notepad which is a Progressive Web App.
+	const welcomeText = `
+	Welcome! This is an offline-capable Notepad which is a Progressive Web App.
 
 	The app serves the following features:
 
@@ -15,7 +16,8 @@ $(document).ready(function () {
 	it's recommended that you take a backup of your notes more often using the 
 	"Download Notes" button or by pressing the "Ctrl/Cmd + S" keys.
 
-	** Start writing your notes **`;
+	** Start writing your notes **
+	`;
 
 	const darkmodeText = 'Enable dark mode';
 	const lightmodeText = 'Enable light mode';
