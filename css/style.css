@@ -16,6 +16,10 @@ textarea:hover,textarea {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.github-icon {
+  float: left;
+}
+
 .navbar-default {
   background-color:#4d4d4d;
   border-color:#4d4d4d;
