@@ -19,8 +19,8 @@ $(document).ready(function () {
 	** Start writing your notes **
 	`;
 
-	const darkmodeText = 'Enable dark mode';
-	const lightmodeText = 'Enable light mode';
+	const darkmodeText = 'Enable dark mode [Ctrl/Cmd + M]';
+	const lightmodeText = 'Enable light mode [Ctrl/Cmd + M]';
 	const darkMetaColor = '#0d1117';
 	const lightMetaColor = '#4d4d4d';
 	const metaThemeColor = document.querySelector('meta[name=theme-color]');
@@ -29,6 +29,13 @@ $(document).ready(function () {
 	const defaultFontWeight = 'normal';
 	const defaultShowWordCountPill = 'Yes';
 	const { notepad, state, setState, removeState, get } = selector();
+	const themeConfig = {
+		lightmodeText, 
+		darkmodeText, 
+		lightMetaColor, 
+		darkMetaColor, 
+		metaThemeColor
+	};
 
 	const noteItem = state.note && state.note != '' ? state.note : welcomeText;
 	const characterAndWordCountText = calculateCharactersAndWords(noteItem);
@@ -105,16 +112,7 @@ $(document).ready(function () {
 	});
 
 	notepad.mode.click(function () {
-		get(document.body).toggleClass('dark');
-		let bodyClass = get(document.body).attr('class');
-
-		if (bodyClass === 'dark') {
-			enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
-		} else {
-			enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
-		}
-
-		setState('isUserPreferredTheme', 'true');
+		toggleTheme(themeConfig);
 	});
 
 	notepad.copyToClipboard.click(function () {
@@ -233,6 +231,16 @@ $(document).ready(function () {
 		} else if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
+		}
+
+		if ((event.ctrlKey || event.metaKey) && event.code === 'Comma') {
+			event.preventDefault();
+			notepad.preferencesModal.modal('show');
+		}
+
+		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyM') {
+			event.preventDefault();
+			toggleTheme(themeConfig);
 		}
 	};
 });

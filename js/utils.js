@@ -118,3 +118,22 @@ function calculateCharactersAndWords(str) {
     
     return wordCountText;
 }
+
+function toggleTheme({
+    lightmodeText, 
+    darkmodeText, 
+    lightMetaColor, 
+    darkMetaColor, 
+    metaThemeColor
+}) {
+    get(document.body).toggleClass('dark');
+    let bodyClass = get(document.body).attr('class');
+
+    if (bodyClass === 'dark') {
+        enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
+    } else {
+        enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
+    }
+
+    setState('isUserPreferredTheme', 'true');
+}
