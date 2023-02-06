@@ -119,6 +119,14 @@ function calculateCharactersAndWords(str) {
     return wordCountText;
 }
 
+function copyNotesToClipboard(note) {
+    navigator.clipboard.writeText(note).then(function () {
+        showToast('Notes copied to clipboard!')
+    }, function () {
+        showToast('Failure to copy. Check permissions for clipboard.')
+    });
+}
+
 function toggleTheme({
     lightmodeText, 
     darkmodeText, 

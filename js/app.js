@@ -116,11 +116,7 @@ $(document).ready(function () {
 	});
 
 	notepad.copyToClipboard.click(function () {
-		navigator.clipboard.writeText(notepad.note.val()).then(function () {
-			showToast('Notes copied to clipboard!')
-		}, function () {
-			showToast('Failure to copy. Check permissions for clipboard.')
-		});
+		copyNotesToClipboard(notepad.note.val());
 	})
 
 	notepad.downloadNotes.click(function () {
@@ -228,7 +224,10 @@ $(document).ready(function () {
 		if (event.key === 'Escape') {
 			notepad.aboutModal.modal('hide');
 			notepad.preferencesModal.modal('hide');
-		} else if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
+			notepad.keyboardShortcutsModal.modal('hide');
+		} 
+		
+		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
 		}
@@ -238,9 +237,19 @@ $(document).ready(function () {
 			notepad.preferencesModal.modal('show');
 		}
 
+		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
+			event.preventDefault();
+			notepad.keyboardShortcutsModal.modal('show');
+		}
+
 		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyM') {
 			event.preventDefault();
 			toggleTheme(themeConfig);
+		}
+
+		if (event.altKey && event.code === 'KeyC') {
+			event.preventDefault();
+			copyNotesToClipboard(notepad.note.val());
 		}
 	};
 });

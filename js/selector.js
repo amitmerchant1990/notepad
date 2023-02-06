@@ -43,6 +43,7 @@ function selector() {
             installAppButtonContainer: selectByClassName('install-app-btn-container'),
             stickyNotice: selectByClassName('sticky-notice'),
             wordCountContainer: selectByClassName('word-count-container'),
+            keyboardShortcutsModal: selectById('keyboardShortcutsModal'),
         },
         state: {
             note: getState('note'),
