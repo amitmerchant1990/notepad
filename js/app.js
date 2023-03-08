@@ -232,12 +232,20 @@ $(document).ready(function () {
 
 		if ((event.ctrlKey || event.metaKey) && event.code === 'Comma') {
 			event.preventDefault();
+
+			if (notepad.preferencesModal.hasClass('in'))
+				return;
+
 			$('.modal').modal('hide');
 			notepad.preferencesModal.modal('show');
 		}
 
 		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyK') {
 			event.preventDefault();
+
+			if (notepad.keyboardShortcutsModal.hasClass('in'))
+				return;
+
 			$('.modal').modal('hide');
 			notepad.keyboardShortcutsModal.modal('show');
 		}
