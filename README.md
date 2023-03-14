@@ -12,7 +12,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which is based on 
 ## The app serves the following features
 
   - Writes notes which are then saved to the [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage).
-  - Works and fetches notes offline-capable thanks to ServiceWorker.
+  - Installable on supported browsers for offline usage.
   - "Add To Home Screen" feature on Android supported devices to launch the app from home screen.
   - Dark mode.
 
