@@ -49,7 +49,6 @@ function saveTextAsFile(textToWrite, fileNameToSaveAs) {
         downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
     } else {
         downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.onclick = destroyClickedElement;
         downloadLink.style.display = 'none';
         document.body.appendChild(downloadLink);
     }
