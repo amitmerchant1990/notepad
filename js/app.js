@@ -24,11 +24,15 @@ $(document).ready(function () {
 	const darkMetaColor = '#0d1117';
 	const lightMetaColor = '#4d4d4d';
 	const metaThemeColor = document.querySelector('meta[name=theme-color]');
-	const defaultFontSize = 18;
-	const defaultLineHeight = 26;
-	const defaultFontWeight = 'normal';
-	const defaultShowWordCountPill = 'Yes';
 	const { notepad, state, setState, removeState, get } = selector();
+
+	const editorConfig = {
+		defaultFontSize: 18,
+		defaultLineHeight: 26,
+		defaultFontWeight: 'normal',
+		defaultShowWordCountPill: 'Yes',
+	};
+
 	const themeConfig = {
 		lightmodeText, 
 		darkmodeText, 
@@ -50,21 +54,21 @@ $(document).ready(function () {
 		notepad.note.css('font-size', state.userChosenFontSize + 'px');
 		notepad.fontSize.val(state.userChosenFontSize);
 	} else {
-		resetFontSize(defaultFontSize);
+		resetFontSize(editorConfig.defaultFontSize);
 	}
 
 	if (state.userChosenFontWeight) {
 		notepad.note.css('font-weight', state.userChosenFontWeight);
 		notepad.fontWeight.val(state.userChosenFontWeight);
 	} else {
-		resetFontWeight(defaultFontWeight);
+		resetFontWeight(editorConfig.defaultFontWeight);
 	}
 
 	if (state.userChosenLineHeight) {
 		notepad.note.css('line-height', state.userChosenLineHeight + 'px');
 		notepad.lineHeight.val(state.userChosenLineHeight);
 	} else {
-		resetLineHeight(defaultLineHeight);
+		resetLineHeight(editorConfig.defaultLineHeight);
 	}
 
 	const userChosenWordCountPillSelected = state.userChosenWordCountPillSelected
@@ -73,7 +77,7 @@ $(document).ready(function () {
 		userChosenWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.show() : notepad.wordCountContainer.hide();
 		notepad.showWordCountPill.val(userChosenWordCountPillSelected);
 	} else {
-		resetShowWordCountPill(defaultShowWordCountPill);
+		resetShowWordCountPill(editorConfig.defaultShowWordCountPill);
 	}
 
 	if (state.mode && state.mode === 'dark') {
@@ -165,22 +169,22 @@ $(document).ready(function () {
 	notepad.resetPreferences.click(function () {
 		if (selector().state.userChosenFontSize) {	
 			removeState('userChosenFontSize');
-			resetFontSize(defaultFontSize);
+			resetFontSize(editorConfig.defaultFontSize);
 		}
 			
 		if (selector().state.userChosenLineHeight) {
 			removeState('userChosenLineHeight');
-			resetLineHeight(defaultLineHeight);
+			resetLineHeight(editorConfig.defaultLineHeight);
 		}
 
 		if (selector().state.userChosenFontWeight) {
 			removeState('userChosenFontWeight');
-			resetFontWeight(defaultFontWeight);
+			resetFontWeight(editorConfig.defaultFontWeight);
 		}
 
 		if (selector().state.userChosenWordCountPillSelected) {
 			removeState('userChosenWordCountPillSelected');
-			resetShowWordCountPill(defaultShowWordCountPill);
+			resetShowWordCountPill(editorConfig.defaultShowWordCountPill);
 		}
 	});
 
