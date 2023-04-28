@@ -313,6 +313,7 @@
       favicon.setAttribute("href", `/favicon${hidden ? "-hidden" : ""}.ico`)
     })
     const inp = document.getElementById("getFiles");
+    const fl = document.querySelector('ul.nav.navbar-nav > ul')
     async function loadFile(cl) {
       let idx = cl.target.attributes["data-idx"];
       var text=await inp.files[idx].text();
