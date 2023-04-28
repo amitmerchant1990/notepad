@@ -91,6 +91,14 @@
             </a>
           </li>
           <li><a href="#about" data-toggle="modal" data-target="#aboutModal">About</a></li>
+          <li>
+            <a id="loadNotes" data-toggle="modal" data-target="#aboutModal">
+              <img src="img/navbar/download.svg" alt="Download Icon" />
+            </a>
+          </li>
+          <li><input type="file" name="client-file" id="getFiles" multiple="" style="margin-left:20px"></li>
+          <ul id="fileList">
+          </ul>
         </ul>
       </div>
     </div>
@@ -309,6 +317,33 @@
       const hidden = document.hidden
       favicon.setAttribute("href", `/favicon${hidden ? "-hidden" : ""}.ico`)
     })
+    const inp = document.getElementById("getFiles");
+    async function loadFile(cl) {
+      let idx = cl.target.attributes["data-idx"];
+      var text=await inp.files[idx].text();
+      console.log(text);
+      if(false && preferences && preferences.remove)
+      {
+        cl.target.parentElement.remove();
+      }
+    }
+    
+    inp.onchange = async () => {
+      console.log("Enumerating Files")
+      fl.innerHTML = "";
+      for (i = 0; i < inp.files.length; i++) {
+        let file = inp.files[i];
+        let el = document.createElement('li');
+        let btn = document.createElement('a');
+        el.appendChild(btn);
+        //btn.id = `b${i}`;
+        btn.innerText = file.name;
+        btn.onclick = loadFile;
+        btn.href='javascript:void(0)';
+        btn.attributes["data-idx"] = i;
+        fl.append(el);
+      }
+    };
   </script>
 
   <script src="js/libraries/jquery.min.js"></script>
