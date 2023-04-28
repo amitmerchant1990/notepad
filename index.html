@@ -316,7 +316,7 @@
     async function loadFile(cl) {
       let idx = cl.target.attributes["data-idx"];
       var text=await inp.files[idx].text();
-      console.log(text);
+      $('#note').val(text);
       if(false && preferences && preferences.remove)
       {
         cl.target.parentElement.remove();
