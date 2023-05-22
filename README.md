@@ -3,13 +3,13 @@ Notepad
 
 ![Notepad Cover Image](/art/cover.png)
 
-This is an offline-capable [Notepad](https://notepad.js.org/) which is based on the [ServiceWorker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
+This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) behind the scenes.
 
 > Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
 >
 > You can support me via [Paypal](https://paypal.me/AmitMerchant).
 
-## The app serves the following features
+## Notable features
 
   - Writes notes which are then saved to the [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage).
   - Installable on supported browsers for offline usage.
