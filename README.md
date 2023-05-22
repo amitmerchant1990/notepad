@@ -14,6 +14,10 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which is based on 
   - Writes notes which are then saved to the [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage).
   - Installable on supported browsers for offline usage.
   - "Add To Home Screen" feature on Android supported devices to launch the app from home screen.
+  - Editor padding.
+  - Customizable font size, font weight, and line height.
+  - Word and character count.
+  - Minimal UI.
   - Dark mode.
 
 [View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
