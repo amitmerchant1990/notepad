@@ -18,6 +18,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - Customizable font size, font weight, and line height.
   - Word and character count.
   - Minimal UI.
+  - Keyboard shortcuts for common actions.
   - Dark mode.
 
 [View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
