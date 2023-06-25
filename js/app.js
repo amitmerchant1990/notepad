@@ -1,23 +1,21 @@
 $(document).ready(function () {
-	const welcomeText = `
-	Welcome! This is an offline-capable Notepad which is a Progressive Web App.
+	const welcomeText = `Welcome! This is an offline-capable Notepad which is a Progressive Web App.
 
-	The app serves the following features:
+The app serves the following features:
 
-	- Write notes which are then saved to the localStorage.
-	- Installable on supported browsers for offline usage.
-	- "Add To Home Screen" feature on Android-supported devices to launch the app from the home screen.
-	- Dark mode.
-	- Privacy-focused - We'll never collect your precious data.
-	- Light-weight - Loads almost instantly.
-	- It's open-source!
+- Write notes which are then saved to the localStorage.
+- Installable on supported browsers for offline usage.
+- "Add To Home Screen" feature on Android-supported devices to launch the app from the home screen.
+- Dark mode.
+- Privacy-focused - We'll never collect your precious data.
+- Light-weight - Loads almost instantly.
+- It's open-source!
 
-	CAUTION: Since the app uses the browser's localStorage to store your notes, 
-	it's recommended that you take a backup of your notes more often using the 
-	"Download Notes" button or by pressing the "Ctrl/Cmd + S" keys.
+CAUTION: Since the app uses the browser's localStorage to store your notes, 
+it's recommended that you take a backup of your notes more often using the 
+"Download Notes" button or by pressing the "Ctrl/Cmd + S" keys.
 
-	** Start writing your notes **
-	`;
+** Start writing your notes **`;
 
 	const darkmodeText = 'Enable dark mode [Ctrl/Cmd + M]';
 	const lightmodeText = 'Enable light mode [Ctrl/Cmd + M]';

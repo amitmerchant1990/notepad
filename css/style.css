@@ -57,7 +57,9 @@ table tr td {
   width: 50%;
 }
 
-.github-icon {
+.about-icon-container {
+  display: inline-flex;
+  gap: 10px;
   float: left;
 }
 
