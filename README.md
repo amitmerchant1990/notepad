@@ -1,7 +1,7 @@
 Notepad
 ========
 
-![Notepad Cover Image](/art/cover.png)
+[![Notepad Cover Image](/art/cover.png)](https://notepad.js.org/)
 
 This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) behind the scenes.
 
