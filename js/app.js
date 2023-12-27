@@ -91,26 +91,7 @@ it's recommended that you take a backup of your notes more often using the
 	}, 500));
 	
 	notepad.clearNotes.on('click', function () {
-		Swal.fire({
-			title: 'Want to delete notes?',
-			text: "You won't be able to revert this!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#d33',
-			cancelButtonColor: '#3085d6',
-			confirmButtonText: 'Delete'
-		}).then((result) => {
-			if (result.value) {
-				notepad.note.val('').focus();
-				setState('note', '');
-
-				Swal.fire(
-					'Deleted!',
-					'Your notes has been deleted.',
-					'success'
-				)
-			}
-		})
+		deleteNotes();
 	});
 
 	notepad.mode.click(function () {
@@ -260,6 +241,11 @@ it's recommended that you take a backup of your notes more often using the
 		if (event.altKey && event.code === 'KeyC') {
 			event.preventDefault();
 			copyNotesToClipboard(notepad.note.val());
+		}
+
+		if ((event.ctrlKey || event.metaKey) && event.code === 'Delete') {
+			event.preventDefault();
+			deleteNotes();
 		}
 	};
 });
