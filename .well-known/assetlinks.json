@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "xyz.appmaker.qipruk",
+      "sha256_cert_fingerprints": ["87:55:D6:8C:42:D1:92:65:5A:4F:E7:4D:52:08:97:51:6B:74:EB:79:70:FA:9B:90:04:85:11:3B:FB:0B:8D:E5"]
+    }
+  }
+]
