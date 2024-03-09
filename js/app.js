@@ -29,6 +29,7 @@ it's recommended that you take a backup of your notes more often using the
 		defaultLineHeight: 26,
 		defaultFontWeight: 'normal',
 		defaultShowWordCountPill: 'Yes',
+		defaultWriteDirection: 'ltr'
 	};
 
 	const themeConfig = {
@@ -76,6 +77,13 @@ it's recommended that you take a backup of your notes more often using the
 		notepad.showWordCountPill.val(userChosenWordCountPillSelected);
 	} else {
 		resetShowWordCountPill(editorConfig.defaultShowWordCountPill);
+	}
+
+	if (state.userChosenWriteDirection) {
+		notepad.note.css('direction', state.userChosenWriteDirection);
+		notepad.writeDirection.val(state.userChosenWriteDirection);
+	} else {
+		resetWriteDirection(editorConfig.defaultWriteDirection);
 	}
 
 	if (state.mode && state.mode === 'dark') {
@@ -138,6 +146,13 @@ it's recommended that you take a backup of your notes more often using the
 		setState('userChosenFontWeight', fontWeightSelected);
 	});
 
+	notepad.writeDirection.on('change', function (e) {
+		const writeDirectionSelected = this.value;
+
+		notepad.note.css('direction', writeDirectionSelected);
+		setState('userChosenWriteDirection', writeDirectionSelected);
+	});
+
 	notepad.showWordCountPill.on('change', function (e) {
 		const showWordCountPillSelected = this.value;
 
@@ -164,6 +179,11 @@ it's recommended that you take a backup of your notes more often using the
 		if (selector().state.userChosenWordCountPillSelected) {
 			removeState('userChosenWordCountPillSelected');
 			resetShowWordCountPill(editorConfig.defaultShowWordCountPill);
+		}
+
+		if (selector().state.userChosenWriteDirection) {
+			removeState('userChosenWriteDirection');
+			resetWriteDirection(editorConfig.defaultWriteDirection);
 		}
 	});
 

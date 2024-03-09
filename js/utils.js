@@ -106,6 +106,11 @@ function resetShowWordCountPill(defaultShowWordCountPill) {
     $('#showWordCountPill').val(defaultShowWordCountPill);
 }
 
+function resetWriteDirection(defaultWriteDirection) {
+    $('#note').css('direction', defaultWriteDirection);
+    $('#writeDirection').val(defaultWriteDirection);
+}
+
 function countWords(str) {
     return str.trim().split(/\s+/).length;
 }
