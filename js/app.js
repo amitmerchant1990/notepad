@@ -42,6 +42,7 @@ it's recommended that you take a backup of your notes more often using the
 
 	const noteItem = state.note && state.note != '' ? state.note : welcomeText;
 	const characterAndWordCountText = calculateCharactersAndWords(noteItem);
+	
 	notepad.wordCount.text(characterAndWordCountText);
 	notepad.note.val(noteItem);
 
@@ -209,6 +210,8 @@ it's recommended that you take a backup of your notes more often using the
 			: enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
 	} 
 
+	// This hides the install app button 
+	// if the app is already installed
 	if (getPWADisplayMode() === 'standalone') {
 		notepad.installApp.hide();
 	}
@@ -221,6 +224,7 @@ it's recommended that you take a backup of your notes more often using the
 		}
 	});
 
+	// This listens for keyboard shortcuts
 	document.onkeydown = function (event) {
 		event = event || window.event;
 
