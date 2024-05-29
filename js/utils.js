@@ -118,7 +118,9 @@ function countWords(str) {
 function calculateCharactersAndWords(str) {
     const characterCount = str.length;
     const wordCount = str !== '' ? countWords(str) : 0;
-    const wordCountText = `${characterCount} character(s), ${wordCount} word(s)`;
+    const characterString = characterCount > 1 ? 'characters' : 'character';
+    const wordString = wordCount > 1 ? 'words' : 'word';
+    const wordCountText = `${characterCount} ${characterString}, ${wordCount} ${wordString}`;
     
     return wordCountText;
 }
