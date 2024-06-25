@@ -176,3 +176,35 @@ function deleteNotes() {
         }
     })
 }
+
+function toggleFocusMode(notepad) {
+    const navbar = document.querySelector('.navbar');
+
+    if (!navbar.hasAttribute('style')) {
+        navbar.style.display = 'none';
+    } else {
+        navbar.removeAttribute('style');
+    }
+
+    const bodyElement = document.body;
+
+    if (!bodyElement.hasAttribute('style')) {
+        bodyElement.style.paddingTop = '0px';
+    } else {
+        bodyElement.removeAttribute('style');
+    }
+
+    const textArea = document.getElementById('note');
+    
+    if (!textArea.style.borderRight) {
+        textArea.style.borderRight = 'none';
+        textArea.style.borderLeft = 'none';
+    } else {
+        textArea.style.borderRight = '';
+        textArea.style.borderLeft = '';
+    }
+
+    if (localStorage.getItem('userChosenWordCountPillSelected') == 'Yes') {
+        notepad.wordCountContainer.toggle();
+    }
+}

@@ -271,6 +271,12 @@ it's recommended that you take a backup of your notes more often using the
 			event.preventDefault();
 			deleteNotes();
 		}
+
+		if (event.altKey && event.code === 'KeyF') {
+			event.preventDefault();
+
+			toggleFocusMode(notepad);
+		}
 	};
 });
 
