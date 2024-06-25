@@ -191,8 +191,8 @@ table tr td {
 }
 
 .about-notice {
-  background-color: #d6d6d6;
-  padding: 14px;
+  background-color: #ecf0ff;
+  padding: 20px;
   border-radius: 10px;
 }
 
@@ -440,7 +440,7 @@ a {
 
 .install-app-btn {
   padding: 5px 10px;
-  background-color: blue;
+  background-color: #3F51B5;
   color: white;
   font-weight: bold;
   font-size: 13px;
