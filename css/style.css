@@ -196,6 +196,20 @@ table tr td {
   border-radius: 10px;
 }
 
+.about-author-container {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.about-author-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
 .modal-content {
   border-radius: 14px;
   border: none;
