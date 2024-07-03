@@ -547,7 +547,7 @@ a {
 }
 
 .navbar-nav>li>a {
-  padding-left: 24px;
+  padding-left: 8px;
 }
 
 @media (max-width: 766px){

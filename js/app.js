@@ -115,6 +115,10 @@ it's recommended that you take a backup of your notes more often using the
 		saveTextAsFile(note.value, getFileName());
 	})
 
+	notepad.fullScreenButton.click(function () {
+		toggleFullScreen();
+	})
+
 	setTimeout(function () {
 		if (!state.hasUserDismissedDonationPopup) {
 			notepad.stickyNotice.toggleClass('make-hidden');
@@ -278,6 +282,13 @@ it's recommended that you take a backup of your notes more often using the
 			toggleFocusMode(notepad);
 		}
 	};
+});
+
+document.addEventListener("fullscreenchange", function () {
+	if (!document.fullscreenElement) {
+		$('#arrowPointsIn').hide();
+		$('#arrowPointsOut').show();
+	}
 });
 
 // Registering ServiceWorker

@@ -45,6 +45,7 @@ function selector() {
             stickyNotice: selectByClassName('sticky-notice'),
             wordCountContainer: selectByClassName('word-count-container'),
             keyboardShortcutsModal: selectById('keyboardShortcutsModal'),
+            fullScreenButton: selectById('fullScreenButton'),
         },
         state: {
             note: getState('note'),

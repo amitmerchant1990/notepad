@@ -208,3 +208,17 @@ function toggleFocusMode(notepad) {
         notepad.wordCountContainer.toggle();
     }
 }
+
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        $('#arrowPointsOut').hide();
+        $('#arrowPointsIn').show();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            $('#arrowPointsIn').hide();
+            $('#arrowPointsOut').show();
+        }
+    }
+}
