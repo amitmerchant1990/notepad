@@ -23,13 +23,16 @@ it's recommended that you take a backup of your notes more often using the
 	const lightMetaColor = '#4d4d4d';
 	const metaThemeColor = document.querySelector('meta[name=theme-color]');
 	const { notepad, state, setState, removeState, get } = selector();
+	const optimalLineLengthPadding = '15px 15vw 40px';
 
 	const editorConfig = {
 		defaultFontSize: 18,
 		defaultLineHeight: 26,
 		defaultFontWeight: 'normal',
 		defaultShowWordCountPill: 'Yes',
-		defaultWriteDirection: 'ltr'
+		defaultWriteDirection: 'ltr',
+		defaultOptimalLineLength: 'No',
+		defaultOptimalLineLengthPadding: '15px 15px 40px'
 	};
 
 	const themeConfig = {
@@ -85,6 +88,20 @@ it's recommended that you take a backup of your notes more often using the
 		notepad.writeDirection.val(state.userChosenWriteDirection);
 	} else {
 		resetWriteDirection(editorConfig.defaultWriteDirection);
+	}
+
+	if (state.userChosenOptimalLineLengthSelected) {
+		const textArea = document.getElementById('note');
+
+		if (state.userChosenOptimalLineLengthSelected === 'Yes') {
+			textArea.style.padding = optimalLineLengthPadding;
+		} else {
+			textArea.style.padding = editorConfig.defaultOptimalLineLengthPadding;
+		}
+
+		notepad.optimalLineLength.val(state.userChosenOptimalLineLengthSelected);
+	} else {
+		resetOptimalLineLength(editorConfig.defaultOptimalLineLengthPadding, editorConfig.defaultOptimalLineLength);
 	}
 
 	if (state.mode && state.mode === 'dark') {
@@ -165,6 +182,20 @@ it's recommended that you take a backup of your notes more often using the
 		setState('userChosenWordCountPillSelected', showWordCountPillSelected);
 	});
 
+	notepad.optimalLineLength.on('change', function (e) {
+		const optimalLineLengthSelected = this.value;
+
+		const textArea = document.getElementById('note');
+
+		if (optimalLineLengthSelected === 'Yes') {
+			textArea.style.padding = optimalLineLengthPadding;
+		} else {
+			textArea.style.padding = editorConfig.defaultOptimalLineLengthPadding;
+		}
+
+		setState('userChosenOptimalLineLengthSelected', optimalLineLengthSelected);
+	})
+
 	notepad.resetPreferences.click(function () {
 		if (selector().state.userChosenFontSize) {	
 			removeState('userChosenFontSize');
@@ -189,6 +220,11 @@ it's recommended that you take a backup of your notes more often using the
 		if (selector().state.userChosenWriteDirection) {
 			removeState('userChosenWriteDirection');
 			resetWriteDirection(editorConfig.defaultWriteDirection);
+		}
+
+		if (selector().state.userChosenOptimalLineLengthSelected) {
+			removeState('userChosenOptimalLineLengthSelected');
+			resetOptimalLineLength(editorConfig.defaultOptimalLineLengthPadding, editorConfig.defaultOptimalLineLength);
 		}
 	});
 

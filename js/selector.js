@@ -46,6 +46,7 @@ function selector() {
             wordCountContainer: selectByClassName('word-count-container'),
             keyboardShortcutsModal: selectById('keyboardShortcutsModal'),
             fullScreenButton: selectById('fullScreenButton'),
+            optimalLineLength: selectById('optimalLineLength'),
         },
         state: {
             note: getState('note'),
@@ -57,6 +58,7 @@ function selector() {
             hasUserDismissedDonationPopup: getState('hasUserDismissedDonationPopup'),
             userChosenWordCountPillSelected: getState('userChosenWordCountPillSelected'),
             userChosenWriteDirection: getState('userChosenWriteDirection'),
+            userChosenOptimalLineLengthSelected: getState('userChosenOptimalLineLengthSelected')
         },
         get,
         getState,

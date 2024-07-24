@@ -111,6 +111,12 @@ function resetWriteDirection(defaultWriteDirection) {
     $('#writeDirection').val(defaultWriteDirection);
 }
 
+function resetOptimalLineLength(defaultEditorPadding, defaultOption) {
+    const textArea = document.getElementById('note');
+    textArea.style.padding = defaultEditorPadding;
+    $('#optimalLineLength').val(defaultOption);
+}
+
 function countWords(str) {
     return str.trim().split(/\s+/).length;
 }
