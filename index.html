@@ -139,32 +139,52 @@
           </span>
         </div>
         <div class="modal-body modal-container">
-          <p>This is an offline-capable <a href="https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/" target="_blank">Progressive Web App</a>.</p>
-
-          <p>The app serves the following features:</p>
-
-          <ul>
-            <li>Write notes which are then saved to the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localStorage</a>.</li>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Developer_guide/Installing" target="_blank">Installable</a> on supported browsers for offline usage.</li>
-            <li>Dark mode.</li>
-            <li>Privacy-focused - We'll never collect your precious data.</li>
-            <li>Light-weight - Loads almost instantly.</li>
-            <li>It's <a href="https://github.com/amitmerchant1990/notepad" target="_blank">open-source</a>!</li>
+          <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item active">
+                  <a class="nav-link active" data-toggle="tab" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#whatsNew">What's new</a>
+              </li>
           </ul>
-          <p>
-            <b>CAUTION:</b> Take a backup of your notes more often since it's all stored on your browser.
-          </p>
-          <p class="about-notice">Enjoy using this app? If so, consider a small <a href="https://www.paypal.com/paypalme/AmitMerchant"
-              target="_blank">donation</a> so that I keep working on improving it further and the experience remains ad-free. Icons from <a href="https://heroicons.com/" target="_blank">heroicons</a>, <a href="https://www.flaticon.com/" target="_blank">Flaticon</a>, <a href="https://www.svgrepo.com">SVGRepo</a> and <a href="https://iconduck.com" target="_blank">Iconduck</a>.</p>
-          <p style="text-align:center; margin: 10px 0 0 0;">
-            <b class="about-author-container">
-              Brought to you by 
-              <a href="https://www.amitmerchant.com/" target="_blank" class="about-author-link">
-                <img src="img/amitmerchant-icon.svg" alt="Amit Merchant" width="15px" height="15px">
-                Amit Merchant
-              </a>
-            </b>
-          </p>
+          <div class="tab-content">
+            <div id="about" class="container tab-pane active in">
+              <p>This is an offline-capable <a href="https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/" target="_blank">Progressive Web App</a>.</p>
+              <p>The app serves the following features:</p>
+              <ul>
+                <li>Write notes which are then saved to the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localStorage</a>.</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Developer_guide/Installing" target="_blank">Installable</a> on supported browsers for offline usage.</li>
+                <li>Dark mode.</li>
+                <li>Privacy-focused - We'll never collect your precious data.</li>
+                <li>Light-weight - Loads almost instantly.</li>
+                <li>It's <a href="https://github.com/amitmerchant1990/notepad" target="_blank">open-source</a>!</li>
+              </ul>
+              <p>
+                <b>CAUTION:</b> Take a backup of your notes more often since it's all stored on your browser.
+              </p>
+              <p class="about-notice">Enjoy using this app? If so, consider a small <a href="https://www.paypal.com/paypalme/AmitMerchant"
+                  target="_blank">donation</a> so that I keep working on improving it further and the experience remains ad-free. Icons from <a href="https://heroicons.com/" target="_blank">heroicons</a>, <a href="https://www.flaticon.com/" target="_blank">Flaticon</a>, <a href="https://www.svgrepo.com">SVGRepo</a> and <a href="https://iconduck.com" target="_blank">Iconduck</a>.</p>
+              <p style="text-align:center; margin: 10px 0 0 0;">
+                <b class="about-author-container">
+                  Brought to you by 
+                  <a href="https://www.amitmerchant.com/" target="_blank" class="about-author-link">
+                    <img src="img/amitmerchant-icon.svg" alt="Amit Merchant" width="15px" height="15px">
+                    Amit Merchant
+                  </a>
+                </b>
+              </p>
+            </div>
+
+            <div id="whatsNew" class="container tab-pane fade">
+              <h4>24th July, 2024</h3>
+              <ul>
+                <li>Implemented <a href="https://baymard.com/blog/line-length-readability" target="_blank">optimal line length</a> feature for better readability.</li>
+                <li>Implement a toggle to go fullscreen.</li>
+                <li>Swithced to using muted menubar icons.</li>
+                <li>A <b>"What's new"</b> section to list the latest changes.</li>
+              </ul>
+            </div>
+          </div>    
         </div>
         <div class="modal-footer">
           <div class="about-icon-container">

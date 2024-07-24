@@ -284,6 +284,11 @@ table tr td {
   gap: 14px;
 }
 
+.tab-content .container {
+  width: 100%;
+  padding: 20px 0px;
+}
+
 .word-count-container p {
   margin: 0;
 }
