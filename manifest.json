@@ -35,6 +35,18 @@
       "src": "img/screenshot2.png",
       "type": "image/png",
       "sizes": "540x720"
+    },
+    {
+      "src": "img/screenshot-desktop-dark.png",
+      "type": "image/png",
+      "form_factor": "wide",
+      "sizes": "2460x1674"
+    },
+    {
+      "src": "img/screenshot-desktop-light.png",
+      "type": "image/png",
+      "form_factor": "wide",
+      "sizes": "2460x1674"
     }
   ],
   "start_url": "index.html",
@@ -44,5 +56,6 @@
     {
       "origin": "https://notepad.js.org"
     }
-  ]
+  ],
+  "display_override": ["minimal-ui"]
 }
