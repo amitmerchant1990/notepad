@@ -488,6 +488,15 @@ a {
   transform: scale(1.05);
 }
 
+#changelog h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#changelog h4:first-child {
+  margin-top: 0;
+}
+
 @-webkit-keyframes fadein {
   from {
     bottom: 0;
