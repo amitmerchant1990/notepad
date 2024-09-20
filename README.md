@@ -7,7 +7,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 
 > Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
 >
-> You can support me via [Paypal](https://paypal.me/AmitMerchant).
+> You can support me via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
 
 ## Notable features
 
