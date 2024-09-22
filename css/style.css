@@ -521,6 +521,14 @@ a {
   animation: heartbeat 1.2s infinite ease-in-out !important;
 }
 
+.icon-container {
+  display: flex;
+  gap: 12px;
+  height: 50px;
+  line-height: 20px;
+  align-items: center;
+}
+
 /* Heartbeat animation */
 @keyframes heartbeat {
   0% {
