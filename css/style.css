@@ -2,6 +2,45 @@ body {
   padding-top: 50px;
 }
 
+#mainContainer {
+  position: relative;
+}
+
+#pipContainer {
+  display: none;
+}
+
+.pip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #7e7d7d;
+  font-weight: bold;
+
+  &::after {
+    content: "Floating Window is Activated";
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  pointer-events: none; /* Makes overlay non-interactive by default */
+  z-index: 10;
+  display: none;
+}
+
+@media all and (display-mode: picture-in-picture) {
+  body {
+    padding-top: 0px;
+  }
+}
+
 textarea:hover,
 textarea {
   width: 100%;
@@ -679,6 +718,12 @@ a {
   }
 }
 
+@media (max-width: 480px) {
+  #pipContainer {
+    display: none !important;
+  }
+}
+
 @media (max-width: 768px) {
   .keyboard-icon {
     display: none !important;
@@ -698,6 +743,4 @@ a {
     float: right;
     margin: 0;
   }
-
-
 }

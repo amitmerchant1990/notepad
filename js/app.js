@@ -235,6 +235,77 @@ it's recommended that you take a backup of your notes more often using the
 		}
 	});
 
+	const pipButton = document.getElementById('pip');
+
+	// Only show the Picture-in-Picture 
+	// button if the browser supports it
+	if ('documentPictureInPicture' in window) {
+		$('#pipContainer').show();
+	}
+
+	pipButton.addEventListener('click', async() => {
+		const appTextarea = document.getElementById("textareaContainer");
+
+		// Open a Picture-in-Picture window.
+		const pipWindow = await documentPictureInPicture.requestWindow({
+			width: 350,
+			height: 500,
+		});
+
+		[...document.styleSheets].forEach((styleSheet) => {
+			try {
+				const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
+				const style = document.createElement('style');
+		
+				style.textContent = cssRules;
+				pipWindow.document.head.appendChild(style);
+			} catch (e) {
+				const link = document.createElement('link');
+		
+				link.rel = 'stylesheet';
+				link.type = styleSheet.type;
+				link.media = styleSheet.media;
+				link.href = styleSheet.href;
+				pipWindow.document.head.appendChild(link);
+			}
+		  });
+
+		// Move the textarea to the Picture-in-Picture window.
+		pipWindow.document.body.append(appTextarea);
+
+		// Move the textarea back when the Picture-in-Picture window closes.
+		pipWindow.addEventListener("pagehide", (event) => {
+			const mainContainer = document.querySelector("#mainContainer");
+			const textareaContainer = event.target.querySelector("#textareaContainer");
+			const overlay = document.querySelector(".overlay");
+			mainContainer.append(textareaContainer);
+			mainContainer.classList.remove("pip");
+
+			overlay.style.display = "none";
+			overlay.style.pointerEvents = "none"; 
+
+			textareaContainer.classList.remove("dark");
+		});
+	});
+
+	documentPictureInPicture.addEventListener("enter", (event) => {
+		const playerContainer = document.querySelector("#mainContainer");
+		const textareaContainer = document.querySelector("#textareaContainer");
+		const overlay = document.querySelector(".overlay");
+		
+		playerContainer.classList.add("pip");
+		overlay.style.display = "block";
+		overlay.style.pointerEvents = "all";
+
+		if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark') {
+			textareaContainer.classList.add("dark");
+		}
+
+		if (!localStorage.getItem('mode') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			textareaContainer.classList.add("dark");
+		}
+	});
+
 	// This changes the application's theme when 
 	// user toggles device's theme preference
 	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isSystemDarkModeEnabled }) => {
