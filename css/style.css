@@ -35,6 +35,10 @@ body {
   display: none;
 }
 
+.pip-icon {
+  cursor: pointer;
+}
+
 @media all and (display-mode: picture-in-picture) {
   body {
     padding-top: 0px;
