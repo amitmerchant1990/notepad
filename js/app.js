@@ -43,13 +43,6 @@ it's recommended that you take a backup of your notes more often using the
 		metaThemeColor
 	};
 
-	const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-	if (SpeechRecognition) {
-		$('#micContainer').show();
-		console.log("Speech Recognition API is supported in this browser.");
-	}
-
 	const noteItem = state.note && state.note != '' ? state.note : welcomeText;
 	const characterAndWordCountText = calculateCharactersAndWords(noteItem);
 	
@@ -396,94 +389,6 @@ it's recommended that you take a backup of your notes more often using the
 			toggleFocusMode(notepad);
 		}
 	};
-
-	// Dictation of the notes using voice recognition
-	if (SpeechRecognition) {
-		const recognition = new SpeechRecognition();
-
-		// Set recognition settings
-		recognition.continuous = true; // Keep recognizing until stopped
-		recognition.interimResults = true; // Show partial results
-		recognition.lang = 'en-US'; // Set language
-
-		const startButton = document.getElementById('mic');
-		const transcriptTextarea = document.getElementById('note');
-		let finalTranscript = '';  // To store the final results
-
-		// Track the last known cursor position
-		let cursorPosition = 0;
-
-		// Update cursor position whenever the textarea is clicked or typed into
-		transcriptTextarea.addEventListener('click', () => {
-			cursorPosition = transcriptTextarea.selectionStart;
-		});
-
-		transcriptTextarea.addEventListener('keyup', () => {
-			cursorPosition = transcriptTextarea.selectionStart;
-		});
-
-		startButton.addEventListener('click', () => {
-			transcriptTextarea.focus();
-			if (startButton.classList.contains('mic-active')) {
-				recognition.stop();  // Stop listening
-			} else {
-				recognition.start(); // Start listening
-			}
-		});
-
-		// Show mic as active when speech recognition starts
-		recognition.onstart = () => {
-			startButton.classList.add('mic-active');
-		};
-
-		// Stop showing active mic when recognition stops
-		recognition.onend = () => {
-			startButton.classList.remove('mic-active');
-		};
-
-		// Handle the result event to capture speech
-		recognition.onresult = (event) => {
-			let interimTranscript = '';
-			for (let i = event.resultIndex; i < event.results.length; i++) {
-				const transcriptText = event.results[i][0].transcript;
-				if (event.results[i].isFinal) {
-					insertAtCursor(transcriptTextarea, transcriptText + ' ');
-				} else {
-					interimTranscript += transcriptText;
-				}
-			}
-			
-			// updating the persistent textarea value
-			const characterAndWordCountText = calculateCharactersAndWords(transcriptTextarea.value);
-			notepad.wordCount.text(characterAndWordCountText);
-			setState('note', transcriptTextarea.value);
-		};
-
-		// Function to insert text at the cursor position in the textarea
-		function insertAtCursor(textarea, text) {
-			const startPos = textarea.selectionStart;
-			const endPos = textarea.selectionEnd;
-			const textValue = textarea.value;
-			
-			// Insert text at the cursor position
-			textarea.value = textValue.substring(0, startPos) + text + textValue.substring(endPos, textValue.length);
-			
-			// Move the cursor after the inserted text
-			cursorPosition = startPos + text.length;
-			textarea.setSelectionRange(cursorPosition, cursorPosition);
-
-			const characterAndWordCountText = calculateCharactersAndWords(textarea.value);
-			notepad.wordCount.text(characterAndWordCountText);
-			setState('note', textarea.value);
-		}
-
-		// Handle any errors
-		recognition.onerror = (event) => {
-			console.error('Speech recognition error:', event.error);
-		};
-	} else {
-		console.log("Speech Recognition API is not supported in this browser.");
-	}
 });
 
 document.addEventListener("fullscreenchange", function () {
