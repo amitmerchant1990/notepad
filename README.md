@@ -22,6 +22,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - Dark mode.
   - Focus mode (on desktop).
   - Optimal line length for better reading experience.
+  - Floating window to effectively take notes across other apps (in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Document_Picture-in-Picture_API))
 
 [View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
 
