@@ -107,11 +107,11 @@ table tr td {
   float: left;
 }
 
-.dark .icon-container span:not(:last-child) {
+.dark .icon-container span {
   transition: all 0.3s ease-in-out;
 }
 
-.dark .icon-container span:hover:not(:last-child) {
+.dark .icon-container span:hover {
   -webkit-filter: drop-shadow(0 0 0.625vw #2196F3) drop-shadow(0 0 3.6979166667vw #2196F3);
   filter: drop-shadow(0 0 0.625vw #2196F3) drop-shadow(0 0 3.6979166667vw #2196F3);
 }
