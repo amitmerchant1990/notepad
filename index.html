@@ -57,10 +57,15 @@
               <img src="img/navbar/delete.svg" alt="Delete Icon" />
             </a>
           </span>
-          <span>
+          <span class="downaload-notes-container">
             <a id="downloadNotes" class="download-icon" title="Download Notes [Ctrl/Cmd + S]">
               <img src="img/navbar/download.svg" alt="Download Icon" />
             </a>
+            <!-- Dropdown Menu -->
+            <div id="iconDropdown" class="dropdown-menu">
+              <li><a class="dropdown-item" id="downloadNotesPlain">Download as plain text</a></li>
+              <li><a class="dropdown-item" id="downloadNotesPdf">Download as PDF</a></li>
+            </div>
           </span>
           <span>
             <a href="javascript:void(0);" id="copyToClipboard" class="" title="Copy notes to clipboard [alt/Option + C]">
@@ -229,6 +234,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>14th Oct, 2024</h3>
+              <ul>
+                <li>Implemented the ability to download the notes as a PDF file.</li>
+              </ul>
+
               <h4>6th Oct, 2024</h3>
               <ul>
                 <li>Implemented floating window to take notes using <a href="https://developer.chrome.com/docs/web-platform/document-picture-in-picture" target="_blank">Picture-in-Picture API</a>.</li>
@@ -471,6 +481,7 @@
   <script src="js/libraries/jquery.min.js"></script>
   <script src="js/libraries/bootstrap.min.js"></script>
   <script src="js/libraries/sweetalert2.all.min.js"></script>
+  <script src="js/libraries/jspdf.umd.min.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/selector.js"></script>
   <script src="js/app.js"></script>

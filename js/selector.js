@@ -30,6 +30,8 @@ function selector() {
             closeDonationPopup: selectById('closeDonationPopup'),
             copyToClipboard: selectById('copyToClipboard'),
             downloadNotes: selectById('downloadNotes'),
+            downloadNotesPlain: selectById('downloadNotesPlain'),
+            downloadNotesPdf: selectById('downloadNotesPdf'),
             fontSize: selectById('fontSize'),
             fontWeight: selectById('fontWeight'),
             installApp: selectById('installApp'),

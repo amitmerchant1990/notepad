@@ -128,9 +128,23 @@ it's recommended that you take a backup of your notes more often using the
 		copyNotesToClipboard(notepad.note.val());
 	})
 
-	notepad.downloadNotes.click(function () {
-		saveTextAsFile(note.value, getFileName());
+	notepad.downloadNotes.click(function (e) {
+		e.stopPropagation(); // Stop click event from bubbling
+      	$('#iconDropdown').toggleClass('show');
 	})
+
+	notepad.downloadNotesPlain.click(function (e) {
+		saveTextAsFile(note.value, getFileName());
+	});
+
+	notepad.downloadNotesPdf.click(function (e) {
+		exportNotesAsPDF(note.value, getPdfFileName());
+	});
+
+	// Close dropdown if clicked outside
+	$(document).on('click', function () {
+		$('#iconDropdown').removeClass('show');
+	});
 
 	notepad.fullScreenButton.click(function () {
 		toggleFullScreen();
@@ -341,6 +355,7 @@ it's recommended that you take a backup of your notes more often using the
 
 		if (event.key === 'Escape') {
 			$('.modal').modal('hide');
+			$('#iconDropdown').removeClass('show');
 		} 
 		
 		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {

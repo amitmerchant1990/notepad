@@ -2,6 +2,10 @@ function getFileName() {
     return 'Notes-' + getCurrentDate() + '.txt';
 }
 
+function getPdfFileName() {
+    return 'Notes-' + getCurrentDate() + '.pdf';
+}
+
 function getCurrentDate() {
     const currentDate = new Date();
 
@@ -227,4 +231,35 @@ function toggleFullScreen() {
             $('#arrowPointsOut').show();
         }
     }
+}
+
+function exportNotesAsPDF(textToWrite, fileNameToSaveAs) {
+    const pdf = new window.jspdf.jsPDF();
+    const marginLeft = 10;
+    const marginTop = 10;
+
+    // Width of text area
+    const maxWidth = 180; 
+    
+    const lineHeight = 10;
+
+    // Height of a single page
+    const pageHeight = pdf.internal.pageSize.height; 
+
+    // Initial Y position for text
+    let yPosition = marginTop; 
+
+    // Split content into lines that fit within maxWidth
+    const lines = pdf.splitTextToSize(textToWrite, maxWidth);
+
+    lines.forEach(line => {
+        if (yPosition + lineHeight > pageHeight) {
+            pdf.addPage();  // Add a new page if content exceeds page height
+            yPosition = marginTop; // Reset Y position for new page
+        }
+        pdf.text(line, marginLeft, yPosition);
+        yPosition += lineHeight;
+    });
+    
+    pdf.save(fileNameToSaveAs);
 }

@@ -7,6 +7,7 @@ let CACHE_FILES = [
     'js/libraries/jquery.min.js',
     'js/libraries/bootstrap.min.js',
     'js/libraries/sweetalert2.all.min.js',
+    'js/libraries/jspdf.umd.min.js',
     'js/app.js',
     'js/utils.js',
     'js/selector.js',
