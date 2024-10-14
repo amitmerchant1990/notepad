@@ -363,6 +363,11 @@ it's recommended that you take a backup of your notes more often using the
 			event.preventDefault();
 		}
 
+		if (event.altKey && event.code === 'KeyS') {
+			exportNotesAsPDF(note.value, getPdfFileName());
+			event.preventDefault();
+		}
+
 		if ((event.ctrlKey || event.metaKey) && event.code === 'Comma') {
 			event.preventDefault();
 
