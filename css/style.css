@@ -126,7 +126,21 @@ table tr td {
 
 .dropdown-menu {
   top: 124%;
-  padding: 7px 0;
+  padding: 8px 0;
+  border-radius: 6px;
+}
+
+.dark .dropdown-menu {
+  background-color: #26313f;
+  border: 1px solid rgb(51 63 78);
+}
+
+.dark .dropdown-menu>li>a {
+  color: #dcd6d6;
+}
+
+.dark .dropdown-menu>li>a:focus, .dark .dropdown-menu>li>a:hover {
+  background-color: #324256;
 }
 
 .navbar-default {
