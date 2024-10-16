@@ -29,7 +29,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 
 Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
 
-> **Note**
+> [!IMPORTANT]
 > Please use the [Discussions](https://github.com/amitmerchant1990/notepad/discussions) tab to submit new feature requests. Don't raise issues for the same.
 
 ## License
