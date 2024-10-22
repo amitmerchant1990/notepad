@@ -1,0 +1,31 @@
+{
+  "name": "markdownify-web",
+  "version": "0.0.1",
+  "description": "A minimalist Markdown Editor",
+  "productName": "Markdownify Web",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitmerchant1990/markdownify-web.git",
+    "docs": "https://github.com/amitmerchant1990/markdownify-web/blob/master/README.md"
+  },
+  "keywords": [
+    "markdown",
+    "plain",
+    "node",
+    "minimal",
+    "editor",
+    "preview",
+    "html",
+    "desktop"
+  ],
+  "author": "Amit Merchant <bullredeyes@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amitmerchant1990/markdownify-web/issues"
+  },
+  "homepage": "https://github.com/amitmerchant1990/markdownify-web#readme",
+  "_npmUser": {
+    "name": "amit_merchant",
+    "email": "bullredeyes@gmail.com"
+  }
+}
