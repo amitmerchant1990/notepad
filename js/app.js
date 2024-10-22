@@ -131,11 +131,13 @@ it's recommended that you take a backup of your notes more often using the
 	notepad.downloadNotes.click(function (e) {
 		e.stopPropagation(); // Stop click event from bubbling
       	$('#iconDropdown').toggleClass('show');
+		$('#moreToolsDropdown').removeClass('show');
 	})
 
 	notepad.moreTools.click(function (e) {
 		e.stopPropagation(); // Stop click event from bubbling
       	$('#moreToolsDropdown').toggleClass('show');
+		$('#iconDropdown').removeClass('show');
 	})
 
 	notepad.downloadNotesPlain.click(function (e) {
