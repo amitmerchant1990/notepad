@@ -13,10 +13,10 @@ var changeTheme = function (opt) {
   currentValueTheme = opt.value;
   if ( currentValueTheme=='light' ) {
     cm.setOption("theme", "default");
-    document.getElementById("previewPanel").className = "col-md-6 full-height";
+    document.body.className = "";
   } else if ( currentValueTheme=='dark' ) {
     cm.setOption("theme", "base16-dark");
-    document.getElementById("previewPanel").className = "col-md-6 full-height preview-dark-mode";
+    document.body.className = "dark";
   }
 }
 

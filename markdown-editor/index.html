@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <title>Markdownify</title>
+      <title>Markdown Editor | notepad.js.org</title>
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="css/style.css" rel="stylesheet">
       <link rel="stylesheet" href="css/codemirror.css">
@@ -13,36 +13,24 @@
       <meta name="keywords" content="markdown,editor,javascript" />
 
       <meta name="author" content="Amit Merchant" />
-      <meta name="copyright" content="MIT" />
-      <meta name="application-name" content="Markdownify" />
+      <meta name="application-name" content="Markdown Editor" />
 
       <!-- for Facebook -->
-      <meta property="og:title" content="Markdownify" />
+      <meta property="og:title" content="Markdown Editor | notepad.js.org" />
       <meta property="og:type" content="article" />
-      <meta property="og:image" content="https://raw.githubusercontent.com/amitmerchant1990/markdownify-web/master/img/markdownify.png" />
-      <meta property="og:url" content="http://www.amitmerchant.com/markdownify-web" />
+      <meta property="og:url" content="http://notepad.js.org/markdown" />
       <meta property="og:description" content="A minimalist markdown editor app" />
 
       <!-- for Twitter -->
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content="Markdownify" />
+      <meta name="twitter:title" content="Markdown Editor | notepad.js.org" />
       <meta name="twitter:description" content="A minimalist markdown editor app" />
       <meta name="twitter:image" content="https://raw.githubusercontent.com/amitmerchant1990/markdownify-web/master/img/markdownify.png" />
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-43339302-3', 'auto');
-        ga('send', 'pageview');
-
-      </script>
   </head>
   <body class="container-fluid">
       <div class="main-title">
         <span class="app-title">
-          Notepad x Markdown
+          <a href="/">Notepad</a> > Markdown Editor
         </span>
       </div>
       <div class="optContainer">
@@ -50,14 +38,26 @@
           <span class="toolContainer">
             <a id="angleToolBar" title="Toolbar" class="fa fa-angle-double-right" onclick="showToolBar();" style="cursor: pointer;text-decoration:none;"></a>
           </span>
-          <span>
-            <input type="radio" name="changeTheme" value="light" onclick="changeTheme(this);" title="Light Mode" checked="checked"> <label style="vertical-align: middle;" title="Light Mode"><b>Light</b></label>
-            <input type="radio" name="changeTheme" value="dark" onclick="changeTheme(this);" title="Dark Mode"> <label style="vertical-align: middle;" title="Dark Mode"><b>Dark</b></label>
-          </span>
+          <div class="theme-container">
+            <div>
+              <input type="radio" id="lightTheme" name="changeTheme" value="light" onclick="changeTheme(this);" title="Light Mode" checked="checked"> 
+              <label for="lightTheme" style="vertical-align: middle;" title="Light Mode"><b>Light</b></label>
+            </div>
+            <div>
+              <input type="radio" id="darkTheme" name="changeTheme" value="dark" onclick="changeTheme(this);" title="Dark Mode"> 
+              <label for="darkTheme" style="vertical-align: middle;" title="Dark Mode"><b>Dark</b></label>
+            </div>
+          </div>
         </div>
-        <div class="pref" id="pref">
-          <input type="radio" name="showPreference" value="html" onclick="clkPref(this);"> <label style="vertical-align: middle;"><b>HTML</b></label>
-          <input type="radio" name="showPreference" value="preview" onclick="clkPref(this);" checked="checked"> <label style="vertical-align: middle;"><b>Preview</b></label>
+        <div class="pref theme-container" id="pref">
+          <div>
+            <input type="radio" id="htmlPref" name="showPreference" value="html" onclick="clkPref(this);"> 
+            <label for="htmlPref" style="vertical-align: middle;"><b>HTML</b></label>
+          </div>
+          <div>
+            <input type="radio" id="previewPref" name="showPreference" value="preview" onclick="clkPref(this);" checked="checked"> 
+            <label for="previewPref" style="vertical-align: middle;"><b>Preview</b></label>
+          </div>
         </div>
       </div>
       <div id="toolbarArea">
@@ -80,8 +80,8 @@
           <a data-toggle="modal" data-target="#myModal" title="Markdown Help" class="fa fa-question-circle editor-toolbar"></a>
         </div>
       </div>
-      <section class="row" id="editArea" style="padding-top: 63px;">
-          <div class="col-md-6 full-height" style="box-shadow: -10px 13px 6px 10px rgba(0,0,0,0.4);" id="textPanel">
+      <section class="row" id="editArea" style="padding-top: 64px;">
+          <div class="col-md-6 full-height" id="textPanel">
             <textarea  id="plainText" placeholder="Write your Markdown here.." autofocus></textarea>
           </div>
           <div class="col-md-6 full-height" style="overflow-y: auto;display:block; padding: 14px; font-weight: bold;" id="previewPanel">
@@ -178,7 +178,5 @@
       <script src="js/format.js"></script>
       <script src="js/functions.js"></script>
       <script src="js/emoji.js"></script>
-      <!-- Place this tag in your head or just before your close body tag. -->
-      <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>

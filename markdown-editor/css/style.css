@@ -41,14 +41,43 @@ html, body, section, .full-height {
   overflow:auto;
 }
 
+#editArea {
+    display: flex;
+    flex-direction: row;
+}
+
+#textPanel {
+    width: 50%;
+    padding: 0;
+}
+
+#previewPanel {
+    width: 50%;
+    background-color: #f2f2f2;
+}
+
+img {
+    width: 100%;
+}
+
+#angleToolBar {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
 .optContainer{
   position:fixed;
-  top: 39px;
+  top: 34px;
   left: 0;
   z-index: 999;
   width: 100%;
-  height: 23px;
-  box-shadow: 0px 1px 11px -2px rgba(0,0,0,0.75);
+  height: 30px;
+  background-color: #dfb4a4;
+  border-bottom: 1px solid #dfb4a4;
+  display: flex;
+  align-items: center;
 }
 
 #htmlPreview:focus{
@@ -143,12 +172,33 @@ input[type="radio"]:checked:before {
     min-width: 180px;
 }
 
-.preview-dark-mode{
-    background: #151515;
+.theme-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-container > div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.theme-container > div input[type=radio]{
+    margin: 0;
+}
+
+.theme-container > div label{
+    margin-bottom: 0;
+}
+
+.dark #previewPanel {
+    background: #1f1f1f;
     color: #E0E0E0;
 }
 
-.preview-dark-mode textarea{
+.dark textarea{
     background: #151515;
     color: #E0E0E0;
 }
@@ -161,16 +211,35 @@ input[type="radio"]:checked:before {
   width: 100%;
   height: 34px;
   text-align: left;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   font-family: sans-serif, monospace;
   display: flex;
   align-items: center;
+  background-color: #583d34;
+    color: white;
+}
+
+.dark .main-title {
+    background-color: #171f4b; 
+}
+
+.dark .optContainer {
+    background-color: #b1bdff;
+    border-bottom: 1px solid #b1bdff;
+}
+
+.row {
+    margin: 0;
 }
 
 .app-title{
   float: left;
   padding-left:10px;
+}
+
+.app-title a{
+  color: #fff;
 }
 
 .git-buttons{
@@ -256,7 +325,7 @@ input[type="radio"]:checked:before {
 }
 
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 12px;
 }
 
@@ -268,4 +337,4 @@ input[type="radio"]:checked:before {
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}
+} */
