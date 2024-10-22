@@ -120,7 +120,7 @@ table tr td {
   cursor: pointer;
 }
 
-.downaload-notes-container{
+.downaload-notes-container, .more-tools-container{
   position: relative;
 }
 
@@ -240,7 +240,7 @@ table tr td {
   cursor: pointer;
 }
 
-.download-icon {
+.download-icon, .dropdown-icon {
   margin-top: 0px;
   cursor: pointer;
 }

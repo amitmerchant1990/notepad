@@ -133,6 +133,11 @@ it's recommended that you take a backup of your notes more often using the
       	$('#iconDropdown').toggleClass('show');
 	})
 
+	notepad.moreTools.click(function (e) {
+		e.stopPropagation(); // Stop click event from bubbling
+      	$('#moreToolsDropdown').toggleClass('show');
+	})
+
 	notepad.downloadNotesPlain.click(function (e) {
 		saveTextAsFile(note.value, getFileName());
 	});

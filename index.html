@@ -52,6 +52,15 @@
         </span>
         <span><a class="navbar-brand app-heading" href="#">Notepad</a></span>
         <span class="icon-container">
+          <span class="more-tools-container">
+            <a id="moreTools" class="dropdown-icon" title="More Tools">
+              <img src="img/navbar/dropdown.svg" alt="More Tools" />
+            </a>
+            <!-- Dropdown Menu -->
+            <div id="moreToolsDropdown" class="dropdown-menu">
+              <li><a class="dropdown-item" href="/markdown-editor">Markdown Editor</a></li>
+            </div>
+          </span>
           <span>
             <a id="clearNotes" class="trash-icon" title="Delete Notes [Ctrl/Cmd + Delete]">
               <img src="img/navbar/delete.svg" alt="Delete Icon" />
@@ -236,6 +245,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>22nd Oct, 2024</h3>
+              <ul>
+                <li>Implemented a simple Markdown editor with a preview window.</li>
+              </ul>
+
               <h4>14th Oct, 2024</h3>
               <ul>
                 <li>Implemented the ability to download the notes as a PDF file.</li>
