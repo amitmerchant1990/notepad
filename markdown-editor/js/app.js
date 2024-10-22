@@ -14,6 +14,17 @@ window.onload = function () {
   var plainText = document.getElementById('plainText');
   var markdownArea = document.getElementById('markdown');
 
+  const markdownText = localStorage.getItem('markdown');
+  const converter = new showdown.Converter();
+
+  if (markdownText) {
+    cm.setValue(markdownText);
+    
+    html = converter.makeHtml(markdownText);
+    markdownArea.innerHTML = replaceWithEmojis(html);
+    document.getElementById("htmlPreview").value = html;
+  }
+
   cm.on('change', function (cMirror) {
     // get value right from instance
     //yourTextarea.value = cMirror.getValue();
@@ -23,10 +34,10 @@ window.onload = function () {
     markdownArea.innerHTML = replaceWithEmojis(html);
 
     //Md -> HTML
-    converter = new showdown.Converter();
     html = converter.makeHtml(markdownText);
     document.getElementById("htmlPreview").value = html;
 
+    localStorage.setItem('markdown', markdownText);
   });
 }
 
