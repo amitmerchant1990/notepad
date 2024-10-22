@@ -149,6 +149,7 @@ it's recommended that you take a backup of your notes more often using the
 	// Close dropdown if clicked outside
 	$(document).on('click', function () {
 		$('#iconDropdown').removeClass('show');
+		$('#moreToolsDropdown').removeClass('show');
 	});
 
 	notepad.fullScreenButton.click(function () {
@@ -361,6 +362,7 @@ it's recommended that you take a backup of your notes more often using the
 		if (event.key === 'Escape') {
 			$('.modal').modal('hide');
 			$('#iconDropdown').removeClass('show');
+			$('#moreToolsDropdown').removeClass('show');
 		} 
 		
 		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
