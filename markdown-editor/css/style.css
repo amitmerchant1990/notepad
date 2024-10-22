@@ -236,6 +236,13 @@ input[type="radio"]:checked:before {
 .app-title{
   float: left;
   padding-left:10px;
+  display: flex;
+  align-items: center;
+}
+
+.app-title img {
+    width: 20px;
+    height: 20px;
 }
 
 .app-title a{
