@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple Pomodoro timer with short and long break options.">
+    <meta name="author" content="Amit Merchant">
+    <title>Pomodoro Timer | notepad.js.org</title>
+    <meta name="keywords" content="pomodoro,timer,productivity" />
+    <meta name="application-name" content="Pomodoro Timer" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- for Facebook -->
+    <meta property="og:title" content="Pomodoro Timer | notepad.js.org" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://notepad.js.org/pomodoro-timer" />
+    <meta property="og:description" content="A simple Pomodoro timer with short and long break options." />
+
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Pomodoro Timer | notepad.js.org" />
+    <meta name="twitter:description" content="A simple Pomodoro timer with short and long break options." />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/amitmerchant1990/markdownify-web/master/img/markdownify.png" />
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top text-center">
+        <div class="navbar-header flex-navbar">
+            <a class="brand-title" href="/">Notepad</a>
+            <img src="img/icons/right-arrow.svg" />
+            <span>Pomodoro Timer</span>
+        </div>
+    </nav>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#pomodoro">Pomodoro</a></li>
+        <li><a data-toggle="tab" href="#short">Short break</a></li>
+        <li><a data-toggle="tab" href="#long">Long break</a></li>
+    </ul>
+
+    <div class="tab-content vertical-center">
+        <div id="pomodoro" class="tab-pane fade in active">
+            <div class="container">
+                <div class="starter-template">
+                    <h1 id="time">25:00</h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="starter-template">
+                    <div class="row">
+                        <div class="button-container">
+                            <button type="button" class="btn btn-medium btn-primary full-width" id="start"><span
+                                    class="glyphicon glyphicon-play"></span></button>
+
+                            <button type="button" id="stop" class="btn btn-medium btn-success full-width"
+                                style="display:none"><span class="glyphicon glyphicon-pause"></span></button>
+
+                            <button type="button" class="btn btn-medium btn-danger full-width" id="reset"><span
+                                    class="glyphicon glyphicon-repeat"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="short" class="tab-pane fade in">
+            <div class="container">
+                <div class="starter-template">
+                    <h1 id="time_short">05:00</h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="starter-template">
+                    <div class="row">
+                        <div class="button-container">
+                            <button type="button" class="btn btn-large btn-primary full-width" id="short_start"><span
+                                    class="glyphicon glyphicon-play"></span></button>
+
+                            <button type="button" class="btn btn-large btn-success full-width" id="short_stop"
+                                style="display:none"><span class="glyphicon glyphicon-pause"></span></button>
+
+                            <button type="button" class="btn btn-large btn-danger full-width" id="short_reset"><span
+                                    class="glyphicon glyphicon-repeat"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="long" class="tab-pane fade in">
+            <div class="container">
+                <div class="starter-template">
+                    <h1 id="time_long">10:00</h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="starter-template">
+                    <div class="row">
+                        <div class="button-container">
+                            <button type="button" class="btn btn-large btn-primary full-width" id="long_start"><span
+                                    class="glyphicon glyphicon-play"></span></button>
+
+                            <button type="button" class="btn btn-large btn-success full-width" id="long_stop"
+                                style="display:none"><span class="glyphicon glyphicon-pause"></span></button>
+
+                            <button type="button" class="btn btn-large btn-danger full-width" id="long_reset"><span
+                                    class="glyphicon glyphicon-repeat"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id='notiSound' src='audio/alarm-beep.mp3' /></audio>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-43339302-6');
+    </script>
+</body>
+<footer>
+    <p>Made with <span style="color:red;">❤</span> by <a href="https://www.amitmerchant.com" target="_blank">Amit Merchant</a></p>
+</footer>
+</html>
