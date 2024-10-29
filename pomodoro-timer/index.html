@@ -26,10 +26,24 @@
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top text-center">
-        <div class="navbar-header flex-navbar">
-            <a class="brand-title" href="/">Notepad</a>
-            <img src="img/icons/right-arrow.svg" />
-            <span>Pomodoro Timer</span>
+        <div class="flex-navbar">
+            <div>
+                <a class="brand-title" href="/">Notepad</a>
+                <img src="img/icons/right-arrow.svg" />
+                <span>Pomodoro Timer</span>
+            </div>
+            <div>
+                <span title="Activate Floating Window" id="pipContainer">
+                    <a id="pip" class="pip-icon">
+                        <span>
+                            <img
+                                src="img/navbar/pip.svg"
+                                alt="Activate Floating Window"
+                            />
+                        </span>
+                    </a>
+                </span>
+            </div>
         </div>
     </nav>
 
@@ -39,76 +53,90 @@
         <li><a data-toggle="tab" href="#long">Long break</a></li>
     </ul>
 
-    <div class="tab-content vertical-center">
-        <div id="pomodoro" class="tab-pane fade in active">
-            <div class="container">
-                <div class="starter-template">
-                    <h1 id="time">25:00</h1>
+    <div id="mainContainer">
+        <div class="tab-content vertical-center" id="timerContainer">
+            <div id="pomodoro" class="tab-pane fade in active">
+                <div class="container">
+                    <div class="starter-template">
+                        <h1 class="time" id="time">25:00</h1>
+                    </div>
                 </div>
-            </div>
 
-            <div class="container">
-                <div class="starter-template">
-                    <div class="row">
-                        <div class="button-container">
-                            <button type="button" class="btn btn-medium btn-primary full-width" id="start"><span
-                                    class="glyphicon glyphicon-play"></span></button>
+                <div class="container">
+                    <div class="starter-template">
+                        <div class="row">
+                            <div class="button-container">
+                                <button type="button" class="btn btn-medium btn-primary full-width" id="start">
+                                    <img src="img/icons/play.svg" alt="Download Icon" />
+                                </button>
 
-                            <button type="button" id="stop" class="btn btn-medium btn-success full-width"
-                                style="display:none"><span class="glyphicon glyphicon-pause"></span></button>
+                                <button type="button" id="stop" class="btn btn-medium btn-success full-width"
+                                    style="display:none">
+                                    <img src="img/icons/pause.svg" alt="Pause Icon" />
+                                </button>
 
-                            <button type="button" class="btn btn-medium btn-danger full-width" id="reset"><span
-                                    class="glyphicon glyphicon-repeat"></span></button>
+                                <button type="button" class="btn btn-medium btn-danger full-width" id="reset">
+                                    <img src="img/icons/reset.svg" alt="Reset Icon" />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="short" class="tab-pane fade in">
-            <div class="container">
-                <div class="starter-template">
-                    <h1 id="time_short">05:00</h1>
+            <div id="short" class="tab-pane fade in">
+                <div class="container">
+                    <div class="starter-template">
+                        <h1 class="time" id="time_short">05:00</h1>
+                    </div>
                 </div>
-            </div>
 
-            <div class="container">
-                <div class="starter-template">
-                    <div class="row">
-                        <div class="button-container">
-                            <button type="button" class="btn btn-large btn-primary full-width" id="short_start"><span
-                                    class="glyphicon glyphicon-play"></span></button>
+                <div class="container">
+                    <div class="starter-template">
+                        <div class="row">
+                            <div class="button-container">
+                                <button type="button" class="btn btn-large btn-primary full-width" id="short_start">
+                                    <img src="img/icons/play.svg" alt="Start Icon" />    
+                                </button>
 
-                            <button type="button" class="btn btn-large btn-success full-width" id="short_stop"
-                                style="display:none"><span class="glyphicon glyphicon-pause"></span></button>
+                                <button type="button" class="btn btn-large btn-success full-width" id="short_stop"
+                                    style="display:none">
+                                    <img src="img/icons/pause.svg" alt="Pause Icon" />
+                                </button>
 
-                            <button type="button" class="btn btn-large btn-danger full-width" id="short_reset"><span
-                                    class="glyphicon glyphicon-repeat"></span></button>
+                                <button type="button" class="btn btn-large btn-danger full-width" id="short_reset">
+                                    <img src="img/icons/reset.svg" alt="Reset Icon" />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="long" class="tab-pane fade in">
-            <div class="container">
-                <div class="starter-template">
-                    <h1 id="time_long">10:00</h1>
+            <div id="long" class="tab-pane fade in">
+                <div class="container">
+                    <div class="starter-template">
+                        <h1 class="time" id="time_long">10:00</h1>
+                    </div>
                 </div>
-            </div>
 
-            <div class="container">
-                <div class="starter-template">
-                    <div class="row">
-                        <div class="button-container">
-                            <button type="button" class="btn btn-large btn-primary full-width" id="long_start"><span
-                                    class="glyphicon glyphicon-play"></span></button>
+                <div class="container">
+                    <div class="starter-template">
+                        <div class="row">
+                            <div class="button-container">
+                                <button type="button" class="btn btn-large btn-primary full-width" id="long_start">
+                                    <img src="img/icons/play.svg" alt="Start Icon" />    
+                                </button>
 
-                            <button type="button" class="btn btn-large btn-success full-width" id="long_stop"
-                                style="display:none"><span class="glyphicon glyphicon-pause"></span></button>
+                                <button type="button" class="btn btn-large btn-success full-width" id="long_stop"
+                                    style="display:none">
+                                    <img src="img/icons/pause.svg" alt="Pause Icon" />
+                                </button>
 
-                            <button type="button" class="btn btn-large btn-danger full-width" id="long_reset"><span
-                                    class="glyphicon glyphicon-repeat"></span></button>
+                                <button type="button" class="btn btn-large btn-danger full-width" id="long_reset">
+                                    <img src="img/icons/reset.svg" alt="Reset Icon" />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,7 +158,5 @@
         gtag('config', 'UA-43339302-6');
     </script>
 </body>
-<footer>
-    <p>Made with <span style="color:red;">❤</span> by <a href="https://www.amitmerchant.com" target="_blank">Amit Merchant</a></p>
-</footer>
+<div class="overlay"></div>
 </html>
