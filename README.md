@@ -29,6 +29,14 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 
 Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
 
+## Subtools
+
+I recently added a bunch of tools that I thought might go along with the regular Notepad making notepad.js.org a one-stop shop for all the note-taking related needs.
+
+- [Rich Text Editor](https://notepad.js.org/rich-text-editor/)
+- [Markdown Editor](https://notepad.js.org/markdown-editor/)
+- [Pomodoro Timer](https://notepad.js.org/pomodoro-timer/)
+
 > [!IMPORTANT]
 > Please use the [Discussions](https://github.com/amitmerchant1990/notepad/discussions) tab to submit new feature requests. Don't raise issues for the same.
 
