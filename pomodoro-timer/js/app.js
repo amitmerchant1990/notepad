@@ -222,6 +222,8 @@ $(document).ready(function () {
 
             overlay.style.display = "none";
             overlay.style.pointerEvents = "none";
+
+            $('.timer-label').hide();
         });
     });
 
@@ -232,5 +234,7 @@ $(document).ready(function () {
         playerContainer.classList.add("pip");
         overlay.style.display = "block";
         overlay.style.pointerEvents = "all";
+
+        $('.timer-label').show();
     });
 });

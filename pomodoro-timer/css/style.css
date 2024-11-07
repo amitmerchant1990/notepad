@@ -6,6 +6,25 @@ body {
 .starter-template {
   padding: 15px 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.starter-template span {
+  font-size: 3vw;
+  color: #6d6d6d;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .starter-template span {
+    font-size: 7vw;
+  }
+}
+
+.timer-label {
+  display: none;
 }
 
 .button-container {
@@ -90,8 +109,16 @@ body {
 #time,
 #time_short,
 #time_long {
-  font-size: 7em;
+  font-size: 10vw;
   margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  #time,
+  #time_short,
+  #time_long {
+    font-size: 18vw;
+  }
 }
 
 h1 {
