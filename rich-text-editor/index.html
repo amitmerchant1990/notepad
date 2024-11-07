@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A rich text editor to write what you see.">
+    <meta name="author" content="Amit Merchant">
+    <title>Rich Text Editor | notepad.js.org</title>
+    <meta name="keywords" content="rich editor,text,productivity,notepad" />
+    <meta name="application-name" content="Rich Text Editor" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/quill.snow.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- for Facebook -->
+    <meta property="og:title" content="Rich Text Editor | notepad.js.org" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://notepad.js.org/rich-text-editor" />
+    <meta property="og:description" content="A rich text editor to write what you see." />
+
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rich Text Editor | notepad.js.org" />
+    <meta name="twitter:description" content="A rich text editor to write what you see." />
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top text-center">
+        <div class="flex-navbar">
+            <div>
+                <a class="brand-title" href="/">Notepad</a>
+                <img src="img/icons/right-arrow.svg" />
+                <span>Rich Text Editor</span>
+            </div>
+            <div>
+                <span title="Download as PDF">
+                    <a id="download" href="javascript:void(0);">
+                      <img
+                        src="img/icons/download.svg"
+                        alt="Download Icon"
+                        id="themeIcon"
+                      />
+                    </a>
+                  </span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mainContainer">
+        <div id="editor">
+        </div>
+    </div>
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/quill.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/libs/jspdf.umd.min.js"></script>
+    <script src="js/libs/html2canvas.min.js"></script>
+    <script src="js/libs/purify.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-43339302-6');
+    </script>
+</body>
+<div class="overlay"></div>
+</html>
