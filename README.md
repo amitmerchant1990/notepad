@@ -31,7 +31,7 @@ Read about the [story of how I built it](https://www.amitmerchant.com/Building-S
 
 ## Subtools
 
-I recently added a bunch of tools that I thought might go along with the regular Notepad — making notepad.js.org a one-stop shop for all the note-taking related needs.
+I recently added a bunch of tools that I thought might go along with the regular Notepad — making notepad.js.org a one-stop shop for all the note-taking related needs a step closer.
 
 - [Rich Text Editor](https://notepad.js.org/rich-text-editor/)
 - [Markdown Editor](https://notepad.js.org/markdown-editor/)
