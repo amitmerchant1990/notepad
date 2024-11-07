@@ -48,6 +48,13 @@ body {
   border-radius: 10px !important;
 }
 
+@media (max-width: 498px) {
+  .full-width {
+    padding: 14px;
+    border-radius: 7px !important;
+  }
+}
+
 .flex-navbar {
   display: flex;
   padding-left: 12px;
