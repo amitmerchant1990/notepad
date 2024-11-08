@@ -1,0 +1,365 @@
+.navbar-inverse {
+  background-color: #222;
+  border-color: #080808;
+}
+
+.starter-template {
+  padding: 15px 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.starter-template span {
+  font-size: 3vw;
+  color: #6d6d6d;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .starter-template span {
+    font-size: 7vw;
+  }
+}
+
+.timer-label {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.nav-tabs {
+  font-size: 1.4em;
+}
+
+.pip-icon {
+  cursor: pointer;
+}
+
+.full-width {
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 10px !important;
+}
+
+@media (max-width: 498px) {
+  .full-width {
+    padding: 14px;
+    border-radius: 7px !important;
+  }
+}
+
+.flex-navbar {
+  display: flex;
+  padding-left: 12px;
+  color: white;
+  font-weight: bold;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-navbar div:nth-child(2) {
+  margin-right: 10px;
+}
+
+.pip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #7e7d7d;
+  font-weight: bold;
+
+  &::after {
+    content: "Floating Window is Activated";
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  pointer-events: none; /* Makes overlay non-interactive by default */
+  z-index: 10;
+  display: none;
+}
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+  z-index: 9;
+}
+
+#pipContainer {
+  display: none;
+}
+
+.time {
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.brand-title,
+.brand-title:hover {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#time,
+#time_short,
+#time_long {
+  font-size: 10vw;
+  margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  #time,
+  #time_short,
+  #time_long {
+    font-size: 18vw;
+  }
+}
+
+h1 {
+  font-size: 80px;
+}
+
+.nav>li>a {
+  padding: 5px 5px !important;
+  margin-right: 0 !important;
+  color: black;
+}
+
+.nav-tabs>li {
+  /* width = (100 / number of tabs). This example assumes 3 tabs. */
+  width: 33.33333%;
+  text-align: center;
+}
+
+.nav-tabs>li.active>a {
+  font-weight: bold;
+}
+
+.custom-btn {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.navbar-brand {
+  float: none;
+  text-align: center;
+}
+
+.card-body {
+  width: 100%;
+}
+
+.delete-task {
+  text-align: right;
+}
+
+.task-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-left: 14px;
+  border-radius: 0.5rem;
+}
+
+.btn {
+  border-radius: 0.5rem;
+}
+
+.task-completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task-completed .task-text {
+  color: gray;
+}
+
+.task-text {
+  cursor: pointer;
+  flex-grow: 1;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #3b3b3b;
+}
+
+/* Centered no-tasks message */
+#noTasksMessage {
+  display: none;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.5rem;
+  color: gray;
+}
+
+/* Custom styling for checkboxes */
+.task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #28a745;
+  background-color: #fff;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Checkbox checked state */
+.task-checkbox:checked {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+/* Checkbox checkmark */
+.task-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  /* Shrink checkbox size and text on small screens */
+  .task-checkbox {
+      width: 1em;
+      height: 1em;
+      border-width: 1.5px;
+  }
+
+  .task-text {
+      font-size: 0.9rem;
+  }
+
+  #addTask {
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+
+  /* Further adjustments for very small screens */
+  .task-checkbox {
+      width: 0.8em;
+      height: 0.8em;
+      border-width: 1px;
+  }
+
+  .task-text {
+      font-size: 0.8rem;
+      /* Even smaller text size */
+  }
+
+  #addTask {
+      font-size: 0.8rem;
+      /* Smaller button size */
+  }
+}
+
+footer {
+  text-align: center;
+}
+
+.vertical-center {
+  min-height: 100%;
+  /* Fallback for vh unit */
+  min-height: 90vh;
+  /* You might also want to use
+                          'height' property instead.
+                          
+                          Note that for percentage values of
+                          'height' or 'min-height' properties,
+                          the 'height' of the parent element
+                          should be specified explicitly.
+    
+                          In this case the parent of '.vertical-center'
+                          is the <body> element */
+
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  /* Align the bootstrap's container vertically */
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+
+  /* In legacy web browsers such as Firefox 9
+       we need to specify the width of the flex container */
+  width: 100%;
+
+  /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+       hence the bootstrap's container won't be aligned to the center anymore.
+    
+       Therefore, we should use the following declarations to get it centered again */
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+/* xs < 768 */
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 5em;
+  }
+}
+
+/* sm */
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 5em;
+  }
+
+  .navbar-header {
+    float: none;
+  }
+}
+
+/* md */
+@media screen and (min-width: 992px) {
+  h1 {
+    font-size: 5em;
+  }
+}
+
+/* lg */
+@media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 5em;
+  }
+
+}

@@ -36,6 +36,7 @@ I recently added a bunch of tools that I thought might go along with the regular
 - [Rich Text Notes](https://notepad.js.org/rich-text-notes/)
 - [Markdown Editor](https://notepad.js.org/markdown-editor/)
 - [Pomodoro Timer](https://notepad.js.org/pomodoro-timer/)
+- [Tasks](https://notepad.js.org/tasks/)
 
 > [!IMPORTANT]
 > Please use the [Discussions](https://github.com/amitmerchant1990/notepad/discussions) tab to submit new feature requests. Don't raise issues for the same.
