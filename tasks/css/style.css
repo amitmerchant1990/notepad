@@ -55,9 +55,12 @@
   }
 }
 
+.form-check-input {
+  margin-top: 0;
+}
+
 .flex-navbar {
   display: flex;
-  padding-left: 12px;
   color: white;
   font-weight: bold;
   justify-content: space-between;
