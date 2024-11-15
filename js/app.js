@@ -90,6 +90,13 @@ it's recommended that you take a backup of your notes more often using the
 		resetWriteDirection(editorConfig.defaultWriteDirection);
 	}
 
+	if (state.isMonospaced) {
+		notepad.monospaced.prop('checked', true);
+		notepad.note.addClass('monospaced');
+	} else {
+		notepad.monospaced.prop('checked', false);
+	}
+
 	if (state.userChosenOptimalLineLengthSelected) {
 		const textArea = document.getElementById('note');
 
@@ -247,6 +254,22 @@ it's recommended that you take a backup of your notes more often using the
 		if (selector().state.userChosenOptimalLineLengthSelected) {
 			removeState('userChosenOptimalLineLengthSelected');
 			resetOptimalLineLength(editorConfig.defaultOptimalLineLengthPadding, editorConfig.defaultOptimalLineLength);
+		}
+
+		if (selector().state.isMonospaced) {
+			removeState('monospaced');
+			notepad.note.removeClass('monospaced');
+			notepad.monospaced.prop('checked', false);
+		}
+	});
+
+	notepad.monospaced.change(function() {
+		if ($(this).is(':checked')) {
+			notepad.note.addClass('monospaced');
+			setState('monospaced', 'true');
+		} else {
+			notepad.note.removeClass('monospaced');
+			removeState('monospaced');
 		}
 	});
 

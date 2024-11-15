@@ -50,6 +50,7 @@ function selector() {
             keyboardShortcutsModal: selectById('keyboardShortcutsModal'),
             fullScreenButton: selectById('fullScreenButton'),
             optimalLineLength: selectById('optimalLineLength'),
+            monospaced: selectById('monospaced'),
         },
         state: {
             note: getState('note'),
@@ -61,7 +62,8 @@ function selector() {
             hasUserDismissedDonationPopup: getState('hasUserDismissedDonationPopup'),
             userChosenWordCountPillSelected: getState('userChosenWordCountPillSelected'),
             userChosenWriteDirection: getState('userChosenWriteDirection'),
-            userChosenOptimalLineLengthSelected: getState('userChosenOptimalLineLengthSelected')
+            userChosenOptimalLineLengthSelected: getState('userChosenOptimalLineLengthSelected'),
+            isMonospaced: getState('monospaced')
         },
         get,
         getState,
