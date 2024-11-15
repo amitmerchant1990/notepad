@@ -67,7 +67,7 @@ $(document).ready(function() {
             <div class="card task-card ${completedClass}">
                 <div class="card-body d-flex align-items-center">
                     <input type="checkbox" class="form-check-input task-checkbox" ${checkedAttr}>
-                    <span class="task-text ${completedClass}">${sanitizeInput(taskText)}</span>
+                    <span class="task-text">${sanitizeInput(taskText)}</span>
                     <button class="btn btn-sm delete-task ml-auto">
                         <img src="img/icons/delete.svg" alt="Delete Icon" />
                     </button>
