@@ -51,6 +51,12 @@ body {
   }
 }
 
+.generic-flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 textarea {
   width: 100%;
   height: 100%;

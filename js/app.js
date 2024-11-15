@@ -49,6 +49,8 @@ it's recommended that you take a backup of your notes more often using the
 	notepad.wordCount.text(characterAndWordCountText);
 	notepad.note.val(noteItem);
 
+	$('[data-toggle="tooltip"]').tooltip();
+
 	if (!state.isUserPreferredTheme) {
 		setState('isUserPreferredTheme', 'false');
 	}
