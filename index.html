@@ -450,7 +450,17 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex" for="fontWeight">
+            <label class="control-label col-sm-6 col-md-6">Writing direction</label>
+            <div class="col-sm-6 col-md-4">
+              <select name="writeDirection" id="writeDirection" class="form-control">
+                <option value="ltr">Left to right</option>
+                <option value="rtl">Right to left</option>
+              </select> 
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-6 col-md-6 generic-flex">
               Monospaced
               <a href="#" data-toggle="tooltip" title="Monospaced typefaces are ones in which all or most characters take up the same amount of horizontal space.">
                 <img src="img/tooltip.svg" alt="Tooltip Icon" />               
@@ -468,12 +478,14 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6" for="showWordCountPill">Show character and word count</label>
+            <label class="control-label col-sm-6 col-md-6">Show character and word count</label>
             <div class="col-sm-6 col-md-4">
-              <select name="showWordCountPill" id="showWordCountPill" class="form-control">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select> 
+              <div class="checkbox checbox-switch">
+                <label>
+                    <input type="checkbox" name="showWordCountPill" id="showWordCountPill" checked="checked" />
+                    <span></span>
+                </label>
+              </div>
             </div>
           </div>
 
@@ -485,20 +497,12 @@
               </a>
             </label>
             <div class="col-sm-6 col-md-4">
-              <select name="optimalLineLength" id="optimalLineLength" class="form-control">
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-              </select> 
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6" for="writeDirection">Writing direction</label>
-            <div class="col-sm-6 col-md-4">
-              <select name="writeDirection" id="writeDirection" class="form-control">
-                <option value="ltr">Left to right</option>
-                <option value="rtl">Right to left</option>
-              </select> 
+              <div class="checkbox checbox-switch">
+                <label>
+                    <input type="checkbox" name="optimalLineLength" id="optimalLineLength" checked="checked" />
+                    <span></span>
+                </label>
+              </div>
             </div>
           </div>
 

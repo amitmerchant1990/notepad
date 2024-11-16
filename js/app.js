@@ -31,7 +31,7 @@ it's recommended that you take a backup of your notes more often using the
 		defaultFontWeight: 'normal',
 		defaultShowWordCountPill: 'Yes',
 		defaultWriteDirection: 'ltr',
-		defaultOptimalLineLength: 'No',
+		defaultOptimalLineLength: false,
 		defaultOptimalLineLengthPadding: '15px 15px 40px'
 	};
 
@@ -80,9 +80,10 @@ it's recommended that you take a backup of your notes more often using the
 
 	if (userChosenWordCountPillSelected) {
 		userChosenWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.show() : notepad.wordCountContainer.hide();
-		notepad.showWordCountPill.val(userChosenWordCountPillSelected);
+		notepad.showWordCountPill.prop('checked', userChosenWordCountPillSelected === 'Yes');
 	} else {
-		resetShowWordCountPill(editorConfig.defaultShowWordCountPill);
+		notepad.wordCountContainer.show()
+		notepad.showWordCountPill.prop('checked', true);
 	}
 
 	if (state.userChosenWriteDirection) {
@@ -108,9 +109,9 @@ it's recommended that you take a backup of your notes more often using the
 			textArea.style.padding = editorConfig.defaultOptimalLineLengthPadding;
 		}
 
-		notepad.optimalLineLength.val(state.userChosenOptimalLineLengthSelected);
+		notepad.optimalLineLength.prop('checked', state.userChosenOptimalLineLengthSelected === 'Yes');
 	} else {
-		resetOptimalLineLength(editorConfig.defaultOptimalLineLengthPadding, editorConfig.defaultOptimalLineLength);
+		notepad.optimalLineLength.prop('checked', false);
 	}
 
 	if (state.mode && state.mode === 'dark') {
@@ -207,24 +208,25 @@ it's recommended that you take a backup of your notes more often using the
 	});
 
 	notepad.showWordCountPill.on('change', function (e) {
-		const showWordCountPillSelected = this.value;
-
-		showWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.show() : notepad.wordCountContainer.hide();
-		setState('userChosenWordCountPillSelected', showWordCountPillSelected);
+		if ($(this).is(':checked')) {
+			notepad.wordCountContainer.show()
+			setState('userChosenWordCountPillSelected', 'Yes');
+		} else {
+			notepad.wordCountContainer.hide()
+			setState('userChosenWordCountPillSelected', 'No');
+		}
 	});
 
 	notepad.optimalLineLength.on('change', function (e) {
-		const optimalLineLengthSelected = this.value;
-
 		const textArea = document.getElementById('note');
 
-		if (optimalLineLengthSelected === 'Yes') {
+		if ($(this).is(':checked')) {
 			textArea.style.padding = optimalLineLengthPadding;
+			setState('userChosenOptimalLineLengthSelected', 'Yes');
 		} else {
 			textArea.style.padding = editorConfig.defaultOptimalLineLengthPadding;
+			setState('userChosenOptimalLineLengthSelected', 'No');
 		}
-
-		setState('userChosenOptimalLineLengthSelected', optimalLineLengthSelected);
 	})
 
 	notepad.resetPreferences.click(function () {

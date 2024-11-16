@@ -107,7 +107,7 @@ function resetFontWeight(defaultFontWeight) {
 
 function resetShowWordCountPill(defaultShowWordCountPill) {
     defaultShowWordCountPill === 'Yes' ? $('.word-count-container').show() : $('.word-count-container').hide();
-    $('#showWordCountPill').val(defaultShowWordCountPill);
+    $('#showWordCountPill').prop('checked', defaultShowWordCountPill === 'Yes');
 }
 
 function resetWriteDirection(defaultWriteDirection) {
@@ -118,7 +118,7 @@ function resetWriteDirection(defaultWriteDirection) {
 function resetOptimalLineLength(defaultEditorPadding, defaultOption) {
     const textArea = document.getElementById('note');
     textArea.style.padding = defaultEditorPadding;
-    $('#optimalLineLength').val(defaultOption);
+    $('#optimalLineLength').prop('checked', defaultOption);
 }
 
 function countWords(str) {
