@@ -3,19 +3,25 @@ $(document).ready(function () {
 
 The app serves the following features:
 
-- Write notes which are then saved to the localStorage.
+- Your notes are saved in real-time as you type.
 - Installable on supported browsers for offline usage.
 - "Add To Home Screen" feature on Android-supported devices to launch the app from the home screen.
 - Dark mode.
-- Privacy-focused - We'll never collect your precious data.
+- Privacy-focused - Never collects your precious data.
 - Light-weight - Loads almost instantly.
-- It's open-source!
+- Full-screen mode for a distraction-free writing experience.
+- Floating window (in supported browsers) to effectively take notes across other apps.
+- Download notes as PDF or plain text.
+- It's proudly open-source!
 
 CAUTION: Since the app uses the browser's localStorage to store your notes, 
 it's recommended that you take a backup of your notes more often using the 
 "Download Notes" button or by pressing the "Ctrl/Cmd + S" keys.
 
-** Start writing your notes **`;
+Lastly, if you're using Notepad, and want to support the development, 
+there's a small donate button in the About section.
+
+** Delete this text and start writing your notes **`;
 
 	const darkmodeText = 'Enable dark mode [Ctrl/Cmd + M]';
 	const lightmodeText = 'Enable light mode [Ctrl/Cmd + M]';
@@ -32,7 +38,7 @@ it's recommended that you take a backup of your notes more often using the
 		defaultShowWordCountPill: 'Yes',
 		defaultWriteDirection: 'ltr',
 		defaultOptimalLineLength: false,
-		defaultOptimalLineLengthPadding: '15px 15px 40px'
+		defaultOptimalLineLengthPadding: '15px 24px 40px'
 	};
 
 	const themeConfig = {
