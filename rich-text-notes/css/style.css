@@ -172,6 +172,32 @@ footer {
   text-align: center;
 }
 
+.modal-content a {
+  font-weight: bold;
+}
+
+.flex-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-notice {
+  background-color: #ecf0ff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.about-icon-container {
+  display: inline-flex;
+  gap: 10px;
+  float: left;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
 .vertical-center {
   min-height: 100%;
   /* Fallback for vh unit */

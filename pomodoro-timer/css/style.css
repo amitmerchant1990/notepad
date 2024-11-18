@@ -68,6 +68,40 @@ body {
   margin-right: 10px;
 }
 
+.flex-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-modal-title {
+  display: inline;
+}
+
+.about-notice {
+  background-color: #ecf0ff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.about-icon-container {
+  display: inline-flex;
+  gap: 10px;
+  float: left;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.modal-footer {
+  justify-content: space-between;
+}
+
+.modal-content a {
+  font-weight: bold;
+}
+
 .pip {
   display: flex;
   align-items: center;
@@ -151,10 +185,6 @@ h1 {
 .custom-btn {
   color: #fff;
   border-color: #fff;
-}
-
-.btn {
-  border-radius: 0;
 }
 
 .navbar {

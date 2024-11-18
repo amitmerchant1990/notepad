@@ -65,10 +65,37 @@
   font-weight: bold;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-.flex-navbar div:nth-child(2) {
-  margin-right: 10px;
+.modal-content a {
+  font-weight: bold;
+}
+
+.flex-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-notice {
+  background-color: #ecf0ff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.about-icon-container {
+  display: inline-flex;
+  gap: 10px;
+  float: left;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.modal-footer {
+  justify-content: space-between;
 }
 
 .pip {

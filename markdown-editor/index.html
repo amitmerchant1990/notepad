@@ -1,195 +1,323 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <title>Markdown Editor | notepad.js.org</title>
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link href="css/style.css" rel="stylesheet">
-      <link rel="stylesheet" href="css/codemirror.css">
-      <link rel="stylesheet" href="css/base16-dark.css">
-      <link rel="stylesheet" href="css/font-awesome.min.css">
-      <link rel="stylesheet" href="css/dialog.css">
-      <!-- for Google -->
-      <meta name="description" content="A minimalist markdown editor app" />
-      <meta name="keywords" content="markdown,editor,javascript" />
 
-      <meta name="author" content="Amit Merchant" />
-      <meta name="application-name" content="Markdown Editor" />
+<head>
+  <title>Markdown Editor | notepad.js.org</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/codemirror.css">
+  <link rel="stylesheet" href="css/base16-dark.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/dialog.css">
+  <!-- for Google -->
+  <meta name="description" content="A minimalist markdown editor app" />
+  <meta name="keywords" content="markdown,editor,javascript" />
 
-      <!-- for Facebook -->
-      <meta property="og:title" content="Markdown Editor | notepad.js.org" />
-      <meta property="og:type" content="article" />
-      <meta property="og:url" content="http://notepad.js.org/markdown-editor" />
-      <meta property="og:description" content="A minimalist markdown editor app" />
+  <meta name="author" content="Amit Merchant" />
+  <meta name="application-name" content="Markdown Editor" />
 
-      <!-- for Twitter -->
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content="Markdown Editor | notepad.js.org" />
-      <meta name="twitter:description" content="A minimalist markdown editor app" />
-      <meta name="twitter:image" content="https://raw.githubusercontent.com/amitmerchant1990/markdownify-web/master/img/markdownify.png" />
-  </head>
-  <body class="container-fluid">
-      <div class="main-title">
-        <span class="app-title">
-          <a href="/">Notepad</a> 
-          <img
-            src="img/icons/right-arrow.svg"
-          />
-          <span>Markdown Editor</span>
-        </span>
-      </div>
-      <div class="optContainer">
-        <div class="mode">
-          <span class="toolContainer">
-            <a id="angleToolBar" title="Toolbar" class="fa fa-angle-double-right" onclick="showToolBar();" style="cursor: pointer;text-decoration:none;"></a>
-          </span>
-          <div class="theme-container">
-            <div>
-              <input type="radio" id="lightTheme" name="changeTheme" value="light" onclick="changeTheme(this);" title="Light Mode" checked="checked"> 
-              <label for="lightTheme" style="vertical-align: middle;" title="Light Mode"><b>Light</b></label>
-            </div>
-            <div>
-              <input type="radio" id="darkTheme" name="changeTheme" value="dark" onclick="changeTheme(this);" title="Dark Mode"> 
-              <label for="darkTheme" style="vertical-align: middle;" title="Dark Mode"><b>Dark</b></label>
-            </div>
-          </div>
+  <!-- for Facebook -->
+  <meta property="og:title" content="Markdown Editor | notepad.js.org" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://notepad.js.org/markdown-editor" />
+  <meta property="og:description" content="A minimalist markdown editor app" />
+
+  <!-- for Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Markdown Editor | notepad.js.org" />
+  <meta name="twitter:description" content="A minimalist markdown editor app" />
+  <meta name="twitter:image"
+    content="https://raw.githubusercontent.com/amitmerchant1990/markdownify-web/master/img/markdownify.png" />
+</head>
+
+<body class="container-fluid">
+  <div class="main-title flex-navbar">
+    <span class="app-title">
+      <a href="/">Notepad</a>
+      <img src="img/icons/right-arrow.svg" />
+      <span>Markdown Editor</span>
+    </span>
+    <span title="About" class="flex-navbar-right">
+      <a id="about" href="javascript:void(0);">
+        <img src="img/icons/info.svg" alt="About Icon" href="#about" data-toggle="modal" data-target="#aboutModal" />
+      </a>
+    </span>
+  </div>
+  <div class="optContainer">
+    <div class="mode">
+      <span class="toolContainer">
+        <a id="angleToolBar" title="Toolbar" class="fa fa-angle-double-right" onclick="showToolBar();"
+          style="cursor: pointer;text-decoration:none;"></a>
+      </span>
+      <div class="theme-container">
+        <div>
+          <input type="radio" id="lightTheme" name="changeTheme" value="light" onclick="changeTheme(this);"
+            title="Light Mode" checked="checked">
+          <label for="lightTheme" style="vertical-align: middle;" title="Light Mode"><b>Light</b></label>
         </div>
-        <div class="pref theme-container" id="pref">
-          <div>
-            <input type="radio" id="htmlPref" name="showPreference" value="html" onclick="clkPref(this);"> 
-            <label for="htmlPref" style="vertical-align: middle;"><b>HTML</b></label>
-          </div>
-          <div>
-            <input type="radio" id="previewPref" name="showPreference" value="preview" onclick="clkPref(this);" checked="checked"> 
-            <label for="previewPref" style="vertical-align: middle;"><b>Preview</b></label>
-          </div>
+        <div>
+          <input type="radio" id="darkTheme" name="changeTheme" value="dark" onclick="changeTheme(this);"
+            title="Dark Mode">
+          <label for="darkTheme" style="vertical-align: middle;" title="Dark Mode"><b>Dark</b></label>
         </div>
       </div>
-      <div id="toolbarArea">
-        <div style="padding-left:10px;">
-          <a onclick="toggleFormat('bold');" title="Bold [Ctrl+B]" class="fa fa-bold editor-toolbar"></a>
-          <a onclick="toggleFormat('italic');" title="Italic [Ctrl+I]" class="fa fa-italic editor-toolbar"></a>
-          <a onclick="toggleHeadingSmaller();" title="Header [Ctrl+H]" class="fa fa-header editor-toolbar"></a>
-          <a onclick="toggleFormat('strikethrough');" title="StrikeThrough [Ctrl+/]" class="fa fa-strikethrough editor-toolbar"></a>
-          <i class="separator">|</i>
-          <a onclick="toggleBlockquote();" title="Quote" class="fa fa-quote-left editor-toolbar"></a>
-          <a onclick="toggleUnorderedList();" title="Unordered List" class="fa fa-list-ul editor-toolbar"></a>
-          <a onclick="toggleOrderedList();" title="Ordered List" class="fa fa-list-ol editor-toolbar"></a>
-          <i class="separator">|</i>
-          <a onclick="drawLink();" title="Create Link [Ctrl+L]" class="fa fa-link editor-toolbar"></a>
-          <a onclick="drawImage();" title="Insert Image [Ctrl+Alt+I]" class="fa fa-picture-o editor-toolbar"></a>
-          <a onclick="drawTable();" title="Insert Table [Ctrl+Shift+T]" class="fa fa-table editor-toolbar"></a>
-          <a onclick="drawHorizontalRule();" title="Insert Horizontal Rule" class="fa fa-minus editor-toolbar"></a>
-          <i class="separator">|</i>
-          <a onclick="toggleSidePanel();" title="Side-By-Side Panel Toggle" class="fa fa-columns editor-toolbar"></a>
-          <a data-toggle="modal" data-target="#myModal" title="Markdown Help" class="fa fa-question-circle editor-toolbar"></a>
+    </div>
+    <div class="pref theme-container" id="pref">
+      <div>
+        <input type="radio" id="htmlPref" name="showPreference" value="html" onclick="clkPref(this);">
+        <label for="htmlPref" style="vertical-align: middle;"><b>HTML</b></label>
+      </div>
+      <div>
+        <input type="radio" id="previewPref" name="showPreference" value="preview" onclick="clkPref(this);"
+          checked="checked">
+        <label for="previewPref" style="vertical-align: middle;"><b>Preview</b></label>
+      </div>
+    </div>
+  </div>
+  <div id="toolbarArea">
+    <div style="padding-left:10px;">
+      <a onclick="toggleFormat('bold');" title="Bold [Ctrl+B]" class="fa fa-bold editor-toolbar"></a>
+      <a onclick="toggleFormat('italic');" title="Italic [Ctrl+I]" class="fa fa-italic editor-toolbar"></a>
+      <a onclick="toggleHeadingSmaller();" title="Header [Ctrl+H]" class="fa fa-header editor-toolbar"></a>
+      <a onclick="toggleFormat('strikethrough');" title="StrikeThrough [Ctrl+/]"
+        class="fa fa-strikethrough editor-toolbar"></a>
+      <i class="separator">|</i>
+      <a onclick="toggleBlockquote();" title="Quote" class="fa fa-quote-left editor-toolbar"></a>
+      <a onclick="toggleUnorderedList();" title="Unordered List" class="fa fa-list-ul editor-toolbar"></a>
+      <a onclick="toggleOrderedList();" title="Ordered List" class="fa fa-list-ol editor-toolbar"></a>
+      <i class="separator">|</i>
+      <a onclick="drawLink();" title="Create Link [Ctrl+L]" class="fa fa-link editor-toolbar"></a>
+      <a onclick="drawImage();" title="Insert Image [Ctrl+Alt+I]" class="fa fa-picture-o editor-toolbar"></a>
+      <a onclick="drawTable();" title="Insert Table [Ctrl+Shift+T]" class="fa fa-table editor-toolbar"></a>
+      <a onclick="drawHorizontalRule();" title="Insert Horizontal Rule" class="fa fa-minus editor-toolbar"></a>
+      <i class="separator">|</i>
+      <a onclick="toggleSidePanel();" title="Side-By-Side Panel Toggle" class="fa fa-columns editor-toolbar"></a>
+      <a data-toggle="modal" data-target="#myModal" title="Markdown Help"
+        class="fa fa-question-circle editor-toolbar"></a>
+    </div>
+  </div>
+  <section class="row" id="editArea" style="padding-top: 64px;">
+    <div class="col-md-6 full-height" id="textPanel">
+      <textarea id="plainText" placeholder="Write your Markdown here.." autofocus></textarea>
+    </div>
+    <div class="col-md-6 full-height" style="overflow-y: auto;display:block; padding: 14px; font-weight: bold;"
+      id="previewPanel">
+      <div id="markdown"></div>
+      <textarea id="htmlPreview" class="mdHtml"></textarea>
+    </div>
+  </section>
+  <!-- Markdown Help Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Markdown Help</h4>
+        </div>
+        <div class="modal-body">
+          <section class="modal--default__content" id="modal-body-region">
+            <table class="markdown-help-content">
+              <tbody>
+                <tr>
+                  <td><strong>Bold</strong></td>
+                  <td>**bold**</td>
+                </tr>
+                <tr>
+                  <td><i>Italics</i></td>
+                  <td>*italics*</td>
+                </tr>
+                <tr>
+                  <td><del>Strikethrough</del></td>
+                  <td>~~strikethrough~~</td>
+                </tr>
+                <tr>
+                  <td>Header</td>
+                  <td># H1 ## H2 ### H3</td>
+                </tr>
+                <tr>
+                  <td>
+                    <li>item</li>
+                  </td>
+                  <td>* item</td>
+                </tr>
+                <tr>
+                  <td>Blockquote</td>
+                  <td>&gt; blockquote</td>
+                </tr>
+                <tr>
+                  <td><span class="issue open">#123</span> (issue)</td>
+                  <td>#123</td>
+                </tr>
+                <tr>
+                  <td><a href="https://github.com/amitmerchant1990/electron-markdownify" target="_rick">Link</a></td>
+                  <td>[title](http://)</td>
+                </tr>
+                <tr>
+                  <td>Image</td>
+                  <td>![alt](http://)</td>
+                </tr>
+                <tr>
+                  <td><code>code</code></td>
+                  <td>`code`</td>
+                </tr>
+                <tr>
+                  <td>L<sup>a</sup>T<sub>e</sub>X</td>
+                  <td>$$LaTeX code$$</td>
+                </tr>
+                <tr>
+                  <td>
+                    <pre
+                      style="display: inline-block; margin: 4px 0"><code><span class="keyword">var </span>code = <span class="string">"formatted"</span>;</code></pre>
+                  </td>
+                  <td style="line-height: 100%">``` <i style="color: rgba(0,0,0,0.5)">(shift+enter for line
+                      break)</i><br>var code = "formatted";<br>```</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      <section class="row" id="editArea" style="padding-top: 64px;">
-          <div class="col-md-6 full-height" id="textPanel">
-            <textarea  id="plainText" placeholder="Write your Markdown here.." autofocus></textarea>
-          </div>
-          <div class="col-md-6 full-height" style="overflow-y: auto;display:block; padding: 14px; font-weight: bold;" id="previewPanel">
-            <div id="markdown"></div>
-            <textarea id="htmlPreview" class="mdHtml"></textarea>
-          </div>
-      </section>
-      <!-- Markdown Help Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Markdown Help</h4>
-            </div>
-            <div class="modal-body">
-              <section class="modal--default__content" id="modal-body-region">
-                <table class="markdown-help-content">
-                  <tbody>
-                      <tr>
-                        <td><strong>Bold</strong></td>
-                        <td>**bold**</td>
-                      </tr>
-                      <tr>
-                        <td><i>Italics</i></td>
-                        <td>*italics*</td>
-                      </tr>
-                      <tr>
-                        <td><del>Strikethrough</del></td>
-                        <td>~~strikethrough~~</td>
-                      </tr>
-                      <tr>
-                        <td>Header</td>
-                        <td># H1     ## H2     ### H3</td>
-                      </tr>
-                      <tr>
-                        <td><li>item</li></td>
-                        <td>* item</td>
-                      </tr>
-                      <tr>
-                        <td>Blockquote</td>
-                        <td>&gt; blockquote</td>
-                      </tr>
-                      <tr>
-                        <td><span class="issue open">#123</span> (issue)</td>
-                        <td>#123</td>
-                      </tr>
-                      <tr>
-                        <td><a href="https://github.com/amitmerchant1990/electron-markdownify" target="_rick">Link</a></td>
-                        <td>[title](http://)</td>
-                      </tr>
-                      <tr>
-                        <td>Image</td>
-                        <td>![alt](http://)</td>
-                      </tr>
-                      <tr>
-                        <td><code>code</code></td>
-                        <td>`code`</td>
-                      </tr>
-                      <tr>
-                        <td>L<sup>a</sup>T<sub>e</sub>X</td>
-                        <td>$$LaTeX code$$</td>
-                      </tr>
-                      <tr>
-                        <td><pre style="display: inline-block; margin: 4px 0"><code><span class="keyword">var </span>code = <span class="string">"formatted"</span>;</code></pre></td>
-                        <td style="line-height: 100%">``` <i style="color: rgba(0,0,0,0.5)">(shift+enter for line break)</i><br>var code = "formatted";<br>```</td>
-                      </tr>
-                  </tbody>
-                </table>
-              </section>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+    </div>
+  </div>
+
+  <div id="aboutModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title custom-modal-title">Markdown Editor</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body modal-container">
+          <div class="tab-content">
+            <p>This is a simple Markdown editor with two pane layout.</p>
+            <p>It serves the following features:</p>
+            <ul>
+              <li>
+                <b>LivePreview</b> — Make changes, See changes
+                <ul>Instantly see what your Markdown documents look like in HTML as you create them.</ul>
+              </li>
+              <li>
+                <b>Sync Scrolling</b>
+                <ul>While you type, LivePreview will automatically scroll to the current location you're editing.</ul>
+              </li>
+              <li>GitHub Flavored Markdown</li>
+              <li>Syntax highlighting</li>
+              <li>KaTeX Support</li>
+              <li>Dark/Light mode</li>
+              <li>Toolbar for basic Markdown formatting</li>
+            </ul>
+            <p class="about-notice">Enjoy using this tool? If so, consider a small <a
+                href="https://www.paypal.com/paypalme/AmitMerchant" target="_blank">donation</a> (or <a
+                href="https://buymeacoffee.com/amitmerchant" target="_blank">buy me a coffee</a>) so
+              that I keep working on improving it further and the experience remains ad-free. Icons from
+              <a href="https://heroicons.com/" target="_blank">heroicons</a>, <a href="https://www.flaticon.com/"
+                target="_blank">Flaticon</a>, <a href="https://www.svgrepo.com">SVGRepo</a> and <a
+                href="https://iconduck.com" target="_blank">Iconduck</a>.
+            </p>
+            <p style="text-align:center; margin: 10px 0 0 0;">
+              <b class="about-author-container">
+                Brought to you by
+                <a href="https://notepad.js.org/" class="about-author-link">
+                  notepad.js.org
+                </a>
+              </b>
+            </p>
           </div>
         </div>
+        <div class="modal-footer">
+          <div class="about-icon-container">
+            <a href="https://github.com/amitmerchant1990/notepad" target="_blank" class="github-icon"
+              title="Notepad on GitHub" aria-label="Notepad on GitHub">
+              <svg width="30px" height="30px" viewBox="-4.32 -4.32 56.64 56.64" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <rect width="48" height="48" fill="white" fill-opacity="0.01"></rect>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4ZM0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+                    fill="#000000"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M19.183 45.4715C18.9896 45.2218 18.9896 42.9972 19.183 38.798C17.1112 38.8695 15.8022 38.7257 15.256 38.3666C14.4368 37.8279 13.6166 36.1666 12.8889 34.9958C12.1612 33.825 10.546 33.6399 9.8938 33.3782C9.24158 33.1164 9.07785 32.0495 11.691 32.8564C14.3042 33.6633 14.4316 35.8606 15.256 36.3744C16.0804 36.8882 18.0512 36.6634 18.9446 36.2518C19.8379 35.8402 19.7722 34.3077 19.9315 33.7006C20.1329 33.1339 19.423 33.0082 19.4074 33.0036C18.5353 33.0036 13.9537 32.0072 12.6952 27.5705C11.4368 23.1339 13.0579 20.234 13.9227 18.9874C14.4992 18.1563 14.4482 16.3851 13.7697 13.6736C16.2333 13.3588 18.1344 14.1342 19.4732 16C19.4745 16.0107 21.2283 14.9571 24 14.9571C26.7718 14.9571 27.7551 15.8153 28.514 16C29.2728 16.1847 29.8798 12.734 34.5666 13.6736C33.5881 15.5968 32.7686 18 33.3941 18.9874C34.0195 19.9748 36.4742 23.1146 34.9664 27.5705C33.9611 30.5412 31.9851 32.3522 29.0382 33.0036C28.7002 33.1114 28.5313 33.2854 28.5313 33.5254C28.5313 33.8855 28.9881 33.9248 29.6463 35.6116C30.085 36.7361 30.1167 39.9479 29.7413 45.2469C28.7904 45.489 28.0506 45.6515 27.5219 45.7346C26.5845 45.8819 25.5667 45.9645 24.5666 45.9964C23.5666 46.0283 23.2193 46.0247 21.8368 45.896C20.9151 45.8102 20.0305 45.6687 19.183 45.4715Z"
+                    fill="#000000"></path>
+                </g>
+              </svg>
+            </a>
+            <a href="https://www.paypal.com/paypalme/AmitMerchant" target="_blank" class="donate-icon"
+              title="Donate to the creator of Notepad" aria-label="Donate to the creator of Notepad">
+              <svg fill="#000000" width="30px" height="30px" viewBox="0 0 32 32" id="icon"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <defs>
+                    <style>
+                      .cls-1 {
+                        fill: none;
+                      }
+                    </style>
+                  </defs>
+                  <path
+                    d="M16.5,14H20V12H18V11H16v1.0508A2.5,2.5,0,0,0,16.5,17h1a.5.5,0,0,1,0,1H14v2h2v1h2V19.9492A2.5,2.5,0,0,0,17.5,15h-1a.5.5,0,0,1,0-1Z">
+                  </path>
+                  <path
+                    d="M29,13H26.98A5.7789,5.7789,0,0,0,25,8.8525V5a1,1,0,0,0-1.6-.8L19.6665,7H15c-5.5095,0-9.4634,3.2412-9.9485,8H5a1.0009,1.0009,0,0,1-1-1V12H2v2a3.0033,3.0033,0,0,0,3,3h.07A9.1733,9.1733,0,0,0,9,23.5566V27a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V25h3v2a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V23.6372A5.0926,5.0926,0,0,0,26.8188,20H29a1,1,0,0,0,1-1V14A1,1,0,0,0,29,13Zm-1,5H25.124c-.3052,2.7529-.8235,3.4854-3.124,4.3154V26H20V23H13v3H11V22.3779A7.013,7.013,0,0,1,7,16c0-4.8354,4.0181-7,8-7h5.3335L23,7V9.7764c2.4182,1.8593,1.9126,3.186,2.0183,5.2236H28Z">
+                  </path>
+                  <rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1" width="32"
+                    height="32"></rect>
+                </g>
+              </svg>
+            </a>
+            <a href="https://buymeacoffee.com/amitmerchant" target="_blank" class="donate-icon" title="Buy me a coffee">
+              <svg fill="#000000" width="30px" height="30px" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" stroke="#000000" stroke-width="1.05">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M15.427734 3C14.062745 3 12.859456 3.9323872 12.521484 5.2558594L12.074219 7L12 7C11.133553 7 10.343298 7.2932543 9.7636719 7.7890625C9.1840453 8.2848707 8.8153921 8.9380401 8.5664062 9.625C8.0684347 10.99892 8 12.57785 8 14 A 1.0001 1.0001 0 0 0 9 15L10.119141 15L13.970703 45.017578 A 1.0001 1.0001 0 0 0 13.974609 45.042969C14.160517 46.237774 15.204427 47 16.367188 47L33.630859 47C34.794193 47 35.83786 46.235688 36.023438 45.042969 A 1.0001 1.0001 0 0 0 36.027344 45.017578L39.880859 15L41 15 A 1.0001 1.0001 0 0 0 42 14C42 12.57785 41.931565 10.99892 41.433594 9.625C41.184608 8.9380401 40.815955 8.2848707 40.236328 7.7890625C39.656702 7.2932543 38.866447 7 38 7L37.90625 7L37.474609 5.2734375 A 1.0001 1.0001 0 0 0 37.474609 5.2714844C37.141393 3.9416023 35.934385 3 34.5625 3L15.427734 3 z M 15.427734 5L34.5625 5C35.026615 5 35.42042 5.3076915 35.533203 5.7578125L35.84375 7L14.138672 7L14.458984 5.7519531C14.573013 5.3054253 14.966724 5 15.427734 5 z M 12.912109 8.9960938 A 1.0001 1.0001 0 0 0 13 9L37 9 A 1.0001 1.0001 0 0 0 37.064453 8.9980469 A 1.0001 1.0001 0 0 0 37.125 9L38 9C38.459053 9 38.706095 9.1106518 38.9375 9.3085938C39.168905 9.5065356 39.385047 9.8386001 39.554688 10.306641C39.802098 10.989256 39.830025 12.022136 39.878906 13L11.166016 13 A 1.0001 1.0001 0 0 0 10.955078 12.986328 A 1.0001 1.0001 0 0 0 10.835938 13L10.121094 13C10.169974 12.022136 10.197905 10.989256 10.445312 10.306641C10.614953 9.8386001 10.831095 9.5065355 11.0625 9.3085938C11.293905 9.1106518 11.540947 9 12 9L12.849609 9 A 1.0001 1.0001 0 0 0 12.912109 8.9960938 z M 12.136719 15L37.863281 15L36.708984 24L31.984375 24C30.659565 21.085293 28.095496 19.012008 24.992188 19.003906C24.945978 19.002306 24.902818 19.004791 24.857422 19.007812C21.786193 19.059813 19.278095 21.123031 17.988281 24L13.291016 24L12.136719 15 z M 24.945312 20.998047C24.966323 20.999147 24.947809 21 24.974609 21C27.392834 21 29.474358 22.682557 30.451172 25.34375 A 1.0001 1.0001 0 0 0 31.388672 26L31.490234 26L36.451172 26L35.810547 31L31.527344 31L31.388672 31 A 1.0001 1.0001 0 0 0 30.447266 31.660156C30.227471 32.270178 29.97672 32.828834 29.671875 33.296875C28.538498 35.034193 26.884731 35.976012 25.087891 35.998047L25.021484 35.998047C23.246013 35.998047 21.592289 35.09639 20.431641 33.398438 A 1.0001 1.0001 0 0 0 20.431641 33.396484C20.091871 32.900328 19.8123 32.306572 19.574219 31.65625 A 1.0001 1.0001 0 0 0 18.634766 31L18.521484 31L14.189453 31L13.548828 26L18.484375 26L18.589844 26 A 1.0001 1.0001 0 0 0 19.529297 25.339844C20.477663 22.708373 22.511851 21.026828 24.917969 21 A 1.0001 1.0001 0 0 0 24.945312 20.998047 z M 24.939453 23C23.705063 23.01347 22.665152 23.777929 22.001953 24.794922C21.338753 25.811913 20.978618 27.119966 20.994141 28.542969C21.009661 29.965972 21.398756 31.267249 22.083984 32.269531C22.769211 33.271814 23.826157 34.013466 25.060547 34C26.294937 33.98654 27.334848 33.22207 27.998047 32.205078C28.661247 31.188086 29.021382 29.880035 29.005859 28.457031C28.990339 27.034028 28.601244 25.732752 27.916016 24.730469C27.230789 23.728186 26.173843 22.986534 24.939453 23 z M 24.960938 25C25.386064 24.9954 25.843602 25.244939 26.263672 25.859375C26.683742 26.473812 26.994273 27.416385 27.005859 28.478516C27.017449 29.540646 26.728831 30.489827 26.322266 31.113281C25.915699 31.736734 25.464189 31.995363 25.039062 32C24.613936 32.0046 24.156399 31.755062 23.736328 31.140625C23.316259 30.526189 23.005727 29.583615 22.994141 28.521484C22.982551 27.459353 23.271169 26.510173 23.677734 25.886719C24.084301 25.263265 24.535811 25.004637 24.960938 25 z M 14.445312 33L18.021484 33C18.24578 33.51991 18.454188 34.047503 18.78125 34.525391C20.264602 36.695438 22.552956 37.998047 25.021484 37.998047L25.091797 37.998047 A 1.0001 1.0001 0 0 0 25.101562 37.998047C27.60154 37.971307 29.89481 36.614655 31.345703 34.390625 A 1.0001 1.0001 0 0 0 31.347656 34.390625C31.635588 33.948746 31.81459 33.471059 32.013672 33L35.554688 33L34.048828 44.736328C34.042405 44.777609 33.827526 45 33.630859 45L16.367188 45C16.173946 45 15.95727 44.775524 15.951172 44.736328L14.445312 33 z">
+                  </path>
+                </g>
+              </svg>
+            </a>
+          </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-      <script src="js/libs/jquery.min.js"></script>
-      <script src="js/libs/bootstrap.min.js"></script>
-      <script>if (window.module) module = window.module;</script>
-      <script src="js/libs/marked.min.js"></script>
-      <script src="js/libs/showdown.min.js"></script>
-      <script src="js/libs/codemirror.js"></script>
-      <script src="js/libs/placeholder.js"></script>
-      <script src="js/libs/search.js"></script>
-      <script src="js/libs/searchcursor.js"></script>
-      <script src="js/libs/dialog.js"></script>
-      <script src="js/libs/closebrackets.js"></script>
-      <script src="js/markdown/markdown.js"></script>
-      <script src="js/app.js"></script>
-      <script src="js/format.js"></script>
-      <script src="js/functions.js"></script>
-      <script src="js/emoji.js"></script>
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+  <script src="js/libs/jquery.min.js"></script>
+  <script src="js/libs/bootstrap.min.js"></script>
+  <script>if (window.module) module = window.module;</script>
+  <script src="js/libs/marked.min.js"></script>
+  <script src="js/libs/showdown.min.js"></script>
+  <script src="js/libs/codemirror.js"></script>
+  <script src="js/libs/placeholder.js"></script>
+  <script src="js/libs/search.js"></script>
+  <script src="js/libs/searchcursor.js"></script>
+  <script src="js/libs/dialog.js"></script>
+  <script src="js/libs/closebrackets.js"></script>
+  <script src="js/markdown/markdown.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/format.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/emoji.js"></script>
 
-      <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-43339302-6');
-      </script>
-  </body>
+  <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-43339302-6');
+  </script>
+</body>
+
 </html>
