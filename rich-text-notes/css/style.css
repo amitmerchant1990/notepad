@@ -159,6 +159,12 @@ body {
   font-size: 15px;
 }
 
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 #time,
 #time_short,
 #time_long {

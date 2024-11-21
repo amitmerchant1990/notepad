@@ -34,6 +34,12 @@
   gap: 15px;
 }
 
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 .nav-tabs {
   font-size: 1.4em;
 }

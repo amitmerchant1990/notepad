@@ -27,6 +27,12 @@ body {
   display: none;
 }
 
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 .button-container {
   display: flex;
   align-items: center;
