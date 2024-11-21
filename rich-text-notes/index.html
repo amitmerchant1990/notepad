@@ -34,10 +34,15 @@
                 <span>Rich Text Notes</span>
             </div>
             <div class="flex-navbar-right">
-                <span title="Download as PDF">
+                <span title="Download" class="downaload-notes-container">
                     <a id="download" href="javascript:void(0);">
                         <img src="img/icons/download.svg" alt="Download Icon" id="themeIcon" />
                     </a>
+
+                    <div id="iconDropdown" class="dropdown-menu">
+                        <li><a class="dropdown-item" id="downloadNotesRtf">Download as HTML</a></li>
+                        <li><a class="dropdown-item" id="downloadNotesPdf">Download as PDF</a></li>
+                    </div>
                 </span>
                 <span title="About">
                     <a id="about" href="javascript:void(0);">
@@ -67,8 +72,8 @@
                         <p>This is a simple tool to write in <a href="https://en.wikipedia.org/wiki/Rich_Text_Format" target="_blank">rich text</a> with a bunch of formatting options.</p>
                         <p>It serves the following features:</p>
                         <ul>
-                            <li>Lets you write notes with formatting if you choose it like that and saves it locally in real time as you type.</li>
-                            <li>Download your <b>notes as a PDF</b>.</li>
+                            <li>Lets you <b>write notes with formatting</b> if you choose it like that and saves it locally in real time as you type.</li>
+                            <li>Download your notes as <b>HTML</b> and <b>PDF</b>.</li>
                             <li>Blazing fast and lightweight.</li>
                             <li>Support for adding images and videos.</li>
                         </ul>
@@ -161,6 +166,7 @@
     </div>
 
     <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/delta-to-html.min.js"></script>
     <script src="js/libs/quill.js"></script>
     <script src="js/libs/bootstrap.min.js"></script>
     <script src="js/libs/jspdf.umd.min.js"></script>

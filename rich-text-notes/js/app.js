@@ -49,8 +49,25 @@ $(document).ready(function () {
     });
 
     $('#download').click(function () {
-        downloadAsPdf();
+        $('#iconDropdown').toggleClass('show');
     })
+
+    $('#downloadNotesPdf').click(function () {
+        downloadAsPdf();
+    });
+
+    $('#downloadNotesHtml').click(function () {
+        saveHTML();
+    })
+
+    $(document).on('click', function (event) {
+        if(
+            $('#iconDropdown').hasClass('show') 
+            && !$(event.target).is('#themeIcon')
+        ) {
+		    $('#iconDropdown').removeClass('show');
+        }
+	});
 
     // This listens for keyboard shortcuts
 	document.onkeydown = function (event) {
@@ -78,6 +95,22 @@ $(document).ready(function () {
             width: 180, // Max width of the content on the page
             windowWidth: 800
         });
+    }
+
+    function saveHTML() {
+        var deltaContent = quill.getContents();
+        var cfg = {};
+        var converter = new QuillDeltaToHtmlConverter(deltaContent['ops'], cfg);
+        var htmlContent = converter.convert();
+        downloadHTML(htmlContent);
+    }
+
+    function downloadHTML(content) {
+        var blob = new Blob([content], { type: 'text/html' });
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Rich-Notes-' + getCurrentDate() + '.htm';
+        link.click();
     }
 
     function getPdfFileName() {
