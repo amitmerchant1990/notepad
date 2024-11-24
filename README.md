@@ -12,7 +12,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 ## Notable features
 
   - Lets you **write notes in plain text** which are autosaved [locally](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
-  - Installable on supported browsers for offline usage.
+  - [Installable](https://www.amitmerchant.com/adding-custom-install-button-in-progressive-web-apps/) on supported browsers for offline usage.
   - **"Add To Home Screen"** feature on Android supported devices to launch the app from home screen.
   - Editor padding.
   - Font settings.
@@ -22,7 +22,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - Dark mode.
   - Focus mode (on desktop).
   - Optimal line length for better reading experience.
-  - Floating window to effectively take notes on top of other apps (in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Document_Picture-in-Picture_API))
+  - [Floating window](https://www.amitmerchant.com/implementing-interactive-floating-windows-using-picture-in-picture-api/) to effectively take notes on top of other apps (in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Document_Picture-in-Picture_API))
   - Download notes as **plain text** or **PDF**.
 
 [View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
