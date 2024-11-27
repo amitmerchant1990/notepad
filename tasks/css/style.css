@@ -239,11 +239,21 @@ h1 {
 
 /* Centered no-tasks message */
 #noTasksMessage {
-  display: none;
-  text-align: center;
-  margin-top: 50px;
-  font-size: 1.5rem;
-  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 72vh;
+  color: #6d6d6d;
+  font-size: 1.2em;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%22-0.5%200%2025%2025%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20stroke%3D%22%23828282%22%3E%3Cg%20id%3D%22SVGRepo_bgCarrier%22%20stroke-width%3D%220%22%3E%3C%2Fg%3E%3Cg%20id%3D%22SVGRepo_tracerCarrier%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C%2Fg%3E%3Cg%20id%3D%22SVGRepo_iconCarrier%22%3E%3Cpath%20d%3D%22M4%208.78998V18.56C4%2019.6209%204.42149%2020.6383%205.17163%2021.3884C5.92178%2022.1386%206.93913%2022.56%208%2022.56H16C17.0609%2022.56%2018.0783%2022.1386%2018.8284%2021.3884C19.5786%2020.6383%2020%2019.6209%2020%2018.56V8.78003%22%20stroke%3D%22%23454545%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%2013.56H15%22%20stroke%3D%22%23454545%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M22%206.56C22%205.49913%2021.5786%204.48171%2020.8284%203.73157C20.0783%202.98142%2019.0609%202.56%2018%202.56H6C4.93913%202.56%203.92178%202.98142%203.17163%203.73157C2.42149%204.48171%202%205.49913%202%206.56C2%207.09043%202.21074%207.59917%202.58582%207.97424C2.96089%208.34932%203.46957%208.56%204%208.56H20C20.5304%208.56%2021.0392%208.34932%2021.4142%207.97424C21.7893%207.59917%2022%207.09043%2022%206.56Z%22%20stroke%3D%22%23454545%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: center calc(50% - 30px);
+  padding: 60px 20px 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 2px dashed #e0e0e0;
+  font-weight: bold;
 }
 
 /* Custom styling for checkboxes */

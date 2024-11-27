@@ -104,7 +104,7 @@ $(document).ready(function() {
     // Toggle visibility of the "No tasks added" message
     function toggleNoTasksMessage() {
         if ($('#taskContainer .task-card').length === 0) {
-            $('#noTasksMessage').show();
+            $('#noTasksMessage').css('display', 'flex');
         } else {
             $('#noTasksMessage').hide();
         }
