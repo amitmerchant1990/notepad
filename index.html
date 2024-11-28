@@ -522,6 +522,15 @@
 
   <div id="toast"></div>
 
+  <div id="affiliatePopup" class="affiliate-popup">
+    <div class="affiliate-content">
+        <a href="#" id="affiliateLink" target="_blank" rel="noopener noreferrer">
+            <span id="affiliateText"></span>
+        </a>
+        <button id="closeAffiliatePopup" class="close-popup" aria-label="Close popup">&times;</button>
+    </div>
+  </div>
+
   <script>
     if (localStorage.getItem('mode')) {
       if (localStorage.getItem('mode') == 'dark') {

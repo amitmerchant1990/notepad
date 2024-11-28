@@ -1,4 +1,34 @@
 $(document).ready(function() {
+    // Affiliate links data
+    const affiliateLinks = [
+        {
+            text: "Video Tap — Turn your videos into text-based content",
+            url: "https://videotap.com?via=amitmerchant"
+        },
+		{
+            text: "❤️ Support Notepad's development — Buy me a coffee!",
+            url: "https://buymeacoffee.com/amitmerchant"
+        }
+    ];
+
+    // Function to show random affiliate link
+    function showRandomAffiliateLink() {
+        const randomIndex = Math.floor(Math.random() * affiliateLinks.length);
+        const affiliate = affiliateLinks[randomIndex];
+        
+        $('#affiliateText').text(affiliate.text);
+        $('#affiliateLink').attr('href', affiliate.url);
+        $('#affiliatePopup').fadeIn();
+    }
+
+    // Close affiliate popup
+    $('#closeAffiliatePopup').on('click', function() {
+        $('#affiliatePopup').fadeOut();
+    });
+
+    // Show affiliate popup after a delay
+    setTimeout(showRandomAffiliateLink, 2000);
+
     $('#taskInput').focus();
     loadTasks();
 

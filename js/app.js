@@ -1,4 +1,34 @@
 $(document).ready(function () {
+	// Affiliate links data
+    const affiliateLinks = [
+        {
+            text: "Video Tap — Effortlessly turn your videos into text-based content",
+            url: "https://videotap.com?via=amitmerchant"
+        },
+		{
+            text: "❤️ Support Notepad's development — Buy me a coffee!",
+            url: "https://buymeacoffee.com/amitmerchant"
+        }
+    ];
+
+    // Function to show random affiliate link
+    function showRandomAffiliateLink() {
+        const randomIndex = Math.floor(Math.random() * affiliateLinks.length);
+        const affiliate = affiliateLinks[randomIndex];
+        
+        $('#affiliateText').text(affiliate.text);
+        $('#affiliateLink').attr('href', affiliate.url);
+        $('#affiliatePopup').addClass('show');
+    }
+
+    // Close affiliate popup
+    $('#closeAffiliatePopup').on('click', function() {
+        $('#affiliatePopup').removeClass('show');
+    });
+
+    // Show affiliate popup after a delay
+    setTimeout(showRandomAffiliateLink, 2000);
+	
 	const welcomeText = `Welcome! This is an offline-capable Notepad which is a Progressive Web App.
 
 The app serves the following features:
@@ -173,12 +203,6 @@ there's a small donate button in the About section.
 	notepad.fullScreenButton.click(function () {
 		toggleFullScreen();
 	})
-
-	setTimeout(function () {
-		if (!state.hasUserDismissedDonationPopup) {
-			notepad.stickyNotice.toggleClass('make-hidden');
-		}
-	}, 30000);
 
 	notepad.closeDonationPopup.click(function () {
 		notepad.stickyNotice.remove();
