@@ -20,7 +20,7 @@ window.onload = function () {
   if (markdownText) {
     cm.setValue(markdownText);
     
-    html = converter.makeHtml(markdownText);
+    html = converter.makeHtml(processMarkdownWithKaTeX(markdownText));
     markdownArea.innerHTML = replaceWithEmojis(html);
     document.getElementById("htmlPreview").value = html;
   }
@@ -30,15 +30,37 @@ window.onload = function () {
     //yourTextarea.value = cMirror.getValue();
     var markdownText = cMirror.getValue();
     //Md -> Preview
-    html = marked(markdownText, { gfm: true });
+    html = marked(processMarkdownWithKaTeX(markdownText), { gfm: true });
     markdownArea.innerHTML = replaceWithEmojis(html);
 
     //Md -> HTML
-    html = converter.makeHtml(markdownText);
+    html = converter.makeHtml(processMarkdownWithKaTeX(markdownText));
     document.getElementById("htmlPreview").value = html;
 
     localStorage.setItem('markdown', markdownText);
   });
+}
+
+function processMarkdownWithKaTeX(markdown) {
+  // Render Markdown to HTML
+  const rawHtml = marked.parse(markdown);
+
+  // Create a temporary container to hold the HTML
+  const container = document.createElement('div');
+  container.innerHTML = rawHtml;
+
+  // Render KaTeX in the container
+  renderMathInElement(container, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '\\(', right: '\\)', display: false },
+      { left: '$', right: '$', display: false } 
+    ],
+    throwOnError: false,
+  });
+
+  // Return the processed Markdown with KaTeX rendered
+  return container.innerHTML;
 }
 
 var $prev = $('#previewPanel'),
