@@ -103,6 +103,16 @@
               />
             </a>
           </span>
+          <span title="Play White Noise">
+            <a href="#white-noise" data-toggle="modal" data-target="#whiteNoiseModal" title="Play White Noise">
+              <span>
+                <img
+                  src="img/navbar/music.svg"
+                  alt="Play White Noise"
+                />
+              </span>
+            </a>
+          </span>
           <span title="Activate Floating Window" id="pipContainer">
             <a id="pip" class="pip-icon">
               <span>
@@ -156,7 +166,7 @@
     <p>
       Enjoy using this app? If yes, consider <a href="https://www.paypal.com/paypalme/AmitMerchant" target="_blank">donating</a> so that the experience remains ad-free! :)
     </p>
-    <a href="javascript::void(0);" id="closeDonationPopup">
+    <a href="javascript:void(0);" id="closeDonationPopup">
       <svg width="25" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -207,7 +217,7 @@
                 <b>CAUTION:</b> Take a backup of your notes more often since it's all stored on your browser.
               </p>
               <p class="about-notice">Enjoy using this app? If so, consider a small <a href="https://www.paypal.com/paypalme/AmitMerchant"
-                  target="_blank">donation</a> (or <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buy me a coffee</a>) so that I keep working on improving it further and the experience remains ad-free. Icons from <a href="https://heroicons.com/" target="_blank">heroicons</a>, <a href="https://www.flaticon.com/" target="_blank">Flaticon</a>, <a href="https://www.svgrepo.com">SVGRepo</a> and <a href="https://iconduck.com" target="_blank">Iconduck</a>.</p>
+                  target="_blank">donation</a> (or <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buy me a coffee</a>) so that I keep working on improving it further and the experience remains ad-free. Icons from <a href="https://heroicons.com/" target="_blank">heroicons</a>, <a href="https://www.flaticon.com/" target="_blank">Flaticon</a>, <a href="https://www.svgrepo.com">SVGRepo</a> and <a href="https://iconduck.com" target="_blank">Iconduck</a>. Sounds from <a href="https://pixabay.com" target="_blank">Pixabay</a>.</p>
               <p style="text-align:center; margin: 10px 0 0 0;">
                 <b class="about-author-container">
                   Brought to you by 
@@ -249,6 +259,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>1st Dec, 2024</h3>
+              <ul>
+                <li>Implemented a white noise player to help you focus. You can mix and match the following noises currently: <b>Coffee Shop</b>, <b>Rain</b>, <b>Fireside</b> and <b>White Noise</b>.</li>
+              </ul>
+
               <h4>15th Nov, 2024</h3>
               <ul>
                 <li>Added support for toggling <a href="https://fonts.google.com/knowledge/glossary/monospaced" target="_blank">monospaced fonts</a> through preferences.</li>
@@ -531,6 +546,55 @@
     </div>
   </div>
 
+  <!-- White Noise Modal -->
+  <div id="whiteNoiseModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title custom-modal-title">White Noise</h4>
+        </div>
+        <div class="modal-body">
+          <div class="sound-buttons">
+            <div class="sound-button" data-sound="coffee-shop">
+              <svg fill="#000000" width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M25.478516 1.9277344 A 1.50015 1.50015 0 0 0 24.001953 3.4472656C24.001953 5.4472656 23.314453 5.7773438 22.064453 6.7773438C20.814453 7.7773438 19.001953 9.4472652 19.001953 12.447266 A 1.50015 1.50015 0 1 0 22.001953 12.447266C22.001953 10.447266 22.6875 10.119141 23.9375 9.1191406C25.1875 8.1191406 27.001953 6.4472656 27.001953 3.4472656 A 1.50015 1.50015 0 0 0 25.478516 1.9277344 z M 31.478516 3.9277344 A 1.50015 1.50015 0 0 0 30.001953 5.4472656C30.001953 6.1972656 29.854916 6.5110368 29.650391 6.8007812C29.445865 7.0905258 29.101563 7.3730469 28.601562 7.7480469C28.101562 8.1230469 27.445865 8.5905258 26.900391 9.3632812C26.354916 10.136037 26.001953 11.197266 26.001953 12.447266 A 1.50015 1.50015 0 1 0 29.001953 12.447266C29.001953 11.697266 29.147037 11.383494 29.351562 11.09375C29.556089 10.804006 29.900391 10.523438 30.400391 10.148438C30.900391 9.773437 31.556089 9.3040055 32.101562 8.53125C32.647038 7.7584945 33.001953 6.6972656 33.001953 5.4472656 A 1.50015 1.50015 0 0 0 31.478516 3.9277344 z M 14.615234 15.947266C13.643234 15.947266 12.708828 16.356359 12.048828 17.068359C11.388828 17.781359 11.052953 18.745844 11.126953 19.714844L12.533203 38.021484C12.832203 41.904484 16.117719 44.947266 20.011719 44.947266L27.900391 44.947266C31.795391 44.947266 35.080906 41.904484 35.378906 38.021484L35.384766 37.947266L37.501953 37.947266C41.626454 37.947266 45.001953 34.571767 45.001953 30.447266L45.001953 25.447266C45.001953 23.532311 43.416908 21.947266 41.501953 21.947266L36.613281 21.947266L36.785156 19.716797C36.859156 18.748797 36.524234 17.784313 35.865234 17.070312C35.204234 16.357312 34.268875 15.947266 33.296875 15.947266L14.615234 15.947266 z M 36.382812 24.947266L41.501953 24.947266C41.796998 24.947266 42.001953 25.15222 42.001953 25.447266L42.001953 30.447266C42.001953 32.950765 40.005452 34.947266 37.501953 34.947266L35.615234 34.947266L36.382812 24.947266 z"></path></g></svg>
+              <span>Coffee Shop</span>
+              <div class="volume-control">
+                <input type="range" min="0" max="100" value="70" class="volume-slider">
+              </div>
+            </div>
+            <div class="sound-button" data-sound="rain">
+              <svg fill="#000000" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rain-alt" class="icon glyph"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21,9a4,4,0,0,1-4,4H6A3,3,0,1,1,7.08,7.21a5,5,0,0,1,9-2.09A4.08,4.08,0,0,1,17,5,4,4,0,0,1,21,9ZM16.89,21.45l2-4a1,1,0,1,0-1.78-.9l-2,4a1,1,0,0,0,.44,1.34A.93.93,0,0,0,16,22,1,1,0,0,0,16.89,21.45Zm-8,0,2-4a1,1,0,1,0-1.78-.9l-2,4a1,1,0,0,0,.44,1.34A.93.93,0,0,0,8,22,1,1,0,0,0,8.89,21.45Zm5-2,1-2a1,1,0,1,0-1.78-.9l-1,2a1,1,0,0,0,.44,1.34A.93.93,0,0,0,13,20,1,1,0,0,0,13.89,19.45Zm-8,0,1-2a1,1,0,0,0-1.78-.9l-1,2a1,1,0,0,0,.44,1.34A.93.93,0,0,0,5,20,1,1,0,0,0,5.89,19.45Z"></path></g></svg>
+              <span>Rain</span>
+              <div class="volume-control">
+                <input type="range" min="0" max="100" value="70" class="volume-slider">
+              </div>
+            </div>
+            <div class="sound-button" data-sound="fireside">
+              <svg width="24" height="24" viewBox="0 0 24 24" id="Flat_Color" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="primary" d="M17.4,8.38A7.1,7.1,0,0,1,15,3a1,1,0,0,0-1.55-.83,10.89,10.89,0,0,0-5,6.73A4.37,4.37,0,0,1,8,7.77,1,1,0,0,0,7.27,7a1,1,0,0,0-1,.25C5,8.58,4,12,4,14c0,5.08,2.92,8,8,8s8-3,8-8C20,11.22,18.62,9.71,17.4,8.38Z" style="fill:#000000"></path></g></svg>
+              <span>Fireside</span>
+              <div class="volume-control">
+                <input type="range" min="0" max="100" value="70" class="volume-slider">
+              </div>
+            </div>
+            <div class="sound-button" data-sound="white-noise">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5zm-2 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm-6 1.5A.5.5 0 0 1 5 6v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm8 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5z"/>
+              </svg>
+              <span>White Noise</span>
+              <div class="volume-control">
+                <input type="range" min="0" max="100" value="70" class="volume-slider">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     if (localStorage.getItem('mode')) {
       if (localStorage.getItem('mode') == 'dark') {
@@ -565,6 +629,7 @@
   <script src="js/utils.js"></script>
   <script src="js/selector.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/white-noise-player.js"></script>
   
   <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
