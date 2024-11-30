@@ -1188,12 +1188,12 @@ a {
   opacity: 0.7;
 }
 
-.sound-button.loading::after {
+.sound-button.loading::before {
   content: '';
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
+  right: 122px;
   border: 2px solid #2196f3;
   border-top-color: transparent;
   border-radius: 50%;
@@ -1207,7 +1207,7 @@ a {
 }
 
 /* Dark mode loading state */
-.dark-mode .sound-button.loading::after {
+.dark-mode .sound-button.loading::before {
   border-color: #64b5f6;
   border-top-color: transparent;
 }
