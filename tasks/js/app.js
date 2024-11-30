@@ -18,16 +18,16 @@ $(document).ready(function() {
         
         $('#affiliateText').text(affiliate.text);
         $('#affiliateLink').attr('href', affiliate.url);
-        $('#affiliatePopup').fadeIn();
+        $('#affiliatePopup').addClass('show');
     }
 
     // Close affiliate popup
     $('#closeAffiliatePopup').on('click', function() {
-        $('#affiliatePopup').fadeOut();
+        $('#affiliatePopup').removeClass('show');
     });
 
     // Show affiliate popup after a delay
-    setTimeout(showRandomAffiliateLink, 2000);
+    setTimeout(showRandomAffiliateLink, 5000);
 
     $('#taskInput').focus();
     loadTasks();

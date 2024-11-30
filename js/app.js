@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
 
     // Show affiliate popup after a delay
-    setTimeout(showRandomAffiliateLink, 2000);
+    setTimeout(showRandomAffiliateLink, 5000);
 	
 	const welcomeText = `Welcome! This is an offline-capable Notepad which is a Progressive Web App.
 
