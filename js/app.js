@@ -42,7 +42,7 @@ The app serves the following features:
 - Full-screen mode for a distraction-free writing experience.
 - Floating window (in supported browsers) to effectively take notes across other apps.
 - Download notes as PDF or plain text.
-- Ability to play white noise to help you focus.
+- Ability to play ambient noise to help you focus.
 - It's proudly open-source!
 
 CAUTION: Since the app uses the browser's localStorage to store your notes, 
@@ -314,70 +314,70 @@ there's a small donate button in the About section.
 	// button if the browser supports it
 	if ('documentPictureInPicture' in window) {
 		$('#pipContainer').show();
-	}
 
-	pipButton.addEventListener('click', async() => {
-		const appTextarea = document.getElementById("textareaContainer");
+		pipButton.addEventListener('click', async() => {
+			const appTextarea = document.getElementById("textareaContainer");
 
-		// Open a Picture-in-Picture window.
-		const pipWindow = await documentPictureInPicture.requestWindow({
-			width: 350,
-			height: 500,
+			// Open a Picture-in-Picture window.
+			const pipWindow = await documentPictureInPicture.requestWindow({
+				width: 350,
+				height: 500,
+			});
+
+			[...document.styleSheets].forEach((styleSheet) => {
+				try {
+					const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
+					const style = document.createElement('style');
+			
+					style.textContent = cssRules;
+					pipWindow.document.head.appendChild(style);
+				} catch (e) {
+					const link = document.createElement('link');
+			
+					link.rel = 'stylesheet';
+					link.type = styleSheet.type;
+					link.media = styleSheet.media;
+					link.href = styleSheet.href;
+					pipWindow.document.head.appendChild(link);
+				}
+			});
+
+			// Move the textarea to the Picture-in-Picture window.
+			pipWindow.document.body.append(appTextarea);
+
+			// Move the textarea back when the Picture-in-Picture window closes.
+			pipWindow.addEventListener("pagehide", (event) => {
+				const mainContainer = document.querySelector("#mainContainer");
+				const textareaContainer = event.target.querySelector("#textareaContainer");
+				const overlay = document.querySelector(".overlay");
+				mainContainer.append(textareaContainer);
+				mainContainer.classList.remove("pip");
+
+				overlay.style.display = "none";
+				overlay.style.pointerEvents = "none"; 
+
+				textareaContainer.classList.remove("dark");
+			});
 		});
 
-		[...document.styleSheets].forEach((styleSheet) => {
-			try {
-				const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
-				const style = document.createElement('style');
-		
-				style.textContent = cssRules;
-				pipWindow.document.head.appendChild(style);
-			} catch (e) {
-				const link = document.createElement('link');
-		
-				link.rel = 'stylesheet';
-				link.type = styleSheet.type;
-				link.media = styleSheet.media;
-				link.href = styleSheet.href;
-				pipWindow.document.head.appendChild(link);
-			}
-		  });
-
-		// Move the textarea to the Picture-in-Picture window.
-		pipWindow.document.body.append(appTextarea);
-
-		// Move the textarea back when the Picture-in-Picture window closes.
-		pipWindow.addEventListener("pagehide", (event) => {
-			const mainContainer = document.querySelector("#mainContainer");
-			const textareaContainer = event.target.querySelector("#textareaContainer");
+		documentPictureInPicture.addEventListener("enter", (event) => {
+			const playerContainer = document.querySelector("#mainContainer");
+			const textareaContainer = document.querySelector("#textareaContainer");
 			const overlay = document.querySelector(".overlay");
-			mainContainer.append(textareaContainer);
-			mainContainer.classList.remove("pip");
+			
+			playerContainer.classList.add("pip");
+			overlay.style.display = "block";
+			overlay.style.pointerEvents = "all";
 
-			overlay.style.display = "none";
-			overlay.style.pointerEvents = "none"; 
+			if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark') {
+				textareaContainer.classList.add("dark");
+			}
 
-			textareaContainer.classList.remove("dark");
+			if (!localStorage.getItem('mode') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				textareaContainer.classList.add("dark");
+			}
 		});
-	});
-
-	documentPictureInPicture.addEventListener("enter", (event) => {
-		const playerContainer = document.querySelector("#mainContainer");
-		const textareaContainer = document.querySelector("#textareaContainer");
-		const overlay = document.querySelector(".overlay");
-		
-		playerContainer.classList.add("pip");
-		overlay.style.display = "block";
-		overlay.style.pointerEvents = "all";
-
-		if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark') {
-			textareaContainer.classList.add("dark");
-		}
-
-		if (!localStorage.getItem('mode') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			textareaContainer.classList.add("dark");
-		}
-	});
+	}
 
 	// This changes the application's theme when 
 	// user toggles device's theme preference
