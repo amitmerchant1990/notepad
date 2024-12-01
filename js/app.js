@@ -8,7 +8,14 @@ $(document).ready(function () {
 		{
             text: "❤️ Support Notepad's development — Buy me a coffee!",
             url: "https://buymeacoffee.com/amitmerchant"
-        }
+        },
+		{
+			isFeature: true,
+			isActive: true,
+			text: "New feature → Ambient Noise",
+			url: "#white-noise",
+			dataTarget: "#whiteNoiseModal"
+		}
     ];
 
     // Function to show random affiliate link
@@ -19,6 +26,12 @@ $(document).ready(function () {
         $('#affiliateText').text(affiliate.text);
         $('#affiliateLink').attr('href', affiliate.url);
         $('#affiliatePopup').addClass('show');
+
+		if (affiliate.isFeature && affiliate.isActive) {
+			$('#affiliateLink').attr('data-target', affiliate.dataTarget);
+			$('#affiliateLink').attr('data-toggle', 'modal');
+			$('#affiliateLink').removeAttr('target');
+		}
     }
 
     // Close affiliate popup

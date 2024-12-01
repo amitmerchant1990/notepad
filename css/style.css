@@ -23,6 +23,9 @@ body {
   height: 100%;
   color: #7e7d7d;
   font-weight: bold;
+  pointer-events: none;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
 
   &::after {
     content: "Floating Window is Activated";
@@ -1023,7 +1026,7 @@ a {
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 999;
   display: none;
   max-width: 300px;
   border: 1px solid #e0e0e0;
