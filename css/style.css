@@ -1246,3 +1246,27 @@ a {
   border-color: #64b5f6;
   border-top-color: transparent;
 }
+
+/* Global mute button styles */
+.global-mute-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.global-mute-button.muted svg {
+  color: #ff3333;
+}
+
+.custom-modal-title {
+  display: flex;
+  align-items: center;
+}
+
+/* Global mute button styles */
+.global-mute-button.muted svg {
+  color: #ff3333;
+}

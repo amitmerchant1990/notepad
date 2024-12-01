@@ -142,4 +142,52 @@ class WhiteNoisePlayer {
 // Initialize the player when the document is ready
 $(document).ready(() => {
     window.whiteNoisePlayer = new WhiteNoisePlayer();
+
+    // Global mute state
+	let isGlobalMuted = false;
+
+	// Function to check if any sounds are playing
+	function isAnySoundPlaying() {
+		const player = window.whiteNoisePlayer;
+		return Object.values(player.sounds).some(sound => sound.playing);
+	}
+
+	// Function to update mute button visibility
+	function updateMuteButtonVisibility() {
+		const muteButton = document.getElementById('globalMuteButton');
+		muteButton.style.display = isAnySoundPlaying() ? 'block' : 'none';
+	}
+
+	// Function to toggle global mute
+	function toggleGlobalMute() {
+		console.log('Toggling global mute');
+		isGlobalMuted = !isGlobalMuted;
+		const muteButton = document.getElementById('globalMuteButton');
+		const player = window.whiteNoisePlayer;
+		
+		// Mute/unmute all sounds
+		Object.values(player.sounds).forEach(sound => {
+			if (sound.audio) {
+				sound.audio.muted = isGlobalMuted;
+			}
+		});
+		
+		muteButton.classList.toggle('muted', isGlobalMuted);
+	}
+
+	// Add event listener for global mute button
+	const muteButton = document.getElementById('globalMuteButton');
+	if (muteButton) {
+		muteButton.addEventListener('click', toggleGlobalMute);
+		// Initially hide the mute button
+		muteButton.style.display = 'none';
+	}
+
+	// Add event listeners to sound buttons to update mute button visibility
+	document.querySelectorAll('.sound-button').forEach(button => {
+		button.addEventListener('click', () => {
+			// Wait a short moment for the sound state to update
+			setTimeout(updateMuteButtonVisibility, 100);
+		});
+	});
 });
