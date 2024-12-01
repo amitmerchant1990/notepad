@@ -19,6 +19,12 @@ class WhiteNoisePlayer {
                 playing: false,
                 loading: false
             },
+            'singing-bowl': {
+                url: 'sounds/singing-bowl.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
             'white-noise': {
                 url: 'sounds/white-noise.mp3',
                 audio: null,
