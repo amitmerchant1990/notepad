@@ -13,6 +13,12 @@ class WhiteNoisePlayer {
                 playing: false,
                 loading: false
             },
+            'thunder': {
+                url: 'sounds/thunder.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
             'fireside': {
                 url: 'sounds/fireside.mp3',
                 audio: null,
@@ -21,6 +27,12 @@ class WhiteNoisePlayer {
             },
             'singing-bowl': {
                 url: 'sounds/singing-bowl.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'train': {
+                url: 'sounds/train.mp3',
                 audio: null,
                 playing: false,
                 loading: false
