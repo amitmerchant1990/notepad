@@ -19,8 +19,20 @@ class WhiteNoisePlayer {
                 playing: false,
                 loading: false
             },
+            'waves': {
+                url: 'sounds/waves.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
             'fireside': {
                 url: 'sounds/fireside.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'crickets': {
+                url: 'sounds/crickets.mp3',
                 audio: null,
                 playing: false,
                 loading: false
