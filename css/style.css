@@ -974,6 +974,17 @@ a {
   padding-left: 8px;
 }
 
+@media (max-width: 412px) {
+  .nav>li>a {
+    padding: 10px 10px;
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 766px) {
   .dark textarea {
     border-right: 1px solid #0d1117;
