@@ -33,6 +33,7 @@ function selector() {
             moreTools: selectById('moreTools'),
             downloadNotesPlain: selectById('downloadNotesPlain'),
             downloadNotesPdf: selectById('downloadNotesPdf'),
+            downloadNotesDocx: selectById('downloadNotesDocx'),
             fontSize: selectById('fontSize'),
             fontWeight: selectById('fontWeight'),
             installApp: selectById('installApp'),

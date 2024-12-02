@@ -6,6 +6,10 @@ function getPdfFileName() {
     return 'Notes-' + getCurrentDate() + '.pdf';
 }
 
+function getDocxFileName() {
+    return 'Notes-' + getCurrentDate() + '.docx';
+}
+
 function getCurrentDate() {
     const currentDate = new Date();
 
@@ -262,4 +266,30 @@ function exportNotesAsPDF(textToWrite, fileNameToSaveAs) {
     });
     
     pdf.save(fileNameToSaveAs);
+}
+
+function exportNotesAsDocx(textToWrite, fileNameToSaveAs) {
+    const doc = new docx.Document({
+        sections: [{
+            properties: {},
+            children: [
+                new docx.Paragraph({
+                    children: [
+                        new docx.TextRun({
+                            text: textToWrite,
+                        }),
+                    ],
+                }),
+            ],
+        }]
+    });
+
+    docx.Packer.toBlob(doc).then(blob => {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(blob);
+        downloadLink.download = fileNameToSaveAs;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    });
 }

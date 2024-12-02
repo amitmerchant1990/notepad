@@ -77,6 +77,7 @@
             <div id="iconDropdown" class="dropdown-menu">
               <li><a class="dropdown-item" id="downloadNotesPlain">Download as plain text</a></li>
               <li><a class="dropdown-item" id="downloadNotesPdf">Download as PDF</a></li>
+              <li><a class="dropdown-item" id="downloadNotesDocx">Download as DOCX</a></li>
             </div>
           </span>
           <span>
@@ -210,7 +211,7 @@
                 <li><b>Full-screen mode</b> for a distraction-free writing experience.</li>
                 <li><b>Optimal line length</b> for better reading experience.</li>
                 <li><b>Floating window</b> (in supported browsers) to effectively take notes across other apps.</li>
-                <li>Download notes as <b>PDF</b> or <b>plain text</b>.</li>
+                <li>Download notes as <b>plain text</b>, <b>PDF</b>, and <b>DOCX</b>.</li>
                 <li>Ability to play <b>ambient noise</b>—coffee shop, rain, fireside, etc.—to help you focus.</li>
                 <li>It's proudly <a href="https://github.com/amitmerchant1990/notepad" target="_blank">open-source</a>!</li>
               </ul>
@@ -260,6 +261,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>2nd Dec, 2024</h3>
+              <ul>
+                <li>Implemented an ability to download the notes as a <b>DOCX</b> file.</li>
+              </ul>
+
               <h4>1st Dec, 2024</h3>
               <ul>
                 <li>Implemented a ambient noise player to help you focus. You can mix and match the following noises currently: <b>Coffee Shop</b>, <b>Rain</b>, <b>Fireside</b> and <b>White Noise</b>.</li>
@@ -689,6 +695,7 @@
   <script src="js/libraries/bootstrap.min.js"></script>
   <script src="js/libraries/sweetalert2.all.min.js"></script>
   <script src="js/libraries/jspdf.umd.min.js"></script>
+  <script src="js/libraries/docx.min.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/selector.js"></script>
   <script src="js/app.js"></script>

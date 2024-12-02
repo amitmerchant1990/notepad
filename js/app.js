@@ -54,7 +54,7 @@ The app serves the following features:
 - Light-weight - Loads almost instantly.
 - Full-screen mode for a distraction-free writing experience.
 - Floating window (in supported browsers) to effectively take notes across other apps.
-- Download notes as PDF or plain text.
+- Download notes as plain text, PDF, and DOCX file.
 - Ability to play ambient noise to help you focus.
 - It's proudly open-source!
 
@@ -206,6 +206,13 @@ there's a small donate button in the About section.
 
 	notepad.downloadNotesPdf.click(function (e) {
 		exportNotesAsPDF(note.value, getPdfFileName());
+	});
+
+	notepad.downloadNotesDocx.click(function (e) {
+		const textToWrite = note.value;
+		const fileNameToSaveAs = getDocxFileName();
+		
+		exportNotesAsDocx(textToWrite, fileNameToSaveAs);
 	});
 
 	// Close dropdown if clicked outside
