@@ -971,7 +971,7 @@ a {
 }
 
 .navbar-nav>li>a {
-  padding-left: 8px;
+  padding-left: 2px;
 }
 
 @media (max-width: 412px) {
