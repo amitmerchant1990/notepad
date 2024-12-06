@@ -37,6 +37,7 @@ I recently added a bunch of tools that I thought might go along with the regular
 - [Rich Text Notes](https://notepad.js.org/rich-text-notes/)
 - [Markdown Editor](https://notepad.js.org/markdown-editor/)
 - [Pomodoro Timer](https://notepad.js.org/pomodoro-timer/)
+- [Voice Notes](https://notepad.js.org/voice-notes/)
 - [Tasks](https://notepad.js.org/tasks/)
 
 > [!IMPORTANT]
