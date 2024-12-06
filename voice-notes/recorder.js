@@ -13,6 +13,7 @@ class VoiceRecorder {
         this.recordingStatus = document.getElementById('recordingStatus');
         this.recordingTime = document.getElementById('recordingTime');
         this.recordingsList = document.getElementById('recordings');
+        this.emptyState = document.getElementById('emptyState');
 
         this.initializeDB();
         this.setupEventListeners();
@@ -51,9 +52,15 @@ class VoiceRecorder {
         request.onsuccess = () => {
             const recordings = request.result;
             recordings.sort((a, b) => b.timestamp - a.timestamp); // Sort by newest first
-            recordings.forEach(recording => {
-                this.createRecordingElement(recording.blob, recording.timestamp);
-            });
+            
+            if (recordings.length > 0) {
+                this.emptyState.classList.add('hidden');
+                recordings.forEach(recording => {
+                    this.createRecordingElement(recording.blob, recording.timestamp);
+                });
+            } else {
+                this.emptyState.classList.remove('hidden');
+            }
         };
     }
 
@@ -213,6 +220,7 @@ class VoiceRecorder {
         recordingItem.appendChild(recordingInfo);
         recordingItem.appendChild(buttonContainer);
         
+        this.emptyState.classList.add('hidden');
         this.recordingsList.insertBefore(recordingItem, this.recordingsList.firstChild);
     }
 
@@ -239,6 +247,14 @@ class VoiceRecorder {
 
         request.onsuccess = () => {
             element.remove();
+            
+            // Check if there are any recordings left
+            const countRequest = store.count();
+            countRequest.onsuccess = () => {
+                if (countRequest.result === 0) {
+                    this.emptyState.classList.remove('hidden');
+                }
+            };
         };
     }
 }
