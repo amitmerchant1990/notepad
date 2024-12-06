@@ -98,20 +98,58 @@ h1 {
     border: 1px solid #dee2e6;
 }
 
-.recording-item audio {
-    max-width: 70%;
+.recording-info {
+    flex: 1;
+    margin-right: 1rem;
 }
 
-.download-button {
+.recording-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.recording-item audio {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.download-button, .delete-button {
     padding: 0.5rem 1rem;
-    background-color: #2ecc71;
-    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    color: white;
+}
+
+.download-button {
+    background-color: #2ecc71;
 }
 
 .download-button:hover {
     background-color: #27ae60;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.generic-flex {
+    display: flex;
+    align-items: center;
+    gap: 2px;
 }

@@ -6,6 +6,7 @@ class VoiceRecorder {
         this.startTime = null;
         this.timerInterval = null;
         this.stream = null;
+        this.db = null;
 
         this.recordButton = document.getElementById('recordButton');
         this.stopButton = document.getElementById('stopButton');
@@ -13,7 +14,47 @@ class VoiceRecorder {
         this.recordingTime = document.getElementById('recordingTime');
         this.recordingsList = document.getElementById('recordings');
 
+        this.initializeDB();
         this.setupEventListeners();
+    }
+
+    async initializeDB() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open('VoiceNotesDB', 1);
+
+            request.onerror = () => {
+                console.error('Failed to open database');
+                reject(request.error);
+            };
+
+            request.onsuccess = () => {
+                this.db = request.result;
+                this.loadSavedRecordings();
+                resolve();
+            };
+
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains('recordings')) {
+                    const store = db.createObjectStore('recordings', { keyPath: 'timestamp' });
+                    store.createIndex('timestamp', 'timestamp', { unique: true });
+                }
+            };
+        });
+    }
+
+    async loadSavedRecordings() {
+        const transaction = this.db.transaction(['recordings'], 'readonly');
+        const store = transaction.objectStore('recordings');
+        const request = store.getAll();
+
+        request.onsuccess = () => {
+            const recordings = request.result;
+            recordings.sort((a, b) => b.timestamp - a.timestamp); // Sort by newest first
+            recordings.forEach(recording => {
+                this.createRecordingElement(recording.blob, recording.timestamp);
+            });
+        };
     }
 
     setupEventListeners() {
@@ -129,18 +170,26 @@ class VoiceRecorder {
         return new Blob([mp3Output], { type: 'audio/mp3' });
     }
 
-    async saveRecording() {
-        const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
-        const mp3Blob = await this.convertToMp3(audioBlob);
-        const audioUrl = URL.createObjectURL(mp3Blob);
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    createRecordingElement(blob, timestamp) {
+        const audioUrl = URL.createObjectURL(blob);
+        const formattedDate = new Date(timestamp).toLocaleString();
         
         const recordingItem = document.createElement('div');
         recordingItem.className = 'recording-item';
         
+        const recordingInfo = document.createElement('div');
+        recordingInfo.className = 'recording-info';
+        
+        const dateLabel = document.createElement('div');
+        dateLabel.className = 'recording-date';
+        dateLabel.textContent = formattedDate;
+        
         const audio = document.createElement('audio');
         audio.controls = true;
         audio.src = audioUrl;
+        
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'button-container';
         
         const downloadButton = document.createElement('button');
         downloadButton.className = 'download-button';
@@ -152,9 +201,45 @@ class VoiceRecorder {
             downloadLink.click();
         });
         
-        recordingItem.appendChild(audio);
-        recordingItem.appendChild(downloadButton);
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-button';
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => this.deleteRecording(timestamp, recordingItem));
+        
+        buttonContainer.appendChild(downloadButton);
+        buttonContainer.appendChild(deleteButton);
+        recordingInfo.appendChild(dateLabel);
+        recordingInfo.appendChild(audio);
+        recordingItem.appendChild(recordingInfo);
+        recordingItem.appendChild(buttonContainer);
+        
         this.recordingsList.insertBefore(recordingItem, this.recordingsList.firstChild);
+    }
+
+    async saveRecording() {
+        const audioBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+        const mp3Blob = await this.convertToMp3(audioBlob);
+        const timestamp = Date.now();
+
+        // Save to IndexedDB
+        const transaction = this.db.transaction(['recordings'], 'readwrite');
+        const store = transaction.objectStore('recordings');
+        store.add({
+            timestamp: timestamp,
+            blob: mp3Blob
+        });
+
+        this.createRecordingElement(mp3Blob, timestamp);
+    }
+
+    deleteRecording(timestamp, element) {
+        const transaction = this.db.transaction(['recordings'], 'readwrite');
+        const store = transaction.objectStore('recordings');
+        const request = store.delete(timestamp);
+
+        request.onsuccess = () => {
+            element.remove();
+        };
     }
 }
 
