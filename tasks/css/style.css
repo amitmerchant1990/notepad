@@ -481,6 +481,10 @@ footer {
   color: #333;
 }
 
+.modal-content {
+  border-radius: .7rem;
+}
+
 @keyframes slideIn {
   from {
     transform: translateY(20px);

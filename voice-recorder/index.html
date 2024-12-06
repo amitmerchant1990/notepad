@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple voice recorder and player">
+    <meta name="author" content="Amit Merchant">
+    <title>Voice Recorder | notepad.js.org</title>
+    <meta name="keywords" content="voice,recorder,player,notepad" />
+    <meta name="application-name" content="Voice Recorder" />
+
+    <meta property="og:title" content="Voice Recorder | notepad.js.org" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://notepad.js.org/voice-recorder" />
+    <meta property="og:description" content="A simple voice recorder and player" />
+    <meta property="og:image" content="https://notepad.js.org/art/voice-recorder-notepad.png" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Voice Recorder | notepad.js.org" />
+    <meta name="twitter:description" content="A simple voice recorder and player" />
+    <meta property="twitter:image" content="https://notepad.js.org/art/voice-recorder-notepad.png" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/libs/lame.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <a href="/" class="text-white text-decoration-none">Notepad</a>
+                <span class="text-white">/</span>
+                <span class="text-white">Voice Recorder</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="recorder-container mt-5 pt-4">
+        <h1>Voice Recorder</h1>
+        <div class="recorder-controls">
+            <button id="recordButton" class="control-button">
+                <span>Record</span>
+            </button>
+            <button id="stopButton" class="control-button" disabled>
+                <span>Stop</span>
+            </button>
+        </div>
+        <div class="recording-status">
+            <span id="recordingStatus"></span>
+            <div id="recordingTime" class="recording-time">00:00</div>
+        </div>
+        <div id="recordings" class="recordings-list">
+            <!-- Recorded audio items will be added here -->
+        </div>
+    </div>
+
+    <script src="js/libs/bootstrap.bundle.min.js"></script>
+    <script src="recorder.js"></script>
+</body>
+</html>
