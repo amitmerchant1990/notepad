@@ -152,6 +152,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 2px;
+    font-size: 16px;
 }
 
 .empty-state {
@@ -178,4 +179,65 @@ h1 {
 
 .empty-state.hidden {
     display: none;
+}
+
+/* Modal styles */
+.modal-container {
+    padding: 1.5rem;
+}
+
+.custom-modal-title {
+    margin: 0;
+    font-weight: bold;
+}
+
+.about-notice {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.about-author-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.about-author-link {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-icon-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.github-icon,
+.donate-icon {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.github-icon:hover,
+.donate-icon:hover {
+    opacity: 1;
+}
+
+/* Override Bootstrap modal styles */
+.modal-header {
+    border-bottom: none;
+    padding: 1rem 1.5rem;
+}
+
+.modal-footer {
+    border-top: none;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+}
+
+.btn-close:focus {
+    box-shadow: none;
 }
