@@ -96,17 +96,21 @@ h1 {
     background-color: #f8f9fa;
     border-radius: 6px;
     border: 1px solid #dee2e6;
+    gap: 1rem;
 }
 
 .recording-info {
     flex: 1;
     margin-right: 1rem;
+    width: 100%;
 }
 
 .recording-date {
     font-size: 0.9rem;
     color: #666;
     margin-bottom: 0.5rem;
+    padding: 0 6px;
+    font-weight: bold;
 }
 
 .recording-item audio {
@@ -240,4 +244,11 @@ h1 {
 
 .btn-close:focus {
     box-shadow: none;
+}
+
+/* Media queries */
+@media screen and (max-width: 767px) {
+    .recording-item {
+        flex-direction: column;
+    }
 }
