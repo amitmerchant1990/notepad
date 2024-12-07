@@ -41,7 +41,7 @@ h1 {
 .control-button {
     padding: 0.8rem 1.5rem;
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     background-color: #3498db;
     color: white;
     cursor: pointer;
