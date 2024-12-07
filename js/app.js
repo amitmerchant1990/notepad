@@ -10,12 +10,9 @@ $(document).ready(function () {
             url: "https://buymeacoffee.com/amitmerchant"
         },
 		{
-			isFeature: true,
-			isActive: true,
-			text: "New feature → Ambient Noise",
-			url: "#white-noise",
-			dataTarget: "#whiteNoiseModal"
-		}
+            text: "Introducing → 🎙️ Voice Notes",
+            url: "/voice-notes/",
+        }
     ];
 
     // Function to show random affiliate link
