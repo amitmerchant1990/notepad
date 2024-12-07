@@ -187,19 +187,71 @@ class VoiceRecorder {
         return new Blob([mp3Output], { type: 'audio/mp3' });
     }
 
+    formatTimeAgo(timestamp) {
+        const seconds = Math.floor((Date.now() - timestamp) / 1000);
+        
+        let interval = Math.floor(seconds / 31536000);
+        if (interval > 1) return interval + ' years ago';
+        if (interval === 1) return 'a year ago';
+        
+        interval = Math.floor(seconds / 2592000);
+        if (interval > 1) return interval + ' months ago';
+        if (interval === 1) return 'a month ago';
+        
+        interval = Math.floor(seconds / 86400);
+        if (interval > 1) return interval + ' days ago';
+        if (interval === 1) return 'yesterday';
+        
+        interval = Math.floor(seconds / 3600);
+        if (interval > 1) return interval + ' hours ago';
+        if (interval === 1) return 'an hour ago';
+        
+        interval = Math.floor(seconds / 60);
+        if (interval > 1) return interval + ' minutes ago';
+        if (interval === 1) return 'a minute ago';
+        
+        if (seconds < 10) return 'just now';
+        
+        return Math.floor(seconds) + ' seconds ago';
+    }
+
+    formatDate(timestamp) {
+        const date = new Date(timestamp);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'short' });
+        const year = date.getFullYear();
+        
+        // Add ordinal suffix to day
+        const suffix = ['th', 'st', 'nd', 'rd'][(day % 10 > 3) ? 0 : (day % 100 - day % 10 != 10) * day % 10];
+        
+        return `${day}${suffix} ${month}, ${year}`;
+    }
+
     createRecordingElement(blob, timestamp) {
         const audioUrl = URL.createObjectURL(blob);
-        const formattedDate = new Date(timestamp).toLocaleString();
         
         const recordingItem = document.createElement('div');
         recordingItem.className = 'recording-item';
         
-        const recordingInfo = document.createElement('div');
-        recordingInfo.className = 'recording-info';
+        const recordingHeader = document.createElement('div');
+        recordingHeader.className = 'recording-header';
         
         const dateLabel = document.createElement('div');
         dateLabel.className = 'recording-date';
-        dateLabel.textContent = formattedDate;
+        dateLabel.textContent = this.formatDate(timestamp);
+        
+        const timeAgo = document.createElement('div');
+        timeAgo.className = 'recording-time-ago';
+        timeAgo.textContent = this.formatTimeAgo(timestamp);
+        
+        // Update time every minute
+        const updateInterval = setInterval(() => {
+            if (recordingItem.isConnected) {
+                timeAgo.textContent = this.formatTimeAgo(timestamp);
+            } else {
+                clearInterval(updateInterval);
+            }
+        }, 60000);
         
         const audio = document.createElement('audio');
         audio.controls = true;
@@ -223,11 +275,14 @@ class VoiceRecorder {
         deleteButton.textContent = 'Delete';
         deleteButton.addEventListener('click', () => this.deleteRecording(timestamp, recordingItem));
         
+        recordingHeader.appendChild(dateLabel);
+        recordingHeader.appendChild(timeAgo);
+        
         buttonContainer.appendChild(downloadButton);
         buttonContainer.appendChild(deleteButton);
-        recordingInfo.appendChild(dateLabel);
-        recordingInfo.appendChild(audio);
-        recordingItem.appendChild(recordingInfo);
+        
+        recordingItem.appendChild(recordingHeader);
+        recordingItem.appendChild(audio);
         recordingItem.appendChild(buttonContainer);
         
         // Add with fade in animation
