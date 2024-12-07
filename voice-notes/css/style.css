@@ -91,12 +91,12 @@ h1 {
 .recording-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 1rem;
     background-color: #f8f9fa;
     border-radius: 6px;
     border: 1px solid #dee2e6;
     gap: 1rem;
+    will-change: opacity;
 }
 
 .recording-info {
@@ -169,6 +169,12 @@ h1 {
     text-align: center;
     border: 2px dashed #dee2e6;
     border-radius: 8px;
+    will-change: opacity;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.empty-state.hidden {
+    display: none !important;
 }
 
 .empty-state svg {
@@ -179,10 +185,6 @@ h1 {
 .empty-state p {
     font-size: 1.1rem;
     margin: 0;
-}
-
-.empty-state.hidden {
-    display: none;
 }
 
 /* Modal styles */
@@ -244,6 +246,20 @@ h1 {
 
 .btn-close:focus {
     box-shadow: none;
+}
+
+/* Slide out animation for deleting recordings */
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        max-height: 500px;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+        max-height: 0;
+    }
 }
 
 /* Media queries */

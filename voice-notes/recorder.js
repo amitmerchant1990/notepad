@@ -51,16 +51,26 @@ class VoiceRecorder {
 
         request.onsuccess = () => {
             const recordings = request.result;
-            recordings.sort((a, b) => b.timestamp - a.timestamp); // Sort by newest first
+            
+            // Sort recordings by timestamp in descending order (newest first)
+            recordings.sort((a, b) => a.timestamp - b.timestamp);
             
             if (recordings.length > 0) {
                 this.emptyState.classList.add('hidden');
+                // Clear existing recordings from UI
+                //this.recordingsList.innerHTML = '';
+                // Add recordings in sorted order
                 recordings.forEach(recording => {
                     this.createRecordingElement(recording.blob, recording.timestamp);
                 });
             } else {
                 this.emptyState.classList.remove('hidden');
             }
+        };
+
+        request.onerror = () => {
+            console.error('Error loading recordings:', request.error);
+            this.emptyState.classList.remove('hidden');
         };
     }
 
@@ -220,8 +230,17 @@ class VoiceRecorder {
         recordingItem.appendChild(recordingInfo);
         recordingItem.appendChild(buttonContainer);
         
-        this.emptyState.classList.add('hidden');
+        // Add with fade in animation
+        recordingItem.style.opacity = '0';
         this.recordingsList.insertBefore(recordingItem, this.recordingsList.firstChild);
+        
+        // Trigger reflow
+        recordingItem.offsetHeight;
+        recordingItem.style.transition = 'opacity 0.3s ease-in-out';
+        recordingItem.style.opacity = '1';
+        
+        // Hide empty state when adding a recording
+        this.emptyState.classList.add('hidden');
     }
 
     async saveRecording() {
@@ -246,15 +265,33 @@ class VoiceRecorder {
         const request = store.delete(timestamp);
 
         request.onsuccess = () => {
-            element.remove();
+            // Fade out animation
+            element.style.transition = 'opacity 0.3s ease-in-out';
+            element.style.opacity = '0';
             
-            // Check if there are any recordings left
-            const countRequest = store.count();
-            countRequest.onsuccess = () => {
-                if (countRequest.result === 0) {
-                    this.emptyState.classList.remove('hidden');
-                }
-            };
+            setTimeout(() => {
+                element.remove();
+                
+                // Create a new transaction for counting
+                const countTransaction = this.db.transaction(['recordings'], 'readonly');
+                const countStore = countTransaction.objectStore('recordings');
+                const countRequest = countStore.count();
+                
+                countRequest.onsuccess = () => {
+                    console.log('Recordings count:', countRequest.result);
+                    if (countRequest.result === 0) {
+                        // Show empty state with fade in
+                        this.emptyState.style.display = '';
+                        this.emptyState.style.opacity = '0';
+                        this.emptyState.classList.remove('hidden');
+                        
+                        // Trigger reflow
+                        this.emptyState.offsetHeight;
+                        this.emptyState.style.transition = 'opacity 0.3s ease-in-out';
+                        this.emptyState.style.opacity = '1';
+                    }
+                };
+            }, 300);
         };
     }
 }
