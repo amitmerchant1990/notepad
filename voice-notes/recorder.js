@@ -10,8 +10,8 @@ class VoiceRecorder {
 
         this.recordButton = document.getElementById('recordButton');
         this.stopButton = document.getElementById('stopButton');
-        this.recordingStatus = document.getElementById('recordingStatus');
         this.recordingTime = document.getElementById('recordingTime');
+        this.recordingDot = document.querySelector('.recording-dot');
         this.recordingsList = document.getElementById('recordings');
         this.emptyState = document.getElementById('emptyState');
 
@@ -95,7 +95,7 @@ class VoiceRecorder {
             return true;
         } catch (error) {
             console.error('Error accessing microphone:', error);
-            this.recordingStatus.textContent = 'Error: Microphone access denied';
+            this.recordingDot.classList.remove('active');
             return false;
         }
     }
@@ -112,7 +112,7 @@ class VoiceRecorder {
         
         this.recordButton.disabled = true;
         this.stopButton.disabled = false;
-        this.recordingStatus.textContent = 'Recording...';
+        this.recordingDot.classList.add('active');
         
         this.startTime = Date.now();
         this.updateTimer();
@@ -130,7 +130,7 @@ class VoiceRecorder {
         this.isRecording = false;
         this.recordButton.disabled = false;
         this.stopButton.disabled = true;
-        this.recordingStatus.textContent = '';
+        this.recordingDot.classList.remove('active');
         
         clearInterval(this.timerInterval);
         this.recordingTime.textContent = '00:00';

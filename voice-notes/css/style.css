@@ -77,8 +77,43 @@ h1 {
 .recording-time {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #e74c3c;
-    margin-top: 0.5rem;
+    color: #333;
+    margin: 1rem 0;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.recording-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    display: none;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.recording-dot.active {
+    display: block;
+    animation: breathe 1.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0% {
+        transform: translateY(-50%) scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-50%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50%) scale(0.8);
+        opacity: 0.5;
+    }
 }
 
 .recordings-list {
