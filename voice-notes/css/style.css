@@ -306,3 +306,53 @@ h1 {
         flex-direction: column;
     }
 }
+
+.notes-container {
+    position: relative;
+}
+
+.recording-notes {
+    width: 100%;
+    margin: 0.75rem 0;
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-height: 70px;
+    resize: vertical;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.recording-notes:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+}
+
+.notes-saved {
+    position: absolute;
+    right: 5px;
+    bottom: 24px;
+    font-size: 0.7rem;
+    color: #198754;
+    background: rgb(255 255 255 / 98%);
+    padding: 3px 6px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    box-shadow: 1px 1px 4px 1px #00000036;
+}
+
+.notes-saved i {
+    font-size: 0.9rem;
+}
+
+.notes-saved.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
