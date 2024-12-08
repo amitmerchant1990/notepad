@@ -34,40 +34,53 @@ h1 {
 .recorder-controls {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
-.control-button {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 20px;
-    background-color: #3498db;
-    color: white;
-    cursor: pointer;
+.record-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
 }
 
-#stopButton:not(:disabled) {
-    background-color: #e74c3c;
+.record-btn:not(.recording) {
+    background-color: #0d6efd;
+    color: white;
 }
 
-#stopButton:not(:disabled):hover {
-    background-color: #c0392b;
+.record-btn:not(.recording) .stop-icon {
+    display: none;
 }
 
-.control-button:disabled {
-    background-color: #bdc3c7;
+.record-btn:not(.recording) .record-icon {
+    display: inline-block;
+}
+
+.record-btn.recording {
+    background-color: #dc3545;
+    color: white;
+}
+
+.record-btn.recording .record-icon {
+    display: none;
+}
+
+.record-btn.recording .stop-icon {
+    display: inline-block;
+}
+
+.record-btn:disabled {
+    opacity: 0.6;
     cursor: not-allowed;
 }
 
-.control-button:not(:disabled):hover {
-    background-color: #2980b9;
-}
-
-#recordButton:not(:disabled):hover {
-    background-color: #2980b9;
+.record-btn i {
+    font-size: 1.2rem;
 }
 
 .recording-status {
@@ -85,11 +98,11 @@ h1 {
 }
 
 .recording-dot {
+    display: none;
     width: 10px;
     height: 10px;
     background-color: #dc3545;
     border-radius: 50%;
-    display: none;
     position: absolute;
     left: -20px;
     top: 50%;

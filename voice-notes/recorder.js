@@ -10,7 +10,7 @@ class VoiceRecorder {
         this.saveTimeout = null;
 
         this.recordButton = document.getElementById('recordButton');
-        this.stopButton = document.getElementById('stopButton');
+        this.recordButtonText = this.recordButton.querySelector('.button-text');
         this.recordingTime = document.getElementById('recordingTime');
         this.recordingDot = document.querySelector('.recording-dot');
         this.recordingsList = document.getElementById('recordings');
@@ -83,8 +83,13 @@ class VoiceRecorder {
     }
 
     setupEventListeners() {
-        this.recordButton.addEventListener('click', () => this.startRecording());
-        this.stopButton.addEventListener('click', () => this.stopRecording());
+        this.recordButton.addEventListener('click', () => {
+            if (this.isRecording) {
+                this.stopRecording();
+            } else {
+                this.startRecording();
+            }
+        });
     }
 
     async initializeRecorder() {
@@ -118,8 +123,8 @@ class VoiceRecorder {
         this.mediaRecorder.start();
         this.isRecording = true;
         
-        this.recordButton.disabled = true;
-        this.stopButton.disabled = false;
+        this.recordButton.classList.add('recording');
+        this.recordButtonText.textContent = 'Stop recording';
         this.recordingDot.classList.add('active');
         
         this.startTime = Date.now();
@@ -136,8 +141,8 @@ class VoiceRecorder {
         }
         
         this.isRecording = false;
-        this.recordButton.disabled = false;
-        this.stopButton.disabled = true;
+        this.recordButton.classList.remove('recording');
+        this.recordButtonText.textContent = 'Start recording';
         this.recordingDot.classList.remove('active');
         
         clearInterval(this.timerInterval);
