@@ -15,6 +15,7 @@ class VoiceRecorder {
         this.recordingDot = document.querySelector('.recording-dot');
         this.recordingsList = document.getElementById('recordings');
         this.emptyState = document.getElementById('emptyState');
+        this.processingLoader = document.getElementById('processingLoader');
 
         this.initializeDB();
         this.setupEventListeners();
@@ -141,6 +142,12 @@ class VoiceRecorder {
         
         clearInterval(this.timerInterval);
         this.recordingTime.textContent = '00:00';
+
+        // Show processing loader if recording is longer than 10 seconds
+        const recordingDuration = (Date.now() - this.startTime) / 1000;
+        if (recordingDuration > 10) {
+            this.processingLoader.classList.remove('hidden');
+        }
     }
 
     updateTimer() {
@@ -289,7 +296,7 @@ class VoiceRecorder {
         
         const notesArea = document.createElement('textarea');
         notesArea.className = 'recording-notes';
-        notesArea.placeholder = 'Add notes about this voice note...';
+        notesArea.placeholder = 'Add notes about this recording...';
         notesArea.value = notes;
         
         const saveIndicator = document.createElement('div');
@@ -381,6 +388,9 @@ class VoiceRecorder {
             
         } catch (error) {
             console.error('Error saving recording:', error);
+        } finally {
+            // Hide processing loader
+            this.processingLoader.classList.add('hidden');
         }
     }
 
