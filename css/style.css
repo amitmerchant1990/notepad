@@ -79,17 +79,19 @@ textarea {
 
 kbd {
   display: inline-block;
-  margin: 0 0.1em;
-  padding: 0.1em 0.6em;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  padding: 3px 10px;
   font-size: 11px;
+  font-family: 'Roboto Mono', monospace;
+  color: #333;
+  background: linear-gradient(to bottom, #f8f8f8, #e0e0e0);
+  border: 2px solid #c8c8c8;
+  border-radius: 4px;
+  box-shadow: 0 4px #b0b0b0, inset 0 -2px 4px rgba(0, 0, 0, 0.1), inset 0 3px 6px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  margin: 0 4px;
   line-height: 1.4;
-  color: #242729;
-  text-shadow: 0 1px 0 #fff;
-  background-color: #e1e3e5;
-  border: 1px solid #adb3b9;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 rgb(12 13 14 / 20%), 0 0 0 2px #fff inset;
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-weight: bold;
   white-space: nowrap;
 }
 
@@ -105,6 +107,7 @@ table tr {
   background-color: var(--dough-white);
   margin: 0;
   padding: 10px;
+  align-items: center;
 }
 
 table tr:nth-child(n+2) {
@@ -116,6 +119,9 @@ table tr td {
   margin: 0;
   padding: 6px 13px;
   width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .about-icon-container {
