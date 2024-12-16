@@ -52,6 +52,7 @@ function selector() {
             fullScreenButton: selectById('fullScreenButton'),
             optimalLineLength: selectById('optimalLineLength'),
             monospaced: selectById('monospaced'),
+            shareNotes: selectById('shareNotes'),
         },
         state: {
             note: getState('note'),

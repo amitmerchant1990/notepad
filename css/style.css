@@ -1174,6 +1174,14 @@ a {
   right: 10px;
 }
 
+#shareNotesContainer {
+  display: none;
+}
+
+#shareNotes {
+  cursor: pointer;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);

@@ -325,6 +325,16 @@ there's a small donate button in the About section.
 		}
 	});
 
+	if (navigator.share) {
+		$('#shareNotesContainer').show();
+	}
+
+	notepad.shareNotes.click(function (e) {
+		e.stopPropagation();
+		const textToShare = note.value;
+		shareNotes(textToShare);
+	});
+
 	const pipButton = document.getElementById('pip');
 
 	// Only show the Picture-in-Picture 

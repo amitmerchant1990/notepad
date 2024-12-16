@@ -293,3 +293,14 @@ function exportNotesAsDocx(textToWrite, fileNameToSaveAs) {
         document.body.removeChild(downloadLink);
     });
 }
+
+function shareNotes(textToShare) {
+    if (navigator.share) {
+        navigator.share({
+            text: textToShare,
+            url: 'https://notepad.js.org',
+        })
+        .then( () => console.log("Successful share"))
+        .catch(e => console.log("Error sharing:", e))
+    }
+}
