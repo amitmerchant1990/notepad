@@ -83,7 +83,7 @@ kbd {
   font-size: 11px;
   font-family: 'Roboto Mono', monospace;
   color: #333;
-  background: linear-gradient(to bottom, #f8f8f8, #e0e0e0);
+  background: #fff;
   border: 2px solid #c8c8c8;
   border-radius: 4px;
   box-shadow: 0 4px #b0b0b0, inset 0 -2px 4px rgba(0, 0, 0, 0.1), inset 0 3px 6px rgba(255, 255, 255, 0.8);
