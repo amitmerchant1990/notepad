@@ -325,7 +325,7 @@ there's a small donate button in the About section.
 		}
 	});
 
-	if (navigator.share && navigator.canShare) {
+	if (navigator.share && window.self === window.top) {
 		$('#shareNotesContainer').show();
 	}
 
