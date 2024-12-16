@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v21';
+let CACHE_VERSION = 'app-v23';
 let CACHE_FILES = [
     '/',
     'index.html',
@@ -23,7 +23,12 @@ let CACHE_FILES = [
     'img/navbar/delete.svg',
     'img/navbar/download.svg',
     'img/navbar/dark-theme.svg',
-    'img/navbar/light-theme.svg'
+    'img/navbar/light-theme.svg',
+    'img/navbar/music.svg',
+    'img/navbar/pip.svg',
+    'img/navbar/preferences.svg',
+    'img/navbar/share.svg',
+    'img/navbar/dropdown.svg'
 ];
 
 self.addEventListener('install', function (event) {
