@@ -192,7 +192,9 @@ $(document).ready(() => {
 	function toggleGlobalMute() {
 		console.log('Toggling global mute');
 		isGlobalMuted = !isGlobalMuted;
-		const muteButton = document.getElementById('globalMuteButton');
+		const playingIcon = document.getElementById('globalPlayingIcon');
+        const globalMuteIcon = document.getElementById('globalMuteIcon');
+
 		const player = window.whiteNoisePlayer;
 		
 		// Mute/unmute all sounds
@@ -202,7 +204,13 @@ $(document).ready(() => {
 			}
 		});
 		
-		muteButton.classList.toggle('muted', isGlobalMuted);
+		if (isGlobalMuted) {
+            playingIcon.style.display = 'none';
+            globalMuteIcon.style.display = 'block';
+        } else {
+            playingIcon.style.display = 'block';
+            globalMuteIcon.style.display = 'none';
+        }
 	}
 
 	// Add event listener for global mute button
