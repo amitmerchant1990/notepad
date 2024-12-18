@@ -395,9 +395,8 @@ table tr td {
   display: inline-block;
   background: #e0ceff;
   bottom: 12px;
-  right: 0;
+  right: 1.4em;
   margin-left: auto;
-  margin-right: 3%;
   padding: 5px 14px;
   border-radius: 20px;
   color: #403333;
