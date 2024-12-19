@@ -8,10 +8,6 @@ $(document).ready(function () {
 		{
             text: "❤️ Support Notepad's development — Buy me a coffee!",
             url: "https://buymeacoffee.com/amitmerchant"
-        },
-		{
-            text: "Introducing → 🎙️ Voice Notes",
-            url: "/voice-notes/",
         }
     ];
 
