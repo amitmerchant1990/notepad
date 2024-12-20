@@ -651,6 +651,30 @@ a {
   align-items: center;
 }
 
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.about-modal {
+  position: relative;
+}
+
+.about-modal-logo {
+  position: absolute;
+  right: 0px;
+  top: 60px;
+  transform: rotate(6deg);
+  opacity: 0.09;
+}
+
+@media screen and (max-width: 591px) {
+  .about-modal-logo {
+    display: none;
+  } 
+}
+
 .checkbox.checbox-switch {
   padding-left: 0;
 }

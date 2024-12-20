@@ -190,10 +190,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title custom-modal-title">Notepad — Offline capable</h4>
-          <span class="install-app-btn-container">
-            <a id="installApp" class="install-app-btn" href="javascript:void(0);">Install</a>
-          </span>
+          <div class="brand-container">
+            <h4 class="modal-title custom-modal-title">Notepad — Offline capable</h4>
+            <span class="install-app-btn-container">
+              <a id="installApp" class="install-app-btn" href="javascript:void(0);">Install</a>
+            </span>
+          </div>
         </div>
         <div class="modal-body modal-container">
           <ul class="nav nav-tabs" role="tablist">
@@ -211,7 +213,8 @@
               </li>
           </ul>
           <div class="tab-content">
-            <div id="about" class="container tab-pane active in">
+            <div id="about" class="about-modal container tab-pane active in">
+              <img class="about-modal-logo" src="img/icon-196.png" alt="Notepad logo" width="160" height="160">
               <p>This is an offline-capable Notepad which is a <a href="https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/" target="_blank">Progressive Web App</a> as well.</p>
               <p>The app serves the following features:</p>
               <ul>
