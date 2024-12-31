@@ -54,6 +54,24 @@ class WhiteNoisePlayer {
                 audio: null,
                 playing: false,
                 loading: false
+            },
+            'keyboard': {
+                url: 'sounds/keyboard.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'wind-chimes': {
+                url: 'sounds/wind-chimes.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'clock': {
+                url: 'sounds/clock.mp3',
+                audio: null,
+                playing: false,
+                loading: false
             }
         };
         
