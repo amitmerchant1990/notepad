@@ -225,6 +225,7 @@
                 <li><b>Light-weight</b> — Loads almost instantly.</li>
                 <li><b>Full-screen mode</b> for a distraction-free writing experience.</li>
                 <li><b>Optimal line length</b> for better reading experience.</li>
+                <li>Supports <b>monospaced</b> and <b>dyslexic fonts</b>.</li>
                 <li><b>Floating window</b> (in supported browsers) to effectively take notes across other apps.</li>
                 <li>Download notes as <b>plain text</b>, <b>PDF</b>, and <b>DOCX</b>.</li>
                 <li>Ability to play <b>ambient noise</b>—coffee shop, rain, fireside, etc.— in the background to help you stay focused.</li>
@@ -279,6 +280,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>1st Jan, 2025</h3>
+              <ul>
+                <li>Added support for <a href="https://en.wikipedia.org/wiki/OpenDyslexic" target="_blank">dyslexic fonts</a> for people with dyslexia read easily.</li>
+              </ul>
+
               <h4>31st Dec, 2024</h3>
               <ul>
                 <li>Added three more ambient sounds: <b>Clock</b>, <b>Wind Chimes</b> and <b>Keyboard</b>.</li>
@@ -541,6 +547,24 @@
               <div class="checkbox checbox-switch">
                 <label>
                     <input type="checkbox" name="monospaced" id="monospaced" checked="checked" />
+                    <span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-6 col-md-6 generic-flex">
+              Dyslexic font
+              <a href="#" data-toggle="tooltip" title="Dyslexic font is a typeface designed to help people with dyslexia read more easily.">
+                <img src="img/tooltip.svg" alt="Tooltip Icon" />               
+              </a>
+            </label>
+            
+            <div class="col-sm-6 col-md-4">
+              <div class="checkbox checbox-switch">
+                <label>
+                    <input type="checkbox" name="dyslexic" id="dyslexic" />
                     <span></span>
                 </label>
               </div>

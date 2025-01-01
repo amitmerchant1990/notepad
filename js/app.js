@@ -499,6 +499,44 @@ there's a small donate button in the About section.
 			toggleFocusMode(notepad);
 		}
 	};
+
+	// Get dyslexic font preference from localStorage
+	const dyslexicFontEnabled = localStorage.getItem('dyslexicFont') === 'true';
+	const dyslexicFontCheckbox = document.getElementById('dyslexic');
+	const monospacedCheckbox = document.getElementById('monospaced');
+
+	dyslexicFontCheckbox.checked = dyslexicFontEnabled;
+	if (dyslexicFontEnabled) {
+	  notepad.note.addClass('dyslexic');
+	  monospacedCheckbox.checked = false;
+	  notepad.note.removeClass('monospaced');
+	}
+
+	// Toggle dyslexic font
+	dyslexicFontCheckbox.addEventListener('change', (e) => {
+	  if (e.target.checked) {
+		notepad.note.addClass('dyslexic');
+		monospacedCheckbox.checked = false;
+		notepad.note.removeClass('monospaced');
+		localStorage.setItem('monospacedFont', 'false');
+	  } else {
+		notepad.note.removeClass('dyslexic');
+	  }
+	  localStorage.setItem('dyslexicFont', e.target.checked);
+	});
+
+	// Update monospaced checkbox handler to turn off dyslexic font
+	monospacedCheckbox.addEventListener('change', (e) => {
+	  if (e.target.checked) {
+		notepad.note.addClass('monospaced');
+		dyslexicFontCheckbox.checked = false;
+		notepad.note.removeClass('dyslexic');
+		localStorage.setItem('dyslexicFont', 'false');
+	  } else {
+		notepad.note.removeClass('monospaced');
+	  }
+	  localStorage.setItem('monospacedFont', e.target.checked);
+	});
 });
 
 document.addEventListener("fullscreenchange", function () {

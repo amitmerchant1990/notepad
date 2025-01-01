@@ -1339,3 +1339,18 @@ a {
 .global-mute-button.muted svg {
   color: #ff3333;
 }
+
+/* Import OpenDyslexic font */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('../fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Dyslexic font class */
+.dyslexic {
+  font-family: 'OpenDyslexic', sans-serif !important;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}

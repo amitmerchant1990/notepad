@@ -16,6 +16,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - **"Add To Home Screen"** feature on Android supported devices to launch the app from home screen.
   - Editor padding.
   - Font settings.
+  - Supports **monospaced** and **dyslexic fonts**.
   - Word and character count.
   - Minimal UI.
   - Keyboard shortcuts for common actions.
