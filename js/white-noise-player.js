@@ -243,7 +243,7 @@ $(document).ready(() => {
 	document.querySelectorAll('.sound-button').forEach(button => {
 		button.addEventListener('click', () => {
 			// Wait a short moment for the sound state to update
-			setTimeout(updateMuteButtonVisibility, 100);
+			setTimeout(updateMuteButtonVisibility, 300);
 		});
 	});
 });
