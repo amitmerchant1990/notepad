@@ -3,18 +3,29 @@ $(document).ready(function () {
     const affiliateLinks = [
         {
             text: "Video Tap — Effortlessly turn your videos into text-based content",
-            url: "https://videotap.com?via=amitmerchant"
+            url: "https://videotap.com?via=amitmerchant",
+			active: false
         },
 		{
             text: "❤️ Support Notepad's development — Buy me a coffee!",
-            url: "https://buymeacoffee.com/amitmerchant"
-        }
+            url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+        },
+		{
+			isFeature: true,
+			isActive: true,
+			text: "New → Try Dyslexic font",
+			url: "#preferences",
+			dataTarget: "#preferencesModal",
+			active: true
+		}
     ];
 
     // Function to show random affiliate link
     function showRandomAffiliateLink() {
-        const randomIndex = Math.floor(Math.random() * affiliateLinks.length);
-        const affiliate = affiliateLinks[randomIndex];
+		const activeAffiliates = affiliateLinks.filter(affiliate => affiliate.active);
+		const randomIndex = Math.floor(Math.random() * activeAffiliates.length);
+        const affiliate = activeAffiliates[randomIndex];
         
         $('#affiliateText').text(affiliate.text);
         $('#affiliateLink').attr('href', affiliate.url);
