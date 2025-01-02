@@ -1,16 +1,16 @@
 $(document).ready(function () {
 	// Affiliate links data
-    const affiliateLinks = [
-        {
-            text: "Video Tap — Effortlessly turn your videos into text-based content",
-            url: "https://videotap.com?via=amitmerchant",
-			active: false
-        },
+	const affiliateLinks = [
 		{
-            text: "❤️ Support Notepad's development — Buy me a coffee!",
-            url: "https://buymeacoffee.com/amitmerchant",
+			text: "Video Tap — Effortlessly turn your videos into text-based content",
+			url: "https://videotap.com?via=amitmerchant",
+			active: false
+		},
+		{
+			text: "❤️ Support Notepad's development — Buy me a coffee!",
+			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
-        },
+		},
 		{
 			isFeature: true,
 			isActive: true,
@@ -19,33 +19,33 @@ $(document).ready(function () {
 			dataTarget: "#preferencesModal",
 			active: true
 		}
-    ];
+	];
 
-    // Function to show random affiliate link
-    function showRandomAffiliateLink() {
+	// Function to show random affiliate link
+	function showRandomAffiliateLink() {
 		const activeAffiliates = affiliateLinks.filter(affiliate => affiliate.active);
 		const randomIndex = Math.floor(Math.random() * activeAffiliates.length);
-        const affiliate = activeAffiliates[randomIndex];
-        
-        $('#affiliateText').text(affiliate.text);
-        $('#affiliateLink').attr('href', affiliate.url);
-        $('#affiliatePopup').addClass('show');
+		const affiliate = activeAffiliates[randomIndex];
+
+		$('#affiliateText').text(affiliate.text);
+		$('#affiliateLink').attr('href', affiliate.url);
+		$('#affiliatePopup').addClass('show');
 
 		if (affiliate.isFeature && affiliate.isActive) {
 			$('#affiliateLink').attr('data-target', affiliate.dataTarget);
 			$('#affiliateLink').attr('data-toggle', 'modal');
 			$('#affiliateLink').removeAttr('target');
 		}
-    }
+	}
 
-    // Close affiliate popup
-    $('#closeAffiliatePopup').on('click', function() {
-        $('#affiliatePopup').removeClass('show');
-    });
+	// Close affiliate popup
+	$('#closeAffiliatePopup').on('click', function () {
+		$('#affiliatePopup').removeClass('show');
+	});
 
-    // Show affiliate popup after a delay
-    setTimeout(showRandomAffiliateLink, 5000);
-	
+	// Show affiliate popup after a delay
+	setTimeout(showRandomAffiliateLink, 5000);
+
 	const welcomeText = `Welcome! This is an offline-capable Notepad which is a Progressive Web App.
 
 The app serves the following features:
@@ -90,16 +90,16 @@ there's a small donate button in the About section.
 	};
 
 	const themeConfig = {
-		lightmodeText, 
-		darkmodeText, 
-		lightMetaColor, 
-		darkMetaColor, 
+		lightmodeText,
+		darkmodeText,
+		lightMetaColor,
+		darkMetaColor,
 		metaThemeColor
 	};
 
 	const noteItem = state.note && state.note != '' ? state.note : welcomeText;
 	const characterAndWordCountText = calculateCharactersAndWords(noteItem);
-	
+
 	notepad.wordCount.text(characterAndWordCountText);
 	notepad.note.val(noteItem);
 
@@ -179,7 +179,7 @@ there's a small donate button in the About section.
 		notepad.wordCount.text(characterAndWordCountText);
 		setState('note', get(this).val());
 	}, 500));
-	
+
 	notepad.clearNotes.on('click', function () {
 		deleteNotes();
 	});
@@ -194,13 +194,13 @@ there's a small donate button in the About section.
 
 	notepad.downloadNotes.click(function (e) {
 		e.stopPropagation(); // Stop click event from bubbling
-      	$('#iconDropdown').toggleClass('show');
+		$('#iconDropdown').toggleClass('show');
 		$('#moreToolsDropdown').removeClass('show');
 	})
 
 	notepad.moreTools.click(function (e) {
 		e.stopPropagation(); // Stop click event from bubbling
-      	$('#moreToolsDropdown').toggleClass('show');
+		$('#moreToolsDropdown').toggleClass('show');
 		$('#iconDropdown').removeClass('show');
 	})
 
@@ -215,7 +215,7 @@ there's a small donate button in the About section.
 	notepad.downloadNotesDocx.click(function (e) {
 		const textToWrite = note.value;
 		const fileNameToSaveAs = getDocxFileName();
-		
+
 		exportNotesAsDocx(textToWrite, fileNameToSaveAs);
 	});
 
@@ -285,11 +285,11 @@ there's a small donate button in the About section.
 	})
 
 	notepad.resetPreferences.click(function () {
-		if (selector().state.userChosenFontSize) {	
+		if (selector().state.userChosenFontSize) {
 			removeState('userChosenFontSize');
 			resetFontSize(editorConfig.defaultFontSize);
 		}
-			
+
 		if (selector().state.userChosenLineHeight) {
 			removeState('userChosenLineHeight');
 			resetLineHeight(editorConfig.defaultLineHeight);
@@ -322,7 +322,7 @@ there's a small donate button in the About section.
 		}
 	});
 
-	notepad.monospaced.change(function() {
+	notepad.monospaced.change(function () {
 		if ($(this).is(':checked')) {
 			notepad.note.addClass('monospaced');
 			setState('monospaced', 'true');
@@ -349,7 +349,7 @@ there's a small donate button in the About section.
 	if ('documentPictureInPicture' in window) {
 		$('#pipContainer').show();
 
-		pipButton.addEventListener('click', async() => {
+		pipButton.addEventListener('click', async () => {
 			const appTextarea = document.getElementById("textareaContainer");
 
 			// Open a Picture-in-Picture window.
@@ -362,12 +362,12 @@ there's a small donate button in the About section.
 				try {
 					const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
 					const style = document.createElement('style');
-			
+
 					style.textContent = cssRules;
 					pipWindow.document.head.appendChild(style);
 				} catch (e) {
 					const link = document.createElement('link');
-			
+
 					link.rel = 'stylesheet';
 					link.type = styleSheet.type;
 					link.media = styleSheet.media;
@@ -388,7 +388,7 @@ there's a small donate button in the About section.
 				mainContainer.classList.remove("pip");
 
 				overlay.style.display = "none";
-				overlay.style.pointerEvents = "none"; 
+				overlay.style.pointerEvents = "none";
 
 				textareaContainer.classList.remove("dark");
 			});
@@ -398,7 +398,7 @@ there's a small donate button in the About section.
 			const playerContainer = document.querySelector("#mainContainer");
 			const textareaContainer = document.querySelector("#textareaContainer");
 			const overlay = document.querySelector(".overlay");
-			
+
 			playerContainer.classList.add("pip");
 			overlay.style.display = "block";
 			overlay.style.pointerEvents = "all";
@@ -433,7 +433,7 @@ there's a small donate button in the About section.
 		window.matchMedia('(prefers-color-scheme: dark)').matches
 			? enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
 			: enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
-	} 
+	}
 
 	// This hides the install app button 
 	// if the app is already installed
@@ -457,8 +457,8 @@ there's a small donate button in the About section.
 			$('.modal').modal('hide');
 			$('#iconDropdown').removeClass('show');
 			$('#moreToolsDropdown').removeClass('show');
-		} 
-		
+		}
+
 		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {
 			saveTextAsFile(note.value, getFileName());
 			event.preventDefault();
@@ -518,35 +518,35 @@ there's a small donate button in the About section.
 
 	dyslexicFontCheckbox.checked = dyslexicFontEnabled;
 	if (dyslexicFontEnabled) {
-	  notepad.note.addClass('dyslexic');
-	  monospacedCheckbox.checked = false;
-	  notepad.note.removeClass('monospaced');
+		notepad.note.addClass('dyslexic');
+		monospacedCheckbox.checked = false;
+		notepad.note.removeClass('monospaced');
 	}
 
 	// Toggle dyslexic font
 	dyslexicFontCheckbox.addEventListener('change', (e) => {
-	  if (e.target.checked) {
-		notepad.note.addClass('dyslexic');
-		monospacedCheckbox.checked = false;
-		notepad.note.removeClass('monospaced');
-		localStorage.setItem('monospacedFont', 'false');
-	  } else {
-		notepad.note.removeClass('dyslexic');
-	  }
-	  localStorage.setItem('dyslexicFont', e.target.checked);
+		if (e.target.checked) {
+			notepad.note.addClass('dyslexic');
+			monospacedCheckbox.checked = false;
+			notepad.note.removeClass('monospaced');
+			localStorage.setItem('monospacedFont', 'false');
+		} else {
+			notepad.note.removeClass('dyslexic');
+		}
+		localStorage.setItem('dyslexicFont', e.target.checked);
 	});
 
 	// Update monospaced checkbox handler to turn off dyslexic font
 	monospacedCheckbox.addEventListener('change', (e) => {
-	  if (e.target.checked) {
-		notepad.note.addClass('monospaced');
-		dyslexicFontCheckbox.checked = false;
-		notepad.note.removeClass('dyslexic');
-		localStorage.setItem('dyslexicFont', 'false');
-	  } else {
-		notepad.note.removeClass('monospaced');
-	  }
-	  localStorage.setItem('monospacedFont', e.target.checked);
+		if (e.target.checked) {
+			notepad.note.addClass('monospaced');
+			dyslexicFontCheckbox.checked = false;
+			notepad.note.removeClass('dyslexic');
+			localStorage.setItem('dyslexicFont', 'false');
+		} else {
+			notepad.note.removeClass('monospaced');
+		}
+		localStorage.setItem('monospacedFont', e.target.checked);
 	});
 });
 
