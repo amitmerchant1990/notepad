@@ -529,7 +529,7 @@ there's a small donate button in the About section.
 			notepad.note.addClass('dyslexic');
 			monospacedCheckbox.checked = false;
 			notepad.note.removeClass('monospaced');
-			localStorage.setItem('monospacedFont', 'false');
+			localStorage.setItem('monospaced', 'false');
 		} else {
 			notepad.note.removeClass('dyslexic');
 		}
@@ -546,7 +546,7 @@ there's a small donate button in the About section.
 		} else {
 			notepad.note.removeClass('monospaced');
 		}
-		localStorage.setItem('monospacedFont', e.target.checked);
+		localStorage.setItem('monospaced', e.target.checked);
 	});
 });
 
