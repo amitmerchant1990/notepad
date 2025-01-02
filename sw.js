@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v23';
+let CACHE_VERSION = 'app-v24';
 let CACHE_FILES = [
     '/',
     'index.html',
@@ -28,7 +28,8 @@ let CACHE_FILES = [
     'img/navbar/pip.svg',
     'img/navbar/preferences.svg',
     'img/navbar/share.svg',
-    'img/navbar/dropdown.svg'
+    'img/navbar/dropdown.svg',
+    'fonts/OpenDyslexic-Regular.otf'
 ];
 
 self.addEventListener('install', function (event) {
