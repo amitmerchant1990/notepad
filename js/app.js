@@ -152,6 +152,15 @@ there's a small donate button in the About section.
 		notepad.note.addClass('monospaced');
 	} else {
 		notepad.monospaced.prop('checked', false);
+		notepad.note.removeClass('monospaced');
+	}
+
+	if (state.isDislexic) {
+		notepad.dyslexic.prop('checked', true);
+		notepad.note.addClass('dislexic');
+	} else {
+		notepad.dyslexic.prop('checked', false);
+		notepad.note.removeClass('dislexic');
 	}
 
 	if (state.userChosenOptimalLineLengthSelected) {
@@ -319,6 +328,12 @@ there's a small donate button in the About section.
 			removeState('monospaced');
 			notepad.note.removeClass('monospaced');
 			notepad.monospaced.prop('checked', false);
+		}
+
+		if (selector().state.isDyslexic) {
+			removeState('dyslexicFont');
+			notepad.note.removeClass('dyslexic');
+			notepad.dyslexic.prop('checked', false);
 		}
 	});
 

@@ -53,6 +53,7 @@ function selector() {
             optimalLineLength: selectById('optimalLineLength'),
             monospaced: selectById('monospaced'),
             shareNotes: selectById('shareNotes'),
+            dyslexic: selectById('dyslexic'),
         },
         state: {
             note: getState('note'),
@@ -65,7 +66,8 @@ function selector() {
             userChosenWordCountPillSelected: getState('userChosenWordCountPillSelected'),
             userChosenWriteDirection: getState('userChosenWriteDirection'),
             userChosenOptimalLineLengthSelected: getState('userChosenOptimalLineLengthSelected'),
-            isMonospaced: getState('monospaced')
+            isMonospaced: getState('monospaced'),
+            isDyslexic: getState('dyslexicFont'),
         },
         get,
         getState,
