@@ -1353,3 +1353,20 @@ a {
   font-family: 'OpenDyslexic', sans-serif !important;
   line-height: 1.6;
 }
+
+@media print {
+  .dark .affiliate-popup, .affiliate-popup, .word-count-container {
+    display: none !important;
+  }
+
+  .dark textarea {
+    border-left: none;
+    border-right: none;
+  }
+
+  textarea {
+    border: none;
+    border-left: none;
+    border-right: none;
+  } 
+}
