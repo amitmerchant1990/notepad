@@ -9,6 +9,13 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 >
 > You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
 
+> Listen to all about the Notepad in form of a fun podcast.
+
+<audio controls>
+  <source src="https://notepad.js.org/podcast/notepad-podcast.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 ## Notable features
 
   - Lets you **write notes in plain text** which are autosaved [locally](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
