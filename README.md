@@ -9,9 +9,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 >
 > You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
 
-> Listen to all about the Notepad in form of a fun podcast.
-
-[Notepad Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
+> Listen to all about the Notepad in form of a fun podcast: [Notepad in a Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
 
 ## Notable features
 
