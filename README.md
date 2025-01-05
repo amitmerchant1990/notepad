@@ -5,10 +5,6 @@ Notepad
 
 This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) behind the scenes.
 
-> Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
->
-> You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
-
 > Listen to all about the Notepad in form of a fun podcast: [Notepad in a Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
 
 ## Notable features
@@ -32,6 +28,10 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 [View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
 
 Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
+
+> Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
+>
+> You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
 
 ## Subtools
 
