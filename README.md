@@ -11,10 +11,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 
 > Listen to all about the Notepad in form of a fun podcast.
 
-<audio controls>
-  <source src="https://notepad.js.org/podcast/notepad-podcast.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+[Notepad Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
 
 ## Notable features
 
