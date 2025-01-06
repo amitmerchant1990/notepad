@@ -1,0 +1,121 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    text-align: center;
+    color: #4b4a4a;
+    font-size: 1.2rem;
+    margin: .3rem 0;
+    font-weight: bold;
+}
+
+.kanban-board {
+    display: flex;
+    justify-content: space-around;
+    height: 100%; /* Allow the board to take full height */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.column {
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 30%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    height: calc(100% - 55px); /* Adjust height to fit within the board */
+    border-radius: 10px;
+}
+
+.task-list {
+    flex-grow: 1; /* Allow task list to grow and fill available space */
+    margin: 10px 0; /* Margin for spacing */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border for better visibility */
+    border-radius: 5px; /* Optional: rounded corners */
+    padding: 5px; /* Optional: padding for inner spacing */
+    display: flex; /* Enable flexbox for task items */
+    flex-direction: column; /* Stack task items vertically */
+}
+
+.task-list > div {
+    background-color: #dfe3ff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 5px;
+    cursor: move;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 10px 15px; /* Add padding */
+    font-size: 16px; /* Increase font size */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: border-color 0.3s; /* Smooth transition for focus effect */
+}
+
+input[type="text"]:focus {
+    border-color: #6c63ff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.drop-target {
+    background-color: #e0e7ff; /* Light blue background for drop target */
+    border: 2px dashed #6c63ff; /* Dashed border to indicate drop area */
+}
+
+.navbar-dark .navbar-brand {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.brand-title, .brand-title:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.task-list .placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #595959;
+    font-size: 1rem;
+    text-align: center;
+    opacity: 0.5;
+    cursor: auto;
+    background-color: #f1f1f1 !important;
+}
+
+#in-progress .task-list > div {
+    background-color: #ffefbe;
+}
+
+#done .task-list > div {
+    background-color: #c1ffc1;
+}
+
+.flex-navbar {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.generic-flex {
+    display: flex;
+    align-items: center;
+}
