@@ -17,7 +17,7 @@ $(document).ready(function () {
 			text: "New → Try Dyslexic font",
 			url: "#preferences",
 			dataTarget: "#preferencesModal",
-			active: true
+			active: false
 		}
 	];
 
