@@ -5,7 +5,7 @@ Notepad
 
 This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) behind the scenes.
 
-> Listen to all about the Notepad in form of a fun podcast: [Notepad in a Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
+> Listen to all about the Notepad in [form](https://www.gitpodcast.com/) of a fun podcast: [Notepad in a Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
 
 ## Notable features
 
