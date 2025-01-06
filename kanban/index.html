@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple Kanban board to manage your tasks">
+    <meta name="author" content="Amit Merchant">
+    <meta name="keywords" content="kanban,board,tasks,management" />
+    <meta name="application-name" content="Simple Kanban" />
+
+    
+    <meta property="og:title" content="Simple Kanban | notepad.js.org" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://notepad.js.org/kanban" />
+    <meta property="og:description" content="A simple Kanban board to manage your tasks" />
+    <meta property="og:image" content="https://notepad.js.org/art/kanban-kanban.png" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Simple Kanban | notepad.js.org" />
+    <meta name="twitter:description" content="A simple Kanban board to manage your tasks" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://notepad.js.org/art/kanban-kanban.png" />
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/kanban.css">
+    <title>Simple Kanban | notepad.js.org</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="flex-navbar">
+            <span class="navbar-brand generic-flex">
+                <a href="/" class="brand-title">Notepad</a>
+                <img src="img/icons/slash.svg" />
+                <span>Simple Kanban</span>
+            </span>
+            <button class="btn btn-link text-white" data-toggle="modal" href="#aboutModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="kanban-board">
+        <div class="column" id="todo">
+            <h2>To Do</h2>
+            <div class="task-list" ondragover="event.preventDefault()" ondrop="drop(event, 'todo')">
+                <div class="placeholder">Start adding tasks</div>
+            </div>
+            <input type="text" placeholder="Add a task" id="todo-input" onkeydown="handleKeyDown(event, 'todo')">
+        </div>
+        <div class="column" id="in-progress">
+            <h2>In Progress</h2>
+            <div class="task-list" ondragover="event.preventDefault()" ondrop="drop(event, 'in-progress')">
+                <div class="placeholder">Start adding tasks</div>
+            </div>
+            <input type="text" placeholder="Add a task" id="in-progress-input" onkeydown="handleKeyDown(event, 'in-progress')">
+        </div>
+        <div class="column" id="done">
+            <h2>Done</h2>
+            <div class="task-list" ondragover="event.preventDefault()" ondrop="drop(event, 'done')">
+                <div class="placeholder">Start adding tasks</div>
+            </div>
+            <input type="text" placeholder="Add a task" id="done-input" onkeydown="handleKeyDown(event, 'done')">
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" aria-hidden="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">Simple Kanban</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>A simple <a href="https://en.wikipedia.org/wiki/Kanban_(development)" target="_blank">Kanban</a> board to manage your tasks.</p>
+                    <p>Key features:</p>
+                    <ul>
+                        <li>Drag and drop tasks between columns: <b>To Do</b>, <b>In Progress</b>, and <b>Done</b>.</li> 
+                        <li>Simple by design and intuitive interface.</li>
+                        <li>Stores tasks <b>on-device</b> for privacy and offline usage.</li>
+                    </ul>
+                    <p>Enjoy using this tool? If so, consider <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buying me a coffee</a> so that I keep working on improving it further and the experience remains ad-free.</p>
+                    <p class="text-center mb-0">
+                        <b>Brought to you by <a href="https://notepad.js.org/" class="about-author-link">notepad.js.org</a></b>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/kanban.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-43339302-6');
+    </script>
+</body>
+</html>

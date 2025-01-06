@@ -12,6 +12,11 @@ $(document).ready(function () {
 			active: true
 		},
 		{
+			text: "New → Simple Kanban",
+			url: "/kanban",
+			active: true
+		},
+		{
 			isFeature: true,
 			isActive: true,
 			text: "New → Try Dyslexic font",
