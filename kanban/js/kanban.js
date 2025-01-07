@@ -1,6 +1,29 @@
 document.addEventListener("DOMContentLoaded", loadTasks);
 
 function loadTasks() {
+    // Register keydown event for each input field using jQuery
+    $('#todo-input').on('keydown', function(event) {
+        console.log(event);
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            addTask('todo'); 
+        }
+    });
+
+    $('#in-progress-input').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); 
+            addTask('in-progress'); 
+        }
+    });
+
+    $('#done-input').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); 
+            addTask('done'); 
+        }
+    });
+
     const tasks = JSON.parse(localStorage.getItem("kanban")) || { todo: [], inProgress: [], done: [] }; // Change key to "kanban"
     tasks.todo.forEach(task => addTaskToColumn('todo', task));
     tasks.inProgress.forEach(task => addTaskToColumn('in-progress', task));
@@ -118,13 +141,6 @@ function saveTasks() {
                                 document.getElementById('in-progress').querySelector('.placeholder'));
     updatePlaceholderVisibility(document.getElementById('done').querySelector('.task-list'), 
                                 document.getElementById('done').querySelector('.placeholder'));
-}
-
-function handleKeyDown(event, columnId) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        addTask(columnId);
-    }
 }
 
 function toggleFullScreen() {

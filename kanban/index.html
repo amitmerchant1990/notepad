@@ -58,21 +58,24 @@
             <div class="task-list">
                 <div class="placeholder">Start adding tasks</div>
             </div>
-            <input type="text" placeholder="Add a task" id="todo-input" onkeydown="handleKeyDown(event, 'todo')">
+            <input type="text" placeholder="Add a task" id="todo-input">
+            <button class="btn btn-primary d-block d-md-none mt-2" onclick="addTask('todo')">Add Task</button>
         </div>
         <div class="column" id="in-progress">
             <h2>In Progress</h2>
             <div class="task-list">
                 <div class="placeholder">Start adding tasks</div>
             </div>
-            <input type="text" placeholder="Add a task" id="in-progress-input" onkeydown="handleKeyDown(event, 'in-progress')">
+            <input type="text" placeholder="Add a task" id="in-progress-input">
+            <button class="btn btn-primary d-block d-md-none mt-2" onclick="addTask('in-progress')">Add Task</button> 
         </div>
         <div class="column" id="done">
             <h2>Done</h2>
             <div class="task-list" >
                 <div class="placeholder">Start adding tasks</div>
             </div>
-            <input type="text" placeholder="Add a task" id="done-input" onkeydown="handleKeyDown(event, 'done')">
+            <input type="text" placeholder="Add a task" id="done-input">
+            <button class="btn btn-primary d-block d-md-none mt-2" onclick="addTask('done')">Add Task</button> 
         </div>
     </div>
 
