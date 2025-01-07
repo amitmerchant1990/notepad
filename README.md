@@ -29,11 +29,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 
 Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
 
-> Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
->
-> You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
-
-## Subtools
+## Mini tools
 
 I recently added a bunch of tools that I thought might go along with the regular Notepad — making notepad.js.org a one-stop shop for all the note-taking related needs a step closer.
 
@@ -44,8 +40,16 @@ I recently added a bunch of tools that I thought might go along with the regular
 - [Simple Kanban](https://notepad.js.org/kanban/)
 - [Tasks](https://notepad.js.org/tasks/)
 
-> [!IMPORTANT]
-> Please use the [Discussions](https://github.com/amitmerchant1990/notepad/discussions) tab to submit new feature requests. Don't raise issues for the same.
+
+## Donate
+
+Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
+
+You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
+
+## Feedback
+
+Please use the [Discussions](https://github.com/amitmerchant1990/notepad/discussions) tab to submit new feature requests. Don't raise issues for the same.
 
 ## License
 
