@@ -179,6 +179,20 @@ function handleKeyDown(event, columnId) {
     }
 }
 
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        $('#arrowPointsOut').hide();
+        $('#arrowPointsIn').show();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            $('#arrowPointsIn').hide();
+            $('#arrowPointsOut').show();
+        }
+    }
+}
+
 let currentDragItem = null;
 
 function handleTouchStart(event) {
@@ -229,4 +243,8 @@ function addDragAndDropListeners() {
     });
 }
 
-// Call this function whenever you add new tasks
+$(document).ready(function() {
+    $('#fullScreenButton').click(function() {
+        toggleFullScreen();
+    });
+});
