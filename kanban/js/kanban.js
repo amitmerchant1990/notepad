@@ -1,10 +1,33 @@
 document.addEventListener("DOMContentLoaded", loadTasks);
 
 function loadTasks() {
+    const mobileMessage = document.getElementById('mobile-message');
+
+    // Check if the device is mobile
+    if (window.innerWidth < 768) {
+        // Show the message
+        mobileMessage.style.display = 'flex';
+        // Optionally, disable drag-and-drop listeners
+        return; // Exit the function to prevent further initialization
+    }
+
     const tasks = JSON.parse(localStorage.getItem("kanban")) || { todo: [], inProgress: [], done: [] }; // Change key to "kanban"
     tasks.todo.forEach(task => addTaskToColumn('todo', task));
     tasks.inProgress.forEach(task => addTaskToColumn('in-progress', task));
     tasks.done.forEach(task => addTaskToColumn('done', task));
+
+    // Add resize event listener
+    window.addEventListener('resize', () => checkMobileViewport(mobileMessage));
+    //addDragAndDropListeners();
+}
+
+function checkMobileViewport(mobileMessage) {
+    // Check if the device is mobile
+    if (window.innerWidth < 768) {
+        mobileMessage.style.display = 'flex'; // Show the message
+    } else {
+        mobileMessage.style.display = 'none'; // Hide the message
+    }
 }
 
 function addTask(columnId) {
@@ -113,6 +136,8 @@ function addTaskToColumn(columnId, taskText) {
     if (taskList.children.length > 0) {
         placeholder.style.display = 'none';
     }
+
+    //addDragAndDropListeners();
 }
 
 function saveTasks() {
@@ -153,3 +178,55 @@ function handleKeyDown(event, columnId) {
         addTask(columnId);
     }
 }
+
+let currentDragItem = null;
+
+function handleTouchStart(event) {
+    console.log('Touch Start:', event.target);
+    currentDragItem = event.target; // Store the currently dragged item
+    event.target.classList.add('dragging'); // Add a class for styling
+}
+
+function handleTouchMove(event) {
+    if (!currentDragItem) return;
+
+    const touch = event.touches[0]; // Get the touch coordinates
+    currentDragItem.style.position = 'absolute'; // Make the item absolute
+    currentDragItem.style.left = `${touch.clientX}px`; // Move item with touch
+    currentDragItem.style.top = `${touch.clientY}px`;
+}
+
+function handleTouchEnd(event) {
+    if (!currentDragItem) return;
+
+    console.log('Touch End');
+    const targetColumn = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+    console.log({ targetColumn });
+
+    // Check if the target is a valid column
+    if (targetColumn && targetColumn.classList.contains('column')) {
+        // Append the dragged item to the target column's task list
+        const taskList = targetColumn.querySelector('.task-list');
+        if (taskList) {
+            taskList.appendChild(currentDragItem);
+        }
+
+        // Optionally, save the tasks after moving
+        saveTasks();
+    }
+
+    currentDragItem.classList.remove('dragging'); // Remove the dragging class
+    currentDragItem = null; // Clear the current drag item
+}
+
+function addDragAndDropListeners() {
+    const taskItems = document.querySelectorAll('.task-list > div'); // Adjust selector as needed
+    console.log('Adding drag and drop listeners to:', taskItems); // Log selected items
+    taskItems.forEach(item => {
+        item.addEventListener('touchstart', handleTouchStart);
+        item.addEventListener('touchmove', handleTouchMove);
+        item.addEventListener('touchend', handleTouchEnd);
+    });
+}
+
+// Call this function whenever you add new tasks

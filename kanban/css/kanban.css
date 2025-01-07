@@ -119,3 +119,43 @@ input[type="text"]:focus {
     display: flex;
     align-items: center;
 }
+
+.dragging {
+    opacity: 0.5; /* Make the item semi-transparent while dragging */
+    transition: opacity 0.2s; /* Smooth transition */
+    width: 100%;
+}
+
+#mobile-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: red;
+    text-align: center;
+    padding: 22px;
+    z-index: 1000;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .kanban-board {
+        flex-direction: column; /* Stack columns vertically on small screens */
+        gap: 10px;
+    }
+
+    .column {
+        width: 100%; /* Full width on small screens */
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: auto; /* Prevent scrolling */
+    }
+}
