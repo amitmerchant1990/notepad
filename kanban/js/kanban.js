@@ -122,6 +122,7 @@ function saveTasks() {
 
 function handleKeyDown(event, columnId) {
     if (event.key === 'Enter') {
+        event.preventDefault();
         addTask(columnId);
     }
 }
