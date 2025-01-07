@@ -25,8 +25,6 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - Download notes as **plain text** or **PDF**.
   - Ability to play ambient noise—**coffee shop**, **rain**, **fireside**, etc.—to help you focus.
 
-[View the app in action](https://twitter.com/amit_merchant/status/756876111959601152)
-
 Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
 
 ## Mini tools
