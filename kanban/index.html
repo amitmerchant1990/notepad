@@ -55,21 +55,21 @@
     <div class="kanban-board">
         <div class="column" id="todo">
             <h2>To Do</h2>
-            <div class="task-list" ondragover="event.preventDefault()" ondrop="drop(event, 'todo')">
+            <div class="task-list">
                 <div class="placeholder">Start adding tasks</div>
             </div>
             <input type="text" placeholder="Add a task" id="todo-input" onkeydown="handleKeyDown(event, 'todo')">
         </div>
         <div class="column" id="in-progress">
             <h2>In Progress</h2>
-            <div class="task-list" ondragover="event.preventDefault()" ondrop="drop(event, 'in-progress')">
+            <div class="task-list">
                 <div class="placeholder">Start adding tasks</div>
             </div>
             <input type="text" placeholder="Add a task" id="in-progress-input" onkeydown="handleKeyDown(event, 'in-progress')">
         </div>
         <div class="column" id="done">
             <h2>Done</h2>
-            <div class="task-list" ondragover="event.preventDefault()" ondrop="drop(event, 'done')">
+            <div class="task-list" >
                 <div class="placeholder">Start adding tasks</div>
             </div>
             <input type="text" placeholder="Add a task" id="done-input" onkeydown="handleKeyDown(event, 'done')">
@@ -105,12 +105,9 @@
         </div>
     </div>
 
-    <div id="mobile-message">
-        For now, this works best on desktop. Switch to a desktop browser for the best experience.
-    </div>
-
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/Sortable.min.js"></script>
     <script src="js/kanban.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
