@@ -243,6 +243,13 @@ function addDragAndDropListeners() {
     });
 }
 
+document.addEventListener("fullscreenchange", function () {
+	if (!document.fullscreenElement) {
+		$('#arrowPointsIn').hide();
+		$('#arrowPointsOut').show();
+	}
+});
+
 $(document).ready(function() {
     $('#fullScreenButton').click(function() {
         toggleFullScreen();
