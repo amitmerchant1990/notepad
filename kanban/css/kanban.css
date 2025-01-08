@@ -143,6 +143,16 @@ input[type="text"]:focus {
     font-weight: bold;
 }
 
+.drop-target {
+    background-color: rgba(179, 216, 255, 0.2); /* Light blue background with transparency */
+    border: 2px dashed rgba(0, 123, 255, 0.5); /* Dashed border for visibility */
+}
+
+.sortable-chosen {
+    background-color: rgba(255, 204, 0, 0.3); /* Light yellow background with transparency */
+    border: 2px solid rgba(0, 4, 216, 0.5); /* Solid border for visibility */
+}
+
 @media (max-width: 768px) {
     .kanban-board {
         flex-direction: column; /* Stack columns vertically on small screens */

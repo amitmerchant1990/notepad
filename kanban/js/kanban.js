@@ -38,8 +38,21 @@ function loadTasks() {
         group: 'tasks',
         animation: 150,
         filter: '.placeholder',
+        onStart: function(evt) {
+            evt.from.classList.add('drop-target'); // Add class to the list being dragged over
+        },
         onEnd: function(evt) {
-            saveTasks();
+            evt.from.classList.remove('drop-target'); // Remove class when dragging ends
+            saveTasks(); // Save tasks after dragging
+        },
+        onMove: function(evt) {
+            const target = evt.related; // The element being dragged over
+            if (target && target.classList.contains('task-list')) {
+                target.classList.add('drop-target'); // Add class to the target list
+            }
+        },
+        onLeave: function(evt) {
+            evt.from.classList.remove('drop-target'); // Remove class when leaving
         }
     });
 
@@ -47,8 +60,21 @@ function loadTasks() {
         group: 'tasks',
         animation: 150,
         filter: '.placeholder',
+        onStart: function(evt) {
+            evt.from.classList.add('drop-target'); // Add class to the list being dragged over
+        },
         onEnd: function(evt) {
-            saveTasks();
+            evt.from.classList.remove('drop-target'); // Remove class when dragging ends
+            saveTasks(); // Save tasks after dragging
+        },
+        onMove: function(evt) {
+            const target = evt.related; // The element being dragged over
+            if (target && target.classList.contains('task-list')) {
+                target.classList.add('drop-target'); // Add class to the target list
+            }
+        },
+        onLeave: function(evt) {
+            evt.from.classList.remove('drop-target'); // Remove class when leaving
         }
     });
 
@@ -56,8 +82,21 @@ function loadTasks() {
         group: 'tasks',
         animation: 150,
         filter: '.placeholder',
+        onStart: function(evt) {
+            evt.from.classList.add('drop-target'); // Add class to the list being dragged over
+        },
         onEnd: function(evt) {
-            saveTasks();
+            evt.from.classList.remove('drop-target'); // Remove class when dragging ends
+            saveTasks(); // Save tasks after dragging
+        },
+        onMove: function(evt) {
+            const target = evt.related; // The element being dragged over
+            if (target && target.classList.contains('task-list')) {
+                target.classList.add('drop-target'); // Add class to the target list
+            }
+        },
+        onLeave: function(evt) {
+            evt.from.classList.remove('drop-target'); // Remove class when leaving
         }
     });
 }
