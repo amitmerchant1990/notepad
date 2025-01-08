@@ -317,9 +317,12 @@ table tr td {
 }
 
 .about-notice {
+  --shadow-color: 0deg 0% 63%;
+  --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(0deg 0% 63% / 61%), 0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34), 1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
   background-color: #ecf0ff;
   padding: 20px;
   border-radius: 10px;
+  box-shadow: var(--shadow-elevation-low);
 }
 
 .about-author-container {
