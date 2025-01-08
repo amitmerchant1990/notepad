@@ -45,12 +45,6 @@ function loadTasks() {
             evt.from.classList.remove('drop-target'); // Remove class when dragging ends
             saveTasks(); // Save tasks after dragging
         },
-        onMove: function(evt) {
-            const target = evt.related; // The element being dragged over
-            if (target && target.classList.contains('task-list')) {
-                target.classList.add('drop-target'); // Add class to the target list
-            }
-        },
         onLeave: function(evt) {
             evt.from.classList.remove('drop-target'); // Remove class when leaving
         }
@@ -67,12 +61,6 @@ function loadTasks() {
             evt.from.classList.remove('drop-target'); // Remove class when dragging ends
             saveTasks(); // Save tasks after dragging
         },
-        onMove: function(evt) {
-            const target = evt.related; // The element being dragged over
-            if (target && target.classList.contains('task-list')) {
-                target.classList.add('drop-target'); // Add class to the target list
-            }
-        },
         onLeave: function(evt) {
             evt.from.classList.remove('drop-target'); // Remove class when leaving
         }
@@ -88,12 +76,6 @@ function loadTasks() {
         onEnd: function(evt) {
             evt.from.classList.remove('drop-target'); // Remove class when dragging ends
             saveTasks(); // Save tasks after dragging
-        },
-        onMove: function(evt) {
-            const target = evt.related; // The element being dragged over
-            if (target && target.classList.contains('task-list')) {
-                target.classList.add('drop-target'); // Add class to the target list
-            }
         },
         onLeave: function(evt) {
             evt.from.classList.remove('drop-target'); // Remove class when leaving
