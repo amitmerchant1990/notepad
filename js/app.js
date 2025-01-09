@@ -14,7 +14,7 @@ $(document).ready(function () {
 		{
 			text: "🚀 New → Simple Kanban",
 			url: "/kanban",
-			active: true
+			active: false
 		},
 		{
 			isFeature: true,
