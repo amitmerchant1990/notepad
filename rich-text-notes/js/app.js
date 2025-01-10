@@ -1,4 +1,60 @@
 $(document).ready(function () {
+    // Affiliate links data
+	const affiliateLinks = [
+		{
+			text: "Video Tap — Effortlessly turn your videos into text-based content",
+			url: "https://videotap.com?via=amitmerchant",
+			active: false
+		},
+		{
+			text: "❤️ Support Notepad's development — Buy me a coffee!",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
+			text: "🚀 New → Simple Kanban",
+			url: "/kanban",
+			active: false
+		},
+		{
+			isFeature: true,
+			isActive: true,
+			text: "New → Try Dyslexic font",
+			url: "#preferences",
+			dataTarget: "#preferencesModal",
+			active: false
+		}
+	];
+
+	// Function to show random affiliate link
+	function showRandomAffiliateLink() {
+		const activeAffiliates = affiliateLinks.filter(affiliate => affiliate.active);
+		const randomIndex = Math.floor(Math.random() * activeAffiliates.length);
+		const affiliate = activeAffiliates[randomIndex];
+
+		if (!affiliate) {
+			return;
+		}
+
+		$('#affiliateText').text(affiliate.text);
+		$('#affiliateLink').attr('href', affiliate.url);
+		$('#affiliatePopup').addClass('show');
+
+		if (affiliate.isFeature && affiliate.isActive) {
+			$('#affiliateLink').attr('data-target', affiliate.dataTarget);
+			$('#affiliateLink').attr('data-toggle', 'modal');
+			$('#affiliateLink').removeAttr('target');
+		}
+	}
+
+	// Close affiliate popup
+	$('#closeAffiliatePopup').on('click', function () {
+		$('#affiliatePopup').removeClass('show');
+	});
+
+	// Show affiliate popup after a delay
+	setTimeout(showRandomAffiliateLink, 5000);
+
     const quill = new Quill('#editor', {
         theme: 'snow',
         placeholder: 'Type your text here...',

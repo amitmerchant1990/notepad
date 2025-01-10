@@ -32,6 +32,10 @@ $(document).ready(function () {
 		const randomIndex = Math.floor(Math.random() * activeAffiliates.length);
 		const affiliate = activeAffiliates[randomIndex];
 
+		if (!affiliate) {
+			return;
+		}
+
 		$('#affiliateText').text(affiliate.text);
 		$('#affiliateLink').attr('href', affiliate.url);
 		$('#affiliatePopup').addClass('show');
