@@ -41,7 +41,7 @@ I recently added a bunch of tools that I thought might go along with the regular
 
 Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
 
-You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy me a coffee](https://buymeacoffee.com/amitmerchant).
+You can support the development via [Paypal](https://paypal.me/AmitMerchant) or [Buy Me a Coffee](https://buymeacoffee.com/amitmerchant).
 
 ## Feedback
 
