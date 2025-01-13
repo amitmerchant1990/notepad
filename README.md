@@ -5,7 +5,7 @@ Notepad
 
 This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) behind the scenes.
 
-> Listen to all about the Notepad in [form](https://www.gitpodcast.com/) of a fun podcast: [Notepad in a Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
+> Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
 
 ## Notable features
 
@@ -24,8 +24,6 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - [Floating window](https://www.amitmerchant.com/implementing-interactive-floating-windows-using-picture-in-picture-api/) to effectively take notes on top of other apps (in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Document_Picture-in-Picture_API))
   - Download notes as **plain text** or **PDF**.
   - Ability to play ambient noise—**coffee shop**, **rain**, **fireside**, etc.—to help you focus.
-
-Read about the [story of how I built it](https://www.amitmerchant.com/Building-Simple-Offline-Notepad-Using-Service-Worker/).
 
 ## Mini tools
 
@@ -48,6 +46,10 @@ You can support the development via [Paypal](https://paypal.me/AmitMerchant) or 
 ## Feedback
 
 Please use the [Discussions](https://github.com/amitmerchant1990/notepad/discussions) tab to submit new feature requests. Don't raise issues for the same.
+
+## Fun
+
+Listen to all about the Notepad in [form](https://www.gitpodcast.com/) of a fun podcast: [Notepad in a Podcast](https://notepad.js.org/podcast/notepad-podcast.mp3)
 
 ## License
 
