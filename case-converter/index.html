@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A simple case converter tool to convert text to different cases">
+    <meta name="author" content="Amit Merchant">
+    <meta name="keywords" content="case,converter,tool,text,case converter" />
+    <meta name="application-name" content="Case Converter" />
+    <meta name="theme-color" content="#343a40">
+    
+    <meta property="og:title" content="Case Converter | notepad.js.org" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://notepad.js.org/case-converter" />
+    <meta property="og:description" content="A simple case converter tool to convert text to different cases" />
+    <meta property="og:image" content="https://notepad.js.org/art/case-converter.png" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Case Converter | notepad.js.org" />
+    <meta name="twitter:description" content="A simple case converter tool to convert text to different cases" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://notepad.js.org/art/case-converter.png" />
+
+    <title>Case Converter</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="flex-navbar">
+            <span class="navbar-brand generic-flex">
+                <a href="/" class="brand-title">Notepad</a>
+                <img src="img/icons/slash.svg" />
+                <span>Case Converter</span>
+            </span>
+            <div class="generic-flex">
+                <button class="btn btn-link text-white" data-toggle="modal" href="#aboutModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                    </svg>
+                </button>
+            </div> 
+        </div>
+    </nav>
+
+    <div class="select-case-container">
+        <select id="caseSelect" class="form-control w-25 my-3">
+            <option value="lower">Lower Case</option>
+            <option value="upper">UPPER CASE</option>
+            <option value="sentence">Sentence case</option>
+            <option value="capitalized">Capitalized Case</option>
+            <option value="alternating">aLtErNaTiNg cAsE</option>
+            <option value="title">Title Case</option>
+            <option value="inverse">InVeRsE CaSe</option>
+        </select>
+        <button class="btn btn-primary" onclick="convertCase()">Convert</button>
+    </div>
+    
+    <div class="container">
+        <textarea id="inputText" class="form-control" placeholder="Enter text here and select a case to convert..."></textarea>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">Case Converter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This simple case converter tool allows you to convert text between various letter cases, including...</p> 
+                    <ul>
+                        <li>Lower case</li>
+                        <li>Upper case</li>
+                        <li>Sentence case</li>
+                        <li>Capitalized case</li>
+                        <li>Alternating case</li>
+                        <li>Title case</li>
+                        <li>Inverse case</li>
+                    </ul>
+                    <p>Simply <b>enter your text</b>, <b>select the desired case</b>, and click <b>"Convert"</b>.</p>
+                    <p>Enjoy using this tool? If so, consider <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buying me a coffee</a> so that I keep working on improving it further and the experience remains ad-free.</p>
+                    <p class="text-center mb-0">
+                        <b>Brought to you by <a href="https://notepad.js.org/" class="about-author-link">notepad.js.org</a></b>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function convertCase() {
+            const inputText = document.getElementById('inputText');
+            const caseType = document.getElementById('caseSelect').value;
+            let outputText = '';
+        
+            switch (caseType) {
+                case 'lower':
+                    outputText = inputText.value.toLowerCase();
+                    break;
+                case 'upper':
+                    outputText = inputText.value.toUpperCase();
+                    break;
+                case 'sentence':
+                    const paragraphs = inputText.value.split('\n');
+                    outputText = paragraphs.map(paragraph => {
+                        const sentences = paragraph.split('. ');
+                        const capitalizedSentences = sentences.map(sentence => 
+                            sentence.charAt(0).toUpperCase() + sentence.slice(1).toLowerCase()
+                        ).join('. ');
+                        return capitalizedSentences.charAt(0).toUpperCase() + capitalizedSentences.slice(1);
+                    }).join('\n');
+                    break;
+                case 'capitalized':
+                    outputText = inputText.value.split(' ').map(word => 
+                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                    ).join(' ');
+                    break;
+                case 'alternating':
+                    outputText = inputText.value.split('').map((char, index) => 
+                        index % 2 === 0 ? char.toUpperCase() : char.toLowerCase()
+                    ).join('');
+                    break;
+                case 'title':
+                    const smallWords = ['a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'of'];
+                    const paragraphsTitle = inputText.value.split('\n').map(paragraph => {
+                        return paragraph.split(' ').map((word, index) => {
+                            const lowerCaseWord = word.toLowerCase();
+                            if (index === 0 || index === paragraph.split(' ').length - 1 || !smallWords.includes(lowerCaseWord)) {
+                                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                            }
+                            return lowerCaseWord;
+                        }).join(' ');
+                    }).join('\n');
+                    outputText = paragraphsTitle;
+                    break;
+                case 'inverse':
+                    outputText = inputText.value.split('').map(char => 
+                        char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase()
+                    ).join('');
+                    break;
+            }
+        
+            // Update the input field with the converted text
+            inputText.value = outputText;
+        }
+    </script>
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

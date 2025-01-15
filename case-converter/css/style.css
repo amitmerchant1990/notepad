@@ -1,0 +1,128 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    height: calc(100% - 200px);
+}
+
+.container textarea {
+    width: 100%;
+    height: 100%;
+}
+
+.select-case-container select {
+    width: 35% !important;
+}
+
+@media (max-width: 768px) {
+    .select-case-container select {
+        width: 50% !important;
+    }
+}
+
+h2 {
+    text-align: center;
+    color: #4b4a4a;
+    font-size: 1.2rem;
+    margin: .3rem 0;
+    font-weight: bold;
+}
+
+.kanban-board {
+    display: flex;
+    justify-content: space-around;
+    height: 100%; /* Allow the board to take full height */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.column {
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 30%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    height: calc(100% - 55px); /* Adjust height to fit within the board */
+    border-radius: 10px;
+}
+
+input[type="text"] {
+    padding: 10px 15px; /* Add padding */
+    font-size: 16px; /* Increase font size */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: border-color 0.3s; /* Smooth transition for focus effect */
+}
+
+input[type="text"]:focus {
+    border-color: #6c63ff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.drop-target {
+    background-color: #e0e7ff; /* Light blue background for drop target */
+    border: 2px dashed #6c63ff; /* Dashed border to indicate drop area */
+}
+
+.navbar-dark .navbar-brand {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.brand-title, .brand-title:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.flex-navbar {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.generic-flex {
+    display: flex;
+    align-items: center;
+}
+
+.select-case-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .kanban-board {
+        flex-direction: column; /* Stack columns vertically on small screens */
+        gap: 10px;
+    }
+
+    .column {
+        width: 100%; /* Full width on small screens */
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: auto; /* Prevent scrolling */
+    }
+}

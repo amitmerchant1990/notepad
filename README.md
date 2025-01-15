@@ -34,6 +34,7 @@ I recently added a bunch of tools that I thought might go along with the regular
 - [Pomodoro Timer](https://notepad.js.org/pomodoro-timer/)
 - [Voice Notes](https://notepad.js.org/voice-notes/)
 - [Simple Kanban](https://notepad.js.org/kanban/)
+- [Case Converter](https://notepad.js.org/case-converter/)
 - [Tasks](https://notepad.js.org/tasks/)
 
 
