@@ -2,14 +2,19 @@ $(document).ready(function () {
 	// Affiliate links data
 	const affiliateLinks = [
 		{
+			text: "Support Notepad's development — Buy me a coffee! ❤️",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
+			text: "Buy me a coffee if you love using this little app! 😻",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
 			url: "https://videotap.com?via=amitmerchant",
 			active: false
-		},
-		{
-			text: "❤️ Support Notepad's development — Buy me a coffee!",
-			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
 		},
 		{
 			text: "🚀 New → Simple Kanban",
