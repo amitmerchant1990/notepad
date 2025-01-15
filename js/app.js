@@ -17,9 +17,9 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "🚀 New → Simple Kanban",
-			url: "/kanban",
-			active: false
+			text: "🚀 New tool → Case Converter",
+			url: "/case-converter",
+			active: true
 		},
 		{
 			isFeature: true,

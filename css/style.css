@@ -287,6 +287,20 @@ table tr td {
   cursor: pointer;
 }
 
+.dropdown-item {
+  display: flex !important;
+  gap: 7px;
+}
+
+.dropdown-item span {
+  background: #ffc413;
+  color: black;
+  padding: 3px 6px;
+  font-size: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
 .app-heading {
   margin-left: 12px;
   font-weight: bold;
