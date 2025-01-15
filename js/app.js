@@ -2,7 +2,7 @@ $(document).ready(function () {
 	// Affiliate links data
 	const affiliateLinks = [
 		{
-			text: "Support Notepad's development — Buy me a coffee! ❤️",
+			text: "Support Notepad's sustainable development — Buy me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
