@@ -7,21 +7,18 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "❤️ Support Notepad's development — Buy me a coffee!",
+			text: "Support Notepad's sustainable development — Buy me a coffee! ❤️",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
+			text: "Buy me a coffee if you love using this little app! 😻",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
 			text: "🚀 New → Simple Kanban",
 			url: "/kanban",
-			active: false
-		},
-		{
-			isFeature: true,
-			isActive: true,
-			text: "New → Try Dyslexic font",
-			url: "#preferences",
-			dataTarget: "#preferencesModal",
 			active: false
 		}
 	];
