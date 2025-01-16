@@ -47,6 +47,7 @@
 
     <div class="select-case-container">
         <select id="caseSelect" class="form-control w-25 my-3">
+            <option value="">Select a case</option>
             <option value="lower">Lower Case</option>
             <option value="upper">UPPER CASE</option>
             <option value="sentence">Sentence case</option>
@@ -96,6 +97,11 @@
             </div>
         </div>
     </div>
+
+    <div id="toast" class="toast">
+        <div class="toast-body">
+        </div>
+    </div>
     
     <script>
         function copyToClipboard() {
@@ -120,6 +126,16 @@
             const inputText = document.getElementById('inputText');
             const caseType = document.getElementById('caseSelect').value;
             let outputText = '';
+
+            if (!inputText.value) {
+                showToast('Please enter text to convert.');
+                return;
+            }
+        
+            if (!caseType) {
+                showToast('Please select a case to convert.');
+                return;
+            }            
         
             switch (caseType) {
                 case 'lower':
@@ -170,6 +186,16 @@
         
             // Update the input field with the converted text
             inputText.value = outputText;
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.toast-body').textContent = message;
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2000);
         }
     </script>
 

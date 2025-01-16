@@ -9,6 +9,19 @@ body {
     background-color: #f4f4f4;
 }
 
+.toast {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0.9;
+    display: none; 
+    position: fixed; 
+    bottom: 6px; 
+    right: 20px; 
+    z-index: 1000;
+}
+
 .container {
     position: relative;
     display: flex;
