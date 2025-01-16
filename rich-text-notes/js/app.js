@@ -12,7 +12,7 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Buy me a coffee if you love using this little app! 😻",
+			text: "Buy me a coffee if you enjoy using this little app! 😻",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
