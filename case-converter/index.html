@@ -59,7 +59,8 @@
     </div>
     
     <div class="container">
-        <textarea id="inputText" class="form-control" placeholder="Enter text here and select a case to convert..." autofocus></textarea>
+        <textarea id="inputText" class="form-control" placeholder="Enter text here..."></textarea>
+        <button id="copyButton" class="btn btn-outline-secondary" type="button" onclick="copyToClipboard()">Copy</button>
     </div>
 
     <!-- About Modal -->
@@ -95,8 +96,26 @@
             </div>
         </div>
     </div>
-
+    
     <script>
+        function copyToClipboard() {
+            const inputText = document.getElementById('inputText');
+            navigator.clipboard.writeText(inputText.value);
+
+            // Change the button state to indicate copied
+            const copyButton = document.getElementById('copyButton');
+            copyButton.textContent = 'Copied!';
+            copyButton.classList.add('btn-success');
+            copyButton.classList.remove('btn-outline-secondary');
+
+            // Reset button text after a short delay
+            setTimeout(() => {
+                copyButton.textContent = 'Copy';
+                copyButton.classList.remove('btn-success');
+                copyButton.classList.add('btn-outline-secondary');
+            }, 2000);
+        }
+
         function convertCase() {
             const inputText = document.getElementById('inputText');
             const caseType = document.getElementById('caseSelect').value;

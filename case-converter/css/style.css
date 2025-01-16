@@ -10,6 +10,7 @@ body {
 }
 
 .container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     gap: 30px;
@@ -23,6 +24,14 @@ body {
 
 .select-case-container select {
     width: 35% !important;
+}
+
+#copyButton {
+    position: absolute; 
+    right: 25px; 
+    bottom: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {
