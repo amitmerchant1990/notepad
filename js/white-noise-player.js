@@ -7,6 +7,24 @@ class WhiteNoisePlayer {
                 playing: false,
                 loading: false
             },
+            'airport': {
+                url: 'sounds/airport.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'winter-morning': {
+                url: 'sounds/winter-morning.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'suburban-street': {
+                url: 'sounds/suburban-street.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
             'rain': {
                 url: 'sounds/rain.mp3',
                 audio: null,
