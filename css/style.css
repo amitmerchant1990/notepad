@@ -131,6 +131,14 @@ table tr td {
   align-items: center;
 }
 
+.about-icon-container > a {
+  transition: transform 200ms ease-out;
+}
+
+.about-icon-container > a:hover {
+  transform: translateY(-5px) rotate(-15deg);
+}
+
 .dark .icon-container span>a {
   transition: all 0.3s ease-in-out;
 }
