@@ -88,17 +88,8 @@
               <img src="img/navbar/copy.svg" alt="Copy Icon" />
             </a>
           </span>
-          <span title="Enable dark mode [Ctrl/Cmd + M]">
-            <a id="mode" href="javascript:void(0);">
-              <img
-                src="img/navbar/light-theme.svg"
-                alt="Light theme Icon"
-                id="themeIcon"
-              />
-            </a>
-          </span>
           <span title="Preferences [Ctrl/Cmd + ,]">
-            <a href="#preferences" data-toggle="modal" data-target="#preferencesModal" id="mode" class="preference-icon">
+            <a href="#preferences" data-toggle="modal" data-target="#preferencesModal" id="preferences" class="preference-icon">
               <img
                 src="img/navbar/preferences.svg"
                 alt="Preferences"
@@ -279,6 +270,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>22nd Jan, 2025</h3>
+              <ul>
+                <li>Moved theme switcher to Preferences for easier theme selection.</li>
+              </ul>
+
               <h4>18th Jan, 2025</h3>
               <ul>
                 <li>Added new ambient sounds: <b>Airport</b>, <b>Winter Morning</b>, and <b>Suburban Street</b>.</li>
@@ -445,10 +441,6 @@
               <td>Copy notes to system clipboard</td>
             </tr>
             <tr>
-              <td><kbd>Ctrl</kbd> / <kbd>Cmd</kbd> + <kbd>M</kbd></td>
-              <td>Toggle theme</td>
-            </tr>
-            <tr>
               <td><kbd>Ctrl</kbd> / <kbd>Cmd</kbd> + <kbd>,</kbd></td>
               <td>Preferences</td>
             </tr>
@@ -481,8 +473,44 @@
         </div>
         <div class="modal-body modal-container form-horizontal">
           <div class="form-group">
+            <label class="control-label col-sm-6 col-md-6" for="fontSize">Theme</label>
+            <div class="col-sm-6 col-md-5">
+              <div class="theme-switcher">
+                <input type="radio" id="device-theme" value="device" name="themes" />
+                <label for="device-theme">
+                  <span>
+                    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                    </svg>
+                    Device
+                  </span>
+                </label>
+                <input type="radio" id="light-theme" value="light" name="themes" checked />
+                <label for="light-theme">
+                  <span>
+                    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                    </svg>
+                    Light
+                  </span>
+                </label>
+                <input type="radio" id="dark-theme" value="dark" name="themes" />
+                <label for="dark-theme">
+                  <span>
+                    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                    </svg>
+                    Dark
+                  </span>
+                </label>
+                <span class="slider"></span>
+              </div>
+            </div>  
+          </div>
+
+          <div class="form-group">
             <label class="control-label col-sm-6 col-md-6" for="fontSize">Font size</label>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <select name="fontSize" id="fontSize" class="form-control">
                 <option value="10">10</option>
                 <option value="12">12</option>
@@ -499,7 +527,7 @@
 
           <div class="form-group">
             <label class="control-label col-sm-6 col-md-6" for="fontWeight">Font weight</label>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <select name="fontWeight" id="fontWeight" class="form-control">
                 <option value="normal">Normal</option>
                 <option value="bold">Bold</option>
@@ -514,7 +542,7 @@
                 <img src="img/tooltip.svg" alt="Tooltip Icon" />               
               </a>
             </label>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <select name="lineHeight" id="lineHeight" class="form-control">
                 <option value="18">18</option>
                 <option value="20">20</option>
@@ -534,7 +562,7 @@
 
           <div class="form-group">
             <label class="control-label col-sm-6 col-md-6">Writing direction</label>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <select name="writeDirection" id="writeDirection" class="form-control">
                 <option value="ltr">Left to right</option>
                 <option value="rtl">Right to left</option>
@@ -550,7 +578,7 @@
               </a>
             </label>
             
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <div class="checkbox checbox-switch">
                 <label>
                     <input type="checkbox" name="monospaced" id="monospaced" checked="checked" />
@@ -568,7 +596,7 @@
               </a>
             </label>
             
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <div class="checkbox checbox-switch">
                 <label>
                     <input type="checkbox" name="dyslexic" id="dyslexic" />
@@ -580,7 +608,7 @@
 
           <div class="form-group">
             <label class="control-label col-sm-6 col-md-6">Character and word count</label>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <div class="checkbox checbox-switch">
                 <label>
                     <input type="checkbox" name="showWordCountPill" id="showWordCountPill" checked="checked" />
@@ -597,7 +625,7 @@
                 <img src="img/tooltip.svg" alt="Tooltip Icon" />                
               </a>
             </label>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <div class="checkbox checbox-switch">
                 <label>
                     <input type="checkbox" name="optimalLineLength" id="optimalLineLength" checked="checked" />
@@ -609,7 +637,7 @@
 
           <div class="form-group">
             <label class="control-label col-sm-6 col-md-6" for="company">&nbsp;</label>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
               <a href="javascript:void(0);" id="resetPreferences" title="Reset to default preferences">Reset preferences</a>
             </div>
           </div>

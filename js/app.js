@@ -193,9 +193,35 @@ there's a small donate button in the About section.
 
 	if (state.mode && state.mode === 'dark') {
 		enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
-	} else {
+
+		$('input[name="themes"][value="dark"]').prop('checked', true);
+	} else if (state.mode && state.mode === 'light') {
 		enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
+
+		$('input[name="themes"][value="light"]').prop('checked', true);	
+	} else {
+		enableDeviceTheme(themeConfig);
+
+		$('input[name="themes"][value="device"]').prop('checked', true);
 	}
+
+	const themeRadios = document.querySelectorAll('input[name="themes"]');
+
+    themeRadios.forEach(radio => {
+        radio.addEventListener('change', (event) => {
+            switch (event.target.value) {
+				case 'dark':
+					enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
+					break;
+				case 'light':
+					enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
+					break;
+				case 'device':
+					enableDeviceTheme(themeConfig);
+					break;
+			}
+        });
+    });
 
 	notepad.note.keyup(debounce(function () {
 		const characterAndWordCountText = calculateCharactersAndWords(get(this).val());
@@ -205,10 +231,6 @@ there's a small donate button in the About section.
 
 	notepad.clearNotes.on('click', function () {
 		deleteNotes();
-	});
-
-	notepad.mode.click(function () {
-		toggleTheme(themeConfig);
 	});
 
 	notepad.copyToClipboard.click(function () {
@@ -349,6 +371,10 @@ there's a small donate button in the About section.
 			notepad.note.removeClass('dyslexic');
 			notepad.dyslexic.prop('checked', false);
 		}
+
+		// Reset to device theme as default
+		$('input[name="themes"][value="device"]').prop('checked', true);
+		enableDeviceTheme(themeConfig);
 	});
 
 	notepad.monospaced.change(function () {
@@ -436,7 +462,7 @@ there's a small donate button in the About section.
 				textareaContainer.classList.add("dark");
 			}
 
-			if (!localStorage.getItem('mode') && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'device' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 				textareaContainer.classList.add("dark");
 			}
 		});
@@ -444,25 +470,11 @@ there's a small donate button in the About section.
 
 	// This changes the application's theme when 
 	// user toggles device's theme preference
-	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isSystemDarkModeEnabled }) => {
-		// To override device's theme preference
-		// if user sets theme manually in the app
-		if (state.isUserPreferredTheme === 'true') {
-			return;
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+		if (state.mode && state.mode === 'device') {
+			enableDeviceTheme(themeConfig);
 		}
-
-		isSystemDarkModeEnabled
-			? enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
-			: enableLightMode(darkmodeText, lightMetaColor, metaThemeColor)
 	});
-
-	// This sets the application's theme based on
-	// the device's theme preference when it loads
-	if (!state.isUserPreferredTheme || state.isUserPreferredTheme === 'false') {
-		window.matchMedia('(prefers-color-scheme: dark)').matches
-			? enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor)
-			: enableLightMode(darkmodeText, lightMetaColor, metaThemeColor);
-	}
 
 	// This hides the install app button 
 	// if the app is already installed
@@ -516,11 +528,6 @@ there's a small donate button in the About section.
 
 			$('.modal').modal('hide');
 			notepad.keyboardShortcutsModal.modal('show');
-		}
-
-		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyM') {
-			event.preventDefault();
-			toggleTheme(themeConfig);
 		}
 
 		if (event.altKey && event.code === 'KeyC') {

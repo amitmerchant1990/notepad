@@ -39,7 +39,6 @@ function selector() {
             installApp: selectById('installApp'),
             lineHeight: selectById('lineHeight'),
             writeDirection: selectById('writeDirection'),
-            mode: selectById('mode'),
             note: selectById('note'),
             preferencesModal: selectById('preferencesModal'),
             resetPreferences: selectById('resetPreferences'),

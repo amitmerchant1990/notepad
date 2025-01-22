@@ -94,6 +94,16 @@ function enableLightMode(darkmodeText, lightMetaColor, metaThemeColor) {
     localStorage.setItem('mode', 'light');
 }
 
+function enableDeviceTheme(themeConfig) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        enableDarkMode(themeConfig.lightmodeText, themeConfig.darkMetaColor, themeConfig.metaThemeColor)
+    } else {
+        enableLightMode(themeConfig.darkmodeText, themeConfig.lightMetaColor, themeConfig.metaThemeColor)
+    }
+
+    localStorage.setItem('mode', 'device');
+}
+
 function resetFontSize(defaultFontSize) {
     $('#note').css('font-size', defaultFontSize + "px");
     $('#fontSize').val(defaultFontSize);
