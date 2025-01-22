@@ -19,7 +19,7 @@ $(document).ready(function () {
 		{
 			text: "🚀 New tool → Case Converter",
 			url: "/case-converter",
-			active: true
+			active: false
 		},
 		{
 			isFeature: true,
