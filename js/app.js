@@ -22,6 +22,11 @@ $(document).ready(function () {
 			active: false
 		},
 		{
+			text: "🚀 New tool → Tabbypad",
+			url: "/tabbypad",
+			active: true
+		},
+		{
 			isFeature: true,
 			isActive: true,
 			text: "New → Try Dyslexic font",

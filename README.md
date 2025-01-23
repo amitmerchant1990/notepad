@@ -35,6 +35,7 @@ I recently added a bunch of tools that I thought might go along with the regular
 - [Voice Notes](https://notepad.js.org/voice-notes/)
 - [Simple Kanban](https://notepad.js.org/kanban/)
 - [Case Converter](https://notepad.js.org/case-converter/)
+- [Tabbypad](https://notepad.js.org/tabbypad/)
 - [Tasks](https://notepad.js.org/tasks/)
 
 
