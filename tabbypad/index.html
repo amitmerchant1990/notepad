@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A dead simple app to take and manage multiple notes">
+    <meta name="author" content="Amit Merchant">
+    <meta name="keywords" content="tab,multiple notes,tabbypad,simple notepad" />
+    <meta name="application-name" content="Tabbypad" />
+    <meta name="theme-color" content="#343a40">
+    
+    <meta property="og:title" content="Tabbypad | notepad.js.org" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://notepad.js.org/tabbypad" />
+    <meta property="og:description" content="A dead simple app to take and manage multiple notes" />
+    <meta property="og:image" content="https://notepad.js.org/art/tabbypad.png" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Tabbypad | notepad.js.org" />
+    <meta name="twitter:description" content="A dead simple app to take and manage multiple notes" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://notepad.js.org/art/tabbypad.png" />
+
+    <title>Tabbypad | Take and manage multiple notes effortlessly | notepad.js.org</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="flex-navbar">
+            <span class="navbar-brand generic-flex">
+                <a href="/" class="brand-title">Notepad</a>
+                <img src="img/icons/slash.svg" />
+                <span>Tabbypad</span>
+            </span>
+            <div class="generic-flex">
+                <button class="btn btn-link text-white" data-toggle="modal" href="#aboutModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                    </svg>
+                </button>
+            </div> 
+        </div>
+    </nav>
+
+    <!-- Add this above the Tabbypad Section -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search notes..." class="form-control" />
+    </div>
+
+    <!-- Tabbypad Section -->
+    <div id="tabbypad">
+        <div class="grid-container" id="gridContainer"></div>
+    </div>
+    
+    <!-- Modal for Fullscreen Note -->
+    <div id="noteModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <a href="javascript:void(0);" id="fullscreenToggleBtn" title="Maximize / Minimize the note">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 9V8C21 5.79086 18.9853 4 16.5 4H15.25M21 15V16C21 18.2091 18.9853 20 16.5 20H15.25M3 15V16C3 18.2091 5.01472 20 7.5 20H8.75M3 9V8C3 5.79086 5.01472 4 7.5 4H8.75" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </a>
+            <span class="close">
+                <svg width="25" height="25" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Close</title> <g id="Page-1" stroke="none" stroke-width="2" fill="none" fill-rule="evenodd"> <g id="Close"> <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"> </rect> <line x1="16.9999" y1="7" x2="7.00001" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="3" stroke-linecap="round"> </line> <line x1="7.00006" y1="7" x2="17" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="3" stroke-linecap="round"> </line> </g> </g> </g></svg>
+            </span>
+            <textarea id="fullscreenNote" rows="10" style="width: 100%;"></textarea>
+            <button id="saveNoteBtn" class="btn btn-primary">Save Note</button>
+            <button id="deleteNoteBtn" class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">Tabbypad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>As the name suggests, <b>Tabbypad</b> is a dead simple app that let you write multiple notes.</p> 
+                    <p>It has following features:</p> 
+                    <ul>
+                        <li>Write multiple notes</li>
+                        <li>Search across notes</li>
+                        <li>Fullscreen notes to write notes easily</li>
+                        <li>Grid layout for easy navigation</li>
+                        <li>Simple by design</li>
+                    </ul>
+                    <p>Enjoy using this tool? If so, consider <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buying me a coffee</a> so that I keep working on improving it further and the experience remains ad-free.</p>
+                    <p class="text-center mb-0">
+                        <b>Brought to you by <a href="https://notepad.js.org/" class="about-author-link">notepad.js.org</a></b>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <div class="toast-body">
+        </div>
+    </div>
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-43339302-6');
+    </script>
+</body>
+</html>
