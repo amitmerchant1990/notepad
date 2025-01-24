@@ -1,4 +1,3 @@
-const notes = JSON.parse(localStorage.getItem('notes')) || []; // Load notes from localStorage
 const gridContainer = document.getElementById('gridContainer');
 const noteModal = document.getElementById('noteModal');
 const fullscreenNote = document.getElementById('fullscreenNote');
@@ -6,6 +5,64 @@ const closeModal = document.getElementsByClassName('close')[0];
 const saveNoteBtn = document.getElementById('saveNoteBtn');
 const deleteNoteBtn = document.getElementById('deleteNoteBtn');
 let currentNoteIndex = null; // To track the index of the current note being edited
+
+let notes = [], db;
+
+function initIndexedDB() {
+    const request = indexedDB.open('NotesDB', 1);
+
+    request.onupgradeneeded = function(event) {
+        db = event.target.result;
+        const objectStore = db.createObjectStore('notes', { keyPath: 'id' });
+    };
+
+    request.onsuccess = function(event) {
+        db = event.target.result;
+        migrateNotesFromLocalStorage(); // Migrate notes from localStorage
+        loadNotesFromIndexedDB(); // Load notes from IndexedDB on success
+    };
+
+    request.onerror = function(event) {
+        console.error('Database error: ' + event.target.errorCode);
+    };
+}
+
+function migrateNotesFromLocalStorage() {
+    const storedNotes = JSON.parse(localStorage.getItem('notes'));
+
+    if (storedNotes && Array.isArray(storedNotes)) {
+        const transaction = db.transaction(['notes'], 'readwrite');
+        const objectStore = transaction.objectStore('notes');
+
+        storedNotes.forEach(note => {
+            objectStore.add(note); // Add each note to IndexedDB
+        });
+
+        transaction.oncomplete = function() {
+            console.log('Notes migrated to IndexedDB successfully.');
+            localStorage.removeItem('notes'); // Remove notes from localStorage
+        };
+
+        transaction.onerror = function(event) {
+            console.error('Error migrating notes to IndexedDB:', event.target.errorCode);
+        };
+    }
+}
+
+function loadNotesFromIndexedDB() {
+    const transaction = db.transaction(['notes'], 'readonly');
+    const objectStore = transaction.objectStore('notes');
+    const request = objectStore.getAll();
+
+    request.onsuccess = function(event) {
+        const notesFromDB = event.target.result;
+        if (notesFromDB.length > 0) {
+            notes = notesFromDB; // Use notes from IndexedDB
+        }
+
+        renderNotes(); // Render the notes
+    };
+}
 
 // Function to render notes
 function renderNotes() {
@@ -46,21 +103,29 @@ function openFullscreen(note, index) {
 // Save note functionality
 saveNoteBtn.addEventListener('click', () => {
     const noteContent = fullscreenNote.value;
+    const note = {
+        id: Date.now(), // Unique identifier
+        content: noteContent,
+        created_at: new Date().toISOString() // Timestamp
+    };
+
+    const transaction = db.transaction(['notes'], 'readwrite');
+    const objectStore = transaction.objectStore('notes');
+
     if (currentNoteIndex !== null) {
         // Update existing note
         notes[currentNoteIndex].content = noteContent;
+        objectStore.put(notes[currentNoteIndex]); // Update note in IndexedDB
     } else {
         // Add new note
-        const newNote = {
-            id: Date.now(), // Unique identifier
-            content: noteContent,
-            created_at: new Date().toISOString() // Timestamp
-        };
-        notes.push(newNote);
+        objectStore.add(note); // Add new note to IndexedDB
+        notes.push(note); // Add to local notes array for rendering
     }
-    localStorage.setItem('notes', JSON.stringify(notes)); // Save updated notes to localStorage
-    renderNotes(); // Re-render notes
-    noteModal.style.display = "none"; // Close modal
+
+    transaction.oncomplete = function() {
+        renderNotes(); // Re-render notes
+        noteModal.style.display = "none"; // Close modal
+    };
 });
 
 // Close modal functionality
@@ -86,10 +151,22 @@ fullscreenToggleBtn.addEventListener('click', () => {
 deleteNoteBtn.addEventListener('click', () => {
     if (currentNoteIndex !== null) {
         // Remove the note from the array
-        notes.splice(currentNoteIndex, 1);
-        localStorage.setItem('notes', JSON.stringify(notes)); // Save updated notes to localStorage
-        renderNotes(); // Re-render notes
-        noteModal.style.display = "none"; // Close modal
+        const noteId = notes[currentNoteIndex].id; // Get the ID of the note to delete
+
+        // Delete from IndexedDB
+        const transaction = db.transaction(['notes'], 'readwrite');
+        const objectStore = transaction.objectStore('notes');
+        objectStore.delete(noteId); // Delete note from IndexedDB
+
+        transaction.oncomplete = function() {
+            notes.splice(currentNoteIndex, 1); // Remove from notes array
+            renderNotes(); // Re-render notes
+            noteModal.style.display = "none"; // Close modal
+        };
+
+        transaction.onerror = function(event) {
+            console.error('Error deleting note from IndexedDB:', event.target.errorCode);
+        };
     }
 });
 
@@ -136,6 +213,9 @@ function renderNotes(filteredNotes = notes) {
     });
     gridContainer.appendChild(addNoteDiv);
 }
+
+// Initialize IndexedDB
+initIndexedDB();
 
 // Initial rendering of notes on page load
 renderNotes();
