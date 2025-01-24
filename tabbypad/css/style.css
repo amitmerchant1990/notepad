@@ -223,3 +223,13 @@ textarea {
 .search-container input[type="text"] {
     width: 40%;
 }
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#saveNoteBtn {
+    margin-left: auto;
+}
