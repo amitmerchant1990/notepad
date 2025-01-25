@@ -4,6 +4,8 @@ const fullscreenNote = document.getElementById('fullscreenNote');
 const closeModal = document.getElementsByClassName('close')[0];
 const saveNoteBtn = document.getElementById('saveNoteBtn');
 const deleteNoteBtn = document.getElementById('deleteNoteBtn');
+const copyNoteBtn = document.getElementById('copyNoteBtn');
+const downloadNoteBtn = document.getElementById('downloadNoteBtn');
 let currentNoteIndex = null; // To track the index of the current note being edited
 
 let notes = [], db;
@@ -64,38 +66,13 @@ function loadNotesFromIndexedDB() {
     };
 }
 
-// Function to render notes
-function renderNotes() {
-    gridContainer.innerHTML = '';
-    notes.forEach((note, index) => {
-        const noteDiv = document.createElement('div');
-        noteDiv.className = 'grid-item';
-        noteDiv.innerHTML = '<div>' + note.content + '</div>'; // Use note content
-        noteDiv.addEventListener('click', () => {
-            openFullscreen(note.content, index); // Pass note content and index
-        });
-        gridContainer.appendChild(noteDiv);
-    });
-
-    // Add Note grid item
-    const addNoteDiv = document.createElement('div');
-    addNoteDiv.className = 'grid-item add-note';
-    addNoteDiv.innerHTML = '<span style="font-size: 2em;">+</span>';
-    addNoteDiv.addEventListener('click', () => {
-        fullscreenNote.value = '';
-        currentNoteIndex = null;
-        deleteNoteBtn.style.display = 'none';
-        noteModal.style.display = "block";
-        fullscreenNote.focus();
-    });
-    gridContainer.appendChild(addNoteDiv);
-}
-
 // Function to open note in fullscreen
 function openFullscreen(note, index) {
     fullscreenNote.value = note; // Populate textarea with note
     currentNoteIndex = index; // Set current note index
     deleteNoteBtn.style.display = 'inline-block';
+    copyNoteBtn.style.display = 'inline-block';
+    downloadNoteBtn.style.display = 'inline-block';
     noteModal.style.display = "block"; // Show modal
     fullscreenNote.focus(); // Focus on the textarea
 }
@@ -148,10 +125,17 @@ fullscreenToggleBtn.addEventListener('click', () => {
     fullscreenNote.focus();
 });
 
+// Show the confirmation modal without animation
 deleteNoteBtn.addEventListener('click', () => {
+    $('#confirmDeleteModal').modal({ backdrop: 'static', keyboard: false }); // Show modal without backdrop click
+    $('#confirmDeleteModal').modal('show'); // Show the modal
+});
+
+// Handle confirmation of deletion
+document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
     if (currentNoteIndex !== null) {
-        // Remove the note from the array
-        const noteId = notes[currentNoteIndex].id; // Get the ID of the note to delete
+        const noteToDelete = notes[currentNoteIndex]; // Get the note to delete
+        const noteId = noteToDelete.id; // Get the ID of the note to delete
 
         // Delete from IndexedDB
         const transaction = db.transaction(['notes'], 'readwrite');
@@ -162,6 +146,7 @@ deleteNoteBtn.addEventListener('click', () => {
             notes.splice(currentNoteIndex, 1); // Remove from notes array
             renderNotes(); // Re-render notes
             noteModal.style.display = "none"; // Close modal
+            $('#confirmDeleteModal').modal('hide'); // Hide confirmation modal
         };
 
         transaction.onerror = function(event) {
@@ -208,11 +193,43 @@ function renderNotes(filteredNotes = notes) {
         fullscreenNote.value = '';
         currentNoteIndex = null;
         deleteNoteBtn.style.display = 'none';
+        copyNoteBtn.style.display = 'none';
+        downloadNoteBtn.style.display = 'none';
         noteModal.style.display = "block";
         fullscreenNote.focus();
     });
     gridContainer.appendChild(addNoteDiv);
 }
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.querySelector('.toast-body').textContent = message;
+    toast.style.display = 'block';
+
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 2000);
+}
+
+copyNoteBtn.addEventListener('click', () => {
+    const noteContent = fullscreenNote.value;
+    navigator.clipboard.writeText(noteContent).then(() => {
+        showToast('Note copied to clipboard!'); // Optional: Notify the user
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+});
+
+downloadNoteBtn.addEventListener('click', () => {
+    const noteContent = fullscreenNote.value;
+    const noteId = currentNoteIndex !== null ? notes[currentNoteIndex].id : Date.now(); // Use existing note ID or generate a new one
+    const blob = new Blob([noteContent], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `note-${noteId}.txt`; // Append note ID to the file name
+    link.click();
+    URL.revokeObjectURL(link.href); // Clean up
+});
 
 // Initialize IndexedDB
 initIndexedDB();

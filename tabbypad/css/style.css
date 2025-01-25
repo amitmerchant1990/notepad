@@ -125,7 +125,7 @@ input[type="text"]:focus {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
 }
 
@@ -230,6 +230,20 @@ textarea {
     align-items: center;
 }
 
-#saveNoteBtn {
+.flex-note-footer {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-confirmation-container .modal.show {
+    display: block; /* Show the modal */
+    opacity: 1; /* Ensure full opacity */
+}
+
+.delete-confirmation-container .modal-dialog {
+    margin: auto; /* Center the modal */
+    top: 40%; /* Position it in the middle of the screen */
+    transform: translateY(-50%); /* Adjust for vertical centering */
 }
