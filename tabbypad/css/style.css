@@ -107,19 +107,9 @@ input[type="text"]:focus {
 }
 
 @media (max-width: 768px) {
-    .kanban-board {
-        flex-direction: column; /* Stack columns vertically on small screens */
-        gap: 10px;
-    }
-
-    .column {
-        width: 100%; /* Full width on small screens */
-    }
-
-    html, body {
-        height: 100%;
-        margin: 0;
-        overflow: auto; /* Prevent scrolling */
+    .search-container input[type="text"] {
+        width: 100% !important;
+        margin: 0 20px;
     }
 }
 
