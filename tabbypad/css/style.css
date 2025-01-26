@@ -121,17 +121,18 @@ input[type="text"]:focus {
 .grid-item {
     background-color: #ffffff;
     border: 2px solid #ccc;
-    padding: 15px;
+    padding: 20px;
     text-align: left;
     cursor: pointer;
     font-size: 0.9em;
-    height: 200px; /* Fixed height */
-    overflow: hidden; /* Hide overflow */
+    height: 215px;
+    overflow: hidden;
     border-radius: 10px;
-    display: -webkit-box; /* Use box layout for ellipsis */
-    -webkit-box-orient: vertical; /* Vertical orientation */
-    -webkit-line-clamp: 8; /* Limit to 8 lines (adjust as needed) */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
     transition: transform .2s ease-out;
+    box-shadow: 2px 2px 2px 0px #00000014;
 }
 
 /* Ensure that the text is wrapped correctly */
@@ -144,7 +145,7 @@ input[type="text"]:focus {
 }
 
 .grid-item:hover {
-    transform: scale(1.02); /* Slightly scale up the item */
+    filter: sepia(0.8);
 }
 
 .custom-modal {
@@ -198,7 +199,7 @@ textarea {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    height: 200px; /* Same height as other grid items */
+    height: 215px; /* Same height as other grid items */
     font-size: 2em; /* Larger font size for the plus sign */
 }
 
