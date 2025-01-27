@@ -131,7 +131,7 @@ input[type="text"]:focus {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 8;
-    transition: transform .2s ease-out;
+    transition: filter .2s ease-out;
     box-shadow: 2px 2px 2px 0px #00000014;
 }
 
@@ -145,7 +145,7 @@ input[type="text"]:focus {
 }
 
 .grid-item:hover {
-    filter: sepia(0.8);
+    filter: sepia(1);
 }
 
 .custom-modal {
