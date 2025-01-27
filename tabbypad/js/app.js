@@ -73,7 +73,7 @@ function openFullscreen(note, index) {
     deleteNoteBtn.style.display = 'inline-block';
     copyNoteBtn.style.display = 'inline-block';
     downloadNoteBtn.style.display = 'inline-block';
-    noteModal.style.display = "block"; // Show modal
+    noteModal.style.display = "flex"; // Show modal
     fullscreenNote.focus(); // Focus on the textarea
 }
 
@@ -195,7 +195,7 @@ function renderNotes(filteredNotes = notes) {
         deleteNoteBtn.style.display = 'none';
         copyNoteBtn.style.display = 'none';
         downloadNoteBtn.style.display = 'none';
-        noteModal.style.display = "block";
+        noteModal.style.display = "flex";
         fullscreenNote.focus();
     });
     gridContainer.appendChild(addNoteDiv);
