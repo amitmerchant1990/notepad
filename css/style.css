@@ -308,7 +308,8 @@ table tr td {
 
 .dropdown-item {
   display: flex !important;
-  gap: 7px;
+  gap: 9px;
+  align-items: center;
 }
 
 .dropdown-item span {
