@@ -60,6 +60,11 @@ $(document).ready(function() {
         
         if (isChecked) {
             $taskCard.addClass('task-completed').appendTo('#taskContainer'); // Move to bottom
+            
+            confetti({
+                origin: { y: 1 },
+                particleCount: 150
+            });
         } else {
             $taskCard.removeClass('task-completed').prependTo('#taskContainer'); // Move to top
         }
