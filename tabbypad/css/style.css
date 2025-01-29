@@ -237,3 +237,8 @@ textarea {
     top: 40%; /* Position it in the middle of the screen */
     transform: translateY(-50%); /* Adjust for vertical centering */
 }
+
+.note-content {
+    white-space: pre-wrap; /* Preserve whitespace and newlines */
+    word-wrap: break-word; /* Allow long words to break */
+}

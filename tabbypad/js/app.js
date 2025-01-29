@@ -173,12 +173,20 @@ searchInput.addEventListener('input', () => {
 });
 
 // Modify renderNotes function to accept an optional parameter
-function renderNotes(filteredNotes = notes) {
-    gridContainer.innerHTML = '';
-    filteredNotes.forEach((note, index) => {
+function renderNotes() {
+    gridContainer.innerHTML = ''; // Clear the grid container
+
+    // Render all notes without pinning logic
+    notes.forEach((note, index) => {
         const noteDiv = document.createElement('div');
         noteDiv.className = 'grid-item';
-        noteDiv.innerHTML = '<div>' + note.content + '</div>'; // Use note content
+
+        // Create a div for note content
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'note-content';
+        contentDiv.textContent = note.content; // Use note content
+
+        noteDiv.appendChild(contentDiv); // Append note content
         noteDiv.addEventListener('click', () => {
             openFullscreen(note.content, index); // Pass note content and index
         });
