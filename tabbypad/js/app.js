@@ -246,6 +246,11 @@ function getCurrentDate() {
 }
 
 function downloadAllNotes() {
+    if (notes.length === 0) {
+        showToast('No notes to download!');
+        return;
+    }
+
     const folderName = "tabbypad-notes-bundle-"+ getCurrentDate();
     const zip = new JSZip();
     const folder = zip.folder(folderName); // Create a folder in the ZIP
