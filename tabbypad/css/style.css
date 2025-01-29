@@ -110,11 +110,23 @@ input[type="text"]:focus {
         width: 100% !important;
         margin: 0 20px;
     }
+
+    #tabbypad {
+        padding: 20px 20px 40px 20px !important;
+    }
+
+    .custom-modal-content {
+        margin: 40% auto !important;
+    }
+
+    .custom-modal-content.fullscreen {
+        margin: 0 !important;
+    }
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
 
@@ -179,7 +191,7 @@ input[type="text"]:focus {
 
 #tabbypad {
     margin-top: 15px;
-    padding: 20px;
+    padding: 20px 10% 40px;
 }
 
 #deleteNoteBtn {
