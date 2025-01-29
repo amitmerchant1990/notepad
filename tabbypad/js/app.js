@@ -239,6 +239,34 @@ downloadNoteBtn.addEventListener('click', () => {
     URL.revokeObjectURL(link.href); // Clean up
 });
 
+function getCurrentDate() {
+    const currentDate = new Date();
+
+    return currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();
+}
+
+function downloadAllNotes() {
+    const folderName = "tabbypad-notes-bundle-"+ getCurrentDate();
+    const zip = new JSZip();
+    const folder = zip.folder(folderName); // Create a folder in the ZIP
+
+    notes.forEach(note => {
+        // Create a text file for each note
+        folder.file(`note_${note.id}.txt`, note.content);
+    });
+
+    // Generate the ZIP file and trigger download
+    zip.generateAsync({ type: "blob" }).then(content => {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(content);
+        link.download = folderName +".zip"; // Name of the ZIP file
+        link.click();
+        URL.revokeObjectURL(link.href); // Clean up
+    });
+}
+
+document.getElementById('downloadAllNotesBtn').addEventListener('click', downloadAllNotes);
+
 // Initialize IndexedDB
 initIndexedDB();
 
