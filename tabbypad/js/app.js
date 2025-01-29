@@ -173,11 +173,11 @@ searchInput.addEventListener('input', () => {
 });
 
 // Modify renderNotes function to accept an optional parameter
-function renderNotes() {
+function renderNotes(filteredNotes = notes) {
     gridContainer.innerHTML = ''; // Clear the grid container
 
     // Render all notes without pinning logic
-    notes.forEach((note, index) => {
+    filteredNotes.forEach((note, index) => {
         const noteDiv = document.createElement('div');
         noteDiv.className = 'grid-item';
 
