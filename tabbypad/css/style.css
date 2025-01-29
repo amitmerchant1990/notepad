@@ -191,6 +191,7 @@ textarea {
     margin: 10px 0;
     border-radius: 6px;
     height: calc(100% - 92px);
+    resize: none;
 }
 
 .add-note {
