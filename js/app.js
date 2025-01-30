@@ -29,10 +29,10 @@ $(document).ready(function () {
 		{
 			isFeature: true,
 			isActive: true,
-			text: "New → Try Dyslexic font",
-			url: "#preferences",
-			dataTarget: "#preferencesModal",
-			active: false
+			text: "Want to try a Deep Breathing Exercise tool? 🧘",
+			url: "#new-feature-modal",
+			dataTarget: "#newFeatureModal",
+			active: true
 		}
 	];
 
