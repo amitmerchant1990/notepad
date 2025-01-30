@@ -9,7 +9,7 @@ $(document).ready(function () {
 		{
 			text: "Buy me a coffee if you enjoy using this little app! 😻",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
@@ -24,7 +24,7 @@ $(document).ready(function () {
 		{
 			text: "🚀 New tool → Tabbypad",
 			url: "/tabbypad",
-			active: true
+			active: false
 		},
 		{
 			isFeature: true,
