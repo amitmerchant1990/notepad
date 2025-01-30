@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A dead simple app to take and manage multiple notes">
+    <meta name="author" content="Amit Merchant">
+    <meta name="keywords" content="tab,multiple notes,tabbypad,simple notepad" />
+    <meta name="application-name" content="Tabbypad" />
+    <meta name="theme-color" content="#343a40">
+
+    <meta property="og:title" content="Tabbypad | notepad.js.org" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://notepad.js.org/tabbypad" />
+    <meta property="og:description" content="A dead simple app to take and manage multiple notes" />
+    <meta property="og:image" content="https://notepad.js.org/art/tabbypad.png" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Tabbypad | notepad.js.org" />
+    <meta name="twitter:description" content="A dead simple app to take and manage multiple notes" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://notepad.js.org/art/tabbypad.png" />
+
+    <title>Deep Breath | A breathing exercise app | notepad.js.org</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="flex-navbar">
+            <span class="navbar-brand generic-flex">
+                <a href="/" class="brand-title">Notepad</a>
+                <img src="img/icons/slash.svg" />
+                <span>Deep Breath</span>
+            </span>
+            <div class="generic-flex">
+                <button class="btn btn-link text-white" data-toggle="modal" href="#aboutModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="c-deep-breathing-tool__frame">
+            <div class="c-deep-breathing-tool__outer-circle">
+              <div class="c-deep-breathing-tool__inner-circle"></div>
+            </div>
+            <div class="c-deep-breathing-tool__message" id="message">When you're ready...</div>
+          </div>
+
+          <a id="startButton" class="c-button c-button--yellow c-deep-breathing-tool__animation-toggle">Start breathing exercise</a>
+          <a id="stopButton" class="c-button c-button--yellow c-deep-breathing-tool__animation-toggle">Stop</a>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">Deep Breath</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>A simple breathing exercise (also called <b>"square breathing"</b>) to help you de-stress yourself.</p>
+                    <p>Get relaxed with four easy steps:</p>
+                    <ul>
+                        <li>Breathe in deeply for around four seconds</li>
+                        <li>Hold your breath for around four seconds</li>
+                        <li>Breathe out for around four seconds</li>
+                        <li>Hold your breath for around four seconds</li>
+                    </ul>
+                    <p>Repeat this for a few minutes or until you start feeling better.</p>
+                    <p>Enjoy using this tool? If so, consider <a href="https://buymeacoffee.com/amitmerchant"
+                            target="_blank">buying me a coffee</a> so that I keep working on improving it further and
+                        the experience remains ad-free.</p>
+                    <p class="text-center mb-0">
+                        <b>Brought to you by <a href="https://notepad.js.org/"
+                                class="about-author-link">notepad.js.org</a></b>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <div class="toast-body">
+        </div>
+    </div>
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-43339302-6');
+    </script>
+</body>
+
+</html>
