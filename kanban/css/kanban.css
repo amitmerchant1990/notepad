@@ -120,6 +120,10 @@ input[type="text"]:focus {
     align-items: center;
 }
 
+.header-right {
+    gap: 10px;
+}
+
 .dragging {
     opacity: 0.5; /* Make the item semi-transparent while dragging */
     transition: opacity 0.2s; /* Smooth transition */
@@ -151,6 +155,10 @@ input[type="text"]:focus {
 .sortable-chosen {
     background-color: rgba(255, 204, 0, 0.3); /* Light yellow background with transparency */
     border: 2px solid rgba(0, 4, 216, 0.5); /* Solid border for visibility */
+}
+
+.about-button {
+    padding: 0 !important;
 }
 
 @media (max-width: 768px) {

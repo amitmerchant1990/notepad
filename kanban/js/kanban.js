@@ -178,11 +178,50 @@ function toggleFullScreen() {
     }
 }
 
+function getTasks(status) {
+    const kanbanData = localStorage.getItem("kanban");
+    if (!kanbanData) return []; // Return empty array if no data found
+
+    const kanbanTasks = JSON.parse(kanbanData); // Parse the JSON data
+    const tasks = kanbanTasks[status] || []; // Return the tasks for the specified status, or an empty array if not found
+
+    console.log(`Tasks for ${status}:`, tasks); // Debugging line
+    return tasks;
+}
+
 document.addEventListener("fullscreenchange", function () {
 	if (!document.fullscreenElement) {
 		$('#arrowPointsIn').hide();
 		$('#arrowPointsOut').show();
 	}
+});
+
+document.getElementById('download-tasks').addEventListener('click', function() {
+    const todoTasks = getTasks('todo'); // Function to get 'To Do' tasks
+    const inProgressTasks = getTasks('inProgress'); // Function to get 'In Progress' tasks
+    const doneTasks = getTasks('done'); // Function to get 'Done' tasks
+
+    // Find the maximum length of the task arrays
+    const maxLength = Math.max(todoTasks.length, inProgressTasks.length, doneTasks.length);
+    let csvContent = "data:text/csv;charset=utf-8,To Do,In Progress,Done\n";
+
+    // Create rows for the CSV
+    for (let i = 0; i < maxLength; i++) {
+        const todo = todoTasks[i] || ""; // Use empty string if undefined
+        const inProgress = inProgressTasks[i] || ""; // Use empty string if undefined
+        const done = doneTasks[i] || ""; // Use empty string if undefined
+
+        csvContent += `${todo},${inProgress},${done}\n`; // Add row to CSV
+    }
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "kanban.csv");
+    document.body.appendChild(link); // Required for FF
+
+    link.click();
+    document.body.removeChild(link);
 });
 
 $(document).ready(function() {
