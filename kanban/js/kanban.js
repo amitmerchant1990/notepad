@@ -196,32 +196,44 @@ document.addEventListener("fullscreenchange", function () {
 	}
 });
 
+function escapeCSV(value) {
+    // Escape double quotes by replacing them with two double quotes
+    if (typeof value === 'string') {
+        return `"${value.replace(/"/g, '""')}"`;
+    }
+    
+    return value; // Return the value as is if it's not a string
+}
+
 document.getElementById('download-tasks').addEventListener('click', function() {
     const todoTasks = getTasks('todo'); // Function to get 'To Do' tasks
     const inProgressTasks = getTasks('inProgress'); // Function to get 'In Progress' tasks
     const doneTasks = getTasks('done'); // Function to get 'Done' tasks
 
-    // Find the maximum length of the task arrays
     const maxLength = Math.max(todoTasks.length, inProgressTasks.length, doneTasks.length);
-    let csvContent = "data:text/csv;charset=utf-8,To Do,In Progress,Done\n";
+    let csvContent = "To Do,In Progress,Done\n";
 
     // Create rows for the CSV
     for (let i = 0; i < maxLength; i++) {
-        const todo = todoTasks[i] || ""; // Use empty string if undefined
-        const inProgress = inProgressTasks[i] || ""; // Use empty string if undefined
-        const done = doneTasks[i] || ""; // Use empty string if undefined
+        const todo = todoTasks[i] !== undefined ? `"${todoTasks[i]}"` : '""'; // Wrap in quotes
+        const inProgress = inProgressTasks[i] !== undefined ? `"${inProgressTasks[i]}"` : '""'; // Wrap in quotes
+        const done = doneTasks[i] !== undefined ? `"${doneTasks[i]}"` : '""'; // Wrap in quotes
 
         csvContent += `${todo},${inProgress},${done}\n`; // Add row to CSV
     }
 
-    const encodedUri = encodeURI(csvContent);
+    // Create a Blob from the CSV content
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
     const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
+    link.setAttribute("href", url);
     link.setAttribute("download", "kanban.csv");
     document.body.appendChild(link); // Required for FF
 
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url); // Clean up the URL object
 });
 
 $(document).ready(function() {
