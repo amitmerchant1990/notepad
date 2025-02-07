@@ -14,12 +14,20 @@ $(document).ready(function () {
 		{
 			text: "Buy me a coffee if you enjoy using this little app! 😻",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "🚀 New → Simple Kanban",
 			url: "/kanban",
 			active: false
+		},
+		{
+			isFeature: true,
+			isActive: true,
+			text: "Want to try a Deep Breathing Exercise tool? 🧘",
+			url: "#new-feature-modal",
+			dataTarget: "#newFeatureModal",
+			active: true
 		}
 	];
 
