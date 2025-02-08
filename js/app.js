@@ -27,6 +27,11 @@ $(document).ready(function () {
 			active: false
 		},
 		{
+			text: "Introducing → ConsolePad 🗒️",
+			url: "https://amitmerchant.com/introducing-consolepad",
+			active: true
+		},
+		{
 			isFeature: true,
 			isActive: true,
 			text: "Want to try a Deep Breathing Exercise tool? 🧘",
