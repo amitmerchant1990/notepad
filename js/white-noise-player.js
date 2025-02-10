@@ -92,6 +92,9 @@ class WhiteNoisePlayer {
                 loading: false
             }
         };
+
+        this.notesContainer = document.querySelector('.floating-notes');
+        this.noteInterval = null;
         
         this.init();
     }
@@ -215,7 +218,39 @@ class WhiteNoisePlayer {
     updateMuteButtonVisibility() {
 		const muteButton = document.getElementById('globalMuteButton');
 		muteButton.style.display = this.isAnySoundPlaying() ? 'block' : 'none';
+
+        if (this.isAnySoundPlaying()) {
+            this.startFloatingNotes();
+        } else {
+            this.stopFloatingNotes();
+        }
 	}
+
+    createNote() {
+        const note = document.createElement('div');
+        note.textContent = '♪';
+        note.style.position = 'absolute';
+        note.style.left = `${Math.random() * 50}%`;
+        note.style.color = `hsl(0, 0%, 100%)`;
+        note.style.animation = `floatNote 4s linear forwards`;
+        note.style.fontSize = '8px';
+
+        document.querySelector('.floating-notes').appendChild(note);
+
+        // Remove the note after animation ends
+        setTimeout(() => note.remove(), 3000);
+    }
+
+    startFloatingNotes() {
+        if (!this.noteInterval) {
+            this.noteInterval = setInterval(this.createNote, 1000);
+        }
+    }
+
+    stopFloatingNotes() {
+        clearInterval(this.noteInterval);
+        this.noteInterval = null;
+    }
 }
 
 // Initialize the player when the document is ready
