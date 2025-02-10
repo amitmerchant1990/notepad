@@ -29,7 +29,7 @@ $(document).ready(function () {
 		{
 			text: "Introducing → ConsolePad 🗒️",
 			url: "https://amitmerchant.com/introducing-consolepad",
-			active: true
+			active: false
 		},
 		{
 			isFeature: true,
