@@ -34,7 +34,7 @@ $(document).ready(function () {
 		{
 			isFeature: true,
 			isActive: true,
-			text: "Want to try a Deep Breathing Exercise tool? 🧘",
+			text: "I'm raising 12 coffees to bring a Deep Breathing Exercise tool 🧘",
 			url: "#new-feature-modal",
 			dataTarget: "#newFeatureModal",
 			active: true
