@@ -27,9 +27,9 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "Introducing → ConsolePad 🗒️",
-			url: "https://amitmerchant.com/introducing-consolepad",
-			active: false
+			text: "Introducing → Deep Breath App 🧘",
+			url: "/deep-breath",
+			active: true
 		},
 		{
 			isFeature: true,
@@ -37,7 +37,7 @@ $(document).ready(function () {
 			text: "I'm raising 12 coffees to bring a Deep Breathing Exercise tool 🧘",
 			url: "#new-feature-modal",
 			dataTarget: "#newFeatureModal",
-			active: true
+			active: false
 		}
 	];
 
