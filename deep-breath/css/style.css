@@ -382,7 +382,7 @@ label {
 .c-deep-breathing-tool__inner-circle--breathe-out {
     background-color: #605d5d;
     transform: scale(0.4);
-    transition: all 4s linear;
+    transition: all 6s linear;
 }
 
 .c-deep-breathing-tool__message--fade {

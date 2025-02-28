@@ -4,6 +4,7 @@ const message = document.getElementById('message');
 
 let breathingInterval;
 let timeoutIds = [];
+let intervalId;
 
 startButton.addEventListener('click', () => {
     startButton.style.display = 'none';
@@ -13,7 +14,7 @@ startButton.addEventListener('click', () => {
 
     const innerCircle = document.querySelector('.c-deep-breathing-tool__inner-circle');
 
-    message.classList.add('c-deep-breathing-tool__message--fade');
+    //message.classList.add('c-deep-breathing-tool__message--fade');
 
     // Function to perform the breathing animation
     const performBreathingAnimation = () => {
@@ -22,7 +23,6 @@ startButton.addEventListener('click', () => {
     
         // Inhale duration
         timeoutIds.push(setTimeout(() => {
-            
             // Hold for 4 seconds
             message.textContent = 'Now hold your breath'; // Update message during hold
             timeoutIds.push(setTimeout(() => {
@@ -38,21 +38,33 @@ startButton.addEventListener('click', () => {
                     timeoutIds.push(setTimeout(() => {
                         innerCircle.classList.remove('c-deep-breathing-tool__inner-circle--breathe-out');
                     }, 4000));
-                }, 4000)); // Exhale duration
+                }, 6000)); // Exhale duration
             }, 4000)); // Hold duration
         }, 4000)); // Inhale duration
     };
 
-    // Start the animation immediately
-    performBreathingAnimation();
+    performCountdown = () => {
+        let count = 3;
+        intervalId = setInterval(() => {
+            message.textContent = `Ready in ${count}...`;
+            count--;
 
-    breathingInterval = setInterval(performBreathingAnimation, 16000); // 8 seconds for one full cycle
+            if (count === -1) {
+                clearInterval(intervalId);
+                performBreathingAnimation();
+                breathingInterval = setInterval(performBreathingAnimation, 18000);
+            }
+        }, 1000);
+    };
+
+    performCountdown();
 });
 
 // Add this code to handle the stop button
 stopButton.addEventListener('click', () => {
     // Clear the breathing interval
     clearInterval(breathingInterval);
+    clearInterval(intervalId);
 
     // Clear all timeouts
     timeoutIds.forEach(timeoutId => clearTimeout(timeoutId));
@@ -66,7 +78,7 @@ stopButton.addEventListener('click', () => {
     // Reset message immediately
     const message = document.getElementById('message');
     message.textContent = "When you're ready...";
-    message.classList.remove('c-deep-breathing-tool__message--fade'); // Optional: remove fade class if needed
+    //message.classList.remove('c-deep-breathing-tool__message--fade'); // Optional: remove fade class if needed
 
     // Show the start button and hide the stop button
     startButton.style.display = 'block';
