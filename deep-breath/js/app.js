@@ -46,7 +46,7 @@ startButton.addEventListener('click', () => {
     performCountdown = () => {
         let count = 3;
         intervalId = setInterval(() => {
-            message.textContent = `Ready in ${count}...`;
+            message.textContent = `Starting in ${count}...`;
             count--;
 
             if (count === -1) {
