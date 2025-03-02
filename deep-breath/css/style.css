@@ -329,7 +329,7 @@ label {
 }
 
 .c-deep-breathing-tool__outer-circle {
-    background-color: #2a2a2a;
+    background-color: #0a3347;
     height: calc(100vw - 3rem);
     width: calc(100vw - 3rem);
 }
@@ -347,9 +347,9 @@ label {
 }
 
 .c-deep-breathing-tool__inner-circle {
-    background-color: #605d5d;
-    -webkit-box-shadow: 0 0 15px 5px #a0a0a0;
-    box-shadow: 0 0 15px 5px #a0a0a0;
+    background-color: #4b7082;
+    -webkit-box-shadow: 0 0 20px 11px #8fadbc;
+    box-shadow: 0 0 20px 8px #8fadbc;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -374,13 +374,13 @@ label {
 }
 
 .c-deep-breathing-tool__inner-circle--breathe-in {
-    background-color: #605d5d;
+    background-color: #4b7082;
     transform: scale(0.9);
     transition: all 4s linear;
 }
 
 .c-deep-breathing-tool__inner-circle--breathe-out {
-    background-color: #605d5d;
+    background-color: #4b7082;
     transform: scale(0.4);
     transition: all 6s linear;
 }
