@@ -1186,6 +1186,10 @@ a {
   pointer-events: none;
 }
 
+.about-link {
+  padding-right: 0 !important;
+}
+
 @keyframes floatNote {
   0% {
     transform: translateY(0) scale(1);
