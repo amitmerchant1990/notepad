@@ -426,6 +426,15 @@ label {
     display: none;
 }
 
+.about-notice {
+    --shadow-color: 0deg 0% 67%;
+    --shadow-elevation-low: 0.3px 0.5px 0.9px hsl(var(--shadow-color) / 0), 0.9px 1.9px 3.2px hsl(var(--shadow-color) / 0.45);
+    background-color: #ecf0ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-elevation-low);
+}
+
 @keyframes fade-in-out {
     0% {
         opacity: 0;
