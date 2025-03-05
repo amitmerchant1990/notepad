@@ -198,13 +198,7 @@ function renderNotes(filteredNotes = notes) {
     addNoteDiv.className = 'grid-item add-note';
     addNoteDiv.innerHTML = '<span style="font-size: 2em;">+</span>';
     addNoteDiv.addEventListener('click', () => {
-        fullscreenNote.value = '';
-        currentNoteIndex = null;
-        deleteNoteBtn.style.display = 'none';
-        copyNoteBtn.style.display = 'none';
-        downloadNoteBtn.style.display = 'none';
-        noteModal.style.display = "flex";
-        fullscreenNote.focus();
+        createNewNote();
     });
     gridContainer.appendChild(addNoteDiv);
 }
@@ -269,6 +263,25 @@ function downloadAllNotes() {
         URL.revokeObjectURL(link.href); // Clean up
     });
 }
+
+function createNewNote() {
+    fullscreenNote.value = '';
+    currentNoteIndex = null;
+    deleteNoteBtn.style.display = 'none';
+    copyNoteBtn.style.display = 'none';
+    downloadNoteBtn.style.display = 'none';
+    noteModal.style.display = "flex";
+    fullscreenNote.focus();
+}
+
+document.onkeydown = function (event) {
+    event = event || window.event;
+    
+    if (event.altKey && event.code === 'KeyN') {
+        createNewNote();
+        event.preventDefault();
+    }
+};
 
 document.getElementById('downloadAllNotesBtn').addEventListener('click', downloadAllNotes);
 
