@@ -196,6 +196,7 @@ function renderNotes(filteredNotes = notes) {
     // Add Note grid item
     const addNoteDiv = document.createElement('div');
     addNoteDiv.className = 'grid-item add-note';
+    addNoteDiv.title = 'Add Note (Alt/Option + N)';
     addNoteDiv.innerHTML = '<span style="font-size: 2em;">+</span>';
     addNoteDiv.addEventListener('click', () => {
         createNewNote();
