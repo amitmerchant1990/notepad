@@ -426,6 +426,14 @@ label {
     display: none;
 }
 
+#muteButton {
+    position: absolute; top: 70px; right: 26px;
+}
+
+#speakerIcon {
+    display: none;
+}
+
 .about-notice {
     --shadow-color: 0deg 0% 67%;
     --shadow-elevation-low: 0.3px 0.5px 0.9px hsl(var(--shadow-color) / 0), 0.9px 1.9px 3.2px hsl(var(--shadow-color) / 0.45);

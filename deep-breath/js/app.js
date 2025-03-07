@@ -2,11 +2,18 @@ const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const message = document.getElementById('message');
 
+const muteButton = document.getElementById('muteButton');
+const speakerIcon = document.getElementById('speakerIcon');
+
 let breathingInterval;
 let timeoutIds = [];
 let intervalId;
+let isMuted = false;
+let music;
 
 startButton.addEventListener('click', () => {
+    startMusic();
+
     startButton.style.display = 'none';
     stopButton.style.display = 'block';
     
@@ -62,6 +69,8 @@ startButton.addEventListener('click', () => {
 
 // Add this code to handle the stop button
 stopButton.addEventListener('click', () => {
+    stopMusic();
+
     // Clear the breathing interval
     clearInterval(breathingInterval);
     clearInterval(intervalId);
@@ -83,4 +92,27 @@ stopButton.addEventListener('click', () => {
     // Show the start button and hide the stop button
     startButton.style.display = 'block';
     stopButton.style.display = 'none';
+});
+
+function startMusic() {
+    music = new Audio('/sounds/meditation.mp3');
+    speakerIcon.style.display = 'block';
+    music.play();
+}
+
+function stopMusic() {
+    speakerIcon.style.display = 'none';
+    music.pause();
+    music.currentTime = 0; // Reset to the start
+}
+
+muteButton.addEventListener('click', () => {
+    if (isMuted) {
+        music.volume = 1; // Unmute
+        speakerIcon.src = "img/icons/speaker.svg";
+    } else {
+        music.volume = 0; // Mute
+        speakerIcon.src = "img/icons/mute.svg";
+    }
+    isMuted = !isMuted;
 });
