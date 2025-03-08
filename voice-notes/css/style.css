@@ -403,6 +403,10 @@ h1 {
     font-size: 1.1em;
 }
 
+.bg-dark {
+    background-color: #1b222d !important;
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

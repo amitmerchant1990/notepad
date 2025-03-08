@@ -148,3 +148,7 @@ input[type="text"]:focus {
         overflow: auto; /* Prevent scrolling */
     }
 }
+
+.bg-dark {
+    background-color: #1b222d !important;
+}

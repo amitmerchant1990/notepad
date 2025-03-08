@@ -161,6 +161,10 @@ input[type="text"]:focus {
     padding: 0 !important;
 }
 
+.bg-dark {
+    background-color: #1b222d !important;
+}
+
 @media (max-width: 768px) {
     .kanban-board {
         flex-direction: column; /* Stack columns vertically on small screens */

@@ -208,6 +208,11 @@ footer {
   text-align: center;
 }
 
+.navbar-inverse {
+  background-color: #1b222d;
+  border-color: #080808;
+}
+
 .vertical-center {
   min-height: 100%;
   /* Fallback for vh unit */

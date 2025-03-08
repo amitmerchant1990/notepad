@@ -263,3 +263,7 @@ textarea {
 .btn-container button {
     padding: 0;
 }
+
+.bg-dark {
+    background-color: #1b222d !important;
+}
