@@ -96,6 +96,7 @@ stopButton.addEventListener('click', () => {
 
 function startMusic() {
     music = new Audio('/sounds/meditation.mp3');
+    music.loop = true;
     speakerIcon.style.display = 'block';
     music.play();
 }
