@@ -27,9 +27,9 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "Introducing → Deep Breath App 🧘",
-			url: "/deep-breath",
-			active: false
+			text: "Introducing → Drawingpad",
+			url: "/drawingpad",
+			active: true
 		},
 		{
 			isFeature: true,
