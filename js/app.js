@@ -29,7 +29,7 @@ $(document).ready(function () {
 		{
 			text: "Introducing → Drawingpad",
 			url: "/drawingpad",
-			active: true
+			active: false
 		},
 		{
 			isFeature: true,

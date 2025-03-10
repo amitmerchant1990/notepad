@@ -39,6 +39,7 @@ I recently added a bunch of tools that I thought might go along with the regular
 - [Case Converter](https://notepad.js.org/case-converter/)
 - [Tabbypad](https://notepad.js.org/tabbypad/)
 - [Deep Breath](https://notepad.js.org/deep-breath/)
+- [Drawingpad (Beta)](https://notepad.js.org/drawingpad/)
 - [Tasks](https://notepad.js.org/tasks/)
 
 
