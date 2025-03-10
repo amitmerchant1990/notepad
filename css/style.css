@@ -1487,6 +1487,10 @@ a {
   line-height: 1.6;
 }
 
+.new-tag {
+  background: #71fa82 !important;
+}
+
 @media print {
   .dark .affiliate-popup, .affiliate-popup, .word-count-container {
     display: none !important;
