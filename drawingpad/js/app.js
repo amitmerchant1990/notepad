@@ -64,8 +64,9 @@ document.addEventListener('keydown', (event) => {
 // Set canvas size to fill the container
 // Function to resize canvas
 function resizeCanvas() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const drawingpadContainer = document.getElementById('drawingpad');
+    const width = drawingpadContainer.offsetWidth;
+    const height = drawingpadContainer.offsetHeight;
     
     // Save the scale before resizing
     const scaleX = width / canvas.width;

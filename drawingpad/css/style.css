@@ -265,8 +265,8 @@ textarea {
     background-color: white;
 }
 
-.drawingpad {
-    position: relative;
+#drawingpad {
+    height: calc(100% - 50px); /* Adjust height to fit within the board */
 }
 
 .tools-container {
@@ -284,7 +284,7 @@ textarea {
 .title-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
 }
 
 .title-container span:nth-child(2) {
