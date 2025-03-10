@@ -280,3 +280,18 @@ textarea {
     box-shadow: 0px 0px 6px 1px #c9c9c98c;
     display: flex;
 }
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-container span:nth-child(2) {
+    padding: 2px 10px;
+    font-size: 0.7em;
+    background-color: #ffc413;
+    border-radius: 5px;
+    color: black;
+    text-transform: uppercase;
+}
