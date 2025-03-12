@@ -504,6 +504,8 @@ there's a small donate button in the About section.
 	document.onkeydown = function (event) {
 		event = event || window.event;
 
+		console.log(event);
+
 		if (event.key === 'Escape') {
 			$('.modal').modal('hide');
 			$('#iconDropdown').removeClass('show');
@@ -545,7 +547,7 @@ there's a small donate button in the About section.
 			copyNotesToClipboard(notepad.note.val());
 		}
 
-		if ((event.ctrlKey || event.metaKey) && event.code === 'Delete') {
+		if ((event.ctrlKey || event.metaKey) && (event.code === 'Delete' || event.code === 'Backspace')) {
 			event.preventDefault();
 			deleteNotes();
 		}
