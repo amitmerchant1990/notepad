@@ -547,7 +547,7 @@ there's a small donate button in the About section.
 			copyNotesToClipboard(notepad.note.val());
 		}
 
-		if ((event.ctrlKey || event.metaKey) && (event.code === 'Delete' || event.code === 'Backspace')) {
+		if ((event.ctrlKey || event.metaKey) && event.code === 'Delete') {
 			event.preventDefault();
 			deleteNotes();
 		}
