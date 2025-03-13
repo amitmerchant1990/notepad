@@ -175,9 +175,12 @@ class WhiteNoisePlayer {
             }
         }
 
+        const defaultVolume = document.getElementById(soundKey + '-volume').value / 100;
+
         if (sound.audio) {
             sound.audio.play();
             sound.playing = true;
+            sound.audio.volume = defaultVolume;
             button.classList.add('playing');
         }
 
