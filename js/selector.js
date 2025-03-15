@@ -34,6 +34,7 @@ function selector() {
             downloadNotesPlain: selectById('downloadNotesPlain'),
             downloadNotesPdf: selectById('downloadNotesPdf'),
             downloadNotesDocx: selectById('downloadNotesDocx'),
+            downloadNotesHtml: selectById('downloadNotesHtml'),
             fontSize: selectById('fontSize'),
             fontWeight: selectById('fontWeight'),
             installApp: selectById('installApp'),

@@ -274,6 +274,13 @@ there's a small donate button in the About section.
 		exportNotesAsDocx(textToWrite, fileNameToSaveAs);
 	});
 
+	notepad.downloadNotesHtml.click(function (e) {
+		const textToWrite = note.value;
+		const fileNameToSaveAs = getHtmlFileName();
+
+		downloadHTML(textToWrite, fileNameToSaveAs);
+	});
+
 	// Close dropdown if clicked outside
 	$(document).on('click', function () {
 		$('#iconDropdown').removeClass('show');

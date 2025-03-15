@@ -10,6 +10,10 @@ function getDocxFileName() {
     return 'Notes-' + getCurrentDate() + '.docx';
 }
 
+function getHtmlFileName() {
+    return 'Notes-' + getCurrentDate() + '.html';
+}
+
 function getCurrentDate() {
     const currentDate = new Date();
 
@@ -313,4 +317,21 @@ function shareNotes(textToShare) {
         .then( () => console.log("Successful share"))
         .catch(e => console.log("Error sharing:", e))
     }
+}
+
+function downloadHTML(textToWrite, fileNameToSaveAs) {
+    const htmlContent = `<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;">${textToWrite}</pre>
+        </body>
+    </html>`;
+    
+    const blob = new Blob([htmlContent], { type: "text/html" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = fileNameToSaveAs;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 }
