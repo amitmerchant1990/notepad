@@ -31,6 +31,12 @@ class WhiteNoisePlayer {
                 playing: false,
                 loading: false
             },
+            'rain-on-leaves': {
+                url: 'sounds/rain-on-leaves.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
             'thunder': {
                 url: 'sounds/thunder.mp3',
                 audio: null,
@@ -87,6 +93,18 @@ class WhiteNoisePlayer {
             },
             'clock': {
                 url: 'sounds/clock.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'ceiling-fan': {
+                url: 'sounds/ceiling-fan.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'tuning-radio': {
+                url: 'sounds/tuning-radio.mp3',
                 audio: null,
                 playing: false,
                 loading: false
