@@ -12,6 +12,11 @@ $(document).ready(function () {
 			active: true
 		},
 		{
+			text: "Jeffery C Reed just bought me 3 coffees! ☕️",
+			url: "https://buymeacoffee.com/amitmerchant/c/13284566",
+			active: true
+		},
+		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
 			url: "https://videotap.com?via=amitmerchant",
 			active: false
