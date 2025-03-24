@@ -432,7 +432,7 @@ table tr td {
 .word-count-container {
   position: absolute;
   display: inline-block;
-  background: #e0ceff;
+  background: #e2dcd8;
   bottom: 12px;
   right: 1.4em;
   margin-left: auto;
@@ -444,6 +444,10 @@ table tr td {
   justify-content: space-between;
   font-size: 10px;
   gap: 14px;
+}
+
+.dark .word-count-container { 
+  background: #e0ceff;
 }
 
 .tab-content .container {
@@ -1221,7 +1225,7 @@ a {
 }
 
 .dark .affiliate-popup {
-  background: #181e27;
+  background-image: radial-gradient(45.07% 92.4% at 51% 7.61%, #464646 0, #181e27 100%);
   border-color: #30363d;
 }
 

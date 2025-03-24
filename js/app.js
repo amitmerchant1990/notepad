@@ -12,6 +12,11 @@ $(document).ready(function () {
 			active: true
 		},
 		{
+			text: "Support the development so the experience remains ad-free! 🙏",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
 			text: "Jeffery C Reed just bought me 3 coffees! ☕️",
 			url: "https://buymeacoffee.com/amitmerchant/c/13284566",
 			active: true
