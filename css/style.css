@@ -433,7 +433,7 @@ table tr td {
   position: absolute;
   display: inline-block;
   background: #e2dcd8;
-  bottom: 12px;
+  bottom: 1.4em;
   right: 1.4em;
   margin-left: auto;
   padding: 5px 14px;
@@ -700,7 +700,6 @@ a {
 
 .install-app-btn-container {
   display: none;
-  margin-left: 5px;
 }
 
 .install-app-btn {
@@ -763,7 +762,7 @@ a {
 .brand-container {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .about-modal {
