@@ -162,7 +162,7 @@
     <div class="container" id="textareaContainer">
       <div class="starter-template">
         <textarea id="note" placeholder="Type your notes here and when you come back all your notes will be right here..."
-          autofocus></textarea>
+          spellcheck="false" autofocus></textarea>
       </div>
       <div class="word-count-container">
         <p id="wordCount">0 character, 0 word</p>
@@ -670,6 +670,23 @@
               <div class="checkbox checbox-switch">
                 <label>
                     <input type="checkbox" name="optimalLineLength" id="optimalLineLength" checked="checked" />
+                    <span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-6 col-md-6 generic-flex">
+              Spellcheck
+              <a href="#" data-toggle="tooltip" title="Uses your system's spell-checker">
+                <img src="img/tooltip.svg" alt="Tooltip Icon" />                
+              </a>
+            </label>
+            <div class="col-sm-6 col-md-5">
+              <div class="checkbox checbox-switch">
+                <label>
+                    <input type="checkbox" name="spellCheck" id="spellCheck"/>
                     <span></span>
                 </label>
               </div>

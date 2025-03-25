@@ -54,6 +54,7 @@ function selector() {
             monospaced: selectById('monospaced'),
             shareNotes: selectById('shareNotes'),
             dyslexic: selectById('dyslexic'),
+            spellCheck: selectById('spellCheck'),
         },
         state: {
             note: getState('note'),
@@ -68,6 +69,7 @@ function selector() {
             userChosenOptimalLineLengthSelected: getState('userChosenOptimalLineLengthSelected'),
             isMonospaced: getState('monospaced'),
             isDyslexic: getState('dyslexicFont'),
+            userChosenSpellCheck: getState('userChosenSpellCheck'),
         },
         get,
         getState,

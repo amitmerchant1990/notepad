@@ -120,7 +120,8 @@ there's a small donate button in the About section.
 		defaultShowWordCountPill: 'Yes',
 		defaultWriteDirection: 'ltr',
 		defaultOptimalLineLength: false,
-		defaultOptimalLineLengthPadding: '15px 24px 40px'
+		defaultOptimalLineLengthPadding: '15px 24px 40px',
+		defaultSpellCheck: false
 	};
 
 	const themeConfig = {
@@ -209,6 +210,18 @@ there's a small donate button in the About section.
 		notepad.optimalLineLength.prop('checked', state.userChosenOptimalLineLengthSelected === 'Yes');
 	} else {
 		notepad.optimalLineLength.prop('checked', false);
+	}
+
+	if (state.userChosenSpellCheck) {
+		if (state.userChosenSpellCheck === 'Yes') {
+			notepad.note.attr('spellcheck', true);
+		} else {
+			notepad.note.attr('spellcheck', false);
+		}
+
+		notepad.spellCheck.prop('checked', state.userChosenSpellCheck === 'Yes');
+	} else {
+		notepad.spellCheck.prop('checked', false);
 	}
 
 	if (state.mode && state.mode === 'dark') {
@@ -356,6 +369,16 @@ there's a small donate button in the About section.
 		}
 	})
 
+	notepad.spellCheck.on('change', function (e) {
+		if ($(this).is(':checked')) {
+			notepad.note.attr('spellcheck', true);
+			setState('userChosenSpellCheck', 'Yes');
+		} else {
+			notepad.note.attr('spellcheck', false);
+			setState('userChosenSpellCheck', 'No');
+		}
+	})
+
 	notepad.resetPreferences.click(function () {
 		if (selector().state.userChosenFontSize) {
 			removeState('userChosenFontSize');
@@ -397,6 +420,12 @@ there's a small donate button in the About section.
 			removeState('dyslexicFont');
 			notepad.note.removeClass('dyslexic');
 			notepad.dyslexic.prop('checked', false);
+		}
+
+		if (selector().state.userChosenSpellCheck) {
+			removeState('userChosenSpellCheck');
+			notepad.note.attr('spellcheck', false);
+			notepad.spellCheck.prop('checked', editorConfig.defaultSpellCheck);
 		}
 
 		// Reset to device theme as default
