@@ -121,7 +121,7 @@ there's a small donate button in the About section.
 		defaultWriteDirection: 'ltr',
 		defaultOptimalLineLength: false,
 		defaultOptimalLineLengthPadding: '15px 24px 40px',
-		defaultSpellCheck: false
+		defaultSpellCheck: true
 	};
 
 	const themeConfig = {
@@ -221,7 +221,7 @@ there's a small donate button in the About section.
 
 		notepad.spellCheck.prop('checked', state.userChosenSpellCheck === 'Yes');
 	} else {
-		notepad.spellCheck.prop('checked', false);
+		notepad.spellCheck.prop('checked', true);
 	}
 
 	if (state.mode && state.mode === 'dark') {
