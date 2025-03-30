@@ -22,7 +22,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - Focus mode (on desktop).
   - Optimal line length for better reading experience.
   - [Floating window](https://www.amitmerchant.com/implementing-interactive-floating-windows-using-picture-in-picture-api/) to effectively take notes on top of other apps (in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Document_Picture-in-Picture_API))
-  - Download notes as **plain text** or **PDF**.
+  - Download notes as **plain text**, **HTML**, or **PDF**.
   - Ability to play ambient noise—**coffee shop**, **rain**, **fireside**, etc.—to help you focus.
 
 ## Mini tools
