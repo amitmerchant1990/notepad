@@ -94,6 +94,31 @@ stopButton.addEventListener('click', () => {
     stopButton.style.display = 'none';
 });
 
+$('#fullScreenButton').click(function () {
+    toggleFullScreen();
+});
+
+document.addEventListener("fullscreenchange", function () {
+	if (!document.fullscreenElement) {
+		$('#arrowPointsIn').hide();
+		$('#arrowPointsOut').show();
+	}
+});
+
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        $('#arrowPointsOut').hide();
+        $('#arrowPointsIn').show();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            $('#arrowPointsIn').hide();
+            $('#arrowPointsOut').show();
+        }
+    }
+}
+
 function startMusic() {
     music = new Audio('/sounds/meditation.mp3');
     music.loop = true;
