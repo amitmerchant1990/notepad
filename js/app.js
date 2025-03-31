@@ -17,8 +17,8 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Alen Vican just bought a coffee! ☕️",
-			url: "https://buymeacoffee.com/amitmerchant/c/13315688",
+			text: "Julie Scott just bought 3 coffees! ☕️",
+			url: "https://buymeacoffee.com/amitmerchant/c/13372743",
 			active: true
 		},
 		{
