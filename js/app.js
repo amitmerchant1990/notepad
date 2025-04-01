@@ -121,7 +121,8 @@ there's a small donate button in the About section.
 		defaultWriteDirection: 'ltr',
 		defaultOptimalLineLength: false,
 		defaultOptimalLineLengthPadding: '15px 24px 40px',
-		defaultSpellCheck: true
+		defaultSpellCheck: true,
+		defaultTabIndentation: false
 	};
 
 	const themeConfig = {
@@ -224,6 +225,12 @@ there's a small donate button in the About section.
 		notepad.spellCheck.prop('checked', true);
 	}
 
+	if (state.userChosenTabIndentation) {
+		notepad.tabIndentation.prop('checked', state.userChosenTabIndentation === 'Yes');
+	} else {
+		notepad.tabIndentation.prop('checked', false);
+	}
+
 	if (state.mode && state.mode === 'dark') {
 		enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
 
@@ -261,6 +268,42 @@ there's a small donate button in the About section.
 		notepad.wordCount.text(characterAndWordCountText);
 		setState('note', get(this).val());
 	}, 500));
+
+	notepad.note.keydown(function (e) {
+		const tabIndentation = notepad.tabIndentation.prop('checked');
+
+		if (e.key === "Tab" && tabIndentation) {
+			e.preventDefault(); 
+	
+			let textarea = e.target;
+			let start = textarea.selectionStart;
+			let end = textarea.selectionEnd;
+			let tabCharacter = "\t";
+	
+			if (start === end) {
+				// Single cursor position: Insert tab
+				document.execCommand("insertText", false, tabCharacter);
+				textarea.selectionStart = textarea.selectionEnd = start + tabCharacter.length;
+			} else {
+				// Multi-line selection: Add tab to each line
+				let value = textarea.value;
+				let selectedText = value.substring(start, end);
+				let lines = selectedText.split("\n");
+	
+				if (e.shiftKey) {
+					// Shift+Tab: Remove leading tab if present
+					let unindentedLines = lines.map(line =>
+						line.startsWith(tabCharacter) ? line.substring(tabCharacter.length) : line
+					);
+					document.execCommand("insertText", false, unindentedLines.join("\n"));
+				} else {
+					// Tab: Indent each line
+					let indentedLines = lines.map(line => tabCharacter + line);
+					document.execCommand("insertText", false, indentedLines.join("\n"));
+				}
+			}
+		}
+	});
 
 	notepad.clearNotes.on('click', function () {
 		deleteNotes();
@@ -379,6 +422,14 @@ there's a small donate button in the About section.
 		}
 	})
 
+	notepad.tabIndentation.on('change', function (e) {
+		if ($(this).is(':checked')) {
+			setState('userChosenTabIndentation', 'Yes');
+		} else {
+			setState('userChosenTabIndentation', 'No');
+		}
+	})
+
 	notepad.resetPreferences.click(function () {
 		if (selector().state.userChosenFontSize) {
 			removeState('userChosenFontSize');
@@ -426,6 +477,11 @@ there's a small donate button in the About section.
 			removeState('userChosenSpellCheck');
 			notepad.note.attr('spellcheck', false);
 			notepad.spellCheck.prop('checked', editorConfig.defaultSpellCheck);
+		}
+
+		if (selector().state.userChosenTabIndentation) {
+			removeState('userChosenTabIndentation');
+			notepad.tabIndentation.prop('checked', editorConfig.defaultTabIndentation);
 		}
 
 		// Reset to device theme as default

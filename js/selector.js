@@ -55,6 +55,7 @@ function selector() {
             shareNotes: selectById('shareNotes'),
             dyslexic: selectById('dyslexic'),
             spellCheck: selectById('spellCheck'),
+            tabIndentation: selectById('tabIndentation'),
         },
         state: {
             note: getState('note'),
@@ -70,6 +71,7 @@ function selector() {
             isMonospaced: getState('monospaced'),
             isDyslexic: getState('dyslexicFont'),
             userChosenSpellCheck: getState('userChosenSpellCheck'),
+            userChosenTabIndentation: getState('userChosenTabIndentation'),
         },
         get,
         getState,
