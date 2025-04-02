@@ -12,7 +12,7 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Support the development so the experience remains ad-free! 🙏",
+			text: "Help keep Notepad ad-free 🙏",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
