@@ -90,9 +90,10 @@ The app serves the following features:
 - Dark mode.
 - Privacy-focused - Never collects your precious data.
 - Light-weight - Loads almost instantly.
+- Keyboard shortcuts for common actions.
 - Full-screen mode for a distraction-free writing experience.
 - Floating window (in supported browsers) to effectively take notes across other apps.
-- Download notes as plain text, PDF, and DOCX file.
+- Download notes as plain text, PDF, HTML, and DOCX file.
 - Ability to play ambient noise to help you focus.
 - It's proudly open-source!
 
@@ -101,7 +102,7 @@ it's recommended that you take a backup of your notes more often using the
 "Download Notes" button or by pressing the "Ctrl/Cmd + S" keys.
 
 Lastly, if you're using Notepad, and want to support the development, 
-there's a small donate button in the About section.
+you can buy me a coffee — the link of which is available in the About section.
 
 ** Delete this text and start writing your notes **`;
 
