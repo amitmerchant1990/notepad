@@ -7,12 +7,17 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Buy me a coffee if you enjoy using this little app! 😻",
+			text: "Keep Notepad running smooth & simple — sponsor a sip ☕",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
-			text: "Help keep Notepad ad-free 🙏",
+			text: "If this tiny app made your day, buy me a coffee! 😸",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
+			text: "No ads. No clutter. Just notes. Help us keep it that way 💫",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
@@ -29,11 +34,6 @@ $(document).ready(function () {
 		{
 			text: "🚀 New tool → Case Converter",
 			url: "/case-converter",
-			active: false
-		},
-		{
-			text: "🚀 New tool → Tabbypad",
-			url: "/tabbypad",
 			active: false
 		},
 		{
