@@ -9,12 +9,12 @@ $(document).ready(function () {
 		{
 			text: "Keep Notepad running smooth & simple — sponsor a sip ☕",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "If this tiny app made your day, buy me a coffee! 😸",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "No ads. No clutter. Just notes. Help us keep it that way 💫",
@@ -24,12 +24,12 @@ $(document).ready(function () {
 		{
 			text: "Kareena Olivera just bought 3 coffees! ☕️",
 			url: "https://buymeacoffee.com/amitmerchant/c/13489108",
-			active: true
+			active: false
 		},
 		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
 			url: "https://videotap.com?via=amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "🚀 New tool → Case Converter",
