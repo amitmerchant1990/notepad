@@ -44,10 +44,10 @@ $(document).ready(function () {
 		{
 			isFeature: true,
 			isActive: true,
-			text: "I'm raising 12 coffees to bring a Deep Breathing Exercise tool 🧘",
-			url: "#new-feature-modal",
-			dataTarget: "#newFeatureModal",
-			active: false
+			text: "→ Try Writing Timer",
+			url: "#timerModal",
+			dataTarget: "#timerModal",
+			active: true
 		}
 	];
 
