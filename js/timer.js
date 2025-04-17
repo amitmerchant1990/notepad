@@ -19,8 +19,8 @@ const timerModalHtml = `
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title custom-modal-title generic-gap">
-                        Select Writing Timer
-                        <a href="#" data-placement="bottom" data-toggle="tooltip" title="Once selected, the timer will start at the bottom right.">
+                        Select Writing Duration
+                        <a href="#" data-placement="bottom" data-toggle="tooltip" title="Once selected, the timer will start ticking at the bottom right corner.">
                             <img src="img/tooltip.svg" alt="Tooltip Icon" />                
                         </a>
                     </h4>    
