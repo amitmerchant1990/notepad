@@ -123,6 +123,16 @@
               </span>
             </a>
           </span>
+          <span title="Play Writing Timer" id="timerContainer">
+            <a href="#timerModal" data-toggle="modal" data-target="#timerModal" title="Play Writing Timer">
+              <span>
+                <img
+                  src="img/navbar/timer.svg"
+                  alt="Play Writing Timer"
+                />
+              </span>
+            </a>
+          </span>
         </span>  
       </div>
       <div id="navbar" class="collapse navbar-collapse">
@@ -163,6 +173,14 @@
       <div class="starter-template">
         <textarea id="note" placeholder="Type your notes here and when you come back all your notes will be right here..."
           spellcheck="true" autofocus></textarea>
+      </div>  
+      <div class="timer-pill" style="display: none;">
+        <div class="timer-display">00:00</div>
+        <a href="javascript:void(0);" id="stopTimer" title="Stop the timer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>          
+        </a>
       </div>
       <div class="word-count-container">
         <p id="wordCount">0 character, 0 word</p>
@@ -284,6 +302,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>17th Apr, 2025</h3>
+              <ul>
+                <li>Implemented <b>writing timer</b> which can be used to track writing time. It can be used for <a href="https://en.wikipedia.org/wiki/Free_writing" target="_blank">free writing</a> as well.</li>
+              </ul>
+
               <h4>1st Apr, 2025</h3>
               <ul>
                 <li>Implemented an ability to toggle tab indentation from preferences for structured writing like lists, tables, code, etc.</li>
@@ -996,6 +1019,7 @@
   <script src="js/utils.js"></script>
   <script src="js/selector.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/timer.js"></script>
   <script src="js/white-noise-player.js"></script>
   
   <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->

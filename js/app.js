@@ -90,6 +90,7 @@ The app serves the following features:
 - Dark mode.
 - Privacy-focused - Never collects your precious data.
 - Light-weight - Loads almost instantly.
+- Writing timer.
 - Keyboard shortcuts for common actions.
 - Full-screen mode for a distraction-free writing experience.
 - Floating window (in supported browsers) to effectively take notes across other apps.
@@ -552,11 +553,13 @@ you can buy me a coffee — the link of which is available in the About section.
 				const mainContainer = document.querySelector("#mainContainer");
 				const textareaContainer = event.target.querySelector("#textareaContainer");
 				const overlay = document.querySelector(".overlay");
+				const timer = event.target.querySelector('.timer-pill');
 				mainContainer.append(textareaContainer);
 				mainContainer.classList.remove("pip");
 
 				overlay.style.display = "none";
 				overlay.style.pointerEvents = "none";
+				timer.style.display = "flex";
 
 				textareaContainer.classList.remove("dark");
 			});
@@ -566,10 +569,12 @@ you can buy me a coffee — the link of which is available in the About section.
 			const playerContainer = document.querySelector("#mainContainer");
 			const textareaContainer = document.querySelector("#textareaContainer");
 			const overlay = document.querySelector(".overlay");
+			const timer = document.querySelector('.timer-pill');
 
 			playerContainer.classList.add("pip");
 			overlay.style.display = "block";
 			overlay.style.pointerEvents = "all";
+			timer.style.display = "none";
 
 			if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark') {
 				textareaContainer.classList.add("dark");

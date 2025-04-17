@@ -751,12 +751,62 @@ a {
   animation: heartbeat 1.2s infinite ease-in-out !important;
 }
 
+.timer-options {
+  justify-content: center;
+  margin: 26px 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 0.5em;
+}
+
+.timer-options .btn {
+  font-weight: bold;
+  padding: 10px 18px;
+}
+
+.dark .timer-pill {
+  background: #bff0ff;
+}
+
+.timer-pill {
+  position: absolute;
+  display: inline-block;
+  background: #c9c7c7;
+  bottom: 1.4em;
+  right: 17.8em;
+  margin-left: auto;
+  padding: 5px 14px;
+  border-radius: 20px;
+  color: #403333;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  gap: 6px;
+  align-items: center;
+}
+
+.pip .timer-pill {
+  display: none;
+}
+
+.generic-gap {
+  gap: 10px;
+}
+
 .icon-container {
   display: flex;
   gap: 12px;
   height: 50px;
   line-height: 20px;
   align-items: center;
+}
+
+@media (max-width: 400px) {
+  .icon-container {
+    gap: 0.7em;
+  }
 }
 
 .brand-container {
