@@ -11,6 +11,8 @@ const timerConfig = {
     remainingTime: 0
 };
 
+const timerPillRightPositionWithoutWordCount = '1.4em';
+
 // Timer modal HTML
 const timerModalHtml = `
     <div class="timer-modal modal fade" id="timerModal" tabindex="-1">
@@ -55,6 +57,12 @@ function startTimer(minutes) {
     // Show timer pill
     $('.timer-pill').show();
     updateTimerDisplay();
+
+    // check if word-count-container is hidden and 
+    // based on that change right position of timer pill
+    if ($('.word-count-container').is(':hidden')) {
+        $('.timer-pill').css('right', timerPillRightPositionWithoutWordCount);
+    }
 }
 
 function stopTimer() {
