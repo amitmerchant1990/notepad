@@ -22,14 +22,14 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Kareena Olivera just bought 3 coffees! ☕️",
-			url: "https://buymeacoffee.com/amitmerchant/c/13489108",
-			active: false
+			text: "Kevin Clift just bought a coffee! ☕️",
+			url: "https://buymeacoffee.com/amitmerchant/c/13635667",
+			active: true
 		},
 		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
 			url: "https://videotap.com?via=amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "🚀 New tool → Case Converter",
@@ -47,7 +47,7 @@ $(document).ready(function () {
 			text: "→ Try Writing Timer",
 			url: "#timerModal",
 			dataTarget: "#timerModal",
-			active: true
+			active: false
 		}
 	];
 
