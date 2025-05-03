@@ -22,8 +22,8 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Kevin Clift just bought a coffee! ☕️",
-			url: "https://buymeacoffee.com/amitmerchant/c/13635667",
+			text: "Charley Hankins just bought a coffee! ☕️",
+			url: "https://buymeacoffee.com/amitmerchant/c/13757639",
 			active: true
 		},
 		{
