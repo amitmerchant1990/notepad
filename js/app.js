@@ -27,6 +27,11 @@ $(document).ready(function () {
 			active: true
 		},
 		{
+			text: "Alexis Jakobson just bought 5 coffees! ☕️",
+			url: "https://buymeacoffee.com/amitmerchant/c/13803934",
+			active: true
+		},
+		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
 			url: "https://videotap.com?via=amitmerchant",
 			active: false
