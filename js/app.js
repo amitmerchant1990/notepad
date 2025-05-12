@@ -7,29 +7,24 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Keep Notepad running smooth & simple — sponsor a sip ☕",
+			text: "If Notepad adds value to your day, consider supporting the developer.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
-			text: "If this tiny app made your day, buy me a coffee! 😸",
+			text: "Support independent development by buying me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "No ads. No clutter. Just notes. Help us keep it that way 💫",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
-		},
-		{
-			text: "Shelby McCowan just bought 3 coffees! ☕️",
-			url: "https://buymeacoffee.com/amitmerchant/c/13784346",
-			active: true
+			active: false
 		},
 		{
 			text: "Alexis Jakobson just bought 5 coffees! ☕️",
 			url: "https://buymeacoffee.com/amitmerchant/c/13803934",
-			active: true
+			active: false
 		},
 		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
