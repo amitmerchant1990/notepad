@@ -17,9 +17,9 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "No ads. No clutter. Just notes. Help us keep it that way 💫",
+			text: "Help keep Notepad ad-free by buying me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Alexis Jakobson just bought 5 coffees! ☕️",
