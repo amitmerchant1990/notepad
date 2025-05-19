@@ -557,13 +557,11 @@ you can buy me a coffee — the link of which is available in the About section.
 				const mainContainer = document.querySelector("#mainContainer");
 				const textareaContainer = event.target.querySelector("#textareaContainer");
 				const overlay = document.querySelector(".overlay");
-				const timer = event.target.querySelector('.timer-pill');
 				mainContainer.append(textareaContainer);
 				mainContainer.classList.remove("pip");
 
 				overlay.style.display = "none";
 				overlay.style.pointerEvents = "none";
-				timer.style.display = "flex";
 
 				textareaContainer.classList.remove("dark");
 			});
@@ -573,12 +571,16 @@ you can buy me a coffee — the link of which is available in the About section.
 			const playerContainer = document.querySelector("#mainContainer");
 			const textareaContainer = document.querySelector("#textareaContainer");
 			const overlay = document.querySelector(".overlay");
-			const timer = document.querySelector('.timer-pill');
 
 			playerContainer.classList.add("pip");
 			overlay.style.display = "block";
 			overlay.style.pointerEvents = "all";
-			timer.style.display = "none";
+			
+			// Stop the writing timer 
+			// if it is running (js/timer.js)
+			if (timerConfig.timer) {
+				stopTimer();
+			}
 
 			if (localStorage.getItem('mode') && localStorage.getItem('mode') == 'dark') {
 				textareaContainer.classList.add("dark");
