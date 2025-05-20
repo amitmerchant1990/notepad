@@ -17,14 +17,14 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Help keep Notepad ad-free by buying me a coffee! ❤️",
+			text: "No VC funding for this app, only your Venti Coffees! ☕",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
 			text: "Silvio just bought a coffee! ☕️",
 			url: "https://buymeacoffee.com/amitmerchant/c/13931832",
-			active: true
+			active: false
 		},
 		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
