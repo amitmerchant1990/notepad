@@ -17,7 +17,7 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "No VC funding for this app, only your Venti Coffees! ☕",
+			text: "No VC funding for this app, only your Venti Coffees to keep it alive!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
