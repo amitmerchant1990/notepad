@@ -4,22 +4,22 @@ $(document).ready(function () {
 		{
 			text: "Support Notepad's sustainable development — Buy me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
-			text: "If Notepad adds value to your day, consider supporting the developer.",
+			text: "If you enjoy this app, consider leaving a tip to support it!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
 			text: "Support independent development by buying me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "No VC funding for this app, only your Venti Coffees to keep it alive!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Silvio just bought a coffee! ☕️",
