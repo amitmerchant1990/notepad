@@ -446,6 +446,12 @@ table tr td {
   gap: 14px;
 }
 
+.about-tabs li a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .dark .word-count-container { 
   background: #e0ceff;
 }
