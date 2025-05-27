@@ -449,7 +449,7 @@ table tr td {
 .about-tabs li a {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .dark .word-count-container { 
