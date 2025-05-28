@@ -90,6 +90,8 @@ function addTask(columnId) {
         addTaskToColumn(columnId, taskText);
         input.value = '';
         saveTasks();
+    } else {
+        input.focus();
     }
 }
 
