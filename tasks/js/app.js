@@ -40,7 +40,7 @@ $(document).ready(function() {
     function addTask() {
         let taskText = $('#taskInput').val().trim();
         if (taskText === '') {
-            alert('Please enter a task');
+            $('#taskInput').focus();
             return;
         }
 
