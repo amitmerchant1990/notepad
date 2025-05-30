@@ -359,6 +359,7 @@ table tr td {
   padding: 20px;
   border-radius: 10px;
   box-shadow: var(--shadow-elevation-low);
+  line-height: 23px;
 }
 
 .about-author-container {
@@ -483,6 +484,15 @@ table tr td {
 
 .dark .sticky-notice a {
   color: #93103d;
+}
+
+.donate-link {
+  font-family: "Cookie", cursive;
+  font-size: 22px;
+}
+
+.donate-link:hover {
+  text-decoration: none;
 }
 
 textarea {
@@ -1536,6 +1546,13 @@ a {
 @font-face {
   font-family: 'OpenDyslexic';
   src: url('../fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cookie';
+  src: url('../fonts/Cookie-Regular.ttf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }

@@ -30,7 +30,8 @@ let CACHE_FILES = [
     'img/navbar/share.svg',
     'img/navbar/dropdown.svg',
     'img/tooltip.svg',
-    'fonts/OpenDyslexic-Regular.otf'
+    'fonts/OpenDyslexic-Regular.otf',
+    'fonts/Cookie-Regular.ttf'
 ];
 
 self.addEventListener('install', function (event) {
