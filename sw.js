@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v25';
+let CACHE_VERSION = 'app-v26';
 let CACHE_FILES = [
     '/',
     'index.html',
@@ -29,7 +29,9 @@ let CACHE_FILES = [
     'img/navbar/preferences.svg',
     'img/navbar/share.svg',
     'img/navbar/dropdown.svg',
+    'img/navbar/timer.svg',
     'img/tooltip.svg',
+    'img/amitmerchant-icon.svg',
     'fonts/OpenDyslexic-Regular.otf',
     'fonts/Cookie-Regular.ttf'
 ];
