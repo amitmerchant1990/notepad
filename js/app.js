@@ -12,7 +12,7 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Support independent development by buying me a coffee! ❤️",
+			text: "We rely on the supporters like you to keep Notepad thriving!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
