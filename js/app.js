@@ -1,6 +1,5 @@
 $(document).ready(function () {
-	// Affiliate links data
-	const affiliateLinks = [
+	const toastLinks = [
 		{
 			text: "Support Notepad's sustainable development — Buy me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
@@ -9,17 +8,27 @@ $(document).ready(function () {
 		{
 			text: "If you enjoy this app, consider leaving a tip to support it!",
 			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+		{
+			text: "Your support keeps this app going — leave a tip if you can! ❤️",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
+			text: "Enjoying the experience? A tip helps us keep improving!",
+			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
 			text: "We rely on the supporters like you to keep Notepad thriving!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "No VC funding for this app, only your Venti Coffees to keep it alive!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Silvio just bought a coffee! ☕️",
@@ -51,34 +60,34 @@ $(document).ready(function () {
 		}
 	];
 
-	// Function to show random affiliate link
-	function showRandomAffiliateLink() {
-		const activeAffiliates = affiliateLinks.filter(affiliate => affiliate.active);
-		const randomIndex = Math.floor(Math.random() * activeAffiliates.length);
-		const affiliate = activeAffiliates[randomIndex];
+	// Function to show a random link
+	function showRandomToastLink() {
+		const activeLinks = toastLinks.filter(link => link.active);
+		const randomIndex = Math.floor(Math.random() * activeLinks.length);
+		const link = activeLinks[randomIndex];
 
-		if (!affiliate) {
+		if (!link) {
 			return;
 		}
 
-		$('#affiliateText').text(affiliate.text);
-		$('#affiliateLink').attr('href', affiliate.url);
-		$('#affiliatePopup').addClass('show');
+		$('#toastText').text(link.text);
+		$('#toastLink').attr('href', link.url);
+		$('#toastPopup').addClass('show');
 
-		if (affiliate.isFeature && affiliate.isActive) {
-			$('#affiliateLink').attr('data-target', affiliate.dataTarget);
-			$('#affiliateLink').attr('data-toggle', 'modal');
-			$('#affiliateLink').removeAttr('target');
+		if (link.isFeature && link.isActive) {
+			$('#toastLink').attr('data-target', link.dataTarget);
+			$('#toastLink').attr('data-toggle', 'modal');
+			$('#toastLink').removeAttr('target');
 		}
 	}
 
-	// Close affiliate popup
-	$('#closeAffiliatePopup').on('click', function () {
-		$('#affiliatePopup').removeClass('show');
+	// Close toast popup
+	$('#closeToastPopup').on('click', function () {
+		$('#toastPopup').removeClass('show');
 	});
 
-	// Show affiliate popup after a delay
-	setTimeout(showRandomAffiliateLink, 5000);
+	// Show toast popup after a delay
+	setTimeout(showRandomToastLink, 5000);
 
 	const welcomeText = `Welcome! This is an offline-capable Notepad which is a Progressive Web App.
 
