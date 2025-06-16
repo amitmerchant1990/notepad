@@ -190,7 +190,8 @@ function deleteNotes() {
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Delete'
+        confirmButtonText: 'Yes, Delete!',
+        cancelButtonText: 'No, keep it.'
     }).then((result) => {
         if (result.value) {
             notepad.note.val('').focus();
