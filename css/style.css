@@ -1567,6 +1567,24 @@ a {
   background: #71fa82 !important;
 }
 
+.chime-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.chime-container input {
+  margin: 0;
+  color-scheme: none;
+}
+
+.chime-container label {
+  margin: 0;
+  font-size: 1em;
+}
+
 @media print {
   .dark .toast-popup, .toast-popup, .word-count-container {
     display: none !important;

@@ -276,7 +276,7 @@ you can buy me a coffee — the link of which is available in the About section.
         });
     });
 
-	notepad.note.keyup(debounce(function () {
+	notepad.note.on('input', debounce(function () {
 		const characterAndWordCountText = calculateCharactersAndWords(get(this).val());
 		notepad.wordCount.text(characterAndWordCountText);
 		setState('note', get(this).val());

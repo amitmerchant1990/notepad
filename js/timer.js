@@ -35,6 +35,10 @@ const timerModalHtml = `
                             </button>
                         `).join('')}
                     </div>
+                    <div class="chime-container">
+                         <input type="checkbox" id="timerChime" />
+                         <label for="timerChime">Play chime sound</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,6 +47,20 @@ const timerModalHtml = `
 
 // Add timer HTML to the DOM
 $(document.body).append(timerModalHtml);
+
+$(document).ready(function() {
+    if (localStorage.getItem('timerChime') && localStorage.getItem('timerChime') == 'true') {
+        $('#timerChime').prop('checked', true);
+    }
+
+    $('#timerChime').change(function() {
+        if (this.checked) {
+            localStorage.setItem('timerChime', 'true');
+        } else {
+            localStorage.setItem('timerChime', 'false');
+        }
+    })
+})
 
 // Timer functions
 function startTimer(minutes) {
@@ -77,6 +95,10 @@ function stopTimer() {
 
 function updateTimer() {
     if (timerConfig.remainingTime <= 0) {
+        if (localStorage.getItem('timerChime') && localStorage.getItem('timerChime') == 'true') {
+            playChimeSound();
+        }
+        
         stopTimer();
         return;
     }
@@ -90,6 +112,13 @@ function updateTimerDisplay() {
     const seconds = timerConfig.remainingTime % 60;
     const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     $('.timer-display').text(display);
+}
+
+// Initialize alarm sound
+function playChimeSound() {
+    timerConfig.alarmSound = new Audio('sounds/short-alarm-beep.mp3');
+    timerConfig.alarmSound.loop = false;
+    timerConfig.alarmSound.play();
 }
 
 // Event listeners
