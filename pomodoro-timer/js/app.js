@@ -231,6 +231,11 @@ $(document).ready(function () {
         const playerContainer = document.querySelector("#mainContainer");
         const overlay = document.querySelector(".overlay");
 
+        const pipWindow = event.window;
+        const pipDocument = pipWindow.document;
+        const pipBody = pipDocument.body;
+
+        pipBody.classList.add("pipBody");
         playerContainer.classList.add("pip");
         overlay.style.display = "block";
         overlay.style.pointerEvents = "all";

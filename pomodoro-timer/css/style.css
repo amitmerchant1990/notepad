@@ -121,6 +121,14 @@ body {
   }
 }
 
+.pipBody {
+  padding-top: 0;
+}
+
+.pipBody .vertical-center {
+  min-height: 100vh;
+}
+
 .overlay {
   position: absolute;
   top: 0;
