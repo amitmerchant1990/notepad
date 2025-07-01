@@ -187,8 +187,8 @@ $(document).ready(function () {
 
         // Open a Picture-in-Picture window.
         const pipWindow = await documentPictureInPicture.requestWindow({
-            width: 350,
-            height: 450,
+            width: 250,
+            height: 380,
         });
 
         [...document.styleSheets].forEach((styleSheet) => {
