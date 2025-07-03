@@ -133,7 +133,7 @@ $(document).ready(function() {
             addTaskToContainer(task.text, task.completed);
         });
 
-        toggleNoTasksMessage(); // Update message visibility based on loaded tasks
+        toggleNoTasksMessage();
     }
 
     // Toggle visibility of the "No tasks added" message
