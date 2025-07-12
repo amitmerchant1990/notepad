@@ -121,14 +121,14 @@ const fullscreenToggleBtn = document.getElementById('fullscreenToggleBtn');
 
 fullscreenToggleBtn.addEventListener('click', () => {
     const modalContent = document.querySelector('.custom-modal-content');
-    modalContent.classList.toggle('fullscreen'); // Toggle the fullscreen class
+    modalContent.classList.toggle('fullscreen');
     fullscreenNote.focus();
 });
 
 // Show the confirmation modal without animation
 deleteNoteBtn.addEventListener('click', () => {
-    $('#confirmDeleteModal').modal({ backdrop: 'static', keyboard: false }); // Show modal without backdrop click
-    $('#confirmDeleteModal').modal('show'); // Show the modal
+    $('#confirmDeleteModal').modal({ backdrop: 'static', keyboard: false });
+    $('#confirmDeleteModal').modal('show');
 });
 
 // Handle confirmation of deletion
@@ -184,11 +184,11 @@ function renderNotes(filteredNotes = notes) {
         // Create a div for note content
         const contentDiv = document.createElement('div');
         contentDiv.className = 'note-content';
-        contentDiv.textContent = note.content; // Use note content
+        contentDiv.textContent = note.content; 
 
-        noteDiv.appendChild(contentDiv); // Append note content
+        noteDiv.appendChild(contentDiv); 
         noteDiv.addEventListener('click', () => {
-            openFullscreen(note.content, index); // Pass note content and index
+            openFullscreen(note.content, index); 
         });
         gridContainer.appendChild(noteDiv);
     });
@@ -217,7 +217,7 @@ function showToast(message) {
 copyNoteBtn.addEventListener('click', () => {
     const noteContent = fullscreenNote.value;
     navigator.clipboard.writeText(noteContent).then(() => {
-        showToast('Note copied to clipboard!'); // Optional: Notify the user
+        showToast('Note copied to clipboard!');
     }).catch(err => {
         console.error('Failed to copy: ', err);
     });
@@ -225,13 +225,13 @@ copyNoteBtn.addEventListener('click', () => {
 
 downloadNoteBtn.addEventListener('click', () => {
     const noteContent = fullscreenNote.value;
-    const noteId = currentNoteIndex !== null ? notes[currentNoteIndex].id : Date.now(); // Use existing note ID or generate a new one
+    const noteId = currentNoteIndex !== null ? notes[currentNoteIndex].id : Date.now(); 
     const blob = new Blob([noteContent], { type: 'text/plain' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `note-${noteId}.txt`; // Append note ID to the file name
+    link.download = `note-${noteId}.txt`; 
     link.click();
-    URL.revokeObjectURL(link.href); // Clean up
+    URL.revokeObjectURL(link.href); 
 });
 
 function getCurrentDate() {
