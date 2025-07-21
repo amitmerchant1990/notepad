@@ -13,7 +13,7 @@ $(document).ready(function () {
 		{
 			text: "Your support keeps this app going — leave a tip if you can! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Enjoying the experience? A tip helps us keep improving!",
@@ -31,9 +31,9 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "Silvio just bought a coffee! ☕️",
-			url: "https://buymeacoffee.com/amitmerchant/c/13931832",
-			active: false
+			text: "Howard just bought a coffee! ☕️",
+			url: "https://buymeacoffee.com/amitmerchant/c/14723827",
+			active: true
 		},
 		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
