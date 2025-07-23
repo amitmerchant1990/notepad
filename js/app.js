@@ -16,7 +16,7 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "Enjoying the experience? A tip helps us keep improving!",
+			text: "Love the ad-free experience? Buy me a coffee to keep it that way!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
