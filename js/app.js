@@ -135,7 +135,8 @@ you can buy me a coffee — the link of which is available in the About section.
 		defaultOptimalLineLength: false,
 		defaultOptimalLineLengthPadding: '15px 24px 40px',
 		defaultSpellCheck: true,
-		defaultTabIndentation: false
+		defaultTabIndentation: false,
+		defaultTransparentWordCountPillSelected: false
 	};
 
 	const themeConfig = {
@@ -187,6 +188,16 @@ you can buy me a coffee — the link of which is available in the About section.
 	} else {
 		notepad.wordCountContainer.show()
 		notepad.showWordCountPill.prop('checked', true);
+	}
+
+	const userChosenTransparentWordCountPillSelected = state.userChosenTransparentWordCountPillSelected;
+
+	if (userChosenTransparentWordCountPillSelected) {
+		userChosenTransparentWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.addClass('transparency') : notepad.wordCountContainer.removeClass('transparency');
+		notepad.transparentWordCountPill.prop('checked', userChosenTransparentWordCountPillSelected === 'Yes');
+	} else {
+		notepad.wordCountContainer.removeClass('transparency')
+		notepad.transparentWordCountPill.prop('checked', false);
 	}
 
 	if (state.userChosenWriteDirection) {
@@ -415,6 +426,16 @@ you can buy me a coffee — the link of which is available in the About section.
 		}
 	});
 
+	notepad.transparentWordCountPill.on('change', function (e) {
+		if ($(this).is(':checked')) {
+			notepad.wordCountContainer.addClass('transparency');
+			setState('userChosenTransparentWordCountPillSelected', 'Yes');
+		} else {
+			notepad.wordCountContainer.removeClass('transparency');
+			setState('userChosenTransparentWordCountPillSelected', 'No');
+		}
+	});
+
 	notepad.optimalLineLength.on('change', function (e) {
 		const textArea = document.getElementById('note');
 
@@ -497,6 +518,12 @@ you can buy me a coffee — the link of which is available in the About section.
 		if (selector().state.userChosenTabIndentation) {
 			removeState('userChosenTabIndentation');
 			notepad.tabIndentation.prop('checked', editorConfig.defaultTabIndentation);
+		}
+
+		if (selector().state.userChosenTransparentWordCountPillSelected) {
+			removeState('userChosenTransparentWordCountPillSelected');
+			notepad.wordCountContainer.removeClass('transparency')
+			notepad.transparentWordCountPill.prop('checked', editorConfig.defaultTransparentWordCountPillSelected);
 		}
 
 		// Reset to device theme as default
