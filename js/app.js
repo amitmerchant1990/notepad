@@ -6,7 +6,7 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "I work on this app in my spare time. Buy me a coffee for the support!",
+			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
