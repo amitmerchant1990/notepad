@@ -703,8 +703,8 @@ a {
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
-  background-color: #202630;
-  color: #fff;
+  background-color: #cecece;
+  color: #494949;
   text-align: center;
   border-radius: 10px;
   padding: 14px;
@@ -714,6 +714,12 @@ a {
   bottom: 30px;
   font-weight: bold;
 }
+
+.dark #toast {
+  background-color: #202630;
+  color: #fff;
+}
+  
 
 #toast.show {
   visibility: visible;
