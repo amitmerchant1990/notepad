@@ -128,8 +128,6 @@ you can buy me a coffee — the link of which is available in the About section.
 	const metaThemeColor = document.querySelector('meta[name=theme-color]');
 	const { notepad, state, setState, removeState, get } = selector();
 	const optimalLineLengthPadding = '15px 15vw 40px';
-	const timerPillRightPosition = '17.8em';
-	const timerPillRightPositionWithoutWordCount = '1.4em';
 
 	const editorConfig = {
 		defaultFontSize: 18,
@@ -423,11 +421,9 @@ you can buy me a coffee — the link of which is available in the About section.
 		if ($(this).is(':checked')) {
 			notepad.wordCountContainer.show()
 			setState('userChosenWordCountPillSelected', 'Yes');
-			$('.timer-pill').css('right', timerPillRightPosition);
 		} else {
 			notepad.wordCountContainer.hide()
 			setState('userChosenWordCountPillSelected', 'No');
-			$('.timer-pill').css('right', timerPillRightPositionWithoutWordCount);
 		}
 	});
 

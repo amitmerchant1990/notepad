@@ -431,11 +431,8 @@ table tr td {
 }
 
 .word-count-container {
-  position: absolute;
   display: inline-block;
   background: #e2dcd8;
-  bottom: 1.4em;
-  right: 1.4em;
   margin-left: auto;
   padding: 6px 14px;
   border-radius: 20px;
@@ -802,12 +799,17 @@ a {
   background: #bff0ff;
 }
 
-.timer-pill {
+.bottom-line {
   position: absolute;
+  bottom: 1.2em;
+  right: 1.4em;
+  display: flex;
+  gap: 6px;
+}
+
+.timer-pill {
   display: inline-block;
   background: #c9c7c7;
-  bottom: 1.4em;
-  right: 17.8em;
   margin-left: auto;
   padding: 5px 14px;
   border-radius: 20px;
