@@ -74,6 +74,7 @@ $(document).ready(function() {
         $(this).closest('.task-card').remove();
         saveTasks();
         toggleNoTasksMessage();
+        updateTaskCount();
     });
 
     $('#taskContainer').on('click', '.task-text', function() {
@@ -125,6 +126,7 @@ $(document).ready(function() {
             tasks.push({ text: taskText, completed: completed });
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
+        updateTaskCount();
     }
 
     function loadTasks() {
@@ -134,6 +136,13 @@ $(document).ready(function() {
         });
 
         toggleNoTasksMessage();
+        updateTaskCount();
+    }
+
+    function updateTaskCount() {
+        let totalTasks = $('#taskContainer .task-card').length;
+        let completedTasks = $('#taskContainer .task-completed').length;
+        $('#taskCounter').text(`${completedTasks} / ${totalTasks}`);
     }
 
     // Toggle visibility of the "No tasks added" message

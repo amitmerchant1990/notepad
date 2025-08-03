@@ -52,7 +52,11 @@
             <input type="text" id="taskInput" class="form-control" placeholder="Add a new task">
         </div>
         <button id="addTask" class="btn btn-info btn-block">Add Task</button>
-        <hr>
+        <div class="task-count">
+            <p class="label">Your Tasks</p>
+            <div class="divider"></div>
+            <p class="counter" id="taskCounter">0 / 0</p>
+        </div>
         <div id="noTasksMessage" style="display: none;">No tasks added yet</div>
         <div id="taskContainer"></div>
     </div>

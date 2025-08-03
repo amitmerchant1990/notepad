@@ -17,6 +17,34 @@
   font-weight: bold;
 }
 
+.task-count {
+  display: flex;
+  -moz-column-gap: 8px;
+  column-gap: 10px;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.task-count p {
+  margin-bottom: 0;
+  color: #575757;
+}
+
+.task-count .divider {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #999999;
+}
+
+.task-count .label {
+  font-weight: bold;
+}
+
+.task-count .counter {
+  font-weight: bold;
+}
+
 @media (max-width: 767px) {
   .starter-template span {
     font-size: 7vw;
