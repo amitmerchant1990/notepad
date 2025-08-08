@@ -807,6 +807,64 @@ a {
   gap: 6px;
 }
 
+.bottom-line .coffee-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff2 !important;
+  padding: 5px;
+  border-radius: 13px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2), 0 0 18px #fff inset;
+  backdrop-filter: blur(5px);
+}
+
+.dark .bottom-line .coffee-icon {
+  box-shadow: none;
+}
+
+.bottom-line .coffee-icon a {
+  color: #000;
+}
+
+.dark .bottom-line .coffee-icon a {
+  color: #fff;
+}
+
+.coffee-icon .vapor {
+  position: absolute;
+  left: 52%;
+  top: -21px;
+  transform: translateX(-50%) translateY(0);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.coffee-icon:hover .vapor1 {
+  animation: rise-s-curve 2.5s ease-in-out infinite;
+  animation-delay: 0s;
+  left: 54%;
+}
+
+.coffee-icon:hover .vapor2 {
+  animation: rise-s-curve 2.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes rise-s-curve {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-30px);
+    opacity: 0;
+  }
+}
+
 .timer-pill {
   display: inline-block;
   background: #c9c7c7;
