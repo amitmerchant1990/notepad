@@ -38,7 +38,7 @@ $(document).ready(function () {
 		{
 			text: "Howard just bought a coffee! ☕️",
 			url: "https://buymeacoffee.com/amitmerchant/c/14723827",
-			active: true
+			active: false
 		},
 		{
 			text: "Video Tap — Effortlessly turn your videos into text-based content",
