@@ -11,9 +11,9 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "If you enjoy this app, consider leaving a tip to support it!",
+			text: "If you enjoy using this app, consider leaving a tip to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Your support keeps this app going — leave a tip if you can! ❤️",
@@ -31,28 +31,13 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "No VC funding for this app, only your Venti Coffees to keep it alive!",
-			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
-		},
-		{
 			text: "Howard just bought a coffee! ☕️",
 			url: "https://buymeacoffee.com/amitmerchant/c/14723827",
 			active: false
 		},
 		{
-			text: "Video Tap — Effortlessly turn your videos into text-based content",
-			url: "https://videotap.com?via=amitmerchant",
-			active: false
-		},
-		{
 			text: "🚀 New tool → Case Converter",
 			url: "/case-converter",
-			active: false
-		},
-		{
-			text: "Introducing → Drawingpad",
-			url: "/drawingpad",
 			active: false
 		},
 		{
