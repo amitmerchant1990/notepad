@@ -513,6 +513,12 @@ footer {
   border-radius: .7rem;
 }
 
+@media (min-width: 992px) {
+  .container, .container-lg, .container-md, .container-sm {
+      max-width: 720px;
+  }
+}
+
 @keyframes slideIn {
   from {
     transform: translateY(20px);
