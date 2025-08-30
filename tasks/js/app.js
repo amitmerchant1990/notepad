@@ -102,9 +102,11 @@ $(document).ready(function() {
         let taskHtml = `
             <div class="card task-card ${completedClass}">
                 <div class="card-body d-flex align-items-center">
-                    <input type="checkbox" class="form-check-input task-checkbox" ${checkedAttr}>
-                    <span class="task-text">${sanitizeInput(taskText)}</span>
-                    <button class="btn btn-sm delete-task ml-auto">
+                    <div>
+                        <input type="checkbox" class="form-check-input task-checkbox" ${checkedAttr}>
+                    </div>
+                    <span class="task-text" style="width: 90%;">${sanitizeInput(taskText)}</span>
+                    <button class="btn btn-sm delete-task ml-auto" style="width: 5%;" title="Delete this task">
                         <img src="img/icons/delete.svg" alt="Delete Icon" />
                     </button>
                 </div>
