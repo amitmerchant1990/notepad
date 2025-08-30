@@ -2,11 +2,7 @@ $(document).ready(function() {
     // Affiliate links data
     const affiliateLinks = [
         {
-            text: "Video Tap — Turn your videos into text-based content",
-            url: "https://videotap.com?via=amitmerchant"
-        },
-		{
-            text: "❤️ Support Notepad's development — Buy me a coffee!",
+            text: "Support Notepad's development — Buy me a coffee! ❤️",
             url: "https://buymeacoffee.com/amitmerchant"
         }
     ];
