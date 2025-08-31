@@ -26,6 +26,11 @@ $(document).ready(function () {
 			active: true
 		},
 		{
+			text: "Send anonymous feature suggestions",
+			url: "https://docs.google.com/forms/d/1NuSl4FzUXRR6maOaGNfUmBdNJ-l9neBzzp_JwDm3xZI",
+			active: true
+		},
+		{
 			text: "We rely on the supporters like you to keep Notepad thriving!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: false
