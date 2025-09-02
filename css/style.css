@@ -331,6 +331,7 @@ table tr td {
   font-weight: bold;
   font-size: 16px;
   letter-spacing: 1px;
+  transition: color .2s ease-out, opacity .2s ease-out;
 }
 
 .navbar-inverse .app-heading {
