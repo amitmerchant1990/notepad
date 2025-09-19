@@ -1379,6 +1379,7 @@ a {
 
 .dark .toast-content a {
   color: #c9d1d9;
+  transition: color .2s ease-out, opacity .2s ease-out;
 }
 
 .dark .toast-content a:hover {
