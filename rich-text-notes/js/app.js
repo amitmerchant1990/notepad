@@ -14,7 +14,7 @@ $(document).ready(function () {
 		{
 			text: "Buy me a coffee if you enjoy using this little app! 😻",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "🚀 New → Simple Kanban",
@@ -27,7 +27,7 @@ $(document).ready(function () {
 			text: "Want to try a Deep Breathing Exercise tool? 🧘",
 			url: "#new-feature-modal",
 			dataTarget: "#newFeatureModal",
-			active: true
+			active: false
 		}
 	];
 
