@@ -11,7 +11,7 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "If you enjoy using this app, consider leaving a tip to support it! ❤️",
+			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
