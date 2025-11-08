@@ -13,7 +13,7 @@ $(document).ready(function () {
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Your support keeps this app going — leave a tip if you can! ❤️",
@@ -36,9 +36,9 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "Howard just bought a coffee! ☕️",
-			url: "https://buymeacoffee.com/amitmerchant/c/14723827",
-			active: false
+			text: "18477h51878 became a monthly supporter!",
+			url: "https://buymeacoffee.com/amitmerchant/c/16054770",
+			active: true
 		},
 		{
 			text: "🚀 New tool → Case Converter",
