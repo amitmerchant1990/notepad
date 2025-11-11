@@ -11,9 +11,19 @@ $(document).ready(function () {
 			active: false
 		},
 		{
+			text: "Support this app if you can!",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
 			text: "This app is intentionally kept ad-free. If you appreciate that, buy me a coffee. Thank you! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
+		},
+		{
+			text: "If every regular user contributed the cost of one coffee, I could accelerate development dramatically!",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
 		},
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
@@ -38,11 +48,6 @@ $(document).ready(function () {
 		{
 			text: "We rely on the supporters like you to keep Notepad thriving!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
-		},
-		{
-			text: "18477h51878 became a monthly supporter!",
-			url: "https://buymeacoffee.com/amitmerchant/c/16054770",
 			active: false
 		},
 		{
