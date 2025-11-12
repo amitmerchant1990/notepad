@@ -330,7 +330,7 @@ table tr td {
   margin-left: 12px;
   font-weight: bold;
   font-size: 16px;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   transition: color .2s ease-out, opacity .2s ease-out;
 }
 
@@ -1667,6 +1667,39 @@ a {
 .chime-container label {
   margin: 0;
   font-size: 1em;
+}
+
+.tilt-css:hover span {
+  display: inline-block;
+  transform-origin: 50% 65%;
+}
+
+.tilt-css:hover span:first-child {
+  transform: rotate(6deg) !important;
+}
+
+.tilt-css:hover span:nth-child(6n+1) {
+  transform: rotate(-7deg);
+}
+
+.tilt-css:hover span:nth-child(6n+2) {
+  transform: rotate(4deg);
+}
+
+.tilt-css:hover span:nth-child(6n+3) {
+  transform: rotate(-2deg);
+}
+
+.tilt-css:hover span:nth-child(6n+4) {
+  transform: rotate(6deg);
+}
+
+.tilt-css:hover span:nth-child(6n+5) {
+  transform: rotate(-5deg);
+}
+
+.tilt-css:hover span:nth-child(6n+6) {
+  transform: rotate(3deg);
 }
 
 @media print {
