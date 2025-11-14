@@ -57,6 +57,9 @@ function selector() {
             dyslexic: selectById('dyslexic'),
             spellCheck: selectById('spellCheck'),
             tabIndentation: selectById('tabIndentation'),
+            bottomLine: selectByClassName('bottom-line'),
+            focusModeButton: selectById('focusModeButton'),
+            focusModeCloseButton: selectById('focusModeCloseButton'),
         },
         state: {
             note: getState('note'),
@@ -74,6 +77,18 @@ function selector() {
             userChosenSpellCheck: getState('userChosenSpellCheck'),
             userChosenTabIndentation: getState('userChosenTabIndentation'),
             userChosenTransparentWordCountPillSelected: getState('userChosenTransparentWordCountPillSelected'),
+        },
+        defaultConfig: {
+            defaultFontSize: 18,
+            defaultLineHeight: 26,
+            defaultFontWeight: 'normal',
+            defaultShowWordCountPill: 'Yes',
+            defaultWriteDirection: 'ltr',
+            defaultOptimalLineLength: false,
+            defaultOptimalLineLengthPadding: '15px 24px 40px',
+            defaultSpellCheck: true,
+            defaultTabIndentation: false,
+            defaultTransparentWordCountPillSelected: false
         },
         get,
         getState,

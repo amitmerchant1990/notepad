@@ -140,6 +140,23 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-flex">
+          <li class="focus-mode-icon">
+            <a href="javascript:void(0);" id="focusModeButton" title="Toggle Focus Mode [alt/Option + F]">
+              <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="none"
+                stroke-width="0.8640000000000001">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path
+                      d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0 2C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z">
+                    </path>
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </li>
           <li class="keyboard-icon" id="pipContainer" title="Activate Floating Window">
             <a id="pip" class="pip-icon">
               <img
@@ -170,6 +187,14 @@
 
     <div class="overlay"></div>
   </nav>
+
+  <div id="focusModeCloseButton" class="focus-mode-close-btn" style="display: none;">
+    <button id="closeFocusMode" title="Exit Focus Mode [Press Escape]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
 
   <div id="mainContainer">
     <div class="container" id="textareaContainer">
@@ -346,6 +371,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>14th Nov, 2025</h3>
+              <ul>
+                <li>Added a convenient button in the navbar to toggle focus mode [alt/Option + F]. Also, a button to close focus mode.</li>
+              </ul>
+
               <h4>27th Jul, 2025</h3>
               <ul>
                 <li>Added an option in the preferences to change the style of the word count pill to frosted glass.</li>

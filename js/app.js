@@ -129,18 +129,7 @@ you can buy me a coffee — the link of which is available in the About section.
 	const { notepad, state, setState, removeState, get } = selector();
 	const optimalLineLengthPadding = '15px 15vw 40px';
 
-	const editorConfig = {
-		defaultFontSize: 18,
-		defaultLineHeight: 26,
-		defaultFontWeight: 'normal',
-		defaultShowWordCountPill: 'Yes',
-		defaultWriteDirection: 'ltr',
-		defaultOptimalLineLength: false,
-		defaultOptimalLineLengthPadding: '15px 24px 40px',
-		defaultSpellCheck: true,
-		defaultTabIndentation: false,
-		defaultTransparentWordCountPillSelected: false
-	};
+	const editorConfig = selector().defaultConfig;
 
 	const themeConfig = {
 		lightmodeText,
@@ -382,6 +371,14 @@ you can buy me a coffee — the link of which is available in the About section.
 
 	notepad.fullScreenButton.click(function () {
 		toggleFullScreen();
+	})
+
+	notepad.focusModeButton.click(function () {
+		toggleFocusMode(notepad);
+	})
+
+	notepad.focusModeCloseButton.click(function () {
+		turnOffFocusMode(notepad);
 	})
 
 	notepad.closeDonationPopup.click(function () {
@@ -659,6 +656,7 @@ you can buy me a coffee — the link of which is available in the About section.
 			$('.modal').modal('hide');
 			$('#iconDropdown').removeClass('show');
 			$('#moreToolsDropdown').removeClass('show');
+			turnOffFocusMode(notepad);
 		}
 
 		if ((event.ctrlKey || event.metaKey) && event.code === 'KeyS') {

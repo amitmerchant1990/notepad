@@ -1309,6 +1309,10 @@ a {
     display: none !important;
   }
 
+  .focus-mode-icon {
+    display: none !important;
+  }
+
   .navbar-nav>li>a {
     padding-left: 30px;
   }
@@ -1700,6 +1704,53 @@ a {
 
 .tilt-css:hover span:nth-child(6n+6) {
   transform: rotate(3deg);
+}
+
+/* Focus Mode Close Button */
+.focus-mode-close-btn {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  animation: dropDown 0.4s ease-out;
+}
+
+@keyframes dropDown {
+  from {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+.focus-mode-close-btn button {
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 0 0 8px 8px;
+  color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.focus-mode-close-btn button:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+body.dark .focus-mode-close-btn button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+body.dark .focus-mode-close-btn button:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 @media print {

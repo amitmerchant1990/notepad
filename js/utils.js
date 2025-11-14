@@ -206,35 +206,62 @@ function deleteNotes() {
     })
 }
 
+let focusModeHoverTimer = null;
+
 function toggleFocusMode(notepad) {
     const navbar = document.querySelector('.navbar');
-
-    if (!navbar.hasAttribute('style')) {
-        navbar.style.display = 'none';
-    } else {
-        navbar.removeAttribute('style');
-    }
-
     const bodyElement = document.body;
-
-    if (!bodyElement.hasAttribute('style')) {
-        bodyElement.style.paddingTop = '0px';
-    } else {
-        bodyElement.removeAttribute('style');
-    }
-
     const textArea = document.getElementById('note');
+    const closeButton = document.getElementById('focusModeCloseButton');
     
-    if (!textArea.style.borderRight) {
+    // Check if focus mode is currently active
+    const isFocusMode = document.documentElement.hasAttribute('data-focus-mode');
+    
+    if (!isFocusMode) {
+        // Entering focus mode
+        document.documentElement.setAttribute('data-focus-mode', 'true');
+        navbar.style.display = 'none';
+        bodyElement.style.paddingTop = '0';
         textArea.style.borderRight = 'none';
         textArea.style.borderLeft = 'none';
-    } else {
-        textArea.style.borderRight = '';
-        textArea.style.borderLeft = '';
-    }
+        
+        // Show close button
+        closeButton.style.display = 'block';
 
-    if (localStorage.getItem('userChosenWordCountPillSelected') == 'Yes') {
-        notepad.wordCountContainer.toggle();
+        // Hide toast popup
+        const toastPopup = document.querySelector('.toast-popup');
+        if (toastPopup) {
+            toastPopup.classList.remove('show');
+        }
+        
+        notepad.bottomLine.hide();
+    } else {
+        // Exiting focus mode
+        turnOffFocusMode(notepad);
+    }
+}
+
+// a function for turning off focus mode
+function turnOffFocusMode(notepad) {
+    const navbar = document.querySelector('.navbar');
+    const bodyElement = document.body;
+    const textArea = document.getElementById('note');
+    const closeButton = document.getElementById('focusModeCloseButton');
+    
+    // Remove focus mode
+    document.documentElement.removeAttribute('data-focus-mode');
+    
+    // Hide close button
+    closeButton.style.display = 'none';
+    
+    // Reset styles
+    navbar.style.display = '';
+    bodyElement.style.paddingTop = '';
+    textArea.style.borderRight = '';
+    textArea.style.borderLeft = '';
+    
+    if (localStorage.getItem('userChosenWordCountPillSelected') === 'Yes' || selector().defaultConfig.defaultShowWordCountPill === 'Yes') {
+        notepad.bottomLine.show();
     }
 }
 
