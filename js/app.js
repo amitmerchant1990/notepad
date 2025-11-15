@@ -106,6 +106,7 @@ The app serves the following features:
 - Light-weight - Loads almost instantly.
 - Writing timer.
 - Keyboard shortcuts for common actions.
+- Focus mode to leave you with a barebones and pristine editor.
 - Full-screen mode for a distraction-free writing experience.
 - Floating window (in supported browsers) to effectively take notes across other apps.
 - Download notes as plain text, PDF, HTML, and DOCX file.
