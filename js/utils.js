@@ -235,6 +235,9 @@ function toggleFocusMode(notepad) {
         }
         
         notepad.bottomLine.hide();
+
+        // Keep focus on textarea
+        textArea.focus();
     } else {
         // Exiting focus mode
         turnOffFocusMode(notepad);
@@ -263,6 +266,9 @@ function turnOffFocusMode(notepad) {
     if (localStorage.getItem('userChosenWordCountPillSelected') === 'Yes' || selector().defaultConfig.defaultShowWordCountPill === 'Yes') {
         notepad.bottomLine.show();
     }
+
+    // Keep focus on textarea
+    textArea.focus();
 }
 
 function toggleFullScreen() {
