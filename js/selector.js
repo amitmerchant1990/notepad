@@ -60,6 +60,7 @@ function selector() {
             bottomLine: selectByClassName('bottom-line'),
             focusModeButton: selectById('focusModeButton'),
             focusModeCloseButton: selectById('focusModeCloseButton'),
+            statisticsModal: selectById('statisticsModal'),
         },
         state: {
             note: getState('note'),

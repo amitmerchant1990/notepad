@@ -213,6 +213,26 @@
         </div>
         <div class="word-count-container">
           <p id="wordCount">0 character • 0 word</p>
+          <a href="#statistics" data-toggle="modal" data-target="#statisticsModal"
+              title="View Note Statistics">
+            <svg width="10" height="10" viewBox="-3 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="currentColor"
+              stroke="#000000">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <title>stats</title>
+                <defs> </defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                  <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-314.000000, -673.000000)" fill="currentColor">
+                    <path
+                      d="M328,673 L326,673 C324.896,673 324,673.896 324,675 L324,703 C324,704.104 324.896,705 326,705 L328,705 C329.104,705 330,704.104 330,703 L330,675 C330,673.896 329.104,673 328,673 L328,673 Z M338,689 L336,689 C334.896,689 334,689.896 334,691 L334,703 C334,704.104 334.896,705 336,705 L338,705 C339.104,705 340,704.104 340,703 L340,691 C340,689.896 339.104,689 338,689 L338,689 Z M318,682 L316,682 C314.896,682 314,682.896 314,684 L314,703 C314,704.104 314.896,705 316,705 L318,705 C319.104,705 320,704.104 320,703 L320,684 C320,682.896 319.104,682 318,682 L318,682 Z"
+                      id="stats" sketch:type="MSShapeGroup"> </path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </a>
         </div>
         <div class="coffee-icon">
           <a href="https://buymeacoffee.com/amitmerchant" target="_blank" title="Buy Me a Coffee">
@@ -291,6 +311,7 @@
                 <li><b>Focus mode</b> to leave you with a barebones and pristine editor.</li>
                 <li><b>Full-screen mode</b> for a distraction-free writing experience.</li>
                 <li><b>Optimal line length</b> for better reading experience.</li>
+                <li>View <b>Note Statistics</b>.</li>
                 <li>Supports <b>monospaced</b> and <b>dyslexic fonts</b>.</li>
                 <li><b>Floating window</b> (in supported browsers) to effectively take notes across other apps.</li>
                 <li>Download notes as <b>plain text</b>, <b>PDF</b>, <b>HTML</b>, and <b>DOCX</b>.</li>
@@ -372,6 +393,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>17th Nov, 2025</h3>
+              <ul>
+                <li>Added an option to view note statistics in the word count pill.</li>
+              </ul>
+
               <h4>14th Nov, 2025</h3>
               <ul>
                 <li>Added a convenient button in the navbar to toggle focus mode [alt/Option + F]. Also, a button to close focus mode.</li>
@@ -1072,6 +1098,49 @@
           <img src="art/deep-breath-preview.png" alt="Buy me a coffee" style="width: 100%; border-radius: 10px;">
           <p style="margin-top: 10px;">This tool can also be used to unwind yourself after a long writing session.</p>
           <p>Thanks for your support! ❤️</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="statisticsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title custom-modal-title">Statistics</h4>
+        </div>
+        <div class="modal-body modal-container">
+          <div class="statistics-grid">
+            <div class="stat-item">
+              <div class="stat-label">Words</div>
+              <div class="stat-value" id="statWords">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Characters</div>
+              <div class="stat-value" id="statCharacters">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Sentences</div>
+              <div class="stat-value" id="statSentences">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Paragraphs</div>
+              <div class="stat-value" id="statParagraphs">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Avg Word Length</div>
+              <div class="stat-value" id="statAvgWordLength">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Reading Time</div>
+              <div class="stat-value" id="statReadingTime">0 min</div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

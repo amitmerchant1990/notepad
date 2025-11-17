@@ -153,6 +153,44 @@ function calculateCharactersAndWords(str) {
     return wordCountText;
 }
 
+function calculateNoteStatistics(str) {
+    if (!str || str.trim() === '') {
+        return {
+            characters: 0,
+            words: 0,
+            sentences: 0,
+            paragraphs: 0,
+            averageWordLength: 0,
+            readingTime: '0 min'
+        };
+    }
+
+    const characters = str.length;
+    const words = countWords(str);
+    
+    // Count sentences (split by . ! ?)
+    const sentences = str.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+    
+    // Count paragraphs (split by double newlines or multiple line breaks)
+    const paragraphs = str.split(/\n\n+/).filter(p => p.trim().length > 0).length;
+    
+    // Calculate average word length
+    const averageWordLength = words > 0 ? (characters / words).toFixed(2) : 0;
+    
+    // Calculate reading time (average 200 words per minute)
+    const readingTimeMinutes = Math.ceil(words / 200);
+    const readingTime = readingTimeMinutes === 1 ? '1 min' : `${readingTimeMinutes} mins`;
+    
+    return {
+        characters,
+        words,
+        sentences,
+        paragraphs,
+        averageWordLength,
+        readingTime
+    };
+}
+
 function copyNotesToClipboard(note) {
     navigator.clipboard.writeText(note).then(function () {
         showToast('Notes copied to clipboard!')

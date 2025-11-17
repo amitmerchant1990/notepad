@@ -58,10 +58,10 @@ $(document).ready(function () {
 		{
 			isFeature: true,
 			isActive: true,
-			text: "→ Try Writing Timer",
-			url: "#timerModal",
-			dataTarget: "#timerModal",
-			active: false
+			text: "Introducing Note Statistics (Available in the Word Count pill)",
+			url: "#statisticsModal",
+			dataTarget: "#statisticsModal",
+			active: true
 		}
 	];
 
@@ -105,6 +105,7 @@ The app serves the following features:
 - Privacy-focused - Never collects your precious data.
 - Light-weight - Loads almost instantly.
 - Writing timer.
+- View Note Statistics.
 - Keyboard shortcuts for common actions.
 - Focus mode to leave you with a barebones and pristine editor.
 - Full-screen mode for a distraction-free writing experience.
@@ -381,6 +382,19 @@ you can buy me a coffee — the link of which is available in the About section.
 	notepad.focusModeCloseButton.click(function () {
 		turnOffFocusMode(notepad);
 	})
+
+	// Update statistics when modal is shown
+	notepad.statisticsModal.on('show.bs.modal', function () {
+		const noteText = notepad.note.val();
+		const stats = calculateNoteStatistics(noteText);
+
+		$('#statWords').text(stats.words);
+		$('#statCharacters').text(stats.characters);
+		$('#statSentences').text(stats.sentences);
+		$('#statParagraphs').text(stats.paragraphs);
+		$('#statAvgWordLength').text(stats.averageWordLength);
+		$('#statReadingTime').text(stats.readingTime);
+	});
 
 	notepad.closeDonationPopup.click(function () {
 		notepad.stickyNotice.remove();

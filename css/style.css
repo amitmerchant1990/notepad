@@ -437,7 +437,7 @@ table tr td {
 }
 
 .word-count-container {
-  display: inline-block;
+  display: flex;
   background: #e2dcd8;
   margin-left: auto;
   padding: 6px 14px;
@@ -447,7 +447,20 @@ table tr td {
   display: flex;
   justify-content: space-between;
   font-size: 10px;
-  gap: 14px;
+  gap: 10px;
+  align-items: center;
+}
+
+.dark .word-count-container a {
+  color: #000;
+}
+
+.dark .word-count-container.transparency a {
+  color: #fff;
+}
+
+.word-count-container.transparency a {
+  color: #000;
 }
 
 .transparency.word-count-container {
@@ -1751,6 +1764,62 @@ body.dark .focus-mode-close-btn button {
 
 body.dark .focus-mode-close-btn button:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Statistics Modal Styles */
+.statistics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--c-bg-secondary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.dark .stat-item {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark .stat-item:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+body.dark .stat-label {
+  color: #7a7979;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text-primary);
+}
+
+body.dark .stat-value {
+  color: #585656;
+}
+
+@media (max-width: 480px) {
+  .statistics-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 }
 
 @media print {
