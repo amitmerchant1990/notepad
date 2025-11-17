@@ -31,7 +31,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 
 ![Notepad Mini Tools](/art/minitools.jpeg)
 
-I recently added a bunch of tools that I thought might go along with the regular Notepad — making notepad.js.org a one-stop shop for all the note-taking related needs a step closer.
+I recently added a suite of tools that I thought might go nicely along with the regular Notepad — making notepad.js.org a one-stop shop for all the note-taking related needs a step closer.
 
 - [Rich Text Notes](https://notepad.js.org/rich-text-notes/)
 - [Markdown Editor](https://notepad.js.org/markdown-editor/)
