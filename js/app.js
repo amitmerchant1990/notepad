@@ -8,12 +8,12 @@ $(document).ready(function () {
 		{
 			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Support this app if you can!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "This app is intentionally kept ad-free. If you appreciate that, buy me a coffee. Thank you! ❤️",
@@ -61,7 +61,7 @@ $(document).ready(function () {
 			text: "Introducing Note Statistics (Available in the Word Count pill)",
 			url: "#statisticsModal",
 			dataTarget: "#statisticsModal",
-			active: true
+			active: false
 		}
 	];
 
