@@ -1779,13 +1779,14 @@ body.dark .focus-mode-close-btn button:hover {
   flex-direction: column;
   align-items: center;
   padding: 20px 12px;
-  border-radius: 8px;
-  background: var(--c-bg-secondary);
+  border-radius: 10px;
+  background: #e5e6e7;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 1px 1px 4px 0px #0000001f;
 }
 
 body.dark .stat-item {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(224 242 255);
 }
 
 body.dark .stat-item:hover {
@@ -1795,7 +1796,7 @@ body.dark .stat-item:hover {
 .stat-label {
   font-size: 12px;
   font-weight: 600;
-  color: var(--c-text-secondary);
+  color: #5d5b5b;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -1808,10 +1809,6 @@ body.dark .stat-item:hover {
 
 .stat-label .tooltip {
   text-transform: none;
-}
-
-body.dark .stat-label {
-  color: #7a7979;
 }
 
 .stat-value {
