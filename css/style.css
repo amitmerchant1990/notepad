@@ -1778,7 +1778,7 @@ body.dark .focus-mode-close-btn button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 20px 12px;
   border-radius: 8px;
   background: var(--c-bg-secondary);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -1800,6 +1800,14 @@ body.dark .stat-item:hover {
   letter-spacing: 0.5px;
   margin-bottom: 8px;
   text-align: center;
+}
+
+.stat-label a {
+  vertical-align: 2px;
+}
+
+.stat-label .tooltip {
+  text-transform: none;
 }
 
 body.dark .stat-label {

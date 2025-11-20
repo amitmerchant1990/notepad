@@ -394,6 +394,8 @@ you can buy me a coffee — the link of which is available in the About section.
 		$('#statParagraphs').text(stats.paragraphs);
 		$('#statAvgWordLength').text(stats.averageWordLength);
 		$('#statReadingTime').text(stats.readingTime);
+		$('#statUniqueWords').text(stats.uniqueWords);
+		$('#statMostCommonWord').text(stats.mostCommonWord);
 	});
 
 	notepad.closeDonationPopup.click(function () {

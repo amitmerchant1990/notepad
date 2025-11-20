@@ -161,7 +161,10 @@ function calculateNoteStatistics(str) {
             sentences: 0,
             paragraphs: 0,
             averageWordLength: 0,
-            readingTime: '0 min'
+            readingTime: '0 min',
+            uniqueWords: 0,
+            lexicalDensity: '0%',
+            mostCommonWord: 'N/A'
         };
     }
 
@@ -181,13 +184,33 @@ function calculateNoteStatistics(str) {
     const readingTimeMinutes = Math.ceil(words / 200);
     const readingTime = readingTimeMinutes === 1 ? '1 min' : `${readingTimeMinutes} mins`;
     
+    // Calculate unique words and most common word
+    const wordList = str.toLowerCase().match(/\b[a-z']+\b/g) || [];
+    const wordFrequency = {};
+    let maxCount = 0;
+    let mostCommonWord = 'N/A';
+    
+    wordList.forEach(word => {
+        wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+        if (wordFrequency[word] > maxCount) {
+            maxCount = wordFrequency[word];
+            mostCommonWord = word;
+        }
+    });
+    
+    const uniqueWords = Object.keys(wordFrequency).length;
+    const lexicalDensity = words > 0 ? ((uniqueWords / words) * 100).toFixed(1) : 0;
+    
     return {
         characters,
         words,
         sentences,
         paragraphs,
         averageWordLength,
-        readingTime
+        readingTime,
+        uniqueWords,
+        lexicalDensity: `${lexicalDensity}%`,
+        mostCommonWord: mostCommonWord.charAt(0).toUpperCase() + mostCommonWord.slice(1)
     };
 }
 
