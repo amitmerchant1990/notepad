@@ -86,9 +86,23 @@ $(document).ready(function () {
 		}
 	}
 
+	// Function to close toast with animation
+	function closeToastPopup() {
+		const $toast = $('#toastPopup');
+		$toast.addClass('hide');
+		setTimeout(function () {
+			$toast.removeClass('show hide');
+		}, 500);
+	}
+
 	// Close toast popup
 	$('#closeToastPopup').on('click', function () {
-		$('#toastPopup').removeClass('show');
+		closeToastPopup();
+	});
+
+	// Close toast popup when link is clicked
+	$('#toastLink').on('click', function () {
+		closeToastPopup();
 	});
 
 	// Show toast popup after a delay
