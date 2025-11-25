@@ -1809,7 +1809,7 @@ body.dark .stat-item {
 }
 
 body.dark .stat-item:hover {
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  box-shadow: 2px 2px 3px 1px #0000001f;
 }
 
 .stat-label {
