@@ -9,6 +9,11 @@ $(document).ready(function () {
 		{
 			text: "Support Notepad's sustainable development — Buy me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+        {
+			text: "I work on this app in my spare time. Buy me a coffee for your support!",
+			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
