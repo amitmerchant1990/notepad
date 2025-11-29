@@ -214,7 +214,21 @@ you can buy me a coffee — the link of which is available in the About section.
 			return;
 		}
 
-		const isPrintable = e.key.length === 1 || ['Delete', 'Backspace', 'Enter', 'Space'].includes(e.key);
+		const isPrintable = (
+			// Single character keys (letters, numbers, symbols)
+			e.key.length === 1 || 
+			// Common editing keys
+			[
+				'Delete', 'Backspace', 'Enter', ' ', 'Space', 
+				'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
+				'Home', 'End', 'PageUp', 'PageDown'
+			].includes(e.key) ||
+			// Mobile-specific keys and special cases
+			e.key === 'Unidentified' ||  // Some mobile keyboards
+			e.key === 'Process' ||       // Some IME inputs
+			e.key === 'Dead' ||          // Dead keys (for accents)
+			e.key === 'Compose'          // Compose key
+		);
 
 		if (isPrintable) {
 			playTypeSound();
