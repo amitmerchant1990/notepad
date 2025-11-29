@@ -78,6 +78,8 @@ function selector() {
             userChosenSpellCheck: getState('userChosenSpellCheck'),
             userChosenTabIndentation: getState('userChosenTabIndentation'),
             userChosenTransparentWordCountPillSelected: getState('userChosenTransparentWordCountPillSelected'),
+            userChosenTypewriterSound: getState('userChosenTypewriterSound'),
+            userChosenTypewriterVolume: getState('userChosenTypewriterVolume'),
         },
         defaultConfig: {
             defaultFontSize: 18,
@@ -89,7 +91,9 @@ function selector() {
             defaultOptimalLineLengthPadding: '15px 24px 40px',
             defaultSpellCheck: true,
             defaultTabIndentation: false,
-            defaultTransparentWordCountPillSelected: false
+            defaultTransparentWordCountPillSelected: false,
+            defaultTypewriterSound: false,
+            defaultTypewriterVolume: 25,
         },
         get,
         getState,

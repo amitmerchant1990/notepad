@@ -311,6 +311,7 @@
                 <li><b>Full-screen mode</b> for a distraction-free writing experience.</li>
                 <li><b>Optimal line length</b> for better reading experience.</li>
                 <li>View <b>Note Statistics</b>.</li>
+                <li>Ability to mimic <b>typewriter (Hermes Precisa 305 model) sound</b> when typing.</li>
                 <li>Supports <b>monospaced</b> and <b>dyslexic fonts</b>.</li>
                 <li><b>Floating window</b> (in supported browsers) to effectively take notes across other apps.</li>
                 <li>Download notes as <b>plain text</b>, <b>PDF</b>, <b>HTML</b>, and <b>DOCX</b>.</li>
@@ -394,6 +395,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>29th Nov, 2025</h3>
+              <ul>
+                <li>Added an option to mimic typewriter (Hermes Precisa 305 model) sound when typing. This can be enabled from the preferences.</li>
+              </ul>
+
               <h4>17th Nov, 2025</h3>
               <ul>
                 <li>Added an option to view note statistics in the word count pill.</li>
@@ -864,6 +870,30 @@
                     <input type="checkbox" name="tabIndentation" id="tabIndentation"/>
                     <span></span>
                 </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-6 col-md-6 generic-flex">
+              Typewriter sound
+              <a href="#" data-toggle="tooltip" title="Enable or disable the typewriter (Hermes Precisa 305 model) sound effect when typing">
+                <img src="img/tooltip.svg" alt="Tooltip" />
+              </a>
+              <span class="new-badge">NEW</span>
+            </label>
+            <div class="col-sm-6 col-md-5">
+              <div class="checkbox checbox-switch generic-flex typewriter-switch">
+                <label>
+                    <input type="checkbox" name="typewriterSound" id="typewriterSound"/>
+                    <span></span>
+                </label>
+                <div class="typewriter-switch-volume">
+                    <div class="volume-control" id="typewriterVolumeControl">
+                        <input type="range" min="0" max="100" value="4" class="volume-slider" id="typewriterVolume">
+                    </div>
+                    <span id="typewriterVolumeValue" title="Typewriter volume"></span>
+                </div>
               </div>
             </div>
           </div>

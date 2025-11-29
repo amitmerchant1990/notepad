@@ -459,7 +459,7 @@ table tr td {
   color: #fff;
 }
 
-.word-count-container.transparency a {
+.word-count-container.transparency a, .word-count-container a {
   color: #000;
 }
 
@@ -1685,6 +1685,29 @@ a {
 
 .new-tag {
   background: #71fa82 !important;
+}
+
+.new-badge {
+  padding: 2px 9px;
+  background: #0bb120;
+  font-size: 10px;
+  border-radius: 4px;
+  color: white;
+}
+
+.typewriter-switch {
+  gap: 12px;
+}
+
+.typewriter-switch-volume {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#typewriterVolumeValue {
+    font-size: 13px;
+    color: #2c2c2c;
 }
 
 .chime-container {

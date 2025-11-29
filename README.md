@@ -21,6 +21,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - Dark mode.
   - Writing timer.
   - Note Statistics.
+  - Ability to mimic typewriter sound when typing.
   - Focus mode (on desktop).
   - Optimal line length for better reading experience.
   - [Floating window](https://www.amitmerchant.com/implementing-interactive-floating-windows-using-picture-in-picture-api/) to effectively take notes on top of other apps (in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Document_Picture-in-Picture_API))
