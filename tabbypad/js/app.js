@@ -83,7 +83,8 @@ saveNoteBtn.addEventListener('click', () => {
     const note = {
         id: Date.now(), // Unique identifier
         content: noteContent,
-        created_at: new Date().toISOString() // Timestamp
+        created_at: new Date().toISOString(), // Timestamp
+        color: currentNoteIndex !== null ? notes[currentNoteIndex].color : getRandomPastelColor() // Keep existing color or assign new one
     };
 
     const transaction = db.transaction(['notes'], 'readwrite');
@@ -179,7 +180,7 @@ function renderNotes(filteredNotes = notes) {
     // Render all notes without pinning logic
     filteredNotes.forEach((note, index) => {
         const noteDiv = document.createElement('div');
-        noteDiv.className = 'grid-item';
+        noteDiv.className = `grid-item ${note.color || 'default-grid-color'}`;
 
         // Create a div for note content
         const contentDiv = document.createElement('div');
@@ -263,6 +264,26 @@ function downloadAllNotes() {
         link.click();
         URL.revokeObjectURL(link.href); // Clean up
     });
+}
+
+let lastUsedColor = null;
+
+function getRandomPastelColor() {
+    const pastelColors = ['pastel-yellow', 'pastel-blue', 'pastel-green', 'pastel-pink', 'pastel-purple'];
+    
+    // If there's only one color, return it
+    if (pastelColors.length === 1) return pastelColors[0];
+    
+    // Filter out the last used color
+    const availableColors = pastelColors.filter(color => color !== lastUsedColor);
+    
+    // Select a random color from the remaining options
+    const randomColor = availableColors[Math.floor(Math.random() * availableColors.length)];
+    
+    // Update the last used color
+    lastUsedColor = randomColor;
+    
+    return randomColor;
 }
 
 function createNewNote() {

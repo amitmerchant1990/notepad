@@ -130,21 +130,50 @@ input[type="text"]:focus {
     gap: 20px;
 }
 
-.grid-item {
+/* Pastel color classes for notes */
+.pastel-yellow {
+    background-color: #FFF9C4;
+    border: 5px solid #ebe07c;
+}
+
+.pastel-blue {
+    background-color: #E3F2FD;
+    border: 5px solid #BBDEFB;
+}
+
+.pastel-green {
+    background-color: #E8F5E9;
+    border: 5px solid #C8E6C9;
+}
+
+.pastel-pink {
+    background-color: #FCE4EC;
+    border: 5px solid #F8BBD0;
+}
+
+.pastel-purple {
+    background-color: #F3E5F5;
+    border: 5px solid #E1BEE7;
+}
+
+.default-grid-color {
     background-color: #ffffff;
-    border: 2px solid #ccc;
+    border: 5px solid #ccc;
+}
+
+.grid-item {
     padding: 20px;
     text-align: left;
     cursor: pointer;
     font-size: 0.9em;
     height: 215px;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 15px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 8;
     transition: filter .2s ease-out;
-    box-shadow: 2px 2px 2px 0px #00000014;
+    box-shadow: 0 50px 40px #00000003,0 50px 40px #00000005,0 20px 40px #0000000d,0 3px 10px #00000014;
 }
 
 /* Ensure that the text is wrapped correctly */
