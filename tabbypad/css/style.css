@@ -200,6 +200,38 @@ input[type="text"]:focus {
     background-color: rgba(0, 0, 0, 0.5); /* Background with transparency */
 }
 
+.top-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.color-picker {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    border-color: #333;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #333;
+}
+
 .custom-modal-content {
     background-color: #fefefe;
     margin: 10% auto; /* Center the modal */

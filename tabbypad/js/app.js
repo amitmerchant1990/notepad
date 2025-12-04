@@ -66,10 +66,29 @@ function loadNotesFromIndexedDB() {
     };
 }
 
+// Function to update the selected color in the UI
+function updateSelectedColor(color) {
+    // Remove selected class from all color options
+    document.querySelectorAll('.color-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    
+    // Add selected class to the clicked color
+    const selectedOption = document.querySelector(`.color-option[data-color="${color}"]`);
+    if (selectedOption) {
+        selectedOption.classList.add('selected');
+    }
+}
+
 // Function to open note in fullscreen
 function openFullscreen(note, index) {
-    fullscreenNote.value = note; // Populate textarea with note
+    fullscreenNote.value = note.content || note; // Handle both string and object notes
     currentNoteIndex = index; // Set current note index
+    
+    // Set the selected color based on the note's color or default to white
+    const noteColor = note.color || 'default-grid-color';
+    updateSelectedColor(noteColor);
+    
     deleteNoteBtn.style.display = 'inline-block';
     copyNoteBtn.style.display = 'inline-block';
     downloadNoteBtn.style.display = 'inline-block';
@@ -77,14 +96,27 @@ function openFullscreen(note, index) {
     fullscreenNote.focus(); // Focus on the textarea
 }
 
+// Color picker functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Set up color picker
+    document.querySelectorAll('.color-option').forEach(option => {
+        option.addEventListener('click', () => {
+            const color = option.getAttribute('data-color');
+            updateSelectedColor(color);
+        });
+    });
+});
+
 // Save note functionality
 saveNoteBtn.addEventListener('click', () => {
     const noteContent = fullscreenNote.value;
+    const selectedColor = document.querySelector('.color-option.selected')?.getAttribute('data-color') || 'default-grid-color';
+    
     const note = {
         id: Date.now(), // Unique identifier
         content: noteContent,
         created_at: new Date().toISOString(), // Timestamp
-        color: currentNoteIndex !== null ? notes[currentNoteIndex].color : getRandomPastelColor() // Keep existing color or assign new one
+        color: selectedColor
     };
 
     const transaction = db.transaction(['notes'], 'readwrite');
@@ -93,6 +125,7 @@ saveNoteBtn.addEventListener('click', () => {
     if (currentNoteIndex !== null) {
         // Update existing note
         notes[currentNoteIndex].content = noteContent;
+        notes[currentNoteIndex].color = selectedColor;
         objectStore.put(notes[currentNoteIndex]); // Update note in IndexedDB
     } else {
         // Add new note
@@ -189,7 +222,7 @@ function renderNotes(filteredNotes = notes) {
 
         noteDiv.appendChild(contentDiv); 
         noteDiv.addEventListener('click', () => {
-            openFullscreen(note.content, index); 
+            openFullscreen(note, index); 
         });
         gridContainer.appendChild(noteDiv);
     });
@@ -293,6 +326,8 @@ function createNewNote() {
     copyNoteBtn.style.display = 'none';
     downloadNoteBtn.style.display = 'none';
     noteModal.style.display = "flex";
+    // Set default color for new note
+    updateSelectedColor('default-grid-color');
     fullscreenNote.focus();
 }
 

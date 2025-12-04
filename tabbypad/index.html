@@ -62,12 +62,22 @@
     <!-- Modal for Fullscreen Note -->
     <div id="noteModal" class="custom-modal">
         <div class="custom-modal-content">
-            <a href="javascript:void(0);" id="fullscreenToggleBtn" title="Maximize / Minimize the note">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 9V8C21 5.79086 18.9853 4 16.5 4H15.25M21 15V16C21 18.2091 18.9853 20 16.5 20H15.25M3 15V16C3 18.2091 5.01472 20 7.5 20H8.75M3 9V8C3 5.79086 5.01472 4 7.5 4H8.75" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-            </a>
-            <span class="close">
-                <svg width="25" height="25" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Close</title> <g id="Page-1" stroke="none" stroke-width="2" fill="none" fill-rule="evenodd"> <g id="Close"> <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"> </rect> <line x1="16.9999" y1="7" x2="7.00001" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="3" stroke-linecap="round"> </line> <line x1="7.00006" y1="7" x2="17" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="3" stroke-linecap="round"> </line> </g> </g> </g></svg>
-            </span>
+            <div class="top-container">
+                <a href="javascript:void(0);" id="fullscreenToggleBtn" title="Maximize / Minimize the note">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 9V8C21 5.79086 18.9853 4 16.5 4H15.25M21 15V16C21 18.2091 18.9853 20 16.5 20H15.25M3 15V16C3 18.2091 5.01472 20 7.5 20H8.75M3 9V8C3 5.79086 5.01472 4 7.5 4H8.75" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                </a>
+                <div class="color-picker">
+                    <div class="color-option" data-color="pastel-yellow" style="background-color: #FFF9C4; border-color: #ebe07c;"></div>
+                    <div class="color-option" data-color="pastel-blue" style="background-color: #E3F2FD; border-color: #BBDEFB;"></div>
+                    <div class="color-option" data-color="pastel-green" style="background-color: #E8F5E9; border-color: #C8E6C9;"></div>
+                    <div class="color-option" data-color="pastel-pink" style="background-color: #FCE4EC; border-color: #F8BBD0;"></div>
+                    <div class="color-option" data-color="pastel-purple" style="background-color: #F3E5F5; border-color: #E1BEE7;"></div>
+                    <div class="color-option selected" data-color="default-grid-color" style="background-color: #ffffff; border-color: #ccc;"></div>
+                </div>
+                <span class="close">
+                    <svg width="25" height="25" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Close</title> <g id="Page-1" stroke="none" stroke-width="2" fill="none" fill-rule="evenodd"> <g id="Close"> <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"> </rect> <line x1="16.9999" y1="7" x2="7.00001" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="3" stroke-linecap="round"> </line> <line x1="7.00006" y1="7" x2="17" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="3" stroke-linecap="round"> </line> </g> </g> </g></svg>
+                </span>
+            </div>
             <textarea id="fullscreenNote" rows="10" style="width: 100%;"></textarea>
             <div class="note-footer">
                 <button id="deleteNoteBtn" class="btn btn-danger">Delete</button>
