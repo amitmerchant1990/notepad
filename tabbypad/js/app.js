@@ -66,14 +66,25 @@ function loadNotesFromIndexedDB() {
     };
 }
 
-// Function to update the selected color in the UI
+// Function to update the selected color in the UI and apply it to the modal
 function updateSelectedColor(color) {
-    // Remove selected class from all color options
+    const modalContent = document.querySelector('.custom-modal-content');
+    
+    // Remove all color classes from modal
+    modalContent.classList.remove(
+        'modal-pastel-yellow', 'modal-pastel-blue', 'modal-pastel-green',
+        'modal-pastel-pink', 'modal-pastel-purple', 'modal-default-grid-color'
+    );
+    
+    // Add the selected color class to modal
+    const modalColorClass = `modal-${color}`;
+    modalContent.classList.add(modalColorClass);
+    
+    // Update the selected color in the color picker
     document.querySelectorAll('.color-option').forEach(option => {
         option.classList.remove('selected');
     });
     
-    // Add selected class to the clicked color
     const selectedOption = document.querySelector(`.color-option[data-color="${color}"]`);
     if (selectedOption) {
         selectedOption.classList.add('selected');
@@ -82,29 +93,37 @@ function updateSelectedColor(color) {
 
 // Function to open note in fullscreen
 function openFullscreen(note, index) {
-    fullscreenNote.value = note.content || note; // Handle both string and object notes
-    currentNoteIndex = index; // Set current note index
+    // Handle both string and object notes
+    if (typeof note === 'string') {
+        fullscreenNote.value = note;
+        updateSelectedColor('default-grid-color');
+    } else {
+        fullscreenNote.value = note.content || '';
+        const noteColor = note.color || 'default-grid-color';
+        updateSelectedColor(noteColor);
+    }
     
-    // Set the selected color based on the note's color or default to white
-    const noteColor = note.color || 'default-grid-color';
-    updateSelectedColor(noteColor);
-    
+    currentNoteIndex = index;
     deleteNoteBtn.style.display = 'inline-block';
     copyNoteBtn.style.display = 'inline-block';
     downloadNoteBtn.style.display = 'inline-block';
-    noteModal.style.display = "flex"; // Show modal
-    fullscreenNote.focus(); // Focus on the textarea
+    noteModal.style.display = "flex";
+    fullscreenNote.focus();
 }
 
 // Color picker functionality
 document.addEventListener('DOMContentLoaded', () => {
     // Set up color picker
     document.querySelectorAll('.color-option').forEach(option => {
-        option.addEventListener('click', () => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
             const color = option.getAttribute('data-color');
             updateSelectedColor(color);
         });
     });
+    
+    // Set default color for new notes
+    updateSelectedColor('default-grid-color');
 });
 
 // Save note functionality

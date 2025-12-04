@@ -130,7 +130,7 @@ input[type="text"]:focus {
     gap: 20px;
 }
 
-/* Pastel color classes for notes */
+/* Pastel color classes for notes and modals */
 .pastel-yellow {
     background-color: #FFF9C4;
     border: 5px solid #ebe07c;
@@ -159,6 +159,31 @@ input[type="text"]:focus {
 .default-grid-color {
     background-color: #ffffff;
     border: 5px solid #ccc;
+}
+
+/* Modal color classes */
+.modal-pastel-yellow {
+    background-color: #FFF9C4 !important;
+}
+
+.modal-pastel-blue {
+    background-color: #E3F2FD !important;
+}
+
+.modal-pastel-green {
+    background-color: #E8F5E9 !important;
+}
+
+.modal-pastel-pink {
+    background-color: #FCE4EC !important;
+}
+
+.modal-pastel-purple {
+    background-color: #F3E5F5 !important;
+}
+
+.modal-default-grid-color {
+    background-color: #ffffff !important;
 }
 
 .grid-item {
@@ -238,8 +263,30 @@ input[type="text"]:focus {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Default width */
-    transition: width 0.3s, height 0.3s; /* Smooth transition */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
     border-radius: 8px;
+}
+
+/* Style for the textarea to be transparent and inherit background */
+#fullscreenNote {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    min-height: 200px;
+    resize: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.5;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 2px solid #767676;
+}
+
+#fullscreenNote:focus {
+    border-color: #484848;
+    outline: none;
 }
 
 .custom-modal-content.fullscreen {
