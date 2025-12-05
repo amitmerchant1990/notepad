@@ -38,7 +38,7 @@ $(document).ready(function () {
 		{
 			text: "Love the ad-free experience? Buy me a coffee to keep it that way!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Send anonymous feature suggestions",
@@ -61,7 +61,7 @@ $(document).ready(function () {
 			text: "New → Mimic typewriter sound when typing. Enable it from the Preferences popup.",
 			url: "#preferencesModal",
 			dataTarget: "#preferencesModal",
-			active: true
+			active: false
 		}
 	];
 
