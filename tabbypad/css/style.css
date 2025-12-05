@@ -5,7 +5,7 @@ html, body {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #fafafa;
 }
 
 .toast {
@@ -239,8 +239,8 @@ input[type="text"]:focus {
 }
 
 .color-option {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid transparent;
@@ -321,7 +321,17 @@ textarea {
     align-items: center;
     cursor: pointer;
     height: 215px; /* Same height as other grid items */
-    font-size: 2em; /* Larger font size for the plus sign */
+    font-size: 1.3em;
+    border: 5px dashed #878686;
+    color: #6a6a6a;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.keyboard-shortcut-container {
+    font-size: 0.6em;
+    color: #767676;
+    font-weight: normal;
 }
 
 .search-container {

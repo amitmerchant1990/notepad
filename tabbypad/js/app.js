@@ -250,7 +250,7 @@ function renderNotes(filteredNotes = notes) {
     const addNoteDiv = document.createElement('div');
     addNoteDiv.className = 'grid-item add-note';
     addNoteDiv.title = 'Add Note (Alt/Option + N)';
-    addNoteDiv.innerHTML = '<span style="font-size: 2em;">+</span>';
+    addNoteDiv.innerHTML = '<div>+ New Note</div><div class="keyboard-shortcut-container">[ Alt / Option + N ]</div>';
     addNoteDiv.addEventListener('click', () => {
         createNewNote();
     });
