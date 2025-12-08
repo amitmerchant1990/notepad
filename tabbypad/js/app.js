@@ -270,7 +270,13 @@ function showToast(message) {
 copyNoteBtn.addEventListener('click', () => {
     const noteContent = fullscreenNote.value;
     navigator.clipboard.writeText(noteContent).then(() => {
-        showToast('Note copied to clipboard!');
+        // Add 'copied' class to show checkmark
+        copyNoteBtn.classList.add('copied');
+        
+        // Remove the class after animation completes
+        setTimeout(() => {
+            copyNoteBtn.classList.remove('copied');
+        }, 2000);
     }).catch(err => {
         console.error('Failed to copy: ', err);
     });

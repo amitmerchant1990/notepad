@@ -21,6 +21,27 @@ body {
     z-index: 1000;
 }
 
+#copyNoteBtn {
+    position: relative;
+    display: inline-block;
+}
+
+#copyNoteBtn .checkmark-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+#copyNoteBtn.copied .copy-icon {
+    opacity: 0;
+}
+
+#copyNoteBtn.copied .checkmark-icon {
+    display: block !important;
+    opacity: 1;
+}
+
 .container {
     position: relative;
     display: flex;
