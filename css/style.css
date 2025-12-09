@@ -1383,6 +1383,10 @@ a {
   display: none;
   max-width: 305px;
   border: 1px solid #e0e0e0;
+  background-color: #dddddd;
+  background-image:  radial-gradient(#646464 0.5px, transparent 0.5px), radial-gradient(#646464 0.5px, #dddddd 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0,10px 10px;
 }
 
 .toast-popup.show {
@@ -1397,6 +1401,7 @@ a {
 .dark .toast-popup {
   background-image: radial-gradient(45.07% 92.4% at 51% 7.61%, #464646 0, #181e27 100%);
   border-color: #30363d;
+  background-size: initial;
 }
 
 .dark .toast-content a {
