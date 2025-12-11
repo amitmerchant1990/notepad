@@ -105,6 +105,13 @@ kbd {
   transition: transform 0.1s, box-shadow 0.1s;
   font-weight: bold;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+kbd > span {
+  font-size: 15px;
 }
 
 table {
