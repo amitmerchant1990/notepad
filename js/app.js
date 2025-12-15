@@ -162,6 +162,8 @@ you can buy me a coffee — the link of which is available in the About section.
 	let typewriterSoundEnabled;
 	const typeSound = new Audio('/sounds/typewriter/typewriter-key-press-02.mp3');
 	const carriageReturnSound = new Audio('/sounds/typewriter/typewriter-carriage-return-01.mp3');
+	const spacebarSound = new Audio('/sounds/typewriter/space.mp3');
+
 	typeSound.volume = 0.2; // keep it subtle
 	const userChosenTypewriterSound = state.userChosenTypewriterSound;
 	const userChosenTypewriterVolume = state.userChosenTypewriterVolume;
@@ -206,6 +208,15 @@ you can buy me a coffee — the link of which is available in the About section.
 		if (e.key === 'Enter') {
 			if (typewriterSoundEnabled) {
 				const s = carriageReturnSound.cloneNode();
+				const currentVolume = localStorage.getItem('userChosenTypewriterVolume');
+				s.volume = currentVolume ? (currentVolume / 100) : (editorConfig.defaultTypewriterVolume / 100);
+				s.play();
+			}
+
+			return;
+		} else if (e.key === ' ') {
+			if (typewriterSoundEnabled) {
+				const s = spacebarSound.cloneNode();
 				const currentVolume = localStorage.getItem('userChosenTypewriterVolume');
 				s.volume = currentVolume ? (currentVolume / 100) : (editorConfig.defaultTypewriterVolume / 100);
 				s.play();
