@@ -127,7 +127,7 @@ input[type="text"]:focus {
 }
 
 @media (max-width: 768px) {
-    .search-container input[type="text"] {
+    .search-container .search-input-container {
         width: 100% !important;
         margin: 0 20px;
     }
@@ -362,8 +362,20 @@ textarea {
     margin-top: 35px;
 }
 
-.search-container input[type="text"] {
+.search-container .search-input-container {
     width: 40%;
+    position: relative;
+}
+
+.esc-to-cancel {
+    display: none;
+    position: absolute;
+    top: 11px;
+    right: 9px;
+    font-size: 8px;
+    padding: 2px 8px;
+    background-color: #e8e8e8;
+    border-radius: 5px; 
 }
 
 .note-footer {

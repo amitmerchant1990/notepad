@@ -208,14 +208,8 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
     }
 });
 
-// Close the modal when the Escape key is pressed
-document.addEventListener('keydown', (event) => {
-    if (event.key === "Escape") {
-        noteModal.style.display = "none"; // Close the modal
-    }
-});
-
 const searchInput = document.getElementById('searchInput');
+const escToCancel = document.querySelector('.esc-to-cancel');
 
 searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase();
@@ -223,6 +217,38 @@ searchInput.addEventListener('input', () => {
         note.content.toLowerCase().includes(searchTerm)
     );
     renderNotes(filteredNotes); // Pass the filtered notes to render function
+
+    // show esc-to-cancel text when search input is focused
+    if (searchInput.value !== '') {
+        escToCancel.style.display = 'block';
+    } else {
+        escToCancel.style.display = 'none';
+    }
+});
+
+// Close the modal when the Escape key is pressed
+document.addEventListener('keydown', (event) => {
+    if (event.key === "Escape") {
+        noteModal.style.display = "none"; // Close the modal
+
+        // has focus
+        if (searchInput === document.activeElement) {
+            searchInput.value = '';
+            escToCancel.style.display = 'none';
+            renderNotes();
+        }
+    }
+});
+
+// show esc-to-cancel text when search input is focused
+searchInput.addEventListener('focus', () => {
+    if (searchInput.value !== '') {
+        escToCancel.style.display = 'block';
+    }
+});
+
+searchInput.addEventListener('blur', () => {
+    escToCancel.style.display = 'none';
 });
 
 // Modify renderNotes function to accept an optional parameter
