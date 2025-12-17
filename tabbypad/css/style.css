@@ -215,11 +215,61 @@ input[type="text"]:focus {
     height: 215px;
     overflow: hidden;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    transition: filter .2s ease-out;
+    box-shadow: 0 50px 40px #00000003,0 50px 40px #00000005,0 20px 40px #0000000d,0 3px 10px #00000014;
+    position: relative;
+}
+
+.note-content {
+    flex-grow: 1;
+    overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 8;
-    transition: filter .2s ease-out;
-    box-shadow: 0 50px 40px #00000003,0 50px 40px #00000005,0 20px 40px #0000000d,0 3px 10px #00000014;
+}
+
+.note-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transform: translateY(100%);
+    transition: transform 0.2s ease-out;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    text-align: right;
+    opacity: 0.8;
+}
+
+.grid-item:hover .note-actions {
+    transform: translateY(0);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.action-btn svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
 }
 
 /* Ensure that the text is wrapped correctly */

@@ -266,12 +266,61 @@ function renderNotes(filteredNotes = notes) {
         // Create a div for note content
         const contentDiv = document.createElement('div');
         contentDiv.className = 'note-content';
-        contentDiv.textContent = note.content; 
+        contentDiv.textContent = note.content;
 
-        noteDiv.appendChild(contentDiv); 
-        noteDiv.addEventListener('click', () => {
-            openFullscreen(note, index); 
+        // Create action buttons container
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'note-actions';
+
+        // Copy button
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'action-btn';
+        copyBtn.title = 'Copy note';
+        copyBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
+            </svg>
+        `;
+        copyBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigator.clipboard.writeText(note.content).then(() => {
+                showToast('Note copied to clipboard!');
+            });
         });
+
+        // Download button
+        const downloadBtn = document.createElement('button');
+        downloadBtn.className = 'action-btn';
+        downloadBtn.title = 'Download note';
+        downloadBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+        `;
+        downloadBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const element = document.createElement('a');
+            const file = new Blob([note.content], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = `note-${new Date(note.created_at).toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        });
+
+        // Add buttons to actions container
+        actionsDiv.appendChild(copyBtn);
+        actionsDiv.appendChild(downloadBtn);
+
+        // Add content and actions to note
+        noteDiv.appendChild(contentDiv);
+        noteDiv.appendChild(actionsDiv);
+
+        // Add click handler for the note (excluding buttons)
+        contentDiv.addEventListener('click', () => {
+            openFullscreen(note, index);
+        });
+        
         gridContainer.appendChild(noteDiv);
     });
 
