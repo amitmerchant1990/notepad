@@ -229,9 +229,12 @@ searchInput.addEventListener('input', () => {
 // Close the modal when the Escape key is pressed
 document.addEventListener('keydown', (event) => {
     if (event.key === "Escape") {
-        noteModal.style.display = "none"; // Close the modal
+        // if the delete confirmation modal is open, don't close it
+        if (!$('#confirmDeleteModal').is(':visible')) {
+            noteModal.style.display = "none"; // Close the modal
+        }
 
-        // has focus
+        // if searchInput has focus
         if (searchInput === document.activeElement) {
             searchInput.value = '';
             escToCancel.style.display = 'none';

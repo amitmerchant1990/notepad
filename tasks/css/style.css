@@ -323,17 +323,21 @@ h1 {
 @media (max-width: 768px) {
   /* Shrink checkbox size and text on small screens */
   .task-checkbox {
-      width: 1em;
-      height: 1em;
-      border-width: 1.5px;
+    width: 1em;
+    height: 1em;
+    border-width: 1.5px;
   }
 
   .task-text {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 
   #addTask {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .task-edit-input {
+    margin-left: 8px;
   }
 }
 
@@ -341,19 +345,23 @@ h1 {
 
   /* Further adjustments for very small screens */
   .task-checkbox {
-      width: 0.8em;
-      height: 0.8em;
-      border-width: 1px;
+    width: 1em;
+    height: 1em;
+    border-width: 1px;
   }
 
   .task-text {
-      font-size: 0.8rem;
-      /* Even smaller text size */
+    font-size: 0.8rem;
+    /* Even smaller text size */
   }
 
   #addTask {
-      font-size: 0.8rem;
-      /* Smaller button size */
+    font-size: 0.8rem;
+    /* Smaller button size */
+  }
+
+  .task-edit-input {
+    margin-left: 8px;
   }
 }
 
@@ -511,6 +519,10 @@ footer {
 
 .modal-content {
   border-radius: .7rem;
+}
+
+.task-edit-input {
+  margin-left: 10px;
 }
 
 @media (min-width: 992px) {
