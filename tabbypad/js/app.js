@@ -6,7 +6,7 @@ const saveNoteBtn = document.getElementById('saveNoteBtn');
 const deleteNoteBtn = document.getElementById('deleteNoteBtn');
 const copyNoteBtn = document.getElementById('copyNoteBtn');
 const downloadNoteBtn = document.getElementById('downloadNoteBtn');
-let currentNoteIndex = null; // To track the index of the current note being edited
+let currentNoteId = null; // To track the index of the current note being edited
 
 let notes = [], db;
 
@@ -97,13 +97,14 @@ function openFullscreen(note, index) {
     if (typeof note === 'string') {
         fullscreenNote.value = note;
         updateSelectedColor('default-grid-color');
+        currentNoteId = null; // New note
     } else {
         fullscreenNote.value = note.content || '';
         const noteColor = note.color || 'default-grid-color';
         updateSelectedColor(noteColor);
+        currentNoteId = note.id; // Existing note
     }
     
-    currentNoteIndex = index;
     deleteNoteBtn.style.display = 'inline-block';
     copyNoteBtn.style.display = 'inline-block';
     downloadNoteBtn.style.display = 'inline-block';
@@ -131,30 +132,34 @@ saveNoteBtn.addEventListener('click', () => {
     const noteContent = fullscreenNote.value;
     const selectedColor = document.querySelector('.color-option.selected')?.getAttribute('data-color') || 'default-grid-color';
     
-    const note = {
-        id: Date.now(), // Unique identifier
-        content: noteContent,
-        created_at: new Date().toISOString(), // Timestamp
-        color: selectedColor
-    };
-
     const transaction = db.transaction(['notes'], 'readwrite');
     const objectStore = transaction.objectStore('notes');
 
-    if (currentNoteIndex !== null) {
+    if (currentNoteId) {
         // Update existing note
-        notes[currentNoteIndex].content = noteContent;
-        notes[currentNoteIndex].color = selectedColor;
-        objectStore.put(notes[currentNoteIndex]); // Update note in IndexedDB
+        const existingNote = notes.find(note => note.id === currentNoteId);
+        if (existingNote) {
+            existingNote.content = noteContent;
+            existingNote.color = selectedColor;
+            objectStore.put(existingNote); // Update the existing note
+        }
+
+        currentNoteId = null;
     } else {
         // Add new note
-        objectStore.add(note); // Add new note to IndexedDB
-        notes.push(note); // Add to local notes array for rendering
+        const note = {
+            id: Date.now(), // Only generate new ID for new notes
+            content: noteContent,
+            created_at: new Date().toISOString(),
+            color: selectedColor
+        };
+        objectStore.add(note);
+        notes.push(note); // Add to beginning of array to show newest first
     }
 
     transaction.oncomplete = function() {
-        renderNotes(); // Re-render notes
-        noteModal.style.display = "none"; // Close modal
+        renderNotes();
+        noteModal.style.display = "none";
     };
 });
 
