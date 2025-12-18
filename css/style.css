@@ -854,11 +854,11 @@ a {
   box-shadow: none;
 }
 
-.bottom-line .coffee-icon a {
+.bottom-line .coffee-icon {
   color: #000;
 }
 
-.dark .bottom-line .coffee-icon a {
+.dark .bottom-line .coffee-icon {
   color: #fff;
 }
 
