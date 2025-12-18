@@ -845,6 +845,11 @@ a {
   backdrop-filter: blur(5px);
 }
 
+.bottom-line .coffee-icon:hover .heart {
+  fill: currentColor;
+  transition: fill 0.3s ease;
+}
+
 .dark .bottom-line .coffee-icon {
   box-shadow: none;
 }
