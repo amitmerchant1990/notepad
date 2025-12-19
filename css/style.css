@@ -883,6 +883,35 @@ a {
   animation-delay: 0.5s;
 }
 
+/* Floating Heart animation */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+.heart-float {
+  position: absolute;
+  pointer-events: none;
+  font-size: 12px;
+  color: #ff6b6b;
+  animation: float-up 1s ease-out forwards;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+  z-index: 1000;
+  bottom: 10;
+  right: 20;
+}
+
+.dark .heart-float {
+  color: #ff9e9e;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
 @keyframes rise-s-curve {
   0% {
     transform: translateX(-50%) translateY(0);

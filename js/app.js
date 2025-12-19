@@ -104,14 +104,17 @@ $(document).ready(function () {
 	$('#closeToastPopup').on('click', function () {
 		closeToastPopup();
 	});
-
+	
 	// Close toast popup when link is clicked
 	$('#toastLink').on('click', function () {
 		closeToastPopup();
 	});
-
+	
 	// Show toast popup after a delay
 	setTimeout(showRandomToastLink, 5000);
+	
+	// Setup coffee icon hover animation
+	setupCoffeeIconAnimation();
 
 	const welcomeText = `Welcome! This is an offline-capable Notepad which is a Progressive Web App.
 

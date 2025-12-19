@@ -430,3 +430,47 @@ function downloadHTML(textToWrite, fileNameToSaveAs) {
     a.click();
     document.body.removeChild(a);
 }
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart-float';
+  heart.innerHTML = '❤';
+  
+  // Random position around the coffee icon
+  const size = Math.random() * 10 + 8; // Size between 10-20px
+  const posX = Math.random() * 20 - 15; // Random X position (-10 to 10)
+  const rotation = Math.random() * 40 - 20; // Random rotation (-20 to 20 degrees)
+  
+  heart.style.left = `calc(50% + ${posX}px)`;
+  heart.style.fontSize = `${size}px`;
+  heart.style.transform = `rotate(${rotation}deg)`;
+  
+  // Random animation duration (0.8s to 1.5s)
+  const duration = Math.random() * 0.7 + 0.8;
+  heart.style.animationDuration = `${duration}s`;
+  
+  // Remove the heart after animation completes
+  heart.addEventListener('animationend', function() {
+    this.remove();
+  });
+  
+  return heart;
+}
+
+function setupCoffeeIconAnimation() {
+  const coffeeIcon = document.querySelector('.coffee-icon');
+  let hoverInterval;
+  
+  coffeeIcon.addEventListener('mouseenter', function() {
+    // Create a heart every 200ms while hovering
+    hoverInterval = setInterval(() => {
+      const heart = createHeart();
+      this.appendChild(heart);
+    }, 350);
+  });
+  
+  coffeeIcon.addEventListener('mouseleave', function() {
+    // Clear the interval when mouse leaves
+    clearInterval(hoverInterval);
+  });
+}
