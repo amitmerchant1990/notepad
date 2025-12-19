@@ -216,6 +216,16 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
 const searchInput = document.getElementById('searchInput');
 const escToCancel = document.querySelector('.esc-to-cancel');
 
+document.addEventListener('mousedown', function(e) {
+  clickedElementOnMouseDown = e.target;
+
+  if (clickedElementOnMouseDown.closest('.esc-to-cancel')) {
+    searchInput.value = '';
+    escToCancel.style.display = 'none';
+    renderNotes();
+  }
+})
+
 searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase();
     const filteredNotes = notes.filter(note => 
