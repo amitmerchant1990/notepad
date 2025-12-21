@@ -235,7 +235,7 @@ input[type="text"]:focus {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255 235 55 / 96%);
     display: flex;
     justify-content: center;
     gap: 15px;
