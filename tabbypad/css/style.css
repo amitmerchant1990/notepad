@@ -260,6 +260,7 @@ input[type="text"]:focus {
     padding: 5px;
     border-radius: 4px;
     transition: background-color 0.2s;
+    position: relative;
 }
 
 .action-btn:hover {
@@ -270,6 +271,29 @@ input[type="text"]:focus {
     width: 20px;
     height: 20px;
     vertical-align: middle;
+}
+
+.action-btn .action-icon {
+    display: inline-block;
+    transition: opacity 0.2s;
+}
+
+.action-btn .checkmark-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.action-btn.copied .action-icon {
+    opacity: 0;
+}
+
+.action-btn.copied .checkmark-icon {
+    display: block !important;
+    opacity: 1;
 }
 
 /* Ensure that the text is wrapped correctly */
