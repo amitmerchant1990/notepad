@@ -19,6 +19,12 @@ body {
   background-color: var(--dough-white);
 }
 
+@media (min-width: 992px) {
+  .col-md-5 {
+    width: 50%;
+  }
+}
+
 #mainContainer {
   position: relative;
 }
