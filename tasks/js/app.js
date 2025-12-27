@@ -57,10 +57,27 @@ $(document).ready(function() {
         if (isChecked) {
             $taskCard.addClass('task-completed').appendTo('#taskContainer'); // Move to bottom
             
-            confetti({
-                origin: { y: 1 },
-                particleCount: 150
-            });
+            // Check if this was the last task being completed
+            let totalTasks = $('#taskContainer .task-card').length;
+            let completedTasks = $('#taskContainer .task-completed').length;
+            
+            if (totalTasks > 0 && totalTasks === completedTasks) {
+                // Confetti from bottom left
+                confetti({
+                    origin: { x: 0, y: 1 },  // Bottom left
+                    particleCount: 100,
+                    spread: 70,
+                    angle: 60
+                });
+                
+                // Confetti from bottom right
+                confetti({
+                    origin: { x: 1, y: 1 },  // Bottom right
+                    particleCount: 100,
+                    spread: 70,
+                    angle: 120
+                });
+            }
         } else {
             $taskCard.removeClass('task-completed').prependTo('#taskContainer'); // Move to top
         }
