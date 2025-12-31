@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v32';
+let CACHE_VERSION = 'app-v33';
 let CACHE_FILES = [
     '/',
     'index.html',
