@@ -350,7 +350,7 @@ you can buy me a coffee — the link of which is available in the About section.
 		resetWriteDirection(editorConfig.defaultWriteDirection);
 	}
 
-	if (state.isMonospaced) {
+	if (state.isMonospaced == 'true') {
 		notepad.monospaced.prop('checked', true);
 		notepad.note.addClass('monospaced');
 	} else {
@@ -358,12 +358,20 @@ you can buy me a coffee — the link of which is available in the About section.
 		notepad.note.removeClass('monospaced');
 	}
 
-	if (state.isDislexic) {
+	if (state.isDyslexic == 'true') {
 		notepad.dyslexic.prop('checked', true);
 		notepad.note.addClass('dislexic');
 	} else {
 		notepad.dyslexic.prop('checked', false);
 		notepad.note.removeClass('dislexic');
+	}
+
+	if (state.isSerif == 'true') {
+		notepad.serif.prop('checked', true);
+		notepad.note.addClass('serif');
+	} else {
+		notepad.serif.prop('checked', false);
+		notepad.note.removeClass('serif');
 	}
 
 	if (state.userChosenOptimalLineLengthSelected) {
@@ -673,6 +681,12 @@ you can buy me a coffee — the link of which is available in the About section.
 			notepad.dyslexic.prop('checked', false);
 		}
 
+		if (selector().state.isSerif) {
+			removeState('serifFont');
+			notepad.note.removeClass('serif');
+			notepad.serif.prop('checked', false);
+		}
+
 		if (selector().state.userChosenSpellCheck) {
 			removeState('userChosenSpellCheck');
 			notepad.note.attr('spellcheck', false);
@@ -716,6 +730,16 @@ you can buy me a coffee — the link of which is available in the About section.
 			notepad.note.removeClass('monospaced');
 			removeState('monospaced');
 		}
+	});
+
+	notepad.serif.change(function() {
+		if ($(this).is(':checked')) {
+			notepad.note.addClass('serif');
+			setState('serifFont', 'true');
+		} else {
+			notepad.note.removeClass('serif');
+			removeState('serifFont');
+		} 
 	});
 
 	if (navigator.share && window.self === window.top) {
@@ -889,6 +913,7 @@ you can buy me a coffee — the link of which is available in the About section.
 	const dyslexicFontEnabled = localStorage.getItem('dyslexicFont') === 'true';
 	const dyslexicFontCheckbox = document.getElementById('dyslexic');
 	const monospacedCheckbox = document.getElementById('monospaced');
+	const serifCheckbox = document.getElementById('serif');
 
 	dyslexicFontCheckbox.checked = dyslexicFontEnabled;
 	if (dyslexicFontEnabled) {
@@ -902,7 +927,10 @@ you can buy me a coffee — the link of which is available in the About section.
 		if (e.target.checked) {
 			notepad.note.addClass('dyslexic');
 			monospacedCheckbox.checked = false;
+			serifCheckbox.checked = false;
 			notepad.note.removeClass('monospaced');
+			notepad.note.removeClass('serif');
+			localStorage.setItem('serifFont', 'false');
 			localStorage.setItem('monospaced', 'false');
 		} else {
 			notepad.note.removeClass('dyslexic');
@@ -915,12 +943,30 @@ you can buy me a coffee — the link of which is available in the About section.
 		if (e.target.checked) {
 			notepad.note.addClass('monospaced');
 			dyslexicFontCheckbox.checked = false;
+			serifCheckbox.checked = false;
 			notepad.note.removeClass('dyslexic');
+			notepad.note.removeClass('serif');
+			localStorage.setItem('serifFont', 'false');
 			localStorage.setItem('dyslexicFont', 'false');
 		} else {
 			notepad.note.removeClass('monospaced');
 		}
 		localStorage.setItem('monospaced', e.target.checked);
+	});
+
+	serifCheckbox.addEventListener('change', (e) => {
+		if (e.target.checked) {
+			notepad.note.addClass('serif');
+			dyslexicFontCheckbox.checked = false;
+			monospacedCheckbox.checked = false;
+			notepad.note.removeClass('dyslexic');
+			notepad.note.removeClass('monospaced');
+			localStorage.setItem('dyslexicFont', 'false');
+			localStorage.setItem('monospaced', 'false');
+		} else {
+			notepad.note.removeClass('serif');
+		}
+		localStorage.setItem('serifFont', e.target.checked);
 	});
 });
 

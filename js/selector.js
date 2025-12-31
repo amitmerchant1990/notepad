@@ -61,6 +61,7 @@ function selector() {
             focusModeButton: selectById('focusModeButton'),
             focusModeCloseButton: selectById('focusModeCloseButton'),
             statisticsModal: selectById('statisticsModal'),
+            serif: selectById('serif'),
         },
         state: {
             note: getState('note'),
@@ -75,6 +76,7 @@ function selector() {
             userChosenOptimalLineLengthSelected: getState('userChosenOptimalLineLengthSelected'),
             isMonospaced: getState('monospaced'),
             isDyslexic: getState('dyslexicFont'),
+            isSerif: getState('serifFont'),
             userChosenSpellCheck: getState('userChosenSpellCheck'),
             userChosenTabIndentation: getState('userChosenTabIndentation'),
             userChosenTransparentWordCountPillSelected: getState('userChosenTransparentWordCountPillSelected'),

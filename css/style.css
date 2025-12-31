@@ -1192,6 +1192,10 @@ a {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
+.serif {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+}
+
 /* Heartbeat animation */
 @keyframes heartbeat {
   0% {
