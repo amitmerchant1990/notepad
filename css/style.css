@@ -91,7 +91,7 @@ textarea {
   -webkit-appearance: none;
   resize: none;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: var(--dough-white);
+  background: transparent;
   scrollbar-gutter: stable;
 }
 
@@ -547,7 +547,6 @@ a {
 
 .dark textarea {
   border: #000000;
-  background-color: var(--obsidian-black);
   color: #dedede;
 
   border-right: 1px solid #3e3e3e;
@@ -1194,6 +1193,33 @@ a {
 
 .serif {
   font-family: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+}
+
+.graph-paper {
+  background-image: linear-gradient(#d2d2d24d 1px, #0000 1px), linear-gradient(90deg, #d2d2d24d 1px, #0000 1px);
+  background-position: -14px 14px;
+  background-size: 12px 12px;
+}
+
+.graph-paper textarea {
+  border-color: transparent;
+}
+
+.dark.graph-paper {
+  background-image: linear-gradient(#5050504d 1px,#0000 1px),linear-gradient(90deg,#5050504d 1px,#0000 1px);
+}
+
+.dotted-paper {
+  background-image: radial-gradient(#d2d2d280 1px, #0000 1px);
+  background-size: 24px 24px;
+}
+
+.dotted-paper textarea {
+  border-color: transparent;
+}
+
+.dark.dotted-paper {
+  background-image: radial-gradient(#50505080 1px,#0000 1px);
 }
 
 /* Heartbeat animation */

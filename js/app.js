@@ -350,6 +350,16 @@ you can buy me a coffee — the link of which is available in the About section.
 		resetWriteDirection(editorConfig.defaultWriteDirection);
 	}
 
+	if (state.userChosenTexture) {
+		if (state.userChosenTexture == 'dotted') {
+			$(document.body).addClass('dotted-paper');
+		} else if (state.userChosenTexture == 'graph') {
+			$(document.body).addClass('graph-paper');
+		}
+
+		notepad.texture.val(state.userChosenTexture);
+	}
+
 	if (state.isMonospaced == 'true') {
 		notepad.monospaced.prop('checked', true);
 		notepad.note.addClass('monospaced');
@@ -588,6 +598,23 @@ you can buy me a coffee — the link of which is available in the About section.
 		setState('userChosenWriteDirection', writeDirectionSelected);
 	});
 
+	notepad.texture.on('change', function (e) {
+		const textureSelected = this.value;
+
+		if (textureSelected == 'dotted') {
+			$(document.body).addClass('dotted-paper');
+			$(document.body).removeClass('graph-paper');
+		} else if (textureSelected == 'graph') {
+			$(document.body).addClass('graph-paper');
+			$(document.body).removeClass('dotted-paper');
+		} else {
+			$(document.body).removeClass('dotted-paper');
+			$(document.body).removeClass('graph-paper');
+		}
+
+		setState('userChosenTexture', textureSelected);
+	});
+
 	notepad.showWordCountPill.on('change', function (e) {
 		if ($(this).is(':checked')) {
 			notepad.wordCountContainer.show()
@@ -662,6 +689,11 @@ you can buy me a coffee — the link of which is available in the About section.
 		if (selector().state.userChosenWriteDirection) {
 			removeState('userChosenWriteDirection');
 			resetWriteDirection(editorConfig.defaultWriteDirection);
+		}
+
+		if (selector().state.userChosenTexture) {
+			removeState('userChosenTexture');
+			resetTexture(editorConfig.defaultTexture);
 		}
 
 		if (selector().state.userChosenOptimalLineLengthSelected) {

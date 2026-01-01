@@ -133,6 +133,12 @@ function resetWriteDirection(defaultWriteDirection) {
     $('#writeDirection').val(defaultWriteDirection);
 }
 
+function resetTexture(defaultTexture) {
+    $(document.body).removeClass('dotted-paper');
+    $(document.body).removeClass('graph-paper');
+    $('#texture').val(defaultTexture);
+}
+
 function resetOptimalLineLength(defaultEditorPadding, defaultOption) {
     const textArea = document.getElementById('note');
     textArea.style.padding = defaultEditorPadding;
