@@ -1968,7 +1968,7 @@ body.dark .stat-value {
 }
 
 @media print {
-  .dark .toast-popup, .toast-popup, .word-count-container {
+  .dark .toast-popup, .toast-popup, .word-count-container, .coffee-icon {
     display: none !important;
   }
 
