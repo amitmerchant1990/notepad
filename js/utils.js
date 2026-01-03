@@ -139,6 +139,11 @@ function resetTexture(defaultTexture) {
     $('#texture').val(defaultTexture);
 }
 
+function resetFont(defaultFont) {
+    $('#note').removeClass('dyslexic monospaced serif');
+    $('#font').val(defaultFont);
+}
+
 function resetOptimalLineLength(defaultEditorPadding, defaultOption) {
     const textArea = document.getElementById('note');
     textArea.style.padding = defaultEditorPadding;

@@ -84,10 +84,12 @@ function selector() {
             userChosenTransparentWordCountPillSelected: getState('userChosenTransparentWordCountPillSelected'),
             userChosenTypewriterSound: getState('userChosenTypewriterSound'),
             userChosenTypewriterVolume: getState('userChosenTypewriterVolume'),
+            selectedFont: getState('selectedFont')
         },
         defaultConfig: {
             defaultFontSize: 18,
             defaultLineHeight: 26,
+            defaultFont: 'default',
             defaultFontWeight: 'normal',
             defaultShowWordCountPill: 'Yes',
             defaultWriteDirection: 'ltr',

@@ -26,9 +26,9 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "If every regular user contributed the cost of one coffee, I could accelerate development dramatically!",
+			text: "Thank you for using this app. If you’d like to support the development, buy me a coffee.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
@@ -360,30 +360,6 @@ you can buy me a coffee — the link of which is available in the About section.
 		notepad.texture.val(state.userChosenTexture);
 	}
 
-	if (state.isMonospaced == 'true') {
-		notepad.monospaced.prop('checked', true);
-		notepad.note.addClass('monospaced');
-	} else {
-		notepad.monospaced.prop('checked', false);
-		notepad.note.removeClass('monospaced');
-	}
-
-	if (state.isDyslexic == 'true') {
-		notepad.dyslexic.prop('checked', true);
-		notepad.note.addClass('dislexic');
-	} else {
-		notepad.dyslexic.prop('checked', false);
-		notepad.note.removeClass('dislexic');
-	}
-
-	if (state.isSerif == 'true') {
-		notepad.serif.prop('checked', true);
-		notepad.note.addClass('serif');
-	} else {
-		notepad.serif.prop('checked', false);
-		notepad.note.removeClass('serif');
-	}
-
 	if (state.userChosenOptimalLineLengthSelected) {
 		const textArea = document.getElementById('note');
 
@@ -701,22 +677,9 @@ you can buy me a coffee — the link of which is available in the About section.
 			resetOptimalLineLength(editorConfig.defaultOptimalLineLengthPadding, editorConfig.defaultOptimalLineLength);
 		}
 
-		if (selector().state.isMonospaced) {
-			removeState('monospaced');
-			notepad.note.removeClass('monospaced');
-			notepad.monospaced.prop('checked', false);
-		}
-
-		if (selector().state.isDyslexic) {
-			removeState('dyslexicFont');
-			notepad.note.removeClass('dyslexic');
-			notepad.dyslexic.prop('checked', false);
-		}
-
-		if (selector().state.isSerif) {
-			removeState('serifFont');
-			notepad.note.removeClass('serif');
-			notepad.serif.prop('checked', false);
+		if (selector().state.selectedFont) {
+			removeState('selectedFont');
+			resetFont(editorConfig.defaultFont);
 		}
 
 		if (selector().state.userChosenSpellCheck) {
@@ -752,26 +715,6 @@ you can buy me a coffee — the link of which is available in the About section.
 		// Reset to device theme as default
 		$('input[name="themes"][value="device"]').prop('checked', true);
 		enableDeviceTheme(themeConfig);
-	});
-
-	notepad.monospaced.change(function () {
-		if ($(this).is(':checked')) {
-			notepad.note.addClass('monospaced');
-			setState('monospaced', 'true');
-		} else {
-			notepad.note.removeClass('monospaced');
-			removeState('monospaced');
-		}
-	});
-
-	notepad.serif.change(function() {
-		if ($(this).is(':checked')) {
-			notepad.note.addClass('serif');
-			setState('serifFont', 'true');
-		} else {
-			notepad.note.removeClass('serif');
-			removeState('serifFont');
-		} 
 	});
 
 	if (navigator.share && window.self === window.top) {
@@ -941,65 +884,79 @@ you can buy me a coffee — the link of which is available in the About section.
 		}
 	};
 
-	// Get dyslexic font preference from localStorage
-	const dyslexicFontEnabled = localStorage.getItem('dyslexicFont') === 'true';
-	const dyslexicFontCheckbox = document.getElementById('dyslexic');
-	const monospacedCheckbox = document.getElementById('monospaced');
-	const serifCheckbox = document.getElementById('serif');
-
-	dyslexicFontCheckbox.checked = dyslexicFontEnabled;
-	if (dyslexicFontEnabled) {
-		notepad.note.addClass('dyslexic');
-		monospacedCheckbox.checked = false;
-		notepad.note.removeClass('monospaced');
+	// Font selection handler
+	const fontSelect = document.getElementById('font');
+	
+	// Check for legacy font preferences and migrate them to the new system
+	function migrateLegacyFontPrefs() {
+		const dyslexicFont = localStorage.getItem('dyslexicFont') === 'true';
+		const monospacedFont = localStorage.getItem('monospaced') === 'true';
+		const serifFont = localStorage.getItem('serifFont') === 'true';
+		
+		if (dyslexicFont) {
+			localStorage.setItem('selectedFont', 'dyslexic');
+		} else if (monospacedFont) {
+			localStorage.setItem('selectedFont', 'monospaced');
+		} else if (serifFont) {
+			localStorage.setItem('selectedFont', 'serif');
+		} else {
+			localStorage.setItem('selectedFont', 'default');
+		}
+		
+		// Clear old preferences
+		localStorage.removeItem('dyslexicFont');
+		localStorage.removeItem('monospaced');
+		localStorage.removeItem('serifFont');
 	}
-
-	// Toggle dyslexic font
-	dyslexicFontCheckbox.addEventListener('change', (e) => {
-		if (e.target.checked) {
-			notepad.note.addClass('dyslexic');
-			monospacedCheckbox.checked = false;
-			serifCheckbox.checked = false;
-			notepad.note.removeClass('monospaced');
-			notepad.note.removeClass('serif');
-			localStorage.setItem('serifFont', 'false');
-			localStorage.setItem('monospaced', 'false');
-		} else {
-			notepad.note.removeClass('dyslexic');
+	
+	// Apply font based on selection
+	function applyFont(fontType) {
+		// Remove all font classes first
+		notepad.note.removeClass('dyslexic monospaced serif');
+		
+		// Add the selected font class
+		switch(fontType) {
+			case 'dyslexic':
+				notepad.note.addClass('dyslexic');
+				break;
+			case 'monospaced':
+				notepad.note.addClass('monospaced');
+				break;
+			case 'serif':
+				notepad.note.addClass('serif');
+				break;
+			// 'default' case doesn't need any class
 		}
-		localStorage.setItem('dyslexicFont', e.target.checked);
-	});
-
-	// Update monospaced checkbox handler to turn off dyslexic font
-	monospacedCheckbox.addEventListener('change', (e) => {
-		if (e.target.checked) {
-			notepad.note.addClass('monospaced');
-			dyslexicFontCheckbox.checked = false;
-			serifCheckbox.checked = false;
-			notepad.note.removeClass('dyslexic');
-			notepad.note.removeClass('serif');
-			localStorage.setItem('serifFont', 'false');
-			localStorage.setItem('dyslexicFont', 'false');
-		} else {
-			notepad.note.removeClass('monospaced');
+	}
+	
+	// Initialize font selection
+	function initFontSelection() {
+		// Migrate legacy preferences if needed
+		if (localStorage.getItem('dyslexicFont') !== null || 
+			localStorage.getItem('monospaced') !== null || 
+			localStorage.getItem('serifFont') !== null) {
+			migrateLegacyFontPrefs();
 		}
-		localStorage.setItem('monospaced', e.target.checked);
+		
+		// Get the selected font or default to 'default'
+		const selectedFont = localStorage.getItem('selectedFont') || 'default';
+		
+		// Set the dropdown value
+		fontSelect.value = selectedFont;
+		
+		// Apply the font
+		applyFont(selectedFont);
+	}
+	
+	// Handle font selection change
+	fontSelect.addEventListener('change', (e) => {
+		const selectedFont = e.target.value;
+		localStorage.setItem('selectedFont', selectedFont);
+		applyFont(selectedFont);
 	});
-
-	serifCheckbox.addEventListener('change', (e) => {
-		if (e.target.checked) {
-			notepad.note.addClass('serif');
-			dyslexicFontCheckbox.checked = false;
-			monospacedCheckbox.checked = false;
-			notepad.note.removeClass('dyslexic');
-			notepad.note.removeClass('monospaced');
-			localStorage.setItem('dyslexicFont', 'false');
-			localStorage.setItem('monospaced', 'false');
-		} else {
-			notepad.note.removeClass('serif');
-		}
-		localStorage.setItem('serifFont', e.target.checked);
-	});
+	
+	// Initialize font selection on page load
+	initFontSelection();
 });
 
 document.addEventListener("fullscreenchange", function () {
