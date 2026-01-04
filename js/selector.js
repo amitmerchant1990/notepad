@@ -46,6 +46,7 @@ function selector() {
             resetPreferences: selectById('resetPreferences'),
             showWordCountPill: selectById('showWordCountPill'),
             transparentWordCountPill: selectById('transparentWordCountPill'),
+            frostedGlassPillPref: selectById('frostedGlassPillPref'),
             wordCount: selectById('wordCount'),
             installAppButtonContainer: selectByClassName('install-app-btn-container'),
             stickyNotice: selectByClassName('sticky-notice'),

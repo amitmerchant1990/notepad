@@ -326,10 +326,17 @@ you can buy me a coffee — the link of which is available in the About section.
 	const userChosenWordCountPillSelected = state.userChosenWordCountPillSelected
 
 	if (userChosenWordCountPillSelected) {
-		userChosenWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.show() : notepad.wordCountContainer.hide();
+		if (userChosenWordCountPillSelected === 'Yes') {
+			notepad.wordCountContainer.show();
+			notepad.frostedGlassPillPref.show();
+		} else {
+			notepad.wordCountContainer.hide();
+			notepad.frostedGlassPillPref.hide();
+		}
 		notepad.showWordCountPill.prop('checked', userChosenWordCountPillSelected === 'Yes');
 	} else {
-		notepad.wordCountContainer.show()
+		notepad.wordCountContainer.show();
+		notepad.frostedGlassPillPref.show();
 		notepad.showWordCountPill.prop('checked', true);
 	}
 
@@ -339,7 +346,7 @@ you can buy me a coffee — the link of which is available in the About section.
 		userChosenTransparentWordCountPillSelected === 'Yes' ? notepad.wordCountContainer.addClass('transparency') : notepad.wordCountContainer.removeClass('transparency');
 		notepad.transparentWordCountPill.prop('checked', userChosenTransparentWordCountPillSelected === 'Yes');
 	} else {
-		notepad.wordCountContainer.removeClass('transparency')
+		notepad.wordCountContainer.removeClass('transparency');
 		notepad.transparentWordCountPill.prop('checked', false);
 	}
 
@@ -593,10 +600,12 @@ you can buy me a coffee — the link of which is available in the About section.
 
 	notepad.showWordCountPill.on('change', function (e) {
 		if ($(this).is(':checked')) {
-			notepad.wordCountContainer.show()
+			notepad.wordCountContainer.show();
+			notepad.frostedGlassPillPref.show();
 			setState('userChosenWordCountPillSelected', 'Yes');
 		} else {
-			notepad.wordCountContainer.hide()
+			notepad.wordCountContainer.hide();
+			notepad.frostedGlassPillPref.hide();
 			setState('userChosenWordCountPillSelected', 'No');
 		}
 	});
