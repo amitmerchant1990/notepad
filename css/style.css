@@ -1585,6 +1585,20 @@ a {
   background: #e3e2e2;
 }
 
+.sound-button .new-badge {
+  position: absolute;
+  top: -5px;
+  left: 11px;
+  background-color: #28a745 !important;
+  color: white;
+  font-size: 8px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 3px;
+  line-height: 1;
+  background: #e3e2e2;
+}
+
 .sound-button.playing {
   background: #dcefff;
 }
