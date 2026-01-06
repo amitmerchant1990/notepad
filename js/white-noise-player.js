@@ -108,6 +108,24 @@ class WhiteNoisePlayer {
                 audio: null,
                 playing: false,
                 loading: false
+            },
+            'fireworks': {
+                url: 'sounds/fireworks.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'owl': {
+                url: 'sounds/owl.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'underwater': {
+                url: 'sounds/underwater.mp3',
+                audio: null,
+                playing: false,
+                loading: false
             }
         };
 

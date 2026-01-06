@@ -1572,7 +1572,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
+  padding: 20px;
   border-radius: 10px;
   background: #f1efef;
   cursor: pointer;
