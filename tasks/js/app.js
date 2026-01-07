@@ -28,6 +28,16 @@ $(document).ready(function() {
     $('#taskInput').focus();
     loadTasks();
 
+    // Clear all tasks button click handler
+    $('#clearAllTasks').click(function() {
+        if (confirm('Are you sure you want to delete all tasks? This action cannot be undone.')) {
+            $('#taskContainer').empty();
+            saveTasks();
+            updateTaskCount();
+            toggleNoTasksMessage();
+        }
+    });
+
     $('#addTask').click(addTask);
     $('#taskInput').on('keydown', function(event) {
         if (event.key === 'Enter') addTask();
@@ -162,10 +172,14 @@ $(document).ready(function() {
 
     // Toggle visibility of the "No tasks added" message
     function toggleNoTasksMessage() {
-        if ($('#taskContainer .task-card').length === 0) {
-            $('#noTasksMessage').css('display', 'flex');
-        } else {
+        const hasTasks = $('#taskContainer .task-card').length > 0;
+        
+        if (hasTasks) {
             $('#noTasksMessage').hide();
+            $('#clearAllContainer').show();
+        } else {
+            $('#noTasksMessage').show();
+            $('#clearAllContainer').hide();
         }
     }
 
