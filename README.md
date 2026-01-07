@@ -47,7 +47,7 @@ I recently added a suite of tools that I thought might go nicely along with the 
 - [Tasks](https://notepad.js.org/tasks/)
 
 
-## Donate
+## Support this project
 
 Like this app? If so, consider donating a small amount. It would help me maintaining this project further.
 
