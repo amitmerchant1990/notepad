@@ -30,12 +30,16 @@ $(document).ready(function() {
 
     // Clear all tasks button click handler
     $('#clearAllTasks').click(function() {
-        if (confirm('Are you sure you want to delete all tasks? This action cannot be undone.')) {
-            $('#taskContainer').empty();
-            saveTasks();
-            updateTaskCount();
-            toggleNoTasksMessage();
-        }
+        $('#clearAllModal').modal('show');
+    });
+
+    // Confirm clear all tasks
+    $('#confirmClearAll').click(function() {
+        $('#taskContainer').empty();
+        saveTasks();
+        updateTaskCount();
+        toggleNoTasksMessage();
+        $('#clearAllModal').modal('hide');
     });
 
     $('#addTask').click(addTask);
