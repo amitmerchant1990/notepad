@@ -276,7 +276,7 @@ h1 {
   margin-left: 10px;
   font-weight: bold;
   color: #3b3b3b;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 /* Centered no-tasks message */
@@ -333,6 +333,10 @@ h1 {
   font-size: 12px;
 }
 
+.card-body {
+  padding: 1.25rem 1.6rem;
+}
+
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   /* Shrink checkbox size and text on small screens */
@@ -347,7 +351,7 @@ h1 {
   }
 
   #addTask {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .task-edit-input {
@@ -365,12 +369,12 @@ h1 {
   }
 
   .task-text {
-    font-size: 0.8rem;
+    font-size: 1rem;
     /* Even smaller text size */
   }
 
   #addTask {
-    font-size: 0.8rem;
+    font-size: 1rem;
     /* Smaller button size */
   }
 
@@ -470,10 +474,10 @@ footer {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: none;
-  max-width: 350px;
+  max-width: 285px;
   border: 1px solid #e0e0e0;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .affiliate-popup.show {
