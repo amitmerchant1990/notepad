@@ -2,6 +2,11 @@ body {
   scrollbar-gutter: stable;
 }
 
+.form-control {
+  padding: 1.3rem .75rem;
+  border-radius: .5rem;
+}
+
 .navbar-inverse {
   background-color: #1b222d;
   border-color: #080808;
@@ -230,6 +235,10 @@ h1 {
   text-align: center;
 }
 
+.card {
+  box-shadow: 0 50px 40px #00000003, 0 50px 40px #00000005, 0 20px 40px #0000000d, 0 3px 10px #00000014;
+}
+
 .card-body {
   width: 100%;
 }
@@ -242,10 +251,10 @@ h1 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: left;
   padding-left: 14px;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
 }
 
 .btn {
@@ -267,6 +276,7 @@ h1 {
   margin-left: 10px;
   font-weight: bold;
   color: #3b3b3b;
+  font-size: 14px;
 }
 
 /* Centered no-tasks message */
@@ -455,14 +465,15 @@ footer {
   bottom: 20px;
   left: 20px;
   background: white;
-  padding: 15px;
-  border-radius: 8px;
+  padding: 15px 20px;
+  border-radius: 14px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: none;
   max-width: 350px;
   border: 1px solid #e0e0e0;
   font-weight: bold;
+  font-size: 15px;
 }
 
 .affiliate-popup.show {
