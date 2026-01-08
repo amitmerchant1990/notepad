@@ -191,9 +191,8 @@ deleteNoteBtn.addEventListener('click', () => {
 
 // Handle confirmation of deletion
 document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
-    if (currentNoteIndex !== null) {
-        const noteToDelete = notes[currentNoteIndex]; // Get the note to delete
-        const noteId = noteToDelete.id; // Get the ID of the note to delete
+    if (currentNoteId !== null) {
+        const noteId = currentNoteId; // Get the ID of the note to delete
 
         // Delete from IndexedDB
         const transaction = db.transaction(['notes'], 'readwrite');
@@ -201,7 +200,10 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
         objectStore.delete(noteId); // Delete note from IndexedDB
 
         transaction.oncomplete = function() {
-            notes.splice(currentNoteIndex, 1); // Remove from notes array
+            const noteIndex = notes.findIndex(note => note.id === currentNoteId);
+            if (noteIndex > -1) {
+                notes.splice(noteIndex, 1); // Remove from notes array using the found index
+            }
             renderNotes(); // Re-render notes
             noteModal.style.display = "none"; // Close modal
             $('#confirmDeleteModal').modal('hide'); // Hide confirmation modal
@@ -384,7 +386,7 @@ copyNoteBtn.addEventListener('click', () => {
 
 downloadNoteBtn.addEventListener('click', () => {
     const noteContent = fullscreenNote.value;
-    const noteId = currentNoteIndex !== null ? notes[currentNoteIndex].id : Date.now(); 
+    const noteId = currentNoteId !== null ? currentNoteId : Date.now(); 
     const blob = new Blob([noteContent], { type: 'text/plain' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
