@@ -330,10 +330,10 @@ $(document).ready(function () {
                 // Save the PDF
                 pdf.save(getPdfFileName());
             },
-            x: 10,
-            y: 10,
             width: 180, // Max width of the content on the page
-            windowWidth: 800
+            windowWidth: 800,
+            autoPaging: 'text',
+            margin: [15, 15, 15, 15]
         });
     }
 
