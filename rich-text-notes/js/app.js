@@ -145,11 +145,185 @@ $(document).ready(function () {
 		}
     };
 
+    function getPdfReadyHtml() {
+        const root = quill.root.cloneNode(true);
+
+        // Base editor styles
+        root.style.fontFamily = 'Helvetica, Arial, sans-serif';
+        root.style.fontSize = '13px';
+        root.style.lineHeight = '1.42';
+        root.style.whiteSpace = 'pre-wrap';
+        root.style.wordWrap = 'break-word';
+
+        /* --------------------
+        * ALIGNMENT
+        * -------------------- */
+        root.querySelectorAll('.ql-align-center').forEach(el => {
+            el.style.textAlign = 'center';
+        });
+
+        root.querySelectorAll('.ql-align-right').forEach(el => {
+            el.style.textAlign = 'right';
+        });
+
+        root.querySelectorAll('.ql-align-justify').forEach(el => {
+            el.style.textAlign = 'justify';
+        });
+
+        /* --------------------
+        * HEADINGS
+        * -------------------- */
+        root.querySelectorAll('h1').forEach(el => el.style.fontSize = '2em');
+        root.querySelectorAll('h2').forEach(el => el.style.fontSize = '1.5em');
+        root.querySelectorAll('h3').forEach(el => el.style.fontSize = '1.17em');
+        root.querySelectorAll('h4').forEach(el => el.style.fontSize = '1em');
+        root.querySelectorAll('h5').forEach(el => el.style.fontSize = '0.83em');
+        root.querySelectorAll('h6').forEach(el => el.style.fontSize = '0.67em');
+
+        /* --------------------
+        * FONT FAMILIES
+        * -------------------- */
+        root.querySelectorAll('.ql-font-serif').forEach(el => {
+            el.style.fontFamily = 'Georgia, "Times New Roman", serif';
+        });
+
+        root.querySelectorAll('.ql-font-monospace').forEach(el => {
+            el.style.fontFamily = 'Monaco, "Courier New", monospace';
+        });
+
+        /* --------------------
+        * FONT SIZES
+        * -------------------- */
+        root.querySelectorAll('.ql-size-small').forEach(el => {
+            el.style.fontSize = '0.75em';
+        });
+
+        root.querySelectorAll('.ql-size-large').forEach(el => {
+            el.style.fontSize = '1.5em';
+        });
+
+        root.querySelectorAll('.ql-size-huge').forEach(el => {
+            el.style.fontSize = '2.5em';
+        });
+
+        /* --------------------
+        * COLORS
+        * -------------------- */
+        const colors = {
+            red: '#e60000',
+            orange: '#f90',
+            yellow: '#ff0',
+            green: '#008a00',
+            blue: '#06c',
+            purple: '#93f',
+            white: '#fff',
+            black: '#000'
+        };
+
+        Object.entries(colors).forEach(([name, value]) => {
+            root.querySelectorAll(`.ql-color-${name}`).forEach(el => {
+                el.style.color = value;
+            });
+
+            root.querySelectorAll(`.ql-bg-${name}`).forEach(el => {
+                el.style.backgroundColor = value;
+            });
+        });
+
+        /* --------------------
+        * BLOCKQUOTE
+        * -------------------- */
+        root.querySelectorAll('blockquote').forEach(el => {
+            el.style.borderLeft = '4px solid #ccc';
+            el.style.paddingLeft = '16px';
+            el.style.margin = '5px 0';
+        });
+
+        /* --------------------
+        * CODE BLOCKS
+        * -------------------- */
+        root.querySelectorAll('pre, .ql-code-block-container').forEach(el => {
+            el.style.fontFamily = 'monospace';
+            el.style.backgroundColor = '#23241f';
+            el.style.color = '#f8f8f2';
+            el.style.padding = '6px 10px';
+            el.style.borderRadius = '3px';
+            el.style.margin = '5px 0';
+        });
+
+        root.querySelectorAll('code').forEach(el => {
+            el.style.backgroundColor = '#f0f0f0';
+            el.style.padding = '2px 4px';
+            el.style.borderRadius = '3px';
+            el.style.fontSize = '85%';
+        });
+
+        /* --------------------
+        * TABLES
+        * -------------------- */
+        root.querySelectorAll('table').forEach(table => {
+            table.style.borderCollapse = 'collapse';
+            table.style.width = '100%';
+        });
+
+        root.querySelectorAll('td').forEach(td => {
+            td.style.border = '1px solid #000';
+            td.style.padding = '2px 5px';
+        });
+
+        /* --------------------
+        * LISTS (Approximation)
+        * -------------------- */
+        root.querySelectorAll('li').forEach(li => {
+            li.style.marginLeft = '20px';
+        });
+
+        root.querySelectorAll('li[data-list="bullet"]').forEach(li => {
+            li.style.listStyleType = 'disc';
+        });
+
+        root.querySelectorAll('li[data-list="ordered"]').forEach(li => {
+            li.style.listStyleType = 'decimal';
+        });
+
+        /* --------------------
+        * INDENTATION
+        * -------------------- */
+        for (let i = 1; i <= 9; i++) {
+            root.querySelectorAll(`.ql-indent-${i}`).forEach(el => {
+                el.style.paddingLeft = `${i * 3}em`;
+            });
+        }
+
+        /* --------------------
+        * RTL
+        * -------------------- */
+        root.querySelectorAll('.ql-direction-rtl').forEach(el => {
+            el.style.direction = 'rtl';
+            el.style.textAlign = 'right';
+        });
+
+        /* --------------------
+        * LINKS & IMAGES
+        * -------------------- */
+        root.querySelectorAll('a').forEach(el => {
+            el.style.color = '#06c';
+            el.style.textDecoration = 'underline';
+        });
+
+        root.querySelectorAll('img, video').forEach(el => {
+            el.style.maxWidth = '100%';
+            el.style.display = 'block';
+        });
+
+        return root.innerHTML;
+    }
+
     function downloadAsPdf()
     {
-        var delta = quill.getContents();
-        var htmlContent = quill.root.innerHTML;
-        const pdf = new window.jspdf.jsPDF();
+        const htmlContent = getPdfReadyHtml();
+
+        const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
 
         pdf.html(htmlContent, {
             callback: function (pdf) {

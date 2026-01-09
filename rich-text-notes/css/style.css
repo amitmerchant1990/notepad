@@ -407,3 +407,9 @@ footer {
   }
 
 }
+
+@media print {
+  .ql-toolbar, affiliate-popup {
+    display: none !important;
+  }
+}
