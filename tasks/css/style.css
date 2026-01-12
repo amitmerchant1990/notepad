@@ -285,6 +285,7 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  min-height: calc(100vh - 288px);
   min-height: calc(100dvh - 288px);
   color: #6d6d6d;
   font-size: 1.2em;
