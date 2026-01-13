@@ -33,7 +33,7 @@ $(document).ready(function () {
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Your support keeps this app going — leave a tip if you can! ❤️",
