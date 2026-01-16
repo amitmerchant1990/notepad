@@ -61,6 +61,7 @@ $(document).ready(function() {
         saveTasks();
         $('#taskInput').val('');
         toggleNoTasksMessage(); 
+        $('#taskInput').focus();
     }
 
     // Event delegation for marking as complete and deleting
