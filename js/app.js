@@ -133,6 +133,7 @@ The app serves the following features:
 - Light-weight - Loads almost instantly.
 - Writing timer.
 - View Note Statistics.
+- Snapshots.
 - Ability to mimic typewriter sound when typing.
 - Keyboard shortcuts for common actions.
 - Focus mode to leave you with a barebones and pristine editor.
@@ -432,9 +433,8 @@ you can buy me a coffee — the link of which is available in the About section.
     });
 
 	notepad.note.on('input', debounce(function () {
-		const characterAndWordCountText = calculateCharactersAndWords(get(this).val());
-		notepad.wordCount.text(characterAndWordCountText);
 		setState('note', get(this).val());
+		updateWordCountPill(get(this).val());
 	}, 500));
 
 	notepad.note.keydown(function (e) {

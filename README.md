@@ -22,6 +22,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
   - Dark mode.
   - Writing timer.
   - Note Statistics.
+  - Snapshots.
   - Ability to mimic typewriter sound when typing.
   - Focus mode (on desktop).
   - Optimal line length for better reading experience.

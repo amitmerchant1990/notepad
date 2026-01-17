@@ -227,9 +227,29 @@ function calculateNoteStatistics(str) {
 
 function copyNotesToClipboard(note) {
     navigator.clipboard.writeText(note).then(function () {
-        showToast('Notes copied to clipboard!')
+        Swal.fire({
+            toast: true,
+            position: 'bottom',
+            icon: 'success',
+            title: 'Notes copied to clipboard!',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'swal-toast-bottom-offset'
+            }
+        });
     }, function () {
-        showToast('Failure to copy. Check permissions for clipboard.')
+        Swal.fire({
+            toast: true,
+            position: 'bottom',
+            icon: 'failure',
+            title: 'Fail to copy. Check permissions for clipboard.',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'swal-toast-bottom-offset'
+            }
+        });
     });
 }
 
@@ -266,6 +286,9 @@ function deleteNotes() {
         cancelButtonText: 'No, keep it.'
     }).then((result) => {
         if (result.value) {
+            // save a snapshot before deleting it
+            window.snapshotsManager.createSnapshot();
+
             notepad.note.val('').focus();
             setState('note', '');
 
@@ -488,4 +511,10 @@ function setupCoffeeIconAnimation() {
     coffeeIcon.onclick = function () {
         clearInterval(hoverInterval);
     };
+}
+
+function updateWordCountPill (note = '') {
+    const { notepad } = selector();
+    const characterAndWordCountText = calculateCharactersAndWords(note);
+    notepad.wordCount.text(characterAndWordCountText);
 }

@@ -1355,7 +1355,38 @@ a {
 
 .navbar-nav>li>a {
   padding-left: 2px;
+  padding-right: 12px;
 }
+
+.modal-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.snapshot-text {
+  display: none;
+}
+
+/* Custom style for Swal toast */
+.swal-toast-bottom-offset {
+  margin-bottom: 35px !important;
+  background: #f0f0f0 !important;
+}
+
+.dark .swal-toast-bottom-offset {
+  background: #353535 !important;
+  color: #eaeaea !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark .swal-toast-bottom-offset .swal2-title {
+  color: #eaeaea !important;
+}
+
+.dark .swal-toast-bottom-offset .swal2-timer-progress-bar {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+/* Custom style for Swal toast */
 
 @media (max-width: 412px) {
   .nav>li>a {
@@ -1402,6 +1433,18 @@ a {
 
   .focus-mode-icon {
     display: none !important;
+  }
+
+  .snapshot-icon {
+    display: none !important; 
+  }
+
+  .snapshot-text {
+    display: block !important;
+  }
+
+  .search-container {
+    flex-direction: column;
   }
 
   .navbar-nav>li>a {

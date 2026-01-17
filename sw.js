@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v33';
+let CACHE_VERSION = 'app-v34';
 let CACHE_FILES = [
     '/',
     'index.html',
@@ -11,8 +11,10 @@ let CACHE_FILES = [
     'js/app.js',
     'js/utils.js',
     'js/selector.js',
+    'js/snapshots.js',
     'css/bootstrap.min.css',
     'css/style.css',
+    'css/snapshots.css',
     'favicon.ico',
     'manifest.json',
     'img/icon-48.png',

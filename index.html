@@ -14,6 +14,7 @@
   <meta name="google-adsense-account" content="ca-pub-2699562972292476">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/snapshots.css" rel="stylesheet">
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="img/notepad-apple-icon.png">
@@ -140,6 +141,12 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-flex">
+          <li class="snapshots-icon">
+            <a href="javascript:void(0);" id="snapshotsButton" title="View Snapshots [Ctrl/Cmd + U]">
+              <svg class="snapshot-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="System / Save"> <path id="Vector" d="M17 21.0002L7 21M17 21.0002L17.8031 21C18.921 21 19.48 21 19.9074 20.7822C20.2837 20.5905 20.5905 20.2843 20.7822 19.908C21 19.4806 21 18.921 21 17.8031V9.21955C21 8.77072 21 8.54521 20.9521 8.33105C20.9095 8.14 20.8393 7.95652 20.7432 7.78595C20.6366 7.59674 20.487 7.43055 20.1929 7.10378L17.4377 4.04241C17.0969 3.66374 16.9242 3.47181 16.7168 3.33398C16.5303 3.21 16.3242 3.11858 16.1073 3.06287C15.8625 3 15.5998 3 15.075 3H6.2002C5.08009 3 4.51962 3 4.0918 3.21799C3.71547 3.40973 3.40973 3.71547 3.21799 4.0918C3 4.51962 3 5.08009 3 6.2002V17.8002C3 18.9203 3 19.4796 3.21799 19.9074C3.40973 20.2837 3.71547 20.5905 4.0918 20.7822C4.5192 21 5.07899 21 6.19691 21H7M17 21.0002V17.1969C17 16.079 17 15.5192 16.7822 15.0918C16.5905 14.7155 16.2837 14.4097 15.9074 14.218C15.4796 14 14.9203 14 13.8002 14H10.2002C9.08009 14 8.51962 14 8.0918 14.218C7.71547 14.4097 7.40973 14.7155 7.21799 15.0918C7 15.5196 7 16.0801 7 17.2002V21M15 7H9" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>
+              <span class="snapshot-text">Snapshots</span>
+            </a>
+          </li>
           <li class="focus-mode-icon">
             <a href="javascript:void(0);" id="focusModeButton" title="Turn On Focus Mode [alt/Option + F]">
               <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff"
@@ -311,7 +318,7 @@
                 <li><b>Focus mode</b> to leave you with a barebones and pristine editor.</li>
                 <li><b>Full-screen mode</b> for a distraction-free writing experience.</li>
                 <li><b>Optimal line length</b> for better reading experience.</li>
-                <li>View <b>Note Statistics</b>.</li>
+                <li><b>Note Statistics</b> and <b>Snapshots</b>.</li>
                 <li>Ability to mimic <b>typewriter (Hermes Precisa 305 model) sound</b> when typing.</li>
                 <li>Supports <b>monospaced</b> and <b>dyslexic fonts</b>.</li>
                 <li><b>Floating window</b> (in supported browsers) to effectively take notes across other apps.</li>
@@ -404,6 +411,11 @@
             </div>
 
             <div id="changelog" class="container tab-pane fade">
+              <h4>17th Jan, 2026</h3>
+              <ul>
+                <li>Introduced <b>Snapshots</b> — Restore notes from previously saved versions</li>
+              </ul>
+
               <h4>6th Jan, 2026</h3>
               <ul>
                 <li>Added three new sound in ambient noise: <b>Fireworks</b>, <b>Owl</b>, and <b>Underwater</b></li>
@@ -628,6 +640,59 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Snapshots Modal -->
+  <div id="snapshotsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">
+            Snapshots
+            <a href="#" data-toggle="tooltip" data-placement="right" title="Snapshots are manually saved versions of your notes that you can restore later.">
+              <img src="img/tooltip.svg" alt="Tooltip Icon" />               
+            </a>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="snapshots-actions search-container">
+            <button id="createSnapshotBtn" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Take Snapshot [Ctrl/Cmd + U]
+            </button>
+            <div class="search-snapshots">
+              <input type="text" id="searchSnapshots" class="form-control" placeholder="Search snapshots...">
+            </div>
+          </div>
+          <div class="snapshots-list-container">
+            <div id="noSnapshots" class="no-snapshots">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M12 4V20" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+              <p>No snapshots yet.</p>
+            </div>
+            <ul id="snapshotsList" class="snapshots-list">
+              <!-- Snapshots will be populated here -->
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="snapshots-stats">
+            <span id="snapshotsCount">0</span> snapshots
+          </div>
+          <div class="snapshots-actions delete-all-container">
+            <button id="deleteAllSnapshotsBtn" class="btn btn-danger" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 7L18.1327 19.1425C18.0579 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 19.1425L5 7M10 11V17M14 11V17M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7M4 7H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Delete All
+            </button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1297,6 +1362,7 @@
   <script src="js/utils.js"></script>
   <script src="js/selector.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/snapshots.js"></script>
   <script src="js/timer.js"></script>
   <script src="js/white-noise-player.js"></script>
   
