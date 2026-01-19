@@ -145,7 +145,7 @@ The app serves the following features:
 
 CAUTION: Since the app uses the browser's localStorage to store your notes, 
 it's recommended that you take a backup of your notes more often using the 
-"Download Notes" button or by pressing the "Ctrl/Cmd + S" keys.
+"Download Notes" button or by pressing the "ctrl/command + s" keys.
 
 Lastly, if you're using Notepad, and want to support the development, 
 you can buy me a coffee — the link of which is available in the About section.
