@@ -1369,8 +1369,9 @@ a {
 
 /* Custom style for Swal toast */
 .swal-toast-bottom-offset {
-  margin-bottom: 35px !important;
+  margin-bottom: 42px !important;
   background: #f0f0f0 !important;
+  box-shadow: 0 5px 10px rgba(109, 109, 109, 0.4) !important;
 }
 
 .dark .swal-toast-bottom-offset {
