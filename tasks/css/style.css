@@ -264,6 +264,10 @@ h1 {
 .task-completed {
   text-decoration: line-through;
   color: gray;
+  background-color: #efefef;
+  opacity: 0.8;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(45deg, #dedede 0, #dedede 1px, #fbfbfb 0, #ffffff 50%);
 }
 
 .task-completed .task-text {

@@ -194,6 +194,13 @@
     <script src="js/libs/confetti.browser.min.js"></script>
     <script src="js/app.js"></script>
 
+    <script type="module">
+        import autoAnimate from "./js/libs/auto-animate.es.js";
+
+        const list = document.querySelector('#taskContainer');
+        autoAnimate(list);
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
     <script>
