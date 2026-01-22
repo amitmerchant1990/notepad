@@ -1199,6 +1199,10 @@ a {
   font-family: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
 }
 
+.humanist {
+  font-family: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
+}
+
 .graph-paper {
   background-image: linear-gradient(#d2d2d24d 1px, #0000 1px), linear-gradient(90deg, #d2d2d24d 1px, #0000 1px);
   background-position: -14px 14px;
