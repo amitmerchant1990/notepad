@@ -47,13 +47,60 @@ h2 {
     flex-direction: column; /* Stack task items vertically */
 }
 
-.task-list > div {
+.task-item {
     background-color: #dfe3ff;
     border-radius: 5px;
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 5px;
     cursor: move;
     font-weight: bold;
+    position: relative;
+    padding-right: 50px;
+    transition: background-color 0.2s;
+}
+
+.task-item:hover {
+    background-color: #d0d6ff;
+}
+
+.task-actions {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    gap: 5px;
+}
+
+.task-item:hover .task-actions {
+    display: flex;
+}
+
+.task-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 3px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.task-btn:hover {
+    opacity: 1;
+}
+
+.edit-btn {
+    color: #007bff;
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+.task-text {
+    margin-right: 10px;
+    word-break: break-word;
 }
 
 input[type="text"] {
