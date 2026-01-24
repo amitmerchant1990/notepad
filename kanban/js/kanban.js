@@ -37,7 +37,8 @@ function loadTasks() {
     Sortable.create(todoList, {
         group: 'tasks',
         animation: 150,
-        filter: '.placeholder',
+        filter: '.placeholder, .task-edit-input',
+        preventOnFilter: false,
         onStart: function(evt) {
             evt.from.classList.add('drop-target'); // Add class to the list being dragged over
         },
@@ -53,7 +54,8 @@ function loadTasks() {
     Sortable.create(inProgressList, {
         group: 'tasks',
         animation: 150,
-        filter: '.placeholder',
+        filter: '.placeholder, .task-edit-input',
+        preventOnFilter: false,
         onStart: function(evt) {
             evt.from.classList.add('drop-target'); // Add class to the list being dragged over
         },
@@ -69,7 +71,8 @@ function loadTasks() {
     Sortable.create(doneList, {
         group: 'tasks',
         animation: 150,
-        filter: '.placeholder',
+        filter: '.placeholder, .task-edit-input',
+        preventOnFilter: false,
         onStart: function(evt) {
             evt.from.classList.add('drop-target'); // Add class to the list being dragged over
         },
@@ -111,9 +114,7 @@ function createTaskElement(taskText) {
     // Create edit button
     const editBtn = document.createElement('button');
     editBtn.className = 'task-btn edit-btn';
-    editBtn.innerHTML = `<svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#000000" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-    </svg>`;
+    editBtn.innerHTML = `<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="pencil" class="svg-inline--fa fa-pencil fa-fw " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="13" height="13"><path fill="#000000" d="M491.609 73.625l-53.861-53.839c-26.378-26.379-69.075-26.383-95.46-.001L24.91 335.089.329 484.085c-2.675 16.215 11.368 30.261 27.587 27.587l148.995-24.582 315.326-317.378c26.33-26.331 26.581-68.879-.628-96.087zM200.443 311.557C204.739 315.853 210.37 318 216 318s11.261-2.147 15.557-6.443l119.029-119.03 28.569 28.569L210 391.355V350h-48v-48h-41.356l170.259-169.155 28.569 28.569-119.03 119.029c-8.589 8.592-8.589 22.522.001 31.114zM82.132 458.132l-28.263-28.263 12.14-73.587L84.409 338H126v48h48v41.59l-18.282 18.401-73.586 12.141zm378.985-319.533l-.051.051-.051.051-48.03 48.344-88.03-88.03 48.344-48.03.05-.05.05-.05c9.147-9.146 23.978-9.259 33.236-.001l53.854 53.854c9.878 9.877 9.939 24.549.628 33.861z"></path></svg>`;
     editBtn.title = 'Edit task';
     
     // Create delete button
@@ -135,11 +136,70 @@ function createTaskElement(taskText) {
     // Add event listeners
     editBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        const newText = prompt('Edit task:', taskTextElement.textContent);
-        if (newText !== null && newText.trim() !== '') {
-            taskTextElement.textContent = newText.trim();
+        
+        // Create input element for inline editing
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = taskTextElement.textContent;
+        input.className = 'task-edit-input';
+        
+        // Replace text element with input
+        taskTextElement.style.display = 'none';
+        taskItem.insertBefore(input, taskTextElement);
+        
+        // Disable drag functionality while editing
+        taskItem.draggable = false;
+        taskItem.style.cursor = 'text';
+        
+        // Focus and select the input
+        input.focus();
+        input.select();
+        
+        // Save on Enter key
+        function saveEdit() {
+            const newText = input.value.trim();
+            if (newText !== '') {
+                taskTextElement.textContent = newText;
+            }
+            taskTextElement.style.display = '';
+            input.remove();
+            // Re-enable drag functionality
+            taskItem.draggable = true;
+            taskItem.style.cursor = 'move';
             saveTasks();
         }
+        
+        // Cancel on Escape key
+        function cancelEdit() {
+            taskTextElement.style.display = '';
+            input.remove();
+            // Re-enable drag functionality
+            taskItem.draggable = true;
+            taskItem.style.cursor = 'move';
+        }
+        
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                saveEdit();
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                cancelEdit();
+            }
+        });
+        
+        // Save when clicking outside
+        input.addEventListener('blur', saveEdit);
+        
+        // Prevent drag events on the input
+        input.addEventListener('mousedown', function(e) {
+            e.stopPropagation();
+        });
+        
+        input.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
     });
     
     deleteBtn.addEventListener('click', function(e) {
