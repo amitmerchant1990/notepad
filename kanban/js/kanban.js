@@ -151,31 +151,54 @@ function createTaskElement(taskText) {
         taskItem.draggable = false;
         taskItem.style.cursor = 'text';
         
+        // Flag to track if editing is still active
+        let isEditing = true;
+        let cleanupCalled = false;
+        
         // Focus and select the input
         input.focus();
         input.select();
+
+        // Function to clean up after editing
+        function cleanupEdit() {
+            if (cleanupCalled) return; // Prevent multiple cleanup calls
+            cleanupCalled = true;
+            
+            // Check if the input is still in the DOM before attempting to remove it
+            if (input.parentNode) {
+                input.remove();
+            }
+            taskTextElement.style.display = '';
+            taskItem.draggable = true;
+            taskItem.style.cursor = 'move';
+            isEditing = false;
+            // Ensure the blur event listener is removed during cleanup
+            input.removeEventListener('blur', saveEdit);
+        }
         
         // Save on Enter key
         function saveEdit() {
+            if (!isEditing) return; // Exit if already cancelled
+            
             const newText = input.value.trim();
             if (newText !== '') {
                 taskTextElement.textContent = newText;
             }
-            taskTextElement.style.display = '';
-            input.remove();
-            // Re-enable drag functionality
-            taskItem.draggable = true;
-            taskItem.style.cursor = 'move';
+            cleanupEdit();
             saveTasks();
         }
         
         // Cancel on Escape key
         function cancelEdit() {
-            taskTextElement.style.display = '';
-            input.remove();
-            // Re-enable drag functionality
-            taskItem.draggable = true;
-            taskItem.style.cursor = 'move';
+            if (!isEditing) return; // Exit if already saved
+            
+            // Remove blur event listener immediately to prevent saveEdit from being called
+            input.removeEventListener('blur', saveEdit);
+            
+            // Use setTimeout to ensure blur event doesn't fire after this
+            setTimeout(() => {
+                cleanupEdit();
+            }, 0);
         }
         
         input.addEventListener('keydown', function(e) {
