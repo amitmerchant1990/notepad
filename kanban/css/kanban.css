@@ -17,6 +17,10 @@ h2 {
     font-weight: bold;
 }
 
+.modal-content {
+    border-radius: 0.8rem;
+}
+
 .kanban-board {
     display: flex;
     justify-content: space-around;

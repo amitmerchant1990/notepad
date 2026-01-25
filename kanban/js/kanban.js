@@ -1,5 +1,26 @@
 document.addEventListener("DOMContentLoaded", loadTasks);
 
+// Handle delete confirmation
+$(document).on('click', '#confirmDelete', function() {
+    if (window.taskToDelete) {
+        const taskList = window.taskToDelete.parentNode;
+        taskList.removeChild(window.taskToDelete);
+        
+        // Show placeholder if no tasks left
+        const actualTasks = Array.from(taskList.children).filter(task => !task.classList.contains('placeholder'));
+        const placeholder = taskList.querySelector('.placeholder');
+        if (actualTasks.length === 0 && placeholder) {
+            placeholder.style.display = 'flex';
+        }
+        
+        saveTasks();
+        window.taskToDelete = null;
+    }
+    
+    // Hide the modal
+    $('#deleteModal').modal('hide');
+});
+
 // Global touch handler to hide buttons when tapping outside (only added once)
 if (typeof window.globalTouchHandlerAdded === 'undefined') {
     document.addEventListener('touchstart', function(e) {
@@ -298,19 +319,11 @@ function createTaskElement(taskText) {
         // Hide the action buttons immediately
         taskItem.classList.remove('active');
         
-        if (confirm('Are you sure you want to delete this task?')) {
-            const taskList = taskItem.parentNode;
-            taskList.removeChild(taskItem);
-            
-            // Show placeholder if no tasks left
-            const actualTasks = Array.from(taskList.children).filter(task => !task.classList.contains('placeholder'));
-            const placeholder = taskList.querySelector('.placeholder');
-            if (actualTasks.length === 0 && placeholder) {
-                placeholder.style.display = 'flex';
-            }
-            
-            saveTasks();
-        }
+        // Store reference to the task item for deletion
+        window.taskToDelete = taskItem;
+        
+        // Show the custom delete modal
+        $('#deleteModal').modal('show');
     });
     
     return taskItem;
