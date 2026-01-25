@@ -90,7 +90,52 @@ function resizeCanvas() {
 
 // Set drawing options
 canvas.freeDrawingBrush.color = 'black';
-canvas.freeDrawingBrush.width = 3;
+canvas.freeDrawingBrush.width = 2; // Default to smallest size
+
+// Tool mode functionality
+const toolModeButtons = document.querySelectorAll('.tool-mode');
+const penSizeButtons = document.querySelectorAll('.pen-size');
+let currentToolMode = 'pen';
+let currentPenSize = 2;
+
+// Tool mode switching
+toolModeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all tool mode buttons
+        toolModeButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Update tool mode
+        currentToolMode = button.dataset.mode;
+        
+        // Apply tool mode settings
+        if (currentToolMode === 'eraser') {
+            canvas.freeDrawingBrush.color = 'white'; // Eraser draws in white
+        } else {
+            canvas.freeDrawingBrush.color = 'black'; // Pen draws in black
+        }
+        
+        // Apply current size to the new tool mode
+        canvas.freeDrawingBrush.width = currentPenSize;
+    });
+});
+
+// Pen size functionality
+penSizeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all size buttons
+        penSizeButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Update pen size
+        currentPenSize = parseInt(button.dataset.size);
+        canvas.freeDrawingBrush.width = currentPenSize;
+    });
+});
 
 // Download canvas as image with white background
 document.getElementById('download').addEventListener('click', () => {

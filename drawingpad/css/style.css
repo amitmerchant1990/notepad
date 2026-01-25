@@ -9,6 +9,10 @@ body {
     position: relative;
 }
 
+.modal-content {
+    border-radius: 0.8rem;
+}
+
 .toast {
     background-color: #333;
     color: white;
@@ -279,6 +283,82 @@ textarea {
     padding: 6px;
     box-shadow: 0px 0px 6px 1px #c9c9c98c;
     display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.tool-modes {
+    display: flex;
+    gap: 4px;
+    padding: 0 4px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    margin-right: 4px;
+}
+
+.tool-mode {
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tool-mode:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.tool-mode.active {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.tool-mode.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: #89c148;
+    border-radius: 50%;
+}
+
+.pen-sizes {
+    display: flex;
+    gap: 4px;
+    padding: 0 4px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    margin-right: 4px;
+}
+
+.pen-size {
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.pen-size:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.pen-size.active {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.pen-size.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: #89c148;
+    border-radius: 50%;
 }
 
 .title-container {
