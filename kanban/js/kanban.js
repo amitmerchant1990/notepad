@@ -1,5 +1,19 @@
 document.addEventListener("DOMContentLoaded", loadTasks);
 
+// Global touch handler to hide buttons when tapping outside (only added once)
+if (typeof window.globalTouchHandlerAdded === 'undefined') {
+    document.addEventListener('touchstart', function(e) {
+        // Find all task items and hide their buttons if tap is outside
+        const taskItems = document.querySelectorAll('.task-item.active');
+        taskItems.forEach(item => {
+            if (!item.contains(e.target)) {
+                item.classList.remove('active');
+            }
+        });
+    });
+    window.globalTouchHandlerAdded = true;
+}
+
 function loadTasks() {
     // Register keydown event for each input field using jQuery
     $('#todo-input').on('keydown', function(event) {
@@ -37,7 +51,7 @@ function loadTasks() {
     Sortable.create(todoList, {
         group: 'tasks',
         animation: 150,
-        filter: '.placeholder, .task-edit-input',
+        filter: '.placeholder, .task-edit-input, .task-actions',
         preventOnFilter: false,
         onStart: function(evt) {
             evt.from.classList.add('drop-target'); // Add class to the list being dragged over
@@ -54,7 +68,7 @@ function loadTasks() {
     Sortable.create(inProgressList, {
         group: 'tasks',
         animation: 150,
-        filter: '.placeholder, .task-edit-input',
+        filter: '.placeholder, .task-edit-input, .task-actions',
         preventOnFilter: false,
         onStart: function(evt) {
             evt.from.classList.add('drop-target'); // Add class to the list being dragged over
@@ -71,7 +85,7 @@ function loadTasks() {
     Sortable.create(doneList, {
         group: 'tasks',
         animation: 150,
-        filter: '.placeholder, .task-edit-input',
+        filter: '.placeholder, .task-edit-input, .task-actions',
         preventOnFilter: false,
         onStart: function(evt) {
             evt.from.classList.add('drop-target'); // Add class to the list being dragged over
@@ -133,9 +147,61 @@ function createTaskElement(taskText) {
     taskItem.appendChild(taskTextElement);
     taskItem.appendChild(actionsDiv);
     
+    // Prevent drag events on action buttons
+    actionsDiv.addEventListener('touchstart', function(e) {
+        e.stopPropagation();
+    });
+    
+    actionsDiv.addEventListener('touchmove', function(e) {
+        e.stopPropagation();
+        e.preventDefault(); // Prevent any drag behavior
+    });
+    
+    actionsDiv.addEventListener('touchend', function(e) {
+        e.stopPropagation();
+    });
+    
+    // Mobile touch handling for showing/hiding action buttons
+    let touchTimeout;
+    
+    taskItem.addEventListener('touchstart', function(e) {
+        // Clear any existing timeout
+        if (touchTimeout) {
+            clearTimeout(touchTimeout);
+        }
+        
+        // Add active class to show buttons
+        taskItem.classList.add('active');
+    });
+    
+    taskItem.addEventListener('touchend', function(e) {
+        e.preventDefault(); // Prevent click event from firing
+        
+        // Hide buttons after a delay
+        touchTimeout = setTimeout(() => {
+            taskItem.classList.remove('active');
+        }, 2000);
+    });
+    
+    // Hide buttons when touching elsewhere on this task item
+    taskItem.addEventListener('touchstart', function(e) {
+        if (e.target === taskItem || e.target === taskTextElement) {
+            // Clear any existing timeout
+            if (touchTimeout) {
+                clearTimeout(touchTimeout);
+            }
+            // Add active class to show buttons
+            taskItem.classList.add('active');
+        }
+    });
+    
     // Add event listeners
     editBtn.addEventListener('click', function(e) {
         e.stopPropagation();
+        e.preventDefault(); // Prevent any default touch behavior
+        
+        // Hide the action buttons immediately
+        taskItem.classList.remove('active');
         
         // Create input element for inline editing
         const input = document.createElement('input');
@@ -227,6 +293,11 @@ function createTaskElement(taskText) {
     
     deleteBtn.addEventListener('click', function(e) {
         e.stopPropagation();
+        e.preventDefault(); // Prevent any default touch behavior
+        
+        // Hide the action buttons immediately
+        taskItem.classList.remove('active');
+        
         if (confirm('Are you sure you want to delete this task?')) {
             const taskList = taskItem.parentNode;
             taskList.removeChild(taskItem);

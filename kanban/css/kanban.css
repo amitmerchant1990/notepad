@@ -71,7 +71,8 @@ h2 {
     display: none;
 }
 
-.task-item:hover .task-actions {
+.task-item:hover .task-actions,
+.task-item.active .task-actions {
     display: flex;
 }
 
@@ -79,10 +80,13 @@ h2 {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 2px 3px;
+    padding: 5px;
     border-radius: 3px;
     opacity: 0.7;
     transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .task-btn:hover {
@@ -233,6 +237,14 @@ input[type="text"]:focus {
 
     .column {
         width: 100%; /* Full width on small screens */
+    }
+    
+    .task-item {
+        padding-right: 60px; /* More space for buttons on mobile */
+    }
+    
+    .task-actions {
+        gap: 5px; /* Add gap between buttons on mobile */
     }
 
     html, body {
