@@ -965,13 +965,11 @@ you can buy me a coffee — the link of which is available in the About section.
 		// If current selection matches pattern, replace it
 		let replaced = false;
 		if (selectedText && selectedText.match(useRegex.checked ? new RegExp(q) : new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))) {
-			const before = note.value.substring(0, selStart);
-			const after = note.value.substring(selEnd);
 			const replaceValue = processEscapeSequences(replaceInput.value);
 			const newText = selectedText.replace(useRegex.checked ? new RegExp(q, useRegex.checked ? '' : 'g') : new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replaceValue);
-			note.value = before + newText + after;
-			note.selectionStart = selStart;
-			note.selectionEnd = selStart + newText.length;
+			note.focus();
+			note.setSelectionRange(selStart, selEnd);
+			document.execCommand('insertText', false, newText);
 			replaced = true;
 		}
 
@@ -982,13 +980,11 @@ you can buy me a coffee — the link of which is available in the About section.
 			const ne = note.selectionEnd;
 			const selected = note.value.substring(ns, ne);
 			if (selected) {
-				const before = note.value.substring(0, ns);
-				const after = note.value.substring(ne);
 				const replaceValue = processEscapeSequences(replaceInput.value);
 				const newText = selected.replace(useRegex.checked ? new RegExp(q) : new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replaceValue);
-				note.value = before + newText + after;
-				note.selectionStart = ns;
-				note.selectionEnd = ns + newText.length;
+				note.focus();
+				note.setSelectionRange(ns, ne);
+				document.execCommand('insertText', false, newText);
 			} else {
 				showToast('No match to replace');
 			}
@@ -1005,7 +1001,23 @@ you can buy me a coffee — the link of which is available in the About section.
 		try {
 			const replaceValue = processEscapeSequences(replaceInput.value);
 			const replaced = before.replace(pattern, replaceValue);
-			note.value = replaced;
+
+			if (before === replaced) {
+				showToast('No matches found');
+				return;
+			}
+			
+			const savedScroll = note.scrollTop;
+
+			note.focus();
+			note.select();
+			document.execCommand('insertText', false, replaced);
+
+			// Restore view
+			note.selectionStart = 0;
+			note.selectionEnd = 0;
+			note.scrollTop = savedScroll;
+
 			showToast('Replaced all matches');
 		} catch (e) {
 			showToast('Replace failed: ' + e.message);
