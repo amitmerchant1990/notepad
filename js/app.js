@@ -8,6 +8,16 @@ $(document).ready(function () {
 		{
 			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+		{
+			text: "Support if you can so that I can prioritize the development of this app outside my work.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
+			text: "Buy me a coffee so that I don't have to rely on ads to run this app.",
+			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
@@ -18,7 +28,7 @@ $(document).ready(function () {
 		{
 			text: "This app is intentionally kept ad-free. If you appreciate that, buy me a coffee. Thank you! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "I strive to craft this app to perfection. If you admire the effort, consider buying me a coffee!",
@@ -28,12 +38,12 @@ $(document).ready(function () {
 		{
 			text: "Thank you for using this app. If you’d like to support the development, buy me a coffee.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Your support keeps this app going — leave a tip if you can! ❤️",
