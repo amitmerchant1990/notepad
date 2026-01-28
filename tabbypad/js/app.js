@@ -273,23 +273,46 @@ searchInput.addEventListener('blur', () => {
 
 // Modify renderNotes function to accept an optional parameter
 function renderNotes(filteredNotes = notes) {
-    gridContainer.innerHTML = ''; // Clear the grid container
+    const existing = new Map(
+        [...gridContainer.querySelectorAll('.grid-item')]
+            .map(el => [el.dataset.id, el])
+    );
 
-    // Render all notes without pinning logic
-    filteredNotes.forEach((note, index) => {
+    // Empty state handling
+    const emptyState = gridContainer.querySelector('.empty-state');
+    if (filteredNotes.length === 0) {
+        if (!emptyState) {
+            const emptyStateDiv = document.createElement('div');
+            emptyStateDiv.className = 'empty-state';
+            emptyStateDiv.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                <p>No notes added yet</p>
+                <p class="empty-state-subtitle">Click the + button to create your first note</p>
+            `;
+            gridContainer.appendChild(emptyStateDiv);
+        }
+        // Remove any existing grid-items
+        existing.forEach(el => el.remove());
+        return;
+    } else if (emptyState) {
+        emptyState.remove();
+    }
+
+    // Helper to build a note node
+    function createNoteElement(note, index) {
         const noteDiv = document.createElement('div');
         noteDiv.className = `grid-item ${note.color || 'default-grid-color'}`;
+        noteDiv.dataset.id = String(note.id);
 
-        // Create a div for note content
         const contentDiv = document.createElement('div');
         contentDiv.className = 'note-content';
         contentDiv.textContent = note.content;
 
-        // Create action buttons container
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'note-actions';
 
-        // Copy button
         const copyBtn = document.createElement('button');
         copyBtn.className = 'action-btn';
         copyBtn.title = 'Copy note';
@@ -297,22 +320,18 @@ function renderNotes(filteredNotes = notes) {
             <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
             </svg>
-            <svg class="checkmark-icon" style="display: none;" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <svg class="checkmark-icon" style="display:none" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
         `;
-        copyBtn.addEventListener('click', (e) => {
+        copyBtn.addEventListener('click', e => {
             e.stopPropagation();
-
             navigator.clipboard.writeText(note.content).then(() => {
                 copyBtn.classList.add('copied');
-                setTimeout(() => {
-                    copyBtn.classList.remove('copied');
-                }, 800);
+                setTimeout(() => copyBtn.classList.remove('copied'), 800);
             });
         });
 
-        // Download button
         const downloadBtn = document.createElement('button');
         downloadBtn.className = 'action-btn';
         downloadBtn.title = 'Download note';
@@ -321,42 +340,49 @@ function renderNotes(filteredNotes = notes) {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
         `;
-        downloadBtn.addEventListener('click', (e) => {
+        downloadBtn.addEventListener('click', e => {
             e.stopPropagation();
-            const element = document.createElement('a');
-            const file = new Blob([note.content], {type: 'text/plain'});
-            element.href = URL.createObjectURL(file);
-            element.download = `note-${new Date(note.created_at).toISOString().split('T')[0]}.txt`;
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
+            const a = document.createElement('a');
+            const file = new Blob([note.content], { type: 'text/plain' });
+            a.href = URL.createObjectURL(file);
+            a.download = `note-${new Date(note.created_at).toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         });
 
-        // Add buttons to actions container
-        actionsDiv.appendChild(copyBtn);
-        actionsDiv.appendChild(downloadBtn);
+        actionsDiv.append(copyBtn, downloadBtn);
+        noteDiv.append(contentDiv, actionsDiv);
 
-        // Add content and actions to note
-        noteDiv.appendChild(contentDiv);
-        noteDiv.appendChild(actionsDiv);
+        contentDiv.addEventListener('click', () => openFullscreen(note, index));
 
-        // Add click handler for the note (excluding buttons)
-        contentDiv.addEventListener('click', () => {
-            openFullscreen(note, index);
-        });
-        
-        gridContainer.appendChild(noteDiv);
+        return noteDiv;
+    }
+
+    // Remove nodes that no longer exist
+    const incomingIds = new Set(filteredNotes.map(n => String(n.id)));
+    existing.forEach((el, id) => {
+        if (!incomingIds.has(id)) el.remove();
     });
 
-    // Add Note grid item
-    const addNoteDiv = document.createElement('div');
-    addNoteDiv.className = 'grid-item add-note';
-    addNoteDiv.title = 'Add Note (Alt/Option + N)';
-    addNoteDiv.innerHTML = '<div>+ New Note</div><div class="keyboard-shortcut-container">[ Alt / Option + N ]</div>';
-    addNoteDiv.addEventListener('click', () => {
-        createNewNote();
+    // Insert/update in correct order
+    filteredNotes.forEach((note, index) => {
+        const id = String(note.id);
+        let el = existing.get(id);
+
+        if (!el) {
+            el = createNoteElement(note, index);
+        } else {
+            // Update mutable parts
+            el.className = `grid-item ${note.color || 'default-grid-color'}`;
+            el.querySelector('.note-content').textContent = note.content;
+        }
+
+        const ref = gridContainer.children[index];
+        if (ref !== el) {
+            gridContainer.insertBefore(el, ref || null);
+        }
     });
-    gridContainer.appendChild(addNoteDiv);
 }
 
 function showToast(message) {
@@ -468,6 +494,11 @@ document.onkeydown = function (event) {
 };
 
 document.getElementById('downloadAllNotesBtn').addEventListener('click', downloadAllNotes);
+
+// Floating Add Note Button
+document.getElementById('floatingAddBtn').addEventListener('click', () => {
+    createNewNote();
+});
 
 // Initialize IndexedDB
 initIndexedDB();

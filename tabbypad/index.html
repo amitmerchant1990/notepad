@@ -166,13 +166,26 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Floating Add Note Button -->
+    <button id="floatingAddBtn" class="floating-add-btn" title="Add Note (Alt/Option + N)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+    </button>
 
     <script src="js/jquery-3.5.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jszip.min.js"></script>
     <script src="js/app.js"></script>
+
+    <script type="module">
+        import autoAnimate from "./js/auto-animate.es.js";
+
+        const list = document.querySelector('#gridContainer');
+        autoAnimate(list);
+    </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>

@@ -310,6 +310,7 @@ input[type="text"]:focus {
 }
 
 .custom-modal {
+    z-index: 100;
     display: none;
     position: fixed;
     left: 0;
@@ -492,4 +493,70 @@ textarea {
 
 .bg-dark {
     background-color: #1b222d !important;
+}
+
+/* Floating Add Note Button */
+.floating-add-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-add-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.floating-add-btn:active {
+    transform: scale(0.95);
+}
+
+.floating-add-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+    grid-column: 1 / -1;
+    height: calc(100dvh - 200px);
+}
+
+.empty-state svg {
+    margin-bottom: 20px;
+    color: #adb5bd;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.empty-state .empty-state-subtitle {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #adb5bd;
+    font-weight: normal;
 }
