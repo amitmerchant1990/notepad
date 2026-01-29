@@ -474,7 +474,7 @@ function getRandomPastelColor() {
 
 function createNewNote() {
     fullscreenNote.value = '';
-    currentNoteIndex = null;
+    currentNoteId = null;
     deleteNoteBtn.style.display = 'none';
     copyNoteBtn.style.display = 'none';
     downloadNoteBtn.style.display = 'none';
