@@ -345,6 +345,17 @@ function renderNotes(filteredNotes = null) {
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'note-actions';
 
+        // Add date display on the left
+        const dateDiv = document.createElement('div');
+        dateDiv.className = 'note-date';
+        const relativeTime = getRelativeTime(note.created_at);
+        const formattedDate = getFormattedDate(note.created_at);
+        dateDiv.textContent = relativeTime;
+        dateDiv.title = formattedDate;
+
+        const actionButtonsDiv = document.createElement('div');
+        actionButtonsDiv.className = 'action-buttons';
+
         const copyBtn = document.createElement('button');
         copyBtn.className = 'action-btn';
         copyBtn.title = 'Copy note';
@@ -383,7 +394,8 @@ function renderNotes(filteredNotes = null) {
             document.body.removeChild(a);
         });
 
-        actionsDiv.append(copyBtn, downloadBtn);
+        actionButtonsDiv.append(copyBtn, downloadBtn);
+        actionsDiv.append(dateDiv, actionButtonsDiv);
         noteDiv.append(contentDiv, actionsDiv);
 
         contentDiv.addEventListener('click', () => openFullscreen(note, index));
@@ -485,6 +497,50 @@ function downloadAllNotes() {
 }
 
 let lastUsedColor = null;
+
+function getRelativeTime(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    
+    if (seconds < 60) {
+        return seconds <= 1 ? 'just now' : `${seconds} secs ago`;
+    }
+    
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) {
+        return minutes === 1 ? '1 min ago' : `${minutes} mins ago`;
+    }
+    
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) {
+        return hours === 1 ? '1 hour ago' : `${hours} hours ago`;
+    }
+    
+    const days = Math.floor(hours / 24);
+    if (days < 30) {
+        return days === 1 ? '1 day ago' : `${days} days ago`;
+    }
+    
+    const months = Math.floor(days / 30);
+    if (months < 12) {
+        return months === 1 ? '1 month ago' : `${months} months ago`;
+    }
+    
+    const years = Math.floor(months / 12);
+    return years === 1 ? '1 year ago' : `${years} years ago`;
+}
+
+function getFormattedDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
 
 function getRandomPastelColor() {
     const pastelColors = ['pastel-yellow', 'pastel-blue', 'pastel-green', 'pastel-pink', 'pastel-purple'];
