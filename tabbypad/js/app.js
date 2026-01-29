@@ -6,7 +6,10 @@ const saveNoteBtn = document.getElementById('saveNoteBtn');
 const deleteNoteBtn = document.getElementById('deleteNoteBtn');
 const copyNoteBtn = document.getElementById('copyNoteBtn');
 const downloadNoteBtn = document.getElementById('downloadNoteBtn');
+const sortToggleBtn = document.getElementById('sortToggleBtn');
+const sortText = document.querySelector('.sort-text');
 let currentNoteId = null; // To track the index of the current note being edited
+let sortOrder = 'newest'; // 'newest' or 'oldest'
 
 let notes = [], db;
 
@@ -271,8 +274,37 @@ searchInput.addEventListener('blur', () => {
     escToCancel.style.display = 'none';
 });
 
+// Sort toggle functionality
+sortToggleBtn.addEventListener('click', () => {
+    sortOrder = sortOrder === 'newest' ? 'oldest' : 'newest';
+    updateSortButton();
+    renderNotes();
+});
+
+function updateSortButton() {
+    if (sortOrder === 'newest') {
+        sortText.textContent = 'Newest';
+        sortToggleBtn.classList.remove('descending');
+        sortToggleBtn.title = 'Sort by oldest first';
+    } else {
+        sortText.textContent = 'Oldest';
+        sortToggleBtn.classList.add('descending');
+        sortToggleBtn.title = 'Sort by newest first';
+    }
+}
+
+function getSortedNotes(notesToSort = notes) {
+    return [...notesToSort].sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
+        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+    });
+}
+
 // Modify renderNotes function to accept an optional parameter
-function renderNotes(filteredNotes = notes) {
+function renderNotes(filteredNotes = null) {
+    const notesToRender = filteredNotes !== null ? getSortedNotes(filteredNotes) : getSortedNotes();
+    
     const existing = new Map(
         [...gridContainer.querySelectorAll('.grid-item')]
             .map(el => [el.dataset.id, el])
@@ -280,7 +312,7 @@ function renderNotes(filteredNotes = notes) {
 
     // Empty state handling
     const emptyState = gridContainer.querySelector('.empty-state');
-    if (filteredNotes.length === 0) {
+    if (notesToRender.length === 0) {
         if (!emptyState) {
             const emptyStateDiv = document.createElement('div');
             emptyStateDiv.className = 'empty-state';
@@ -360,13 +392,13 @@ function renderNotes(filteredNotes = notes) {
     }
 
     // Remove nodes that no longer exist
-    const incomingIds = new Set(filteredNotes.map(n => String(n.id)));
+    const incomingIds = new Set(notesToRender.map(n => String(n.id)));
     existing.forEach((el, id) => {
         if (!incomingIds.has(id)) el.remove();
     });
 
     // Insert/update in correct order
-    filteredNotes.forEach((note, index) => {
+    notesToRender.forEach((note, index) => {
         const id = String(note.id);
         let el = existing.get(id);
 
@@ -502,6 +534,9 @@ document.getElementById('floatingAddBtn').addEventListener('click', () => {
 
 // Initialize IndexedDB
 initIndexedDB();
+
+// Initialize sort button
+updateSortButton();
 
 // Initial rendering of notes on page load
 renderNotes();

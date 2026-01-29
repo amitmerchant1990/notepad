@@ -127,9 +127,26 @@ input[type="text"]:focus {
 }
 
 @media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 20px;
+    }
+
     .search-container .search-input-container {
         width: 100% !important;
-        margin: 0 20px;
+        margin: 0;
+        min-width: unset;
+    }
+
+    .sort-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .sort-toggle-btn {
+        padding: 10px 16px;
+        font-size: 16px;
     }
 
     #tabbypad {
@@ -434,12 +451,56 @@ textarea {
     display: flex;
     width: 100%;
     justify-content: center;
+    align-items: center;
+    gap: 15px;
     margin-top: 35px;
+    flex-wrap: wrap;
 }
 
 .search-container .search-input-container {
     width: 40%;
     position: relative;
+    min-width: 250px;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+}
+
+.sort-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.sort-toggle-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.sort-toggle-btn.descending svg {
+    transform: rotate(180deg);
+}
+
+.sort-text {
+    font-weight: 500;
 }
 
 .esc-to-cancel {
