@@ -236,6 +236,14 @@
   background-color: rgba(220, 53, 69, 0.1);
 }
 
+.snapshot-btn.copy {
+  color: #007bff;
+}
+
+.snapshot-btn.copy:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
 /* Modal Footer */
 #snapshotsModal .modal-footer {
   display: flex;
