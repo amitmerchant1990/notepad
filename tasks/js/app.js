@@ -1,4 +1,67 @@
 $(document).ready(function() {
+    // Self-contained dark mode implementation
+    const darkmodeText = 'Enable dark mode [Ctrl/Cmd + M]';
+    const lightmodeText = 'Enable light mode [Ctrl/Cmd + M]';
+    const darkMetaColor = '#0d1117';
+    const lightMetaColor = '#4d4d4d';
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+    // Dark mode functions
+    function enableDarkMode() {
+        $('body').addClass('dark');
+        $('#mode').attr('title', lightmodeText);
+        $('#themeIcon').attr('src', '../img/navbar/light-theme.svg');
+        metaThemeColor.setAttribute('content', darkMetaColor);
+        localStorage.setItem('tasksMode', 'dark');
+    }
+
+    function enableLightMode() {
+        $('body').removeClass('dark');
+        $('#mode').attr('title', darkmodeText);
+        $('#themeIcon').attr('src', '../img/navbar/dark-theme.svg');
+        metaThemeColor.setAttribute('content', lightMetaColor);
+        localStorage.setItem('tasksMode', 'light');
+    }
+
+    function enableDeviceTheme() {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            enableDarkMode();
+        } else {
+            enableLightMode();
+        }
+        localStorage.setItem('tasksMode', 'device');
+    }
+
+    function toggleTheme() {
+        if ($('body').hasClass('dark')) {
+            enableLightMode();
+        } else {
+            enableDarkMode();
+        }
+    }
+
+    // Initialize dark mode state
+    const savedMode = localStorage.getItem('tasksMode');
+    if (savedMode === 'dark') {
+        enableDarkMode();
+    } else if (savedMode === 'light') {
+        enableLightMode();
+    } else {
+        enableDeviceTheme();
+    }
+
+    // Dark mode toggle handler
+    $('#mode').click(function() {
+        toggleTheme();
+    });
+
+    // Keyboard shortcut for theme toggle
+    $(document).keydown(function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'm') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
     // Affiliate links data
     const affiliateLinks = [
         {
