@@ -254,13 +254,33 @@ function _replaceSelection(cm, active, startEnd, url) {
 }
 
 function toggleSidePanel() {
-  if(document.getElementById("previewPanel").style.display == "block"){
-    document.getElementById("previewPanel").style.display = "none";
-    document.getElementById("pref").style.display = "none";
-    document.getElementById("textPanel").style.width = "100%";
-  }else{
-    document.getElementById("previewPanel").style.display = "block";
-    document.getElementById("pref").style.display = "block";
-    document.getElementById("textPanel").style.width = "50%";
+  const previewPanel = document.getElementById("previewPanel");
+  const textPanel = document.getElementById("textPanel");
+  const resizer = document.getElementById("resizer");
+  
+  if(previewPanel.style.display === "none") {
+    // Show preview panel
+    previewPanel.style.display = "block";
+    resizer.style.display = "block";
+    
+    // Restore saved widths or use default 50/50 split
+    const savedTextWidth = localStorage.getItem('textPanelWidth');
+    const savedPreviewWidth = localStorage.getItem('previewPanelWidth');
+    
+    if (savedTextWidth && savedPreviewWidth) {
+      textPanel.style.width = savedTextWidth;
+      previewPanel.style.width = savedPreviewWidth;
+    } else {
+      textPanel.style.width = "50%";
+      previewPanel.style.width = "50%";
+    }
+  } else {
+    // Hide preview panel and expand text panel to full width
+    previewPanel.style.display = "none";
+    resizer.style.display = "none";
+    textPanel.style.width = "100%";
   }
+  
+  // Refresh CodeMirror to handle the layout change
+  cm.refresh();
 }
