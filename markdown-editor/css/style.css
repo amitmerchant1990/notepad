@@ -44,19 +44,63 @@ section,
     overflow: auto;
 }
 
+#markdown {
+    display: block;
+    overflow: auto;
+}
+
 #editArea {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 #textPanel {
     width: 50%;
     padding: 0;
+    position: relative;
 }
 
 #previewPanel {
     width: 50%;
     background-color: #f2f2f2;
+    position: relative;
+}
+
+.resizer {
+    width: 3px;
+    background-color: #ccc;
+    cursor: col-resize;
+    position: relative;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.resizer:hover {
+    background-color: #999;
+}
+
+.resizer:active {
+    background-color: #666;
+}
+
+.resizer::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 40px;
+    background-color: transparent;
+    border-left: 2px dashed #999;
+    border-right: 2px dashed #999;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.resizer:hover::before {
+    opacity: 1;
 }
 
 img {
@@ -79,7 +123,7 @@ img {
     position: fixed;
     top: 34px;
     left: 0;
-    z-index: 999;
+    z-index: 10;
     width: 100%;
     height: 30px;
     background-color: #dfb4a4;
@@ -96,12 +140,13 @@ img {
     position: fixed;
     top: 64px;
     left: 0;
-    z-index: 999;
+    z-index: 100;
     width: 100%;
     height: 28px;
     display: none;
     border-bottom: 1px #BFBFBF solid;
     background-color: #E8E8E8;
+    align-items: center;
 }
 
 .modal-title {
@@ -113,6 +158,29 @@ img {
     align-items: center;
     gap: 10px;
     margin-right: 10px;
+}
+
+.flex-navbar-right .dropdown {
+    display: flex;
+    align-items: center;
+}
+
+.flex-navbar-right .dropdown button {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.flex-navbar-right #about {
+    display: flex;
+    align-items: center;
+}
+
+.flex-navbar-right #about img {
+    width: 20px;
+    height: 20px;
 }
 
 .modal-content a {

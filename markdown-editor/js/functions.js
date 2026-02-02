@@ -21,7 +21,7 @@ var changeTheme = function (opt) {
 }
 
 var showToolBar = function () {
-  if(document.getElementById("toolbarArea").style.display == "block"){
+  if(document.getElementById("toolbarArea").style.display == "flex"){
     document.getElementById("angleToolBar").className = "";
     document.getElementById("angleToolBar").className = "fa fa-angle-double-right";
     document.getElementById("toolbarArea").style.display = "none";
@@ -29,7 +29,7 @@ var showToolBar = function () {
   }else{
     document.getElementById("angleToolBar").className = "";
     document.getElementById("angleToolBar").className = "fa fa-angle-double-down";
-    document.getElementById("toolbarArea").style.display = "block";
+    document.getElementById("toolbarArea").style.display = "flex";
     document.getElementById("editArea").style.paddingTop = "92px";
   }
 }
