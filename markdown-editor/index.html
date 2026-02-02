@@ -39,6 +39,14 @@
       <span>Markdown Editor</span>
     </span>
     <span title="About" class="flex-navbar-right">
+      <div class="theme-switcher">
+        <input type="radio" id="lightTheme" name="changeTheme" value="light" onclick="changeTheme(this);"
+          title="Light Mode" checked="checked">
+        <label for="lightTheme" title="Light Mode"><b>Light</b></label>
+        <input type="radio" id="darkTheme" name="changeTheme" value="dark" onclick="changeTheme(this);"
+          title="Dark Mode">
+        <label for="darkTheme" title="Dark Mode"><b>Dark</b></label>
+      </div>
       <div class="dropdown">
         <button class="btn btn-link dropdown-toggle" type="button" id="downloadDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; text-decoration: none; padding: 0; border: none; background: none;">
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
@@ -63,30 +71,10 @@
           </li>
         </div>
       </div>
-      <a id="about" href="javascript:void(0);">
-        <img src="img/icons/info.svg" alt="About Icon" href="#about" data-toggle="modal" data-target="#aboutModal" />
+      <a id="about" href="javascript:void(0);" data-toggle="modal" data-target="#aboutModal">
+        <img src="img/icons/info.svg" alt="About Icon" />
       </a>
     </span>
-  </div>
-  <div class="optContainer">
-    <div class="mode">
-      <span class="toolContainer">
-        <a id="angleToolBar" title="Toolbar" class="fa fa-angle-double-right" onclick="showToolBar();"
-          style="cursor: pointer;text-decoration:none;"></a>
-      </span>
-      <div class="theme-container">
-        <div>
-          <input type="radio" id="lightTheme" name="changeTheme" value="light" onclick="changeTheme(this);"
-            title="Light Mode" checked="checked">
-          <label for="lightTheme" style="vertical-align: middle;" title="Light Mode"><b>Light</b></label>
-        </div>
-        <div>
-          <input type="radio" id="darkTheme" name="changeTheme" value="dark" onclick="changeTheme(this);"
-            title="Dark Mode">
-          <label for="darkTheme" style="vertical-align: middle;" title="Dark Mode"><b>Dark</b></label>
-        </div>
-      </div>
-    </div>
   </div>
   <div id="toolbarArea">
     <div style="padding-left:10px;">
@@ -110,12 +98,12 @@
         class="fa fa-question-circle editor-toolbar"></a>
     </div>
   </div>
-  <section class="row" id="editArea" style="padding-top: 64px;">
+  <section class="row" id="editArea" style="padding-top: 60px;">
     <div class="col-md-6 full-height" id="textPanel">
       <textarea id="plainText" placeholder="Write your Markdown here.." autofocus></textarea>
     </div>
     <div class="resizer" id="resizer"></div>
-    <div class="col-md-6 full-height" style="overflow-y: auto;display:block; padding: 14px; font-weight: bold;"
+    <div class="col-md-6 full-height" style="overflow-y: auto;display:block; padding: 14px;"
       id="previewPanel">
       <div id="markdown"></div>
       <textarea id="htmlPreview" class="mdHtml"></textarea>

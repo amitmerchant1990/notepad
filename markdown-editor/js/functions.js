@@ -18,6 +18,8 @@ var changeTheme = function (opt) {
     cm.setOption("theme", "base16-dark");
     document.body.className = "dark";
   }
+  // Save theme preference to localStorage
+  localStorage.setItem('theme', currentValueTheme);
 }
 
 var showToolBar = function () {

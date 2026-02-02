@@ -17,6 +17,16 @@ window.onload = function () {
   const markdownText = localStorage.getItem('markdown');
   const converter = new showdown.Converter();
 
+  // Restore theme preference from localStorage
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    const themeRadio = document.querySelector(`input[name="changeTheme"][value="${savedTheme}"]`);
+    if (themeRadio) {
+      themeRadio.checked = true;
+      changeTheme(themeRadio);
+    }
+  }
+
   if (markdownText) {
     cm.setValue(markdownText);
     
@@ -38,6 +48,65 @@ window.onload = function () {
     document.getElementById("htmlPreview").value = html;
 
     localStorage.setItem('markdown', markdownText);
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+    // Check if we're in the CodeMirror editor
+    if (cm.hasFocus()) {
+      let handled = false;
+      
+      // Detect platform: use 'metaKey' for Mac (Cmd key) and 'ctrlKey' for others
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const modifierKey = isMac ? e.metaKey : e.ctrlKey;
+      
+      // Bold [Ctrl+B / Cmd+B]
+      if (modifierKey && e.key === 'b' && !e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        toggleFormat('bold');
+        handled = true;
+      }
+      // Italic [Ctrl+I / Cmd+I]
+      else if (modifierKey && e.key === 'i' && !e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        toggleFormat('italic');
+        handled = true;
+      }
+      // Header [Ctrl+H / Cmd+H]
+      else if (modifierKey && e.key === 'h' && !e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        toggleHeadingSmaller();
+        handled = true;
+      }
+      // StrikeThrough [Ctrl+/ / Cmd+/]
+      else if (modifierKey && e.key === '/' && !e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        toggleFormat('strikethrough');
+        handled = true;
+      }
+      // Create Link [Ctrl+L / Cmd+L]
+      else if (modifierKey && e.key === 'l' && !e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        drawLink();
+        handled = true;
+      }
+      // Insert Image [Ctrl+Alt+I / Cmd+Alt+I]
+      else if (modifierKey && e.altKey && e.key === 'i' && !e.shiftKey) {
+        e.preventDefault();
+        drawImage();
+        handled = true;
+      }
+      // Insert Table [Ctrl+Shift+T / Cmd+Shift+T]
+      else if (modifierKey && e.shiftKey && e.key === 'T' && !e.altKey) {
+        e.preventDefault();
+        drawTable();
+        handled = true;
+      }
+      
+      if (handled) {
+        e.stopPropagation();
+      }
+    }
   });
 }
 
