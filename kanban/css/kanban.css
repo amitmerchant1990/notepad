@@ -233,6 +233,144 @@ input[type="text"]:focus {
     background-color: #1b222d !important;
 }
 
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.theme-toggle img {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.theme-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.dark {
+    background-color: #0b1215;
+    color: #c9d1d9;
+}
+
+.dark h2 {
+    color: #c9d1d9;
+}
+
+.dark .column {
+    background-color: #141a22;
+    border-color: #2c3642;
+}
+
+.dark .task-list {
+    border-color: #2c3642;
+    background-color: #0f141b;
+}
+
+.dark .task-item {
+    background-color: #1f2630;
+    color: #e6edf3;
+}
+
+.dark .task-item:hover {
+    background-color: #2a3340;
+}
+
+.dark #in-progress .task-list > .task-item {
+    background-color: #3a3120;
+}
+
+.dark #in-progress .task-list > .task-item:hover {
+    background-color: #453926;
+}
+
+.dark #done .task-list > .task-item {
+    background-color: #243527;
+}
+
+.dark #done .task-list > .task-item:hover {
+    background-color: #2a3d2d;
+}
+
+.dark .task-list .placeholder {
+    background-color: #0f141b !important;
+    color: #7d8590;
+}
+
+.dark input[type="text"] {
+    background-color: #0f141b;
+    border-color: #2c3642;
+    color: #c9d1d9;
+}
+
+.dark input[type="text"]::placeholder {
+    color: #7d8590;
+}
+
+.dark input[type="text"]:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
+}
+
+.dark .task-edit-input {
+    background-color: #0f141b;
+    border-color: #58a6ff;
+    color: #c9d1d9;
+}
+
+.dark .edit-btn {
+    color: #58a6ff;
+}
+
+.dark .delete-btn {
+    color: #ff6b6b;
+}
+
+.dark .modal-content {
+    background-color: #141a22;
+    border-color: #2c3642;
+    color: #c9d1d9;
+}
+
+.dark .modal-header,
+.dark .modal-footer {
+    background-color: #1a1f29;
+    border-color: #2c3642;
+}
+
+.dark .modal-body a {
+    color: #58a6ff;
+}
+
+.dark .drop-target {
+    background-color: rgba(88, 166, 255, 0.15);
+    border: 2px dashed rgba(88, 166, 255, 0.5);
+}
+
+.dark .sortable-chosen {
+    background-color: rgba(255, 206, 80, 0.2);
+    border: 2px solid rgba(255, 206, 80, 0.5);
+}
+
+.dark #mobile-message {
+    background-color: rgba(15, 20, 27, 0.9);
+    color: #ff7b7b;
+}
+
 @media (max-width: 768px) {
     .kanban-board {
         flex-direction: column; /* Stack columns vertically on small screens */

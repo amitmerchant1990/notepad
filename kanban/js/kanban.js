@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", loadTasks);
+document.addEventListener("DOMContentLoaded", function() {
+    initTheme();
+    loadTasks();
+});
 
 // Handle delete confirmation
 $(document).on('click', '#confirmDelete', function() {
@@ -33,6 +36,114 @@ if (typeof window.globalTouchHandlerAdded === 'undefined') {
         });
     });
     window.globalTouchHandlerAdded = true;
+}
+
+const themeStorageKey = 'kanbanMode';
+const themeToggleId = 'theme-toggle';
+const themeIconId = 'theme-icon';
+const darkMetaColor = '#0d1117';
+const lightMetaColor = '#f4f4f4';
+const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+const systemThemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+const themeModes = ['device', 'light', 'dark'];
+const themeIcons = {
+    device: 'img/icons/device-theme.svg',
+    light: 'img/icons/light-theme.svg',
+    dark: 'img/icons/dark-theme.svg'
+};
+let currentThemeMode = 'device';
+
+function updateThemeToggle(mode) {
+    const themeToggle = document.getElementById(themeToggleId);
+    const themeIcon = document.getElementById(themeIconId);
+    const label = `Theme: ${mode.charAt(0).toUpperCase() + mode.slice(1)}`;
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-label', label);
+        themeToggle.setAttribute('title', label);
+    }
+    if (themeIcon && themeIcons[mode]) {
+        themeIcon.src = themeIcons[mode];
+    }
+}
+
+function enableDarkMode() {
+    document.body.classList.add('dark');
+    if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', darkMetaColor);
+    }
+    currentThemeMode = 'dark';
+    updateThemeToggle('dark');
+    localStorage.setItem(themeStorageKey, 'dark');
+}
+
+function enableLightMode() {
+    document.body.classList.remove('dark');
+    if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', lightMetaColor);
+    }
+    currentThemeMode = 'light';
+    updateThemeToggle('light');
+    localStorage.setItem(themeStorageKey, 'light');
+}
+
+function enableDeviceTheme() {
+    if (systemThemeQuery && systemThemeQuery.matches) {
+        document.body.classList.add('dark');
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', darkMetaColor);
+        }
+    } else {
+        document.body.classList.remove('dark');
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', lightMetaColor);
+        }
+    }
+    currentThemeMode = 'device';
+    updateThemeToggle('device');
+    localStorage.setItem(themeStorageKey, 'device');
+}
+
+function initTheme() {
+    const storedMode = localStorage.getItem(themeStorageKey);
+    const savedMode = themeModes.includes(storedMode) ? storedMode : 'device';
+
+    if (savedMode === 'dark') {
+        enableDarkMode();
+    } else if (savedMode === 'light') {
+        enableLightMode();
+    } else {
+        enableDeviceTheme();
+    }
+
+    const themeToggle = document.getElementById(themeToggleId);
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const current = themeModes.includes(currentThemeMode)
+                ? currentThemeMode
+                : (localStorage.getItem(themeStorageKey) || 'device');
+            const currentIndex = themeModes.indexOf(current);
+            const nextMode = themeModes[(currentIndex + 1) % themeModes.length];
+            if (nextMode === 'dark') {
+                enableDarkMode();
+            } else if (nextMode === 'light') {
+                enableLightMode();
+            } else {
+                enableDeviceTheme();
+            }
+        });
+    }
+
+    const handleDeviceChange = () => {
+        if (localStorage.getItem(themeStorageKey) === 'device') {
+            enableDeviceTheme();
+        }
+    };
+
+    if (systemThemeQuery && typeof systemThemeQuery.addEventListener === 'function') {
+        systemThemeQuery.addEventListener('change', handleDeviceChange);
+    } else if (systemThemeQuery && typeof systemThemeQuery.addListener === 'function') {
+        systemThemeQuery.addListener(handleDeviceChange);
+    }
 }
 
 function loadTasks() {
@@ -149,13 +260,13 @@ function createTaskElement(taskText) {
     // Create edit button
     const editBtn = document.createElement('button');
     editBtn.className = 'task-btn edit-btn';
-    editBtn.innerHTML = `<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="pencil" class="svg-inline--fa fa-pencil fa-fw " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="13" height="13"><path fill="#000000" d="M491.609 73.625l-53.861-53.839c-26.378-26.379-69.075-26.383-95.46-.001L24.91 335.089.329 484.085c-2.675 16.215 11.368 30.261 27.587 27.587l148.995-24.582 315.326-317.378c26.33-26.331 26.581-68.879-.628-96.087zM200.443 311.557C204.739 315.853 210.37 318 216 318s11.261-2.147 15.557-6.443l119.029-119.03 28.569 28.569L210 391.355V350h-48v-48h-41.356l170.259-169.155 28.569 28.569-119.03 119.029c-8.589 8.592-8.589 22.522.001 31.114zM82.132 458.132l-28.263-28.263 12.14-73.587L84.409 338H126v48h48v41.59l-18.282 18.401-73.586 12.141zm378.985-319.533l-.051.051-.051.051-48.03 48.344-88.03-88.03 48.344-48.03.05-.05.05-.05c9.147-9.146 23.978-9.259 33.236-.001l53.854 53.854c9.878 9.877 9.939 24.549.628 33.861z"></path></svg>`;
+    editBtn.innerHTML = `<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="pencil" class="svg-inline--fa fa-pencil fa-fw " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="13" height="13"><path fill="currentColor" d="M491.609 73.625l-53.861-53.839c-26.378-26.379-69.075-26.383-95.46-.001L24.91 335.089.329 484.085c-2.675 16.215 11.368 30.261 27.587 27.587l148.995-24.582 315.326-317.378c26.33-26.331 26.581-68.879-.628-96.087zM200.443 311.557C204.739 315.853 210.37 318 216 318s11.261-2.147 15.557-6.443l119.029-119.03 28.569 28.569L210 391.355V350h-48v-48h-41.356l170.259-169.155 28.569 28.569-119.03 119.029c-8.589 8.592-8.589 22.522.001 31.114zM82.132 458.132l-28.263-28.263 12.14-73.587L84.409 338H126v48h48v41.59l-18.282 18.401-73.586 12.141zm378.985-319.533l-.051.051-.051.051-48.03 48.344-88.03-88.03 48.344-48.03.05-.05.05-.05c9.147-9.146 23.978-9.259 33.236-.001l53.854 53.854c9.878 9.877 9.939 24.549.628 33.861z"></path></svg>`;
     editBtn.title = 'Edit task';
     
     // Create delete button
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'task-btn delete-btn';
-    deleteBtn.innerHTML = `<svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#ff1212" class="size-6">
+    deleteBtn.innerHTML = `<svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
     </svg>`;
     deleteBtn.title = 'Delete task';
