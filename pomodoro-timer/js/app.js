@@ -1,5 +1,33 @@
 $(document).ready(function () {
     let nameActiveTab;
+    let currentPipWindow = null;
+
+    const themeToggle = document.getElementById('themeToggle');
+    const storedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initialTheme = storedTheme ? storedTheme : (prefersLight ? 'light' : 'dark');
+
+    function applyTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+
+        if (currentPipWindow && currentPipWindow.document && currentPipWindow.document.body) {
+            currentPipWindow.document.body.setAttribute('data-theme', theme);
+        }
+
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+    }
+
+    applyTheme(initialTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const nextTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', nextTheme);
+            applyTheme(nextTheme);
+        });
+    }
 
     function notifyUser() {
         var notiSound = document.getElementById('notiSound');
@@ -191,6 +219,9 @@ $(document).ready(function () {
             height: 380,
         });
 
+        currentPipWindow = pipWindow;
+        pipWindow.document.body.setAttribute('data-theme', document.body.getAttribute('data-theme') || 'dark');
+
         [...document.styleSheets].forEach((styleSheet) => {
             try {
                 const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
@@ -219,6 +250,7 @@ $(document).ready(function () {
             const overlay = document.querySelector(".overlay");
             mainContainer.append(timerContainer);
             mainContainer.classList.remove("pip");
+            currentPipWindow = null;
 
             overlay.style.display = "none";
             overlay.style.pointerEvents = "none";
@@ -236,6 +268,7 @@ $(document).ready(function () {
         const pipBody = pipDocument.body;
 
         pipBody.classList.add("pipBody");
+        pipBody.setAttribute('data-theme', document.body.getAttribute('data-theme') || 'dark');
         playerContainer.classList.add("pip");
         overlay.style.display = "block";
         overlay.style.pointerEvents = "all";
