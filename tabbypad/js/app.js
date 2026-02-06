@@ -8,10 +8,66 @@ const copyNoteBtn = document.getElementById('copyNoteBtn');
 const downloadNoteBtn = document.getElementById('downloadNoteBtn');
 const sortToggleBtn = document.getElementById('sortToggleBtn');
 const sortText = document.querySelector('.sort-text');
+const themeToggleBtn = document.getElementById('themeToggle');
 let currentNoteId = null; // To track the index of the current note being edited
 let sortOrder = 'newest'; // 'newest' or 'oldest'
 
 let notes = [], db;
+
+const themeStorageKey = 'tabbypadTheme';
+const darkMetaColor = '#0f131a';
+const lightMetaColor = '#f8f9fa';
+const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+const systemThemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+function updateThemeToggle(theme) {
+    if (!themeToggleBtn) return;
+    const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    themeToggleBtn.setAttribute('aria-label', label);
+    themeToggleBtn.setAttribute('title', label);
+}
+
+function applyTheme(theme, persist = true) {
+    const isDark = theme === 'dark';
+    document.body.classList.toggle('dark', isDark);
+    if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', isDark ? darkMetaColor : lightMetaColor);
+    }
+    updateThemeToggle(theme);
+    if (persist) {
+        localStorage.setItem(themeStorageKey, theme);
+    }
+}
+
+function initTheme() {
+    const storedTheme = localStorage.getItem(themeStorageKey);
+    const hasStoredTheme = storedTheme === 'dark' || storedTheme === 'light';
+    const initialTheme = hasStoredTheme
+        ? storedTheme
+        : (systemThemeQuery && systemThemeQuery.matches ? 'dark' : 'light');
+
+    applyTheme(initialTheme, hasStoredTheme);
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+            applyTheme(nextTheme, true);
+        });
+    }
+
+    if (systemThemeQuery) {
+        const handleDeviceChange = (event) => {
+            if (!localStorage.getItem(themeStorageKey)) {
+                applyTheme(event.matches ? 'dark' : 'light', false);
+            }
+        };
+        if (typeof systemThemeQuery.addEventListener === 'function') {
+            systemThemeQuery.addEventListener('change', handleDeviceChange);
+        } else if (typeof systemThemeQuery.addListener === 'function') {
+            systemThemeQuery.addListener(handleDeviceChange);
+        }
+    }
+}
 
 function initIndexedDB() {
     const request = indexedDB.open('NotesDB', 1);
@@ -587,6 +643,9 @@ document.getElementById('downloadAllNotesBtn').addEventListener('click', downloa
 document.getElementById('floatingAddBtn').addEventListener('click', () => {
     createNewNote();
 });
+
+// Initialize theme
+initTheme();
 
 // Initialize IndexedDB
 initIndexedDB();
