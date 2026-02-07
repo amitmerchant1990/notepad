@@ -381,6 +381,325 @@ footer {
   }
 }
 
+/* Dark mode styles */
+.dark {
+  background-color: #0b1215;
+  color: #e6edf3;
+}
+
+.dark #mainContainer {
+  background-color: #0b1215;
+}
+
+.dark .navbar-inverse {
+  background-color: #0d1117;
+  border-color: #30363d;
+}
+
+.dark .ql-toolbar.ql-snow {
+  background-color: #161b22;
+  border-color: #30363d;
+}
+
+.dark .ql-container.ql-snow {
+  background-color: #0b1215;
+  border-color: #30363d;
+}
+
+.dark .ql-editor {
+  color: #e6edf3;
+}
+
+.dark .ql-editor.ql-blank::before {
+  color: #8b949e;
+}
+
+.dark .ql-editor td {
+  border-color: #30363d;
+}
+
+.dark .ql-editor .dark-text-override {
+  color: #e6edf3 !important;
+}
+
+.dark .ql-editor .ql-bg-white {
+  background-color: transparent !important;
+}
+
+.dark .ql-editor [style*="background-color: rgb(255, 255, 255)"],
+.dark .ql-editor [style*="background-color: #fff"],
+.dark .ql-editor [style*="background-color: #ffffff"],
+.dark .ql-editor [style*="background-color: white"],
+.dark .ql-editor [style*="background: rgb(255, 255, 255)"],
+.dark .ql-editor [style*="background: #fff"],
+.dark .ql-editor [style*="background: #ffffff"],
+.dark .ql-editor [style*="background: white"] {
+  background-color: transparent !important;
+}
+
+.dark .ql-editor [style*="color: rgb(0, 0, 0)"],
+.dark .ql-editor [style*="color:rgb(0,0,0)"],
+.dark .ql-editor [style*="color: rgb(17, 17, 17)"],
+.dark .ql-editor [style*="color:rgb(17,17,17)"],
+.dark .ql-editor [style*="color: rgb(34, 34, 34)"],
+.dark .ql-editor [style*="color:rgb(34,34,34)"],
+.dark .ql-editor [style*="color: rgb(51, 51, 51)"],
+.dark .ql-editor [style*="color:rgb(51,51,51)"],
+.dark .ql-editor [style*="color: rgb(68, 68, 68)"],
+.dark .ql-editor [style*="color:rgb(68,68,68)"],
+.dark .ql-editor [style*="color: rgb(85, 85, 85)"],
+.dark .ql-editor [style*="color:rgb(85,85,85)"],
+.dark .ql-editor [style*="color: rgb(102, 102, 102)"],
+.dark .ql-editor [style*="color:rgb(102,102,102)"],
+.dark .ql-editor [style*="color: rgb(119, 119, 119)"],
+.dark .ql-editor [style*="color:rgb(119,119,119)"],
+.dark .ql-editor [style*="color: rgb(136, 136, 136)"],
+.dark .ql-editor [style*="color:rgb(136,136,136)"],
+.dark .ql-editor [style*="color: rgb(153, 153, 153)"],
+.dark .ql-editor [style*="color:rgb(153,153,153)"],
+.dark .ql-editor [style*="color: rgba(0, 0, 0"],
+.dark .ql-editor [style*="color:rgba(0,0,0"],
+.dark .ql-editor [style*="color: #000"],
+.dark .ql-editor [style*="color:#000"],
+.dark .ql-editor [style*="color: #111"],
+.dark .ql-editor [style*="color:#111"],
+.dark .ql-editor [style*="color: #222"],
+.dark .ql-editor [style*="color:#222"],
+.dark .ql-editor [style*="color: #333"],
+.dark .ql-editor [style*="color:#333"],
+.dark .ql-editor [style*="color: #444"],
+.dark .ql-editor [style*="color:#444"],
+.dark .ql-editor [style*="color: #555"],
+.dark .ql-editor [style*="color:#555"],
+.dark .ql-editor [style*="color: #666"],
+.dark .ql-editor [style*="color:#666"],
+.dark .ql-editor [style*="color: #777"],
+.dark .ql-editor [style*="color:#777"],
+.dark .ql-editor [style*="color: #888"],
+.dark .ql-editor [style*="color:#888"],
+.dark .ql-editor [style*="color: #999"],
+.dark .ql-editor [style*="color:#999"],
+.dark .ql-editor [style*="color: #000000"],
+.dark .ql-editor [style*="color:#000000"],
+.dark .ql-editor [style*="color: #111111"],
+.dark .ql-editor [style*="color:#111111"],
+.dark .ql-editor [style*="color: #222222"],
+.dark .ql-editor [style*="color:#222222"],
+.dark .ql-editor [style*="color: #333333"],
+.dark .ql-editor [style*="color:#333333"],
+.dark .ql-editor [style*="color: #444444"],
+.dark .ql-editor [style*="color:#444444"],
+.dark .ql-editor [style*="color: #555555"],
+.dark .ql-editor [style*="color:#555555"],
+.dark .ql-editor [style*="color: #666666"],
+.dark .ql-editor [style*="color:#666666"],
+.dark .ql-editor [style*="color: #777777"],
+.dark .ql-editor [style*="color:#777777"],
+.dark .ql-editor [style*="color: #888888"],
+.dark .ql-editor [style*="color:#888888"],
+.dark .ql-editor [style*="color: #999999"],
+.dark .ql-editor [style*="color:#999999"],
+.dark .ql-editor [style*="color: #4d4d4d"],
+.dark .ql-editor [style*="color:#4d4d4d"],
+.dark .ql-editor [style*="color: black"],
+.dark .ql-editor [style*="color:black"] {
+  color: #e6edf3 !important;
+}
+
+.dark .ql-snow .ql-editor a {
+  color: #58a6ff !important;
+}
+
+.dark .ql-editor .ql-color-red {
+  color: #e60000 !important;
+}
+
+.dark .ql-editor .ql-color-orange {
+  color: #ff9900 !important;
+}
+
+.dark .ql-editor .ql-color-yellow {
+  color: #ffff00 !important;
+}
+
+.dark .ql-editor .ql-color-green {
+  color: #008a00 !important;
+}
+
+.dark .ql-editor .ql-color-blue {
+  color: #0066cc !important;
+}
+
+.dark .ql-editor .ql-color-purple {
+  color: #9933ff !important;
+}
+
+.dark .ql-editor .ql-color-white {
+  color: #ffffff !important;
+}
+
+.dark .ql-editor .ql-color-black {
+  color: #e6edf3 !important;
+}
+
+.dark .ql-snow .ql-editor blockquote {
+  border-left-color: #30363d;
+  color: #c9d1d9;
+}
+
+.dark .ql-snow .ql-editor code,
+.dark .ql-snow .ql-editor .ql-code-block-container {
+  background-color: #1a1f29;
+  color: #e6edf3;
+}
+
+.dark .ql-snow .ql-stroke {
+  stroke: #c9d1d9;
+}
+
+.dark .ql-snow .ql-stroke-miter {
+  stroke: #c9d1d9;
+}
+
+.dark .ql-snow .ql-fill,
+.dark .ql-snow .ql-stroke.ql-fill {
+  fill: #c9d1d9;
+}
+
+.dark .ql-snow .ql-picker {
+  color: #c9d1d9;
+}
+
+.dark .ql-snow .ql-picker-options {
+  background-color: #1a1f29;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+.dark .ql-snow .ql-picker.ql-expanded .ql-picker-label {
+  color: #c9d1d9;
+}
+
+.dark .ql-snow.ql-toolbar button:hover,
+.dark .ql-snow .ql-toolbar button:hover,
+.dark .ql-snow.ql-toolbar button:focus,
+.dark .ql-snow .ql-toolbar button:focus,
+.dark .ql-snow.ql-toolbar button.ql-active,
+.dark .ql-snow .ql-toolbar button.ql-active,
+.dark .ql-snow.ql-toolbar .ql-picker-label:hover,
+.dark .ql-snow .ql-toolbar .ql-picker-label:hover,
+.dark .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.dark .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.dark .ql-snow.ql-toolbar .ql-picker-item:hover,
+.dark .ql-snow .ql-toolbar .ql-picker-item:hover,
+.dark .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.dark .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: #58a6ff;
+}
+
+.dark .ql-snow.ql-toolbar button:hover .ql-fill,
+.dark .ql-snow .ql-toolbar button:hover .ql-fill,
+.dark .ql-snow.ql-toolbar button:focus .ql-fill,
+.dark .ql-snow .ql-toolbar button:focus .ql-fill,
+.dark .ql-snow.ql-toolbar button.ql-active .ql-fill,
+.dark .ql-snow .ql-toolbar button.ql-active .ql-fill,
+.dark .ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
+.dark .ql-snow .ql-toolbar .ql-picker-label:hover .ql-fill,
+.dark .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.dark .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.dark .ql-snow.ql-toolbar .ql-picker-item:hover .ql-fill,
+.dark .ql-snow .ql-toolbar .ql-picker-item:hover .ql-fill,
+.dark .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+.dark .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+.dark .ql-snow.ql-toolbar button:hover .ql-stroke,
+.dark .ql-snow .ql-toolbar button:hover .ql-stroke,
+.dark .ql-snow.ql-toolbar button:focus .ql-stroke,
+.dark .ql-snow .ql-toolbar button:focus .ql-stroke,
+.dark .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.dark .ql-snow .ql-toolbar button.ql-active .ql-stroke,
+.dark .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+.dark .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
+.dark .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.dark .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.dark .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+.dark .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
+.dark .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.dark .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.dark .ql-snow.ql-toolbar button:hover .ql-stroke-miter,
+.dark .ql-snow .ql-toolbar button:hover .ql-stroke-miter,
+.dark .ql-snow.ql-toolbar button:focus .ql-stroke-miter,
+.dark .ql-snow .ql-toolbar button:focus .ql-stroke-miter,
+.dark .ql-snow.ql-toolbar button.ql-active .ql-stroke-miter,
+.dark .ql-snow .ql-toolbar button.ql-active .ql-stroke-miter,
+.dark .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+.dark .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+.dark .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+.dark .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+.dark .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+.dark .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+.dark .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
+.dark .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
+  stroke: #58a6ff;
+}
+
+.dark .ql-snow .ql-tooltip {
+  background-color: #1a1f29;
+  border-color: #30363d;
+  color: #c9d1d9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .ql-snow .ql-tooltip input[type=text] {
+  background-color: #0d1117;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+.dark .ql-snow .ql-tooltip a {
+  color: #58a6ff;
+}
+
+.dark .modal-content {
+  background-color: #21262d;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+.dark .modal-header {
+  background-color: #1a1f29;
+  border-bottom-color: #30363d;
+}
+
+.dark .modal-footer {
+  background-color: #1a1f29;
+  border-top-color: #30363d;
+}
+
+.dark .modal-body a {
+  color: #58a6ff;
+}
+
+.dark .modal-header .close {
+  color: #c9d1d9;
+  opacity: 1;
+}
+
+.dark .modal-header .close:hover,
+.dark .modal-header .close:focus {
+  color: #ffffff;
+}
+
+.dark .about-notice {
+  background-color: #1a1f29;
+  color: #c9d1d9;
+}
+
+.dark .donate-icon svg,
+.dark .about-icon-container path {
+  fill: #c9d1d9;
+  stroke: #c9d1d9;
+}
+
 /* xs < 768 */
 @media screen and (max-width: 767px) {
   h1 {

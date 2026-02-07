@@ -65,6 +65,182 @@ $(document).ready(function () {
 	// Show affiliate popup after a delay
 	setTimeout(showRandomAffiliateLink, 5000);
 
+    // Dark mode setup
+    const darkmodeText = 'Enable dark mode [Ctrl/Cmd + M]';
+    const lightmodeText = 'Enable light mode [Ctrl/Cmd + M]';
+    const darkMetaColor = '#0d1117';
+    const lightMetaColor = '#222';
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    let darkOverrideRaf = null;
+
+    function enableDarkMode() {
+        $('body').addClass('dark');
+        $('#mode').attr('title', lightmodeText);
+        $('#themeIcon').attr('src', '../img/navbar/light-theme.svg');
+        metaThemeColor.setAttribute('content', darkMetaColor);
+        localStorage.setItem('richNotesMode', 'dark');
+        scheduleDarkTextOverrides();
+    }
+
+    function enableLightMode() {
+        $('body').removeClass('dark');
+        $('#mode').attr('title', darkmodeText);
+        $('#themeIcon').attr('src', '../img/navbar/dark-theme.svg');
+        metaThemeColor.setAttribute('content', lightMetaColor);
+        localStorage.setItem('richNotesMode', 'light');
+        clearDarkTextOverrides();
+    }
+
+    function enableDeviceTheme() {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            enableDarkMode();
+        } else {
+            enableLightMode();
+        }
+        localStorage.setItem('richNotesMode', 'device');
+    }
+
+    function toggleTheme() {
+        if ($('body').hasClass('dark')) {
+            enableLightMode();
+        } else {
+            enableDarkMode();
+        }
+    }
+
+    function parseInlineColor(colorValue) {
+        if (!colorValue) {
+            return null;
+        }
+
+        const normalized = colorValue.trim().toLowerCase();
+
+        if (normalized === 'black') {
+            return { r: 0, g: 0, b: 0 };
+        }
+
+        if (normalized === 'white') {
+            return { r: 255, g: 255, b: 255 };
+        }
+
+        if (normalized.startsWith('#')) {
+            const hex = normalized.slice(1);
+            if (hex.length === 3) {
+                return {
+                    r: parseInt(hex[0] + hex[0], 16),
+                    g: parseInt(hex[1] + hex[1], 16),
+                    b: parseInt(hex[2] + hex[2], 16)
+                };
+            }
+
+            if (hex.length === 6) {
+                return {
+                    r: parseInt(hex.slice(0, 2), 16),
+                    g: parseInt(hex.slice(2, 4), 16),
+                    b: parseInt(hex.slice(4, 6), 16)
+                };
+            }
+        }
+
+        const match = normalized.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+        if (!match) {
+            return null;
+        }
+
+        return {
+            r: parseInt(match[1], 10),
+            g: parseInt(match[2], 10),
+            b: parseInt(match[3], 10)
+        };
+    }
+
+    function applyDarkTextOverrides() {
+        darkOverrideRaf = null;
+        if (!$('body').hasClass('dark')) {
+            return;
+        }
+
+        const editor = document.querySelector('.ql-editor');
+        if (!editor) {
+            return;
+        }
+
+        editor.querySelectorAll('[style*="color"]').forEach((node) => {
+            const inlineColor = node.style.color;
+            const rgb = parseInlineColor(inlineColor);
+            if (!rgb) {
+                node.classList.remove('dark-text-override');
+                return;
+            }
+
+            const isGray = rgb.r === rgb.g && rgb.g === rgb.b;
+            const isDarkGray = isGray && rgb.r < 200;
+
+            if (isDarkGray) {
+                node.classList.add('dark-text-override');
+            } else {
+                node.classList.remove('dark-text-override');
+            }
+        });
+    }
+
+    function scheduleDarkTextOverrides() {
+        if (!$('body').hasClass('dark')) {
+            return;
+        }
+
+        if (darkOverrideRaf) {
+            cancelAnimationFrame(darkOverrideRaf);
+        }
+
+        darkOverrideRaf = requestAnimationFrame(applyDarkTextOverrides);
+    }
+
+    function clearDarkTextOverrides() {
+        const editor = document.querySelector('.ql-editor');
+        if (!editor) {
+            return;
+        }
+
+        editor.querySelectorAll('.dark-text-override').forEach((node) => {
+            node.classList.remove('dark-text-override');
+        });
+    }
+
+    function getStorageHtml() {
+        const editor = document.querySelector('.ql-editor');
+        if (!editor) {
+            return '';
+        }
+
+        const clone = editor.cloneNode(true);
+        clone.querySelectorAll('.dark-text-override').forEach((node) => {
+            node.classList.remove('dark-text-override');
+        });
+
+        return clone.innerHTML;
+    }
+
+    const savedMode = localStorage.getItem('richNotesMode');
+    if (savedMode === 'dark') {
+        enableDarkMode();
+    } else if (savedMode === 'light') {
+        enableLightMode();
+    } else {
+        enableDeviceTheme();
+    }
+
+    $('#mode').click(function () {
+        toggleTheme();
+    });
+
+    $(document).keydown(function (event) {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'm') {
+            event.preventDefault();
+            toggleTheme();
+        }
+    });
+
     const quill = new Quill('#editor', {
         theme: 'snow',
         placeholder: 'Type your text here...',
@@ -102,9 +278,11 @@ $(document).ready(function () {
     quill.focus();
 
     quill.on('text-change', (delta, oldDelta, source) => {
-        var html = quill.root.innerHTML; // Get HTML content
+        scheduleDarkTextOverrides();
+        var html = getStorageHtml(); // Get HTML content without dark overrides
         localStorage.setItem('richNotes', html); // Save HTML to localStorage
     });
+
 
     // Load saved HTML from localStorage when the editor initializes
     window.addEventListener('load', function () {
@@ -112,6 +290,7 @@ $(document).ready(function () {
         if (savedHtml) {
             quill.root.innerHTML = savedHtml;
         }
+        scheduleDarkTextOverrides();
     });
 
     $('#download').click(function () {
@@ -129,7 +308,7 @@ $(document).ready(function () {
     $(document).on('click', function (event) {
         if(
             $('#iconDropdown').hasClass('show') 
-            && !$(event.target).is('#themeIcon')
+            && $(event.target).closest('.downaload-notes-container').length === 0
         ) {
 		    $('#iconDropdown').removeClass('show');
         }
