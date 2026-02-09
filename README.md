@@ -43,6 +43,7 @@ I recently added a suite of tools that I thought might go nicely along with the 
 - [Simple Kanban](https://notepad.js.org/kanban/)
 - [Case Converter](https://notepad.js.org/case-converter/)
 - [Tabbypad](https://notepad.js.org/tabbypad/)
+- [Text Diff](https://notepad.js.org/text-diff/)
 - [Deep Breath](https://notepad.js.org/deep-breath/)
 - [Drawingpad (Beta)](https://notepad.js.org/drawingpad/)
 - [Tasks](https://notepad.js.org/tasks/)

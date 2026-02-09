@@ -45,6 +45,11 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://notepad.js.org/text-diff/</loc>
+    <lastmod>2026-02-09T00:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://notepad.js.org/tabbypad/</loc>
     <lastmod>2025-01-23T11:36:26+00:00</lastmod>
     <priority>0.80</priority>

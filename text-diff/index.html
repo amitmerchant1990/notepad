@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compare two text blocks and highlight changes with a clean and intuitive diff tool.">
+  <meta name="author" content="Amit Merchant">
+  <meta name="keywords" content="text diff, note diff, compare text, offline diff, notepad" />
+  <meta name="application-name" content="Text Diff" />
+  <meta name="theme-color" content="#1b222d">
+
+  <meta property="og:title" content="Text Diff | notepad.js.org" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://notepad.js.org/text-diff" />
+  <meta property="og:description" content="Compare two text blocks and highlight changes with a clean and intuitive diff tool." />
+  <meta property="og:image" content="https://notepad.js.org/art/cover.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Text Diff | notepad.js.org" />
+  <meta name="twitter:description" content="Compare two text blocks and highlight changes with a clean and intuitive diff tool." />
+  <meta property="twitter:image" content="https://notepad.js.org/art/cover.png" />
+
+  <title>Text Diff | notepad.js.org</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top text-center">
+    <div class="flex-navbar">
+      <div class="brand-container">
+        <a class="brand-title" href="/">Notepad</a>
+        <img src="img/icons/slash.svg" alt="Slash Icon" />
+        <span>Text Diff</span>
+      </div>
+      <div class="flex-navbar-right">
+        <span title="About">
+          <a id="about" href="javascript:void(0);" data-toggle="modal" data-target="#aboutModal">
+            <img src="img/icons/info.svg" alt="About Icon" />
+          </a>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container tool-container">
+    <div class="starter-template">
+      <h1>Text Diff</h1>
+      <p>Compare two text blocks and see what changed.</p>
+    </div>
+
+    <div class="tool-panel controls-panel">
+      <div class="controls-left">
+        <label class="checkbox-inline">
+          <input type="checkbox" id="autoCompare" checked>
+          Auto compare
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="ignoreCase">
+          Ignore case
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="ignoreWhitespace">
+          Ignore extra spaces
+        </label>
+      </div>
+      <div class="controls-right">
+        <button class="btn btn-primary" id="compareBtn">Compare</button>
+        <button class="btn btn-default" id="clearBtn">Clear</button>
+      </div>
+    </div>
+
+    <div class="row text-panels">
+      <div class="col-sm-12 text-panel-left">
+        <div class="tool-panel">
+          <label class="panel-label" for="leftInput">Original text</label>
+          <textarea id="leftInput" class="form-control" placeholder="Paste the original text here..."></textarea>
+        </div>
+      </div>
+      <div class="col-sm-12 swap-column">
+        <button class="swap-button" id="swapBtn" type="button" aria-label="Swap original and modified text" title="Swap sides">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 7h11"></path>
+            <path d="M7 7l3-3"></path>
+            <path d="M7 7l3 3"></path>
+            <path d="M17 17H6"></path>
+            <path d="M17 17l-3-3"></path>
+            <path d="M17 17l-3 3"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="col-sm-12 text-panel-right">
+        <div class="tool-panel">
+          <label class="panel-label" for="rightInput">Modified text</label>
+          <textarea id="rightInput" class="form-control" placeholder="Paste the updated text here..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="row stats-row">
+      <div class="col-xs-6 col-sm-3">
+        <div class="stat-card">
+          <span>Added</span>
+          <strong id="statAdded">0</strong>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <div class="stat-card">
+          <span>Removed</span>
+          <strong id="statRemoved">0</strong>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <div class="stat-card">
+          <span>Changed</span>
+          <strong id="statChanged">0</strong>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-3">
+        <div class="stat-card">
+          <span>Unchanged</span>
+          <strong id="statEqual">0</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-panel diff-panel">
+      <div class="diff-header">
+        <span>Original</span>
+        <span>Modified</span>
+      </div>
+      <div id="diffView" class="diff-view">
+        <div class="empty-state">Paste text in both boxes to see a diff preview.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="aboutModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title custom-modal-title">Text Diff</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body modal-container">
+          <p>Text Diff helps you compare two text blocks side by side and highlights what changed instantly.</p>
+          <p>It supports:</p>
+          <ul>
+            <li>Line-by-line diff with inline highlights.</li>
+            <li>Auto compare as you type.</li>
+            <li>Ignore case and extra whitespace toggles.</li>
+          </ul>
+          <p class="about-notice">Enjoy using this tool? If so, consider <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buying me a coffee</a> so that I keep improving it further and the experience remains ad-free.</p>
+          <p style="text-align:center; margin: 10px 0 0 0;">
+            <b class="about-author-container">
+              Brought to you by
+              <a href="https://notepad.js.org/" class="about-author-link">
+                notepad.js.org
+              </a>
+            </b>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <div class="about-icon-container">
+            <a href="https://github.com/amitmerchant1990/notepad" target="_blank" class="github-icon" title="Notepad on GitHub" aria-label="Notepad on GitHub">
+              <svg width="30px" height="30px" viewBox="-4.32 -4.32 56.64 56.64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <rect width="48" height="48" fill="white" fill-opacity="0.01"></rect>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4ZM0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z" fill="#000000"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.183 45.4715C18.9896 45.2218 18.9896 42.9972 19.183 38.798C17.1112 38.8695 15.8022 38.7257 15.256 38.3666C14.4368 37.8279 13.6166 36.1666 12.8889 34.9958C12.1612 33.825 10.546 33.6399 9.8938 33.3782C9.24158 33.1164 9.07785 32.0495 11.691 32.8564C14.3042 33.6633 14.4316 35.8606 15.256 36.3744C16.0804 36.8882 18.0512 36.6634 18.9446 36.2518C19.8379 35.8402 19.7722 34.3077 19.9315 33.7006C20.1329 33.1339 19.423 33.0082 19.4074 33.0036C18.5353 33.0036 13.9537 32.0072 12.6952 27.5705C11.4368 23.1339 13.0579 20.234 13.9227 18.9874C14.4992 18.1563 14.4482 16.3851 13.7697 13.6736C16.2333 13.3588 18.1344 14.1342 19.4732 16C19.4745 16.0107 21.2283 14.9571 24 14.9571C26.7718 14.9571 27.7551 15.8153 28.514 16C29.2728 16.1847 29.8798 12.734 34.5666 13.6736C33.5881 15.5968 32.7686 18 33.3941 18.9874C34.0195 19.9748 36.4742 23.1146 34.9664 27.5705C33.9611 30.5412 31.9851 32.3522 29.0382 33.0036C28.7002 33.1114 28.5313 33.2854 28.5313 33.5254C28.5313 33.8855 28.9881 33.9248 29.6463 35.6116C30.085 36.7361 30.1167 39.9479 29.7413 45.2469C28.7904 45.489 28.0506 45.6515 27.5219 45.7346C26.5845 45.8819 25.5667 45.9645 24.5666 45.9964C23.5666 46.0283 23.2193 46.0247 21.8368 45.896C20.9151 45.8102 20.0305 45.6687 19.183 45.4715Z" fill="#000000"></path>
+                </g>
+              </svg>
+            </a>
+            <a href="https://buymeacoffee.com/amitmerchant" target="_blank" class="donate-icon" title="Buy me a coffee">
+              <svg fill="#000000" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M20.5,4.609A5.811,5.811,0,0,0,16,2.5a5.75,5.75,0,0,0-4,1.455A5.75,5.75,0,0,0,8,2.5,5.811,5.811,0,0,0,3.5,4.609c-.953,1.156-1.95,3.249-1.289,6.66,1.055,5.447,8.966,9.917,9.3,10.1a1,1,0,0,0,.974,0c.336-.187,8.247-4.657,9.3-10.1C22.45,7.858,21.453,5.765,20.5,4.609Zm-.674,6.28C19.08,14.74,13.658,18.322,12,19.34c-2.336-1.41-7.142-4.95-7.821-8.451-.513-2.646.189-4.183.869-5.007A3.819,3.819,0,0,1,8,4.5a3.493,3.493,0,0,1,3.115,1.469,1.005,1.005,0,0,0,1.76.011A3.489,3.489,0,0,1,16,4.5a3.819,3.819,0,0,1,2.959,1.382C19.637,6.706,20.339,8.243,19.826,10.889Z"></path>
+                </g>
+              </svg>
+            </a>
+          </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/libs/jquery-3.5.1.min.js"></script>
+  <script src="js/libs/popper.min.js"></script>
+  <script src="js/libs/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'UA-43339302-6');
+  </script>
+</body>
+</html>
