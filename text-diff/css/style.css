@@ -67,6 +67,24 @@ body {
   margin-bottom: 16px;
 }
 
+.swap-flash {
+  animation: swapPulse 0.5s ease;
+  border-color: #9fc0ff;
+  box-shadow: 0 0 0 3px rgba(94, 129, 244, 0.15), 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes swapPulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .controls-panel {
   display: flex;
   flex-wrap: wrap;

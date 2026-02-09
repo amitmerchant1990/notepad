@@ -9,6 +9,8 @@ const ignoreWhitespace = document.getElementById('ignoreWhitespace');
 const compareBtn = document.getElementById('compareBtn');
 const swapBtn = document.getElementById('swapBtn');
 const clearBtn = document.getElementById('clearBtn');
+const leftPanel = document.querySelector('.text-panel-left .tool-panel');
+const rightPanel = document.querySelector('.text-panel-right .tool-panel');
 
 const statAdded = document.getElementById('statAdded');
 const statRemoved = document.getElementById('statRemoved');
@@ -36,6 +38,7 @@ swapBtn.addEventListener('click', () => {
   const leftValue = leftInput.value;
   leftInput.value = rightInput.value;
   rightInput.value = leftValue;
+  triggerSwapCue();
   renderDiff();
 });
 
@@ -44,6 +47,21 @@ clearBtn.addEventListener('click', () => {
   rightInput.value = '';
   renderDiff();
 });
+
+function triggerSwapCue() {
+  if (!leftPanel || !rightPanel) {
+    return;
+  }
+  leftPanel.classList.remove('swap-flash');
+  rightPanel.classList.remove('swap-flash');
+  void leftPanel.offsetWidth;
+  leftPanel.classList.add('swap-flash');
+  rightPanel.classList.add('swap-flash');
+  setTimeout(() => {
+    leftPanel.classList.remove('swap-flash');
+    rightPanel.classList.remove('swap-flash');
+  }, 500);
+}
 
 function splitLines(text) {
   if (text === '') {
