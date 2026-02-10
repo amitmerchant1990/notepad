@@ -6,6 +6,11 @@ $(document).ready(function () {
 			active: false
 		},
 		{
+			text: "Liking the recent updates lately? Buy me a coffee to keep them coming!",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
 			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
@@ -53,7 +58,7 @@ $(document).ready(function () {
 		{
 			text: "Love the ad-free experience? Buy me a coffee to keep it that way!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "I hate ads on my Notepad. If you feel the same, consider buying me a coffee! ❤️",
