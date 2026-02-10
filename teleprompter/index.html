@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A customizable teleprompter with adjustable speed, font, and styling.">
+  <meta name="author" content="Amit Merchant">
+  <meta name="keywords" content="teleprompter,script,video,recording,presentation">
+  <meta name="application-name" content="Teleprompter">
+  <meta name="theme-color" content="#212529">
+
+  <meta property="og:title" content="Teleprompter | notepad.js.org">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://notepad.js.org/teleprompter">
+  <meta property="og:description" content="A customizable teleprompter with adjustable speed, font, and styling.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Teleprompter | notepad.js.org">
+  <meta name="twitter:description" content="A customizable teleprompter with adjustable speed, font, and styling.">
+
+  <title>Teleprompter | notepad.js.org</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-brand generic-flex">
+        <a href="/" class="text-white text-decoration-none text-bold">Notepad</a>
+        <img src="img/icons/slash.svg" alt="" />
+        <span class="text-white text-bold">Teleprompter</span>
+      </div>
+      <div class="navbar-tools">
+        <button type="button" class="btn btn-link navbar-icon" data-toggle="modal" data-target="#aboutModal" title="About">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container teleprompter-container">
+    <div class="row teleprompter-row">
+      <div class="col-lg-5 col-md-6 col-sm-12 teleprompter-col">
+        <section class="panel editor-panel">
+          <div class="panel-header">
+            <h1>Script</h1>
+            <p>Paste or write your text. It updates live on the prompter.</p>
+          </div>
+          <textarea id="scriptInput" placeholder="Paste your script here..."></textarea>
+          <div class="panel-footer">
+            <div>
+              <span id="wordCount">0</span> words
+            </div>
+            <button id="sampleBtn" class="btn btn-default btn-sm" type="button">Load sample</button>
+          </div>
+        </section>
+
+        <section class="panel controls-panel">
+          <div class="panel-header">
+            <h2>Playback &amp; Style</h2>
+          </div>
+          <div class="controls-grid">
+            <div class="control">
+              <label for="speedRange">Speed <span id="speedValue">60 px/s</span></label>
+              <input type="range" id="speedRange" min="10" max="200" value="60">
+            </div>
+            <div class="control">
+              <label for="fontRange">Font size <span id="fontValue">48 px</span></label>
+              <input type="range" id="fontRange" min="24" max="96" value="48">
+            </div>
+            <div class="control">
+              <label for="lineRange">Line height <span id="lineValue">1.6</span></label>
+              <input type="range" id="lineRange" min="1.2" max="2.4" step="0.1" value="1.6">
+            </div>
+            <div class="control">
+              <label for="widthRange">Text width <span id="widthValue">62 ch</span></label>
+              <input type="range" id="widthRange" min="40" max="90" value="62">
+            </div>
+
+            <div class="control-row">
+              <label class="toggle"><input type="checkbox" id="mirrorToggle"> Mirror text</label>
+              <label class="toggle"><input type="checkbox" id="guideToggle" checked> Center guide</label>
+              <label class="toggle"><input type="checkbox" id="startTopToggle" checked> Start from top</label>
+            </div>
+
+            <div class="color-row">
+              <div class="control">
+                <label for="bgColor">Background</label>
+                <input type="color" id="bgColor" value="#111827">
+              </div>
+              <div class="control">
+                <label for="textColor">Text</label>
+                <input type="color" id="textColor" value="#f8f9fa">
+              </div>
+            </div>
+
+            <div class="control">
+              <label>Progress</label>
+              <progress id="scrollProgress" value="0" max="100"></progress>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="col-lg-7 col-md-6 col-sm-12 teleprompter-col">
+        <section class="panel prompter-panel">
+          <div class="panel-header prompter-header">
+            <div>
+              <h2>Teleprompter</h2>
+              <span class="status-pill" id="playStatus">Ready</span>
+            </div>
+            <div class="prompter-actions" aria-label="Teleprompter controls">
+              <button id="fullscreenBtn" class="btn btn-default icon-button icon-only" type="button" aria-pressed="false" title="Fullscreen" aria-label="Fullscreen">
+                <span class="icon icon-fullscreen" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                  </svg>
+                </span>
+                <span class="icon icon-fullscreen-exit" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25" />
+                  </svg>
+                </span>
+              </button>
+              <button id="playToggle" class="btn btn-success icon-button icon-only" type="button" aria-pressed="false" title="Play" aria-label="Play">
+                <span class="icon icon-play" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M4.5 3.5v9l7-4.5-7-4.5z" />
+                  </svg>
+                </span>
+                <span class="icon icon-pause" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5 3.5h2v9H5zM9 3.5h2v9H9z" />
+                  </svg>
+                </span>
+              </button>
+              <button id="resetBtn" class="btn btn-default icon-only" type="button" title="Reset" aria-label="Reset">
+                <svg fill="#000000" width="18" height="18" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="26.880000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M960 0v112.941c467.125 0 847.059 379.934 847.059 847.059 0 467.125-379.934 847.059-847.059 847.059-467.125 0-847.059-379.934-847.059-847.059 0-267.106 126.607-515.915 338.824-675.727v393.374h112.94V112.941H0v112.941h342.89C127.058 407.38 0 674.711 0 960c0 529.355 430.645 960 960 960s960-430.645 960-960S1489.355 0 960 0" fill-rule="evenodd"></path> </g></svg>
+              </button>
+            </div>
+          </div>
+          <div class="prompter-stage" id="prompterStage">
+            <div class="prompter-frame" id="prompterFrame" tabindex="0" aria-label="Teleprompter preview">
+              <div class="prompter-content" id="prompterContent"></div>
+            </div>
+            <div class="guide-line" id="guideLine" aria-hidden="true"></div>
+          </div>
+          <div class="prompter-hint"><b>Shortcuts:</b> <kbd>Space</kbd> play/pause, <kbd>R</kbd> reset, <kbd>F</kbd> fullscreen.</div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- About Modal -->
+  <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="aboutModalLabel">Teleprompter</h4>
+        </div>
+        <div class="modal-body">
+          <p>A simple, customizable <a href="https://en.wikipedia.org/wiki/Teleprompter" target="_blank">teleprompter</a> to help you record or present with confidence.</p>
+          <p>Key features:</p>
+          <ul>
+            <li>Adjustable scroll speed, font size, and line height</li>
+            <li>Mirrored mode for reflective setups</li>
+            <li>Center guide line for steady eye contact</li>
+            <li>Fullscreen mode with keyboard shortcuts</li>
+            <li>Works fully offline and stores your script locally</li>
+          </ul>
+          <p class="about-notice">
+            Enjoy using this tool? If so, consider <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buying me a coffee</a> so that I keep working on improving it further and the experience remains ad-free.
+          </p>
+          <p class="text-center">
+            <b class="about-author-container">
+              Brought to you by
+              <a href="https://notepad.js.org/" class="about-author-link">
+                notepad.js.org
+              </a>
+            </b>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/libs/jquery.min.js"></script>
+  <script src="js/libs/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics - GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-43339302-6');
+  </script>
+</body>
+</html>
