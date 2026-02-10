@@ -172,6 +172,9 @@ body {
   font-weight: 500;
   color: #444;
   margin: 0;
+  display: flex;
+  gap: 5px;
+  font-size: 0.9rem;
 }
 
 .panel-label {
