@@ -9,6 +9,7 @@ const ignoreWhitespace = document.getElementById('ignoreWhitespace');
 const compareBtn = document.getElementById('compareBtn');
 const swapBtn = document.getElementById('swapBtn');
 const clearBtn = document.getElementById('clearBtn');
+const copyModifiedBtn = document.getElementById('copyModified');
 const leftPanel = document.querySelector('.text-panel-left .tool-panel');
 const rightPanel = document.querySelector('.text-panel-right .tool-panel');
 
@@ -47,6 +48,58 @@ clearBtn.addEventListener('click', () => {
   rightInput.value = '';
   renderDiff();
 });
+
+let copyTimer = null;
+
+if (copyModifiedBtn) {
+  copyModifiedBtn.addEventListener('click', () => {
+    const text = rightInput.value;
+    if (!text) {
+      return;
+    }
+
+    const onSuccess = () => {
+      copyModifiedBtn.classList.add('copied');
+      clearTimeout(copyTimer);
+      copyTimer = setTimeout(() => {
+        copyModifiedBtn.classList.remove('copied');
+      }, 1500);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onSuccess).catch(() => {
+        fallbackCopy(text, onSuccess);
+      });
+    } else {
+      fallbackCopy(text, onSuccess);
+    }
+  });
+}
+
+function fallbackCopy(text, onSuccess) {
+  const selection = document.getSelection();
+  const range = selection && selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+
+  rightInput.focus();
+  rightInput.select();
+
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      onSuccess();
+    }
+  } catch (error) {
+    // Ignore copy failures silently.
+  }
+
+  rightInput.setSelectionRange(0, 0);
+  rightInput.blur();
+
+  if (selection && range) {
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+}
 
 function triggerSwapCue() {
   if (!leftPanel || !rightPanel) {
@@ -202,7 +255,9 @@ function buildRows(ops, leftLines, rightLines) {
       rows.push({
         type: 'equal',
         left: leftLines[op.aIndex],
-        right: rightLines[op.bIndex]
+        right: rightLines[op.bIndex],
+        leftIndex: op.aIndex,
+        rightIndex: op.bIndex
       });
       index += 1;
       continue;
@@ -230,19 +285,25 @@ function buildRows(ops, leftLines, rightLines) {
         rows.push({
           type: 'change',
           left: leftLines[leftIndex],
-          right: rightLines[rightIndex]
+          right: rightLines[rightIndex],
+          leftIndex,
+          rightIndex
         });
       } else if (leftIndex !== undefined) {
         rows.push({
           type: 'remove',
           left: leftLines[leftIndex],
-          right: null
+          right: null,
+          leftIndex,
+          rightIndex: null
         });
       } else {
         rows.push({
           type: 'add',
           left: null,
-          right: rightLines[rightIndex]
+          right: rightLines[rightIndex],
+          leftIndex: null,
+          rightIndex
         });
       }
     }
@@ -314,9 +375,6 @@ function renderRows(rows) {
   diffView.innerHTML = '';
   const fragment = document.createDocumentFragment();
 
-  let leftLineNo = 0;
-  let rightLineNo = 0;
-
   let added = 0;
   let removed = 0;
   let changed = 0;
@@ -341,6 +399,8 @@ function renderRows(rows) {
 
     const leftHasContent = row.left !== null;
     const rightHasContent = row.right !== null;
+    const leftIndex = row.leftIndex;
+    const rightIndex = row.rightIndex;
 
     leftCell.className = `diff-cell ${leftHasContent ? `is-${row.type}` : 'is-empty'}`;
     rightCell.className = `diff-cell ${rightHasContent ? `is-${row.type}` : 'is-empty'}`;
@@ -348,15 +408,13 @@ function renderRows(rows) {
     rightCell.dataset.label = 'Modified';
 
     if (leftHasContent) {
-      leftLineNo += 1;
-      leftNumber.textContent = leftLineNo;
+      leftNumber.textContent = leftIndex + 1;
     } else {
       leftNumber.textContent = '';
     }
 
     if (rightHasContent) {
-      rightLineNo += 1;
-      rightNumber.textContent = rightLineNo;
+      rightNumber.textContent = rightIndex + 1;
     } else {
       rightNumber.textContent = '';
     }
@@ -376,6 +434,27 @@ function renderRows(rows) {
     rightCell.appendChild(rightTextEl);
 
     rowEl.appendChild(leftCell);
+
+    if (row.type === 'change' && leftHasContent && rightHasContent) {
+      rowEl.classList.add('has-action');
+      const arrowBtn = document.createElement('button');
+      arrowBtn.type = 'button';
+      arrowBtn.className = 'diff-arrow';
+      arrowBtn.setAttribute('aria-label', 'Apply original to modified');
+      arrowBtn.setAttribute('title', 'Apply original to modified');
+      arrowBtn.innerHTML = `<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"M13 6l6 6-6 6\"></path></svg>`;
+      arrowBtn.dataset.leftIndex = leftIndex;
+      arrowBtn.dataset.rightIndex = rightIndex;
+      arrowBtn.dataset.leftText = row.left;
+      arrowBtn.dataset.rightText = row.right;
+      arrowBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        applyOriginalToModified(arrowBtn.dataset);
+      });
+      rowEl.appendChild(arrowBtn);
+    }
+
     rowEl.appendChild(rightCell);
 
     fragment.appendChild(rowEl);
@@ -400,6 +479,52 @@ function updateStats(added, removed, changed, equal) {
   statRemoved.textContent = removed;
   statChanged.textContent = changed;
   statEqual.textContent = equal;
+}
+
+function applyOriginalToModified(data) {
+  const leftIdx = Number.parseInt(data.leftIndex, 10);
+  const rightIdx = Number.parseInt(data.rightIndex, 10);
+
+  if (Number.isNaN(leftIdx) || Number.isNaN(rightIdx)) {
+    return;
+  }
+
+  const leftLines = splitLines(leftInput.value || '');
+  const rightLines = splitLines(rightInput.value || '');
+  const leftLine = data.leftText ?? leftLines[leftIdx];
+  const rightLine = data.rightText;
+
+  if (leftLine === undefined) {
+    return;
+  }
+
+  let targetIdx = rightIdx;
+  if (rightLine !== undefined && rightLines[targetIdx] !== rightLine) {
+    let bestIndex = -1;
+    let bestDistance = Infinity;
+    for (let i = 0; i < rightLines.length; i += 1) {
+      if (rightLines[i] === rightLine) {
+        const distance = Math.abs(i - rightIdx);
+        if (distance < bestDistance) {
+          bestIndex = i;
+          bestDistance = distance;
+        }
+      }
+    }
+    if (bestIndex === -1) {
+      return;
+    }
+    targetIdx = bestIndex;
+  }
+
+  if (targetIdx < 0 || targetIdx >= rightLines.length) {
+    return;
+  }
+
+  rightLines[targetIdx] = leftLine;
+
+  rightInput.value = rightLines.join('\n');
+  renderDiff();
 }
 
 renderDiff();

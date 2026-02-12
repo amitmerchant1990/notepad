@@ -184,6 +184,56 @@ body {
   color: #2c2c2c;
 }
 
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.panel-header .panel-label {
+  margin-bottom: 0;
+}
+
+.icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
+  background: #ffffff;
+  color: #1b222d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.08);
+}
+
+.icon-button .icon-check {
+  display: none;
+}
+
+.icon-button.copied {
+  color: #2f7a4f;
+  border-color: #bcdcc8;
+  background: #f1fbf5;
+}
+
+.icon-button.copied .icon-copy {
+  display: none;
+}
+
+.icon-button.copied .icon-check {
+  display: block;
+}
+
 textarea.form-control {
   min-height: 220px;
   resize: vertical;
@@ -246,6 +296,7 @@ textarea.form-control {
 .diff-row {
   display: flex;
   border-bottom: 1px solid #f1f1f1;
+  position: relative;
 }
 
 .diff-row:last-child {
@@ -260,6 +311,40 @@ textarea.form-control {
   font-family: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
   font-size: 12.5px;
   line-height: 1.5;
+}
+
+.diff-row.has-action .diff-arrow {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.diff-row.has-action:hover .diff-arrow,
+.diff-row.has-action:focus-within .diff-arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.diff-arrow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #e2e2e2;
+  background: #ffffff;
+  color: #1b222d;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+.diff-arrow:hover {
+  transform: translate(-50%, -50%) scale(1.04);
 }
 
 .diff-cell.is-add {
@@ -371,6 +456,18 @@ textarea.form-control {
   .diff-cell,
   .diff-header span {
     width: 100%;
+  }
+
+  .diff-row.has-action .diff-arrow {
+    position: static;
+    transform: none;
+    margin: 6px auto;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .diff-row.has-action .diff-arrow svg {
+    transform: rotate(90deg);
   }
 
   .diff-cell::before {
