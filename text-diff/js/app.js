@@ -375,12 +375,29 @@ function renderRows(rows) {
   diffView.innerHTML = '';
   const fragment = document.createDocumentFragment();
 
+  const prevRightTexts = new Array(rows.length).fill(null);
+  const nextRightTexts = new Array(rows.length).fill(null);
+  let lastRightText = null;
+  for (let i = 0; i < rows.length; i += 1) {
+    prevRightTexts[i] = lastRightText;
+    if (rows[i].right !== null) {
+      lastRightText = rows[i].right;
+    }
+  }
+  let nextRightText = null;
+  for (let i = rows.length - 1; i >= 0; i -= 1) {
+    nextRightTexts[i] = nextRightText;
+    if (rows[i].right !== null) {
+      nextRightText = rows[i].right;
+    }
+  }
+
   let added = 0;
   let removed = 0;
   let changed = 0;
   let equal = 0;
 
-  rows.forEach((row) => {
+  rows.forEach((row, rowIndex) => {
     const rowEl = document.createElement('div');
     rowEl.className = 'diff-row';
 
@@ -447,6 +464,28 @@ function renderRows(rows) {
       arrowBtn.dataset.rightIndex = rightIndex;
       arrowBtn.dataset.leftText = row.left;
       arrowBtn.dataset.rightText = row.right;
+      arrowBtn.dataset.action = 'replace';
+      arrowBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        applyOriginalToModified(arrowBtn.dataset);
+      });
+      rowEl.appendChild(arrowBtn);
+    }
+
+    if (row.type === 'remove' && leftHasContent) {
+      rowEl.classList.add('has-action');
+      const arrowBtn = document.createElement('button');
+      arrowBtn.type = 'button';
+      arrowBtn.className = 'diff-arrow';
+      arrowBtn.setAttribute('aria-label', 'Insert original into modified');
+      arrowBtn.setAttribute('title', 'Insert original into modified');
+      arrowBtn.innerHTML = `<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"M13 6l6 6-6 6\"></path></svg>`;
+      arrowBtn.dataset.leftIndex = leftIndex;
+      arrowBtn.dataset.leftText = row.left;
+      arrowBtn.dataset.prevRightText = prevRightTexts[rowIndex] ?? '';
+      arrowBtn.dataset.nextRightText = nextRightTexts[rowIndex] ?? '';
+      arrowBtn.dataset.action = 'insert';
       arrowBtn.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -485,7 +524,7 @@ function applyOriginalToModified(data) {
   const leftIdx = Number.parseInt(data.leftIndex, 10);
   const rightIdx = Number.parseInt(data.rightIndex, 10);
 
-  if (Number.isNaN(leftIdx) || Number.isNaN(rightIdx)) {
+  if (Number.isNaN(leftIdx)) {
     return;
   }
 
@@ -498,33 +537,79 @@ function applyOriginalToModified(data) {
     return;
   }
 
-  let targetIdx = rightIdx;
-  if (rightLine !== undefined && rightLines[targetIdx] !== rightLine) {
-    let bestIndex = -1;
-    let bestDistance = Infinity;
-    for (let i = 0; i < rightLines.length; i += 1) {
-      if (rightLines[i] === rightLine) {
-        const distance = Math.abs(i - rightIdx);
-        if (distance < bestDistance) {
-          bestIndex = i;
-          bestDistance = distance;
-        }
+  if (data.action === 'insert') {
+    const nextText = data.nextRightText || null;
+    const prevText = data.prevRightText || null;
+    let insertIdx = rightLines.length;
+
+    if (nextText) {
+      const idx = findNearestLineIndex(rightLines, nextText, Number.isNaN(rightIdx) ? null : rightIdx);
+      if (idx !== -1) {
+        insertIdx = idx;
       }
     }
-    if (bestIndex === -1) {
+
+    if (insertIdx === rightLines.length && prevText) {
+      const idx = findNearestLineIndex(rightLines, prevText, Number.isNaN(rightIdx) ? null : rightIdx);
+      if (idx !== -1) {
+        insertIdx = idx + 1;
+      }
+    }
+
+    rightLines.splice(insertIdx, 0, leftLine);
+  } else {
+    if (Number.isNaN(rightIdx)) {
       return;
     }
-    targetIdx = bestIndex;
-  }
+    let targetIdx = rightIdx;
+    if (rightLine !== undefined && rightLines[targetIdx] !== rightLine) {
+      let bestIndex = -1;
+      let bestDistance = Infinity;
+      for (let i = 0; i < rightLines.length; i += 1) {
+        if (rightLines[i] === rightLine) {
+          const distance = Math.abs(i - rightIdx);
+          if (distance < bestDistance) {
+            bestIndex = i;
+            bestDistance = distance;
+          }
+        }
+      }
+      if (bestIndex === -1) {
+        return;
+      }
+      targetIdx = bestIndex;
+    }
 
-  if (targetIdx < 0 || targetIdx >= rightLines.length) {
-    return;
-  }
+    if (targetIdx < 0 || targetIdx >= rightLines.length) {
+      return;
+    }
 
-  rightLines[targetIdx] = leftLine;
+    rightLines[targetIdx] = leftLine;
+  }
 
   rightInput.value = rightLines.join('\n');
   renderDiff();
+}
+
+function findNearestLineIndex(lines, text, preferredIndex) {
+  if (!text) {
+    return -1;
+  }
+  let bestIndex = -1;
+  let bestDistance = Infinity;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (lines[i] === text) {
+      if (preferredIndex === null || preferredIndex === undefined) {
+        return i;
+      }
+      const distance = Math.abs(i - preferredIndex);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = i;
+      }
+    }
+  }
+  return bestIndex;
 }
 
 renderDiff();
