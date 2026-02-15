@@ -32,7 +32,7 @@ This is an offline-capable [Notepad](https://notepad.js.org/) which uses the [Se
 
 ## Mini tools
 
-![Notepad Mini Tools](/art/minitools.jpeg)
+![Notepad Mini Tools](/art/minitools.png)
 
 I recently added a suite of tools that I thought might go nicely along with the regular Notepad — making notepad.js.org a one-stop shop for all the note-taking related needs a step closer.
 
