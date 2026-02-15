@@ -830,13 +830,129 @@ a {
   transform: scale(1.05);
 }
 
-#changelog h4 {
-  font-size: 16px;
-  font-weight: bold;
+#changelog {
+  padding: 16px 8px 8px;
 }
 
-#changelog h4:first-child {
-  margin-top: 0;
+#changelog .changelog-card {
+  --changelog-card-bg: #f7f8fb;
+  --changelog-border: #e2e6ec;
+  --changelog-line: #d5dae2;
+  --changelog-dot: #b8c2cf;
+  --changelog-text: #131517;
+  --changelog-muted: #7b8794;
+
+  max-width: 520px;
+  padding: 18px 8px 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+#changelog .changelog-title {
+  margin: 0 0 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--changelog-text);
+}
+
+#changelog .changelog-timeline {
+  position: relative;
+  --timeline-padding: 31px;
+  --timeline-axis: 11px;
+  --timeline-dot-size: 10px;
+  --timeline-dot-radius: 5px;
+  padding-left: var(--timeline-padding);
+}
+
+#changelog .changelog-timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--changelog-line);
+  border-radius: 999px;
+}
+
+#changelog .changelog-timeline h4 {
+  position: relative;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--changelog-muted);
+  letter-spacing: 0.02em;
+}
+
+#changelog .changelog-timeline h4::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--timeline-axis) - var(--timeline-padding) - var(--timeline-dot-radius));
+  top: 0.25em;
+  width: var(--timeline-dot-size);
+  height: var(--timeline-dot-size);
+  border-radius: 999px;
+  background: var(--changelog-dot);
+  box-shadow: 0 0 0 6px var(--changelog-card-bg);
+}
+
+#changelog .changelog-timeline ul:last-child {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+#changelog .changelog-timeline ul:not(:last-child) {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 46px;
+}
+
+#changelog .changelog-timeline li {
+  font-size: 17px;
+  color: var(--changelog-text);
+  line-height: 1.4;
+  margin: 0 0 10px;
+}
+
+#changelog .changelog-timeline li:last-child {
+  margin-bottom: 0;
+}
+
+#changelog .changelog-timeline a {
+  color: #284b63;
+}
+
+#changelog .changelog-footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #6b7280;
+  font-weight: 600;
+  text-decoration: none;
+  padding-top: 6px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#changelog .changelog-footer:hover,
+#changelog .changelog-footer:focus {
+  color: #1f2937;
+  text-decoration: none;
+  transform: translateX(2px);
+}
+
+@media (max-width: 600px) {
+  #changelog .changelog-card {
+    padding: 22px 0 14px;
+  }
+
+  #changelog .changelog-title {
+    font-size: 20px;
+  }
+
+  #changelog .changelog-timeline li {
+    font-size: 16px;
+  }
 }
 
 .mic-icon {
