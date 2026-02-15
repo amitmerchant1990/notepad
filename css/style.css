@@ -878,7 +878,7 @@ a {
 #changelog .changelog-timeline h4 {
   position: relative;
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--changelog-muted);
   letter-spacing: 0.02em;
@@ -909,7 +909,7 @@ a {
 }
 
 #changelog .changelog-timeline li {
-  font-size: 17px;
+  font-size: 15px;
   color: var(--changelog-text);
   line-height: 1.4;
   margin: 0 0 10px;
@@ -951,7 +951,7 @@ a {
   }
 
   #changelog .changelog-timeline li {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
