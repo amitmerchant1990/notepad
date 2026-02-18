@@ -56,6 +56,11 @@
                         </span>
                     </a>
                 </span>
+                <span title="Preferences">
+                    <a id="preferences" href="javascript:void(0);" data-toggle="modal" data-target="#preferencesModal">
+                        <img src="img/navbar/settings.svg" alt="Preferences Icon" />
+                    </a>
+                </span>
                 <span title="About">
                     <a id="about" href="javascript:void(0);">
                         <img src="img/navbar/info.svg" alt="About Icon" href="#about" data-toggle="modal"
@@ -242,6 +247,46 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div id="preferencesModal" class="modal fade" role="dialog" aria-labelledby="preferencesTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title custom-modal-title" id="preferencesTitle">Preferences</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body modal-container">
+                    <div class="preferences-group">
+                        <div class="pref-row">
+                            <div>
+                                <label class="pref-label" for="prefSoundEnabled">Beep sound</label>
+                                <p class="pref-subtext">Play a sound when a session ends.</p>
+                            </div>
+                            <div class="pref-control">
+                                <label class="pref-switch">
+                                    <input type="checkbox" id="prefSoundEnabled" />
+                                    <span class="pref-slider" aria-hidden="true"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pref-row">
+                            <div>
+                                <label class="pref-label" for="prefVolume">Volume</label>
+                                <p class="pref-subtext">Adjust the beep volume.</p>
+                            </div>
+                            <div class="pref-control">
+                                <input type="range" id="prefVolume" min="0" max="100" step="5" />
+                                <span class="pref-volume-value" id="prefVolumeValue">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+                </div>
+            </div>
         </div>
     </div>
 

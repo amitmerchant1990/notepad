@@ -29,9 +29,101 @@ $(document).ready(function () {
         });
     }
 
+    const soundPrefKey = 'pomodoroSoundPrefs';
+    const defaultSoundPrefs = {
+        enabled: true,
+        volume: 1
+    };
+    const notiSound = document.getElementById('notiSound');
+    const prefSoundEnabled = document.getElementById('prefSoundEnabled');
+    const prefVolume = document.getElementById('prefVolume');
+    const prefVolumeValue = document.getElementById('prefVolumeValue');
+    let soundPrefs = {};
+
+    function clampNumber(value, min, max, fallback) {
+        const parsed = Number(value);
+
+        if (Number.isNaN(parsed)) {
+            return fallback;
+        }
+
+        return Math.min(Math.max(parsed, min), max);
+    }
+
+    function loadSoundPrefs() {
+        const storedPrefs = localStorage.getItem(soundPrefKey);
+
+        if (!storedPrefs) {
+            return { ...defaultSoundPrefs };
+        }
+
+        try {
+            const parsed = JSON.parse(storedPrefs);
+
+            return {
+                enabled: parsed.enabled !== false,
+                volume: clampNumber(parsed.volume, 0, 1, defaultSoundPrefs.volume)
+            };
+        } catch (error) {
+            return { ...defaultSoundPrefs };
+        }
+    }
+
+    function saveSoundPrefs() {
+        localStorage.setItem(soundPrefKey, JSON.stringify(soundPrefs));
+    }
+
+    function updateSoundUi() {
+        if (notiSound) {
+            notiSound.volume = soundPrefs.volume;
+        }
+
+        if (prefSoundEnabled) {
+            prefSoundEnabled.checked = soundPrefs.enabled;
+        }
+
+        if (prefVolume) {
+            prefVolume.value = Math.round(soundPrefs.volume * 100);
+            prefVolume.disabled = !soundPrefs.enabled;
+        }
+
+        if (prefVolumeValue) {
+            prefVolumeValue.textContent = `${Math.round(soundPrefs.volume * 100)}%`;
+            prefVolumeValue.classList.toggle('is-muted', !soundPrefs.enabled);
+        }
+    }
+
+    soundPrefs = loadSoundPrefs();
+    updateSoundUi();
+
+    if (prefSoundEnabled) {
+        prefSoundEnabled.addEventListener('change', (event) => {
+            soundPrefs.enabled = event.target.checked;
+            updateSoundUi();
+            saveSoundPrefs();
+        });
+    }
+
+    if (prefVolume) {
+        prefVolume.addEventListener('input', (event) => {
+            soundPrefs.volume = clampNumber(event.target.value / 100, 0, 1, defaultSoundPrefs.volume);
+            updateSoundUi();
+            saveSoundPrefs();
+        });
+    }
+
     function notifyUser() {
-        var notiSound = document.getElementById('notiSound');
-        notiSound.play();
+        if (!soundPrefs.enabled || !notiSound) {
+            return;
+        }
+
+        notiSound.currentTime = 0;
+        notiSound.volume = soundPrefs.volume;
+        const playAttempt = notiSound.play();
+
+        if (playAttempt && typeof playAttempt.catch === 'function') {
+            playAttempt.catch(() => {});
+        }
     }
 
     var timer, minutes = 25, seconds = 60,

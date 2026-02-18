@@ -368,6 +368,102 @@ body::after {
   border-radius: 12px;
 }
 
+.preferences-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pref-label {
+  display: block;
+  margin: 0;
+  font-weight: 600;
+}
+
+.pref-subtext {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.pref-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+  justify-content: flex-end;
+}
+
+.pref-switch {
+  position: relative;
+  display: inline-flex;
+  width: 48px;
+  height: 26px;
+}
+
+.pref-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pref-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.pref-slider::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 6px 12px rgba(2, 6, 23, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.pref-switch input:checked + .pref-slider {
+  background: linear-gradient(135deg, var(--accent), var(--accent-3));
+  border-color: transparent;
+}
+
+.pref-switch input:checked + .pref-slider::before {
+  transform: translateX(22px);
+}
+
+#prefVolume {
+  width: 120px;
+  accent-color: var(--accent);
+}
+
+#prefVolume:disabled {
+  opacity: 0.5;
+}
+
+.pref-volume-value {
+  font-weight: 600;
+  min-width: 52px;
+  text-align: right;
+}
+
+.pref-volume-value.is-muted {
+  opacity: 0.6;
+}
+
 body[data-theme="light"] .modal-content {
   background: rgba(255, 255, 255, 0.96);
   color: #0f172a;
@@ -391,6 +487,10 @@ body[data-theme="light"] .modal-content a:hover {
 body[data-theme="light"] .about-notice {
   background-color: rgba(15, 23, 42, 0.06);
   border-color: rgba(15, 23, 42, 0.12);
+}
+
+body[data-theme="light"] .pref-slider::before {
+  background: #f8fafc;
 }
 
 body[data-theme="light"] .modal-header .close {
@@ -532,6 +632,20 @@ body[data-theme="light"] .theme-icon-moon {
 
   .button-container {
     gap: 12px;
+  }
+
+  .pref-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pref-control {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #prefVolume {
+    width: 100%;
   }
 }
 
