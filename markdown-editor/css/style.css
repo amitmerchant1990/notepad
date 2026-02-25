@@ -210,6 +210,25 @@ img {
     background: none;
 }
 
+.dark .dropdown-menu {
+    background-color: #1c2553;
+    border: 1px solid #2e3a74;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.dark .dropdown-menu > li > a,
+.dark .dropdown-menu .dropdown-item {
+    color: #f0f2ff;
+}
+
+.dark .dropdown-menu > li > a:hover,
+.dark .dropdown-menu > li > a:focus,
+.dark .dropdown-menu .dropdown-item:hover,
+.dark .dropdown-menu .dropdown-item:focus {
+    background-color: #2a3570;
+    color: #ffffff;
+}
+
 .flex-navbar-right #about {
     display: flex;
     align-items: center;
