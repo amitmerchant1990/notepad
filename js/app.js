@@ -374,10 +374,14 @@ you can buy me a coffee — the link of which is available in the About section.
 	}
 
 	if (state.userChosenTexture) {
+		$(document.body).removeClass('dotted-paper graph-paper grain-paper');
+
 		if (state.userChosenTexture == 'dotted') {
 			$(document.body).addClass('dotted-paper');
 		} else if (state.userChosenTexture == 'graph') {
 			$(document.body).addClass('graph-paper');
+		} else if (state.userChosenTexture == 'grain') {
+			$(document.body).addClass('grain-paper');
 		}
 
 		notepad.texture.val(state.userChosenTexture);
@@ -599,15 +603,14 @@ you can buy me a coffee — the link of which is available in the About section.
 	notepad.texture.on('change', function (e) {
 		const textureSelected = this.value;
 
+		$(document.body).removeClass('dotted-paper graph-paper grain-paper');
+
 		if (textureSelected == 'dotted') {
 			$(document.body).addClass('dotted-paper');
-			$(document.body).removeClass('graph-paper');
 		} else if (textureSelected == 'graph') {
 			$(document.body).addClass('graph-paper');
-			$(document.body).removeClass('dotted-paper');
-		} else {
-			$(document.body).removeClass('dotted-paper');
-			$(document.body).removeClass('graph-paper');
+		} else if (textureSelected == 'grain') {
+			$(document.body).addClass('grain-paper');
 		}
 
 		setState('userChosenTexture', textureSelected);

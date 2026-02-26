@@ -136,6 +136,7 @@ function resetWriteDirection(defaultWriteDirection) {
 function resetTexture(defaultTexture) {
     $(document.body).removeClass('dotted-paper');
     $(document.body).removeClass('graph-paper');
+    $(document.body).removeClass('grain-paper');
     $('#texture').val(defaultTexture);
 }
 

@@ -888,7 +888,7 @@ a {
   content: "";
   position: absolute;
   left: calc(var(--timeline-axis) - var(--timeline-padding) - var(--timeline-dot-radius));
-  top: 0.25em;
+  top: 0.15em;
   width: var(--timeline-dot-size);
   height: var(--timeline-dot-size);
   border-radius: 999px;
@@ -1506,6 +1506,20 @@ a {
 
 .humanist {
   font-family: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
+}
+
+.grain-paper {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%20viewBox='0%200%20160%20160'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.8'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='160'%20height='160'%20filter='url(%23n)'%20opacity='0.08'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.grain-paper textarea {
+  border-color: transparent;
+}
+
+.dark.grain-paper {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%20viewBox='0%200%20160%20160'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.8'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='160'%20height='160'%20filter='url(%23n)'%20opacity='0.12'/%3E%3C/svg%3E");
 }
 
 .graph-paper {
