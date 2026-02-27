@@ -374,17 +374,32 @@ you can buy me a coffee — the link of which is available in the About section.
 	}
 
 	if (state.userChosenTexture) {
-		$(document.body).removeClass('dotted-paper graph-paper grain-paper');
+		const allowedTextures = ['normal', 'dotted', 'graph', 'grain', 'linen', 'recycled', 'newspaper', 'marble'];
 
-		if (state.userChosenTexture == 'dotted') {
-			$(document.body).addClass('dotted-paper');
-		} else if (state.userChosenTexture == 'graph') {
-			$(document.body).addClass('graph-paper');
-		} else if (state.userChosenTexture == 'grain') {
-			$(document.body).addClass('grain-paper');
+		if (allowedTextures.includes(state.userChosenTexture)) {
+			$(document.body).removeClass('dotted-paper graph-paper grain-paper linen-paper recycled-paper newspaper-paper marble-paper');
+
+			if (state.userChosenTexture == 'dotted') {
+				$(document.body).addClass('dotted-paper');
+			} else if (state.userChosenTexture == 'graph') {
+				$(document.body).addClass('graph-paper');
+			} else if (state.userChosenTexture == 'grain') {
+				$(document.body).addClass('grain-paper');
+			} else if (state.userChosenTexture == 'linen') {
+				$(document.body).addClass('linen-paper');
+			} else if (state.userChosenTexture == 'recycled') {
+				$(document.body).addClass('recycled-paper');
+			} else if (state.userChosenTexture == 'newspaper') {
+				$(document.body).addClass('newspaper-paper');
+			} else if (state.userChosenTexture == 'marble') {
+				$(document.body).addClass('marble-paper');
+			}
+
+			notepad.texture.val(state.userChosenTexture);
+		} else {
+			removeState('userChosenTexture');
+			resetTexture(editorConfig.defaultTexture);
 		}
-
-		notepad.texture.val(state.userChosenTexture);
 	}
 
 	if (state.userChosenOptimalLineLengthSelected) {
@@ -603,7 +618,7 @@ you can buy me a coffee — the link of which is available in the About section.
 	notepad.texture.on('change', function (e) {
 		const textureSelected = this.value;
 
-		$(document.body).removeClass('dotted-paper graph-paper grain-paper');
+		$(document.body).removeClass('dotted-paper graph-paper grain-paper linen-paper recycled-paper newspaper-paper marble-paper');
 
 		if (textureSelected == 'dotted') {
 			$(document.body).addClass('dotted-paper');
@@ -611,6 +626,14 @@ you can buy me a coffee — the link of which is available in the About section.
 			$(document.body).addClass('graph-paper');
 		} else if (textureSelected == 'grain') {
 			$(document.body).addClass('grain-paper');
+		} else if (textureSelected == 'linen') {
+			$(document.body).addClass('linen-paper');
+		} else if (textureSelected == 'recycled') {
+			$(document.body).addClass('recycled-paper');
+		} else if (textureSelected == 'newspaper') {
+			$(document.body).addClass('newspaper-paper');
+		} else if (textureSelected == 'marble') {
+			$(document.body).addClass('marble-paper');
 		}
 
 		setState('userChosenTexture', textureSelected);
