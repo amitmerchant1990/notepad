@@ -259,6 +259,44 @@
     </div>
   </div>
 
+  <!-- Search & Replace floating panel -->
+  <div id="searchReplace" class="sr-panel" style="display:none;">
+    <div class="sr-row">
+      <input id="searchInput" class="sr-input" placeholder="Find" />
+      <input id="replaceInput" class="sr-input sr-replace" placeholder="Replace" />
+    </div>
+    <div class="sr-controls">
+      <label><input type="checkbox" id="useRegex" /> Regex</label>
+      <button id="prevMatch" class="btn btn-default" title="Previous match">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button id="nextMatch" class="btn btn-default" title="Next match">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <button id="replaceOne" class="btn btn-default" title="Replace">
+        <!--google font icon-->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+          <path
+            d="M164-560q14-103 91.5-171.5T440-800q59 0 110.5 22.5T640-716v-84h80v240H480v-80h120q-29-36-69.5-58T440-720q-72 0-127 45.5T244-560h-80Zm620 440L608-296q-36 27-78.5 41.5T440-240q-59 0-110.5-22.5T240-324v84h-80v-240h240v80H280q29 36 69.5 58t90.5 22q72 0 127-45.5T636-480h80q-5 36-18 67.5T664-352l176 176-56 56Z" />
+        </svg>
+      </button>
+      <button id="replaceAll" class="btn btn-default" title="Replace all">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h6M3 18h6M9 6h12M9 12h12M9 18h12"/>
+        </svg>
+      </button>
+      <button id="closeSearch" class="btn btn-default" title="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <div class="sticky-notice make-hidden">
     <p>
       Enjoy using this app? If yes, consider <a href="https://www.paypal.com/paypalme/AmitMerchant" target="_blank">donating</a> so that the experience remains ad-free! :)
@@ -951,6 +989,10 @@
             <tr>
               <td><kbd>alt</kbd> / <kbd><span>⌥</span>option</kbd> + <kbd>f</kbd></td>
               <td>Toggle focus mode</td>
+            </tr>
+            <tr>
+              <td><kbd>ctrl</kbd> / <kbd><span>⌘</span>command</kbd> + <kbd>f</kbd></td>
+              <td>Open Search &amp; Replace panel</td>
             </tr>
           </table>
         </div>

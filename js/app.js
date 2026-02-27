@@ -876,6 +876,202 @@ you can buy me a coffee — the link of which is available in the About section.
 		}
 	});
 
+
+	// --- Search & Replace feature (works with regex)
+	const panel = document.getElementById('searchReplace');
+	const searchInput = document.getElementById('searchInput');
+	const replaceInput = document.getElementById('replaceInput');
+	const useRegex = document.getElementById('useRegex');
+	const nextBtn = document.getElementById('nextMatch');
+	const prevBtn = document.getElementById('prevMatch');
+	const replaceBtn = document.getElementById('replaceOne');
+	const replaceAllBtn = document.getElementById('replaceAll');
+	const closeBtn = document.getElementById('closeSearch');
+
+	function showPanel() {
+		panel.style.display = 'block';
+		searchInput.focus();
+	}
+
+	function hidePanel() {
+		panel.style.display = 'none';
+		note.focus();
+	}
+
+	function processEscapeSequences(str) {
+		return str
+			.replace(/\\n/g, '\n')
+			.replace(/\\t/g, '\t')
+			.replace(/\\r/g, '\r')
+			.replace(/\\\\/g, '\\');
+	}
+
+	function parseSearchPattern(q) {
+		if (useRegex.checked) {
+			try {
+				return new RegExp(q, 'g');
+			} catch (e) {
+				showToast('Invalid regular expression');
+				return null;
+			}
+		}
+
+		// escape regex metacharacters for literal search
+		return new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+	}
+
+	function findNext() {
+		const q = searchInput.value;
+		if (!q) return;
+		const pattern = parseSearchPattern(q);
+		if (!pattern) return;
+
+		const text = note.value;
+		pattern.lastIndex = note.selectionEnd || 0;
+		const match = pattern.exec(text);
+
+		if (match) {
+			const start = match.index;
+			const end = start + match[0].length;
+			note.focus();
+			note.selectionStart = start;
+			note.selectionEnd = end;
+			// scroll into view
+			const line = text.slice(0, start).split('\n').length - 1;
+			const rowHeight = 18; // approximate
+			note.scrollTop = Math.max(0, line * rowHeight - 80);
+		} else {
+			// wrap search from the start
+			pattern.lastIndex = 0;
+			const m = pattern.exec(text);
+			if (m) {
+				note.selectionStart = m.index;
+				note.selectionEnd = m.index + m[0].length;
+				note.focus();
+			} else {
+				showToast('No matches found');
+			}
+		}
+	}
+
+	function findPrev() {
+		const q = searchInput.value;
+		if (!q) return;
+		const pattern = parseSearchPattern(q);
+		if (!pattern) return;
+
+		const text = note.value;
+		// we need to iterate matches up to selectionStart
+		let lastMatch = null;
+		let m;
+		while ((m = pattern.exec(text)) !== null) {
+			if (m.index >= (note.selectionStart || 0)) break;
+			lastMatch = m;
+			// prevent infinite loop for zero-length matches
+			if (m[0].length === 0) pattern.lastIndex++;
+		}
+
+		if (lastMatch) {
+			note.selectionStart = lastMatch.index;
+			note.selectionEnd = lastMatch.index + lastMatch[0].length;
+			note.focus();
+		} else {
+			// go to last match in document
+			pattern.lastIndex = 0;
+			let final = null;
+			while ((m = pattern.exec(text)) !== null) {
+				final = m;
+				if (m[0].length === 0) pattern.lastIndex++;
+			}
+			if (final) {
+				note.selectionStart = final.index;
+				note.selectionEnd = final.index + final[0].length;
+				note.focus();
+			} else {
+				showToast('No matches found');
+			}
+		}
+	}
+
+	function replaceOne() {
+		const q = searchInput.value;
+		if (!q) return;
+		const pattern = parseSearchPattern(q);
+		if (!pattern) return;
+
+		const selStart = note.selectionStart || 0;
+		const selEnd = note.selectionEnd || 0;
+		const selectedText = note.value.substring(selStart, selEnd);
+
+		// If current selection matches pattern, replace it
+		let replaced = false;
+		if (selectedText && selectedText.match(useRegex.checked ? new RegExp(q) : new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))) {
+			const replaceValue = processEscapeSequences(replaceInput.value);
+			const newText = selectedText.replace(useRegex.checked ? new RegExp(q, useRegex.checked ? '' : 'g') : new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replaceValue);
+			note.focus();
+			note.setSelectionRange(selStart, selEnd);
+			document.execCommand('insertText', false, newText);
+			replaced = true;
+		}
+
+		if (!replaced) {
+			// find next and replace that
+			findNext();
+			const ns = note.selectionStart;
+			const ne = note.selectionEnd;
+			const selected = note.value.substring(ns, ne);
+			if (selected) {
+				const replaceValue = processEscapeSequences(replaceInput.value);
+				const newText = selected.replace(useRegex.checked ? new RegExp(q) : new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replaceValue);
+				note.focus();
+				note.setSelectionRange(ns, ne);
+				document.execCommand('insertText', false, newText);
+			} else {
+				showToast('No match to replace');
+			}
+		}
+	}
+
+	function replaceAll() {
+		const q = searchInput.value;
+		if (!q) return;
+		const pattern = parseSearchPattern(q);
+		if (!pattern) return;
+
+		const before = note.value;
+		try {
+			const replaceValue = processEscapeSequences(replaceInput.value);
+			const replaced = before.replace(pattern, replaceValue);
+
+			if (before === replaced) {
+				showToast('No matches found');
+				return;
+			}
+			
+			const savedScroll = note.scrollTop;
+
+			note.focus();
+			note.select();
+			document.execCommand('insertText', false, replaced);
+
+			// Restore view
+			note.selectionStart = 0;
+			note.selectionEnd = 0;
+			note.scrollTop = savedScroll;
+
+			showToast('Replaced all matches');
+		} catch (e) {
+			showToast('Replace failed: ' + e.message);
+		}
+	}
+
+	// Event bindings
+	nextBtn.addEventListener('click', findNext);
+	prevBtn.addEventListener('click', findPrev);
+	replaceBtn.addEventListener('click', replaceOne);
+	replaceAllBtn.addEventListener('click', replaceAll);
+	closeBtn.addEventListener('click', hidePanel);
+
 	// This listens for keyboard shortcuts
 	document.onkeydown = function (event) {
 		event = event || window.event;
@@ -932,6 +1128,21 @@ you can buy me a coffee — the link of which is available in the About section.
 
 			toggleFocusMode(notepad);
 		}
+
+		// Keyboard shortcuts: Ctrl/Cmd+F to open, Esc to close, Ctrl/Cmd+H to open panel as well
+		const mod = navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? event.metaKey : event.ctrlKey;
+		if (mod && event.code === 'KeyF') {
+			event.preventDefault();
+			showPanel();
+		} else if (mod && event.code === 'KeyH') {
+			event.preventDefault();
+			showPanel();
+		} else if (event.code === 'Escape') {
+			if (panel.style.display === 'block') {
+				hidePanel();
+			}
+		}
+	
 	};
 
 	// Font selection handler

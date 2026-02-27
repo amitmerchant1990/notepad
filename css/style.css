@@ -402,6 +402,100 @@ table tr td {
   background-color: var(--dough-white);
 }
 
+/* Search & Replace panel styling */
+#searchReplace {
+  width: 340px;
+  position: fixed;
+  top: 64px;
+  right: 20px;
+  z-index: 1050;
+  padding: 10px;
+  background: #ffffff;
+  color: #111;
+  border: 1px solid #ddd;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#searchReplace input {
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: #fff;
+  color: inherit;
+  height: 34px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* layout: first row inputs, second row controls (wrap if needed) */
+#searchReplace > div:first-child { display:flex; gap:8px; align-items:center; }
+#searchReplace > div:nth-child(2) { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:6px; }
+
+#searchReplace .btn {
+  background: transparent;
+  border: 1px solid #cfcfcf;
+  color: inherit;
+  padding: 4px 8px;
+  font-size: 13px;
+  line-height: 1;
+  height: 34px;
+  width: 34px;
+  min-width: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#searchReplace .btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Dark mode variants */
+.dark #searchReplace,
+body.dark #searchReplace {
+  background: #0f1416;
+  color: #d7dbe0;
+  border: 1px solid #22282c;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+.dark #searchReplace input,
+body.dark #searchReplace input {
+  background: #0b0f11;
+  color: #d7dbe0;
+  border: 1px solid #22282c;
+}
+
+.dark #searchReplace .btn,
+body.dark #searchReplace .btn {
+  border-color: #2b3339;
+}
+
+/* placeholder color */
+#searchReplace input::placeholder { color: #777; }
+.dark #searchReplace input::placeholder,
+body.dark #searchReplace input::placeholder { color: #8b9398; }
+
+/* Dark-mode button backgrounds for better contrast */
+.dark #searchReplace .btn,
+body.dark #searchReplace .btn {
+  background: rgba(255,255,255,0.02);
+  color: #d7dbe0;
+}
+
+/* ensure labels/checkbox visible */
+.dark #searchReplace label,
+body.dark #searchReplace label { color: #d7dbe0; }
+
+/* smaller checkbox/label spacing */
+#searchReplace label { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:inherit; }
+
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
