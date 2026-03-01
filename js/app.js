@@ -962,7 +962,7 @@ you can buy me a coffee — the link of which is available in the About section.
 	// Apply font based on selection
 	function applyFont(fontType) {
 		// Remove all font classes first
-		notepad.note.removeClass('dyslexic monospaced serif handwritten humanist');
+		notepad.note.removeClass('dyslexic monospaced serif handwritten humanist pixel');
 		
 		// Add the selected font class
 		switch(fontType) {
@@ -980,6 +980,9 @@ you can buy me a coffee — the link of which is available in the About section.
 				break;
 			case 'humanist':
 				notepad.note.addClass('humanist');
+				break;
+			case 'pixel':
+				notepad.note.addClass('pixel');
 				break;
 			// 'default' case doesn't need any class
 		}

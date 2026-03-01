@@ -2237,9 +2237,21 @@ a {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'DepartureMono';
+  src: url('../fonts/DepartureMono-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Dyslexic font class */
 .dyslexic {
   font-family: 'OpenDyslexic', sans-serif !important;
+  line-height: 1.6;
+}
+
+.pixel {
+  font-family: 'DepartureMono', sans-serif !important;
   line-height: 1.6;
 }
 

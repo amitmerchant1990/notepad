@@ -145,7 +145,7 @@ function resetTexture(defaultTexture) {
 }
 
 function resetFont(defaultFont) {
-    $('#note').removeClass('dyslexic monospaced serif');
+    $('#note').removeClass('dyslexic monospaced serif handwritten humanist pixel');
     $('#font').val(defaultFont);
 }
 
