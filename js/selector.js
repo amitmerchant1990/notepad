@@ -59,6 +59,7 @@ function selector() {
             dyslexic: selectById('dyslexic'),
             spellCheck: selectById('spellCheck'),
             tabIndentation: selectById('tabIndentation'),
+            explodingEffect: selectById('explodingEffect'),
             bottomLine: selectByClassName('bottom-line'),
             focusModeButton: selectById('focusModeButton'),
             focusModeCloseButton: selectById('focusModeCloseButton'),
@@ -85,6 +86,7 @@ function selector() {
             userChosenTransparentWordCountPillSelected: getState('userChosenTransparentWordCountPillSelected'),
             userChosenTypewriterSound: getState('userChosenTypewriterSound'),
             userChosenTypewriterVolume: getState('userChosenTypewriterVolume'),
+            userChosenExplodingEffect: getState('userChosenExplodingEffect'),
             selectedFont: getState('selectedFont')
         },
         defaultConfig: {
@@ -102,6 +104,7 @@ function selector() {
             defaultTransparentWordCountPillSelected: false,
             defaultTypewriterSound: false,
             defaultTypewriterVolume: 25,
+            defaultExplodingEffect: false,
         },
         get,
         getState,

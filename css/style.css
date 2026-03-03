@@ -2282,6 +2282,38 @@ a {
   color: #2c2c2c;
 }
 
+#keyburstLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.keyburst-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--burst-color, #ff6b6b);
+  box-shadow: 0 0 6px var(--burst-color, #ff6b6b);
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  animation: keyburst 650ms ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes keyburst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--burst-x, 0), var(--burst-y, -20px)) scale(0);
+  }
+}
+
 .chime-container {
   display: flex;
   align-items: center;

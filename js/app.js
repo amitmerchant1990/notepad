@@ -196,6 +196,151 @@ you can buy me a coffee — the link of which is available in the About section.
 	typeSound.volume = 0.2; // keep it subtle
 	const userChosenTypewriterSound = state.userChosenTypewriterSound;
 	const userChosenTypewriterVolume = state.userChosenTypewriterVolume;
+	const userChosenExplodingEffect = state.userChosenExplodingEffect;
+
+	let explodingEffectEnabled;
+	let keyburstLayer = $('#keyburstLayer');
+	let pendingKeyburst = false;
+	let pendingKeyburstTarget = null;
+
+	if (keyburstLayer.length === 0) {
+		keyburstLayer = $('<div id="keyburstLayer" aria-hidden="true"></div>');
+		$('body').append(keyburstLayer);
+	}
+
+	const keyburstColors = ['#ff4d6d', '#ffe66d', '#6bffb4', '#6bb7ff', '#d06bff', '#ff9f6b'];
+	const keyburstParticleCount = 8;
+	const keyburstMirrorProps = [
+		'direction',
+		'boxSizing',
+		'overflowX',
+		'overflowY',
+		'borderTopWidth',
+		'borderRightWidth',
+		'borderBottomWidth',
+		'borderLeftWidth',
+		'borderTopStyle',
+		'borderRightStyle',
+		'borderBottomStyle',
+		'borderLeftStyle',
+		'paddingTop',
+		'paddingRight',
+		'paddingBottom',
+		'paddingLeft',
+		'fontStyle',
+		'fontVariant',
+		'fontWeight',
+		'fontStretch',
+		'fontSize',
+		'lineHeight',
+		'fontFamily',
+		'textAlign',
+		'textTransform',
+		'textIndent',
+		'letterSpacing',
+		'wordSpacing',
+		'tabSize',
+		'textRendering'
+	];
+
+	function getCaretClientPosition(textarea) {
+		if (!textarea || typeof textarea.selectionStart !== 'number') {
+			return null;
+		}
+
+		let mirror = textarea._caretMirror;
+
+		if (!mirror) {
+			mirror = document.createElement('div');
+			mirror.setAttribute('aria-hidden', 'true');
+			document.body.appendChild(mirror);
+			textarea._caretMirror = mirror;
+		}
+
+		const computed = window.getComputedStyle(textarea);
+		const rect = textarea.getBoundingClientRect();
+
+		keyburstMirrorProps.forEach((prop) => {
+			mirror.style[prop] = computed[prop];
+		});
+
+		mirror.style.position = 'absolute';
+		mirror.style.top = '0px';
+		mirror.style.left = '-9999px';
+		mirror.style.whiteSpace = 'pre-wrap';
+		mirror.style.wordWrap = 'break-word';
+		mirror.style.overflow = 'hidden';
+		mirror.style.visibility = 'hidden';
+		mirror.style.pointerEvents = 'none';
+		const paddingLeft = parseFloat(computed.paddingLeft) || 0;
+		const paddingRight = parseFloat(computed.paddingRight) || 0;
+		const contentWidth = Math.max(0, textarea.clientWidth - paddingLeft - paddingRight);
+
+		mirror.style.boxSizing = 'content-box';
+		mirror.style.width = `${contentWidth}px`;
+		mirror.style.height = `${textarea.clientHeight}px`;
+
+		const value = textarea.value;
+		const caretIndex = textarea.selectionStart;
+		const textBefore = value.substring(0, caretIndex);
+		const textAfter = value.substring(caretIndex);
+
+		mirror.textContent = textBefore;
+
+		const span = document.createElement('span');
+		span.textContent = textAfter || '.';
+		mirror.appendChild(span);
+
+		const borderLeft = parseFloat(computed.borderLeftWidth) || 0;
+		const borderTop = parseFloat(computed.borderTopWidth) || 0;
+		const lineHeight = parseFloat(computed.lineHeight) || parseFloat(computed.fontSize) || 16;
+		const left = rect.left + span.offsetLeft + borderLeft - textarea.scrollLeft;
+		const top = rect.top + span.offsetTop + borderTop - textarea.scrollTop;
+
+		return {
+			left,
+			top,
+			height: lineHeight
+		};
+	}
+
+	function triggerKeyburst(textarea) {
+		if (!keyburstLayer.length) {
+			return;
+		}
+
+		const caret = getCaretClientPosition(textarea);
+
+		if (!caret) {
+			return;
+		}
+
+		const baseX = caret.left;
+		const baseY = caret.top + caret.height * 0.6;
+		const layer = keyburstLayer[0];
+
+		for (let i = 0; i < keyburstParticleCount; i++) {
+			const particle = document.createElement('span');
+			const angle = Math.random() * Math.PI * 2;
+			const distance = 12 + Math.random() * 22;
+			const size = 3 + Math.random() * 4;
+			const color = keyburstColors[Math.floor(Math.random() * keyburstColors.length)];
+
+			particle.className = 'keyburst-particle';
+			particle.style.left = `${baseX}px`;
+			particle.style.top = `${baseY}px`;
+			particle.style.width = `${size}px`;
+			particle.style.height = `${size}px`;
+			particle.style.setProperty('--burst-x', `${Math.cos(angle) * distance}px`);
+			particle.style.setProperty('--burst-y', `${Math.sin(angle) * distance}px`);
+			particle.style.setProperty('--burst-color', color);
+
+			layer.appendChild(particle);
+			particle.addEventListener('animationend', () => {
+				particle.remove();
+			});
+		}
+	}
 
 	// Initialize typewriter sound preference
 	if (!userChosenTypewriterSound) {
@@ -219,6 +364,15 @@ you can buy me a coffee — the link of which is available in the About section.
 		$('#typewriterVolume').val(userChosenTypewriterVolume);
 		$('#typewriterVolumeValue').text(userChosenTypewriterVolume + '%');
 	}
+
+	// Initialize explosion effect preference
+	if (!userChosenExplodingEffect) {
+		explodingEffectEnabled = editorConfig.defaultExplodingEffect;
+		$('#explodingEffect').prop('checked', explodingEffectEnabled);
+	} else {
+		explodingEffectEnabled = userChosenExplodingEffect == 'Yes';
+		$('#explodingEffect').prop('checked', explodingEffectEnabled);
+	}
 	
 	function playTypeSound() {
 		if (!typewriterSoundEnabled) return;
@@ -234,6 +388,17 @@ you can buy me a coffee — the link of which is available in the About section.
 	}
 
 	notepad.note.on('keydown', (e) => {
+		const shouldExplode = explodingEffectEnabled
+			&& !e.ctrlKey
+			&& !e.metaKey
+			&& !e.altKey
+			&& (e.key.length === 1 || e.key === 'Enter');
+
+		if (shouldExplode) {
+			pendingKeyburst = true;
+			pendingKeyburstTarget = e.target;
+		}
+
 		if (e.key === 'Enter') {
 			if (typewriterSoundEnabled) {
 				const s = carriageReturnSound.cloneNode();
@@ -275,6 +440,31 @@ you can buy me a coffee — the link of which is available in the About section.
 		}
 	});
 
+	notepad.note.on('input', (e) => {
+		if (!explodingEffectEnabled) {
+			pendingKeyburst = false;
+			pendingKeyburstTarget = null;
+			return;
+		}
+
+		const inputType = (e.originalEvent && e.originalEvent.inputType) ? e.originalEvent.inputType : e.inputType;
+		const isInsert = pendingKeyburst || (inputType && inputType.startsWith('insert') && inputType !== 'insertFromPaste' && inputType !== 'insertFromDrop');
+
+		if (!isInsert) {
+			pendingKeyburst = false;
+			pendingKeyburstTarget = null;
+			return;
+		}
+
+		const target = pendingKeyburstTarget || e.target;
+		pendingKeyburst = false;
+		pendingKeyburstTarget = null;
+
+		requestAnimationFrame(() => {
+			triggerKeyburst(target);
+		});
+	});
+
 	// Handle typewriter sound toggle
 	$('#typewriterSound').on('change', function() {
 		const isEnabled = $(this).is(':checked');
@@ -286,6 +476,13 @@ you can buy me a coffee — the link of which is available in the About section.
 		} else {
 			$('.typewriter-switch-volume').hide();
 		}
+	});
+
+	// Handle explosion effect toggle
+	$('#explodingEffect').on('change', function() {
+		const isEnabled = $(this).is(':checked');
+		setState('userChosenExplodingEffect', isEnabled ? 'Yes' : 'No');
+		explodingEffectEnabled = isEnabled;
 	});
 
 	// Handle typewriter volume change
@@ -760,6 +957,12 @@ you can buy me a coffee — the link of which is available in the About section.
 			removeState('userChosenTypewriterVolume');
 			$('#typewriterVolume').val(editorConfig.defaultTypewriterVolume);
 			$('#typewriterVolumeValue').text(editorConfig.defaultTypewriterVolume + '%');
+		}
+
+		if (selector().state.userChosenExplodingEffect) {
+			removeState('userChosenExplodingEffect');
+			explodingEffectEnabled = editorConfig.defaultExplodingEffect;
+			$('#explodingEffect').prop('checked', explodingEffectEnabled);
 		}
 
 		// Reset to device theme as default
