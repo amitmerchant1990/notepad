@@ -8,17 +8,22 @@ $(document).ready(function () {
 		{
 			text: "Liking the recent updates lately? Buy me a coffee to keep them coming!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+		{
+			text: "If this app saves you time, a coffee is a nice way to say thanks!",
+			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
-			text: "Support if you can so that I can prioritize the development of this app outside my work.",
+			text: "This app runs without ads. If you value that, buy me a coffee.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Buy me a coffee so that I don't have to rely on ads to run this app.",
