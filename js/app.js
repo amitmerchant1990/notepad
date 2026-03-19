@@ -81,6 +81,21 @@ $(document).ready(function () {
 			active: false
 		},
 		{
+			text: "Using Notepad every day? Buy me a coffee and support its upkeep.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+		{
+			text: "If Notepad has become part of your workflow, a coffee helps me improve it.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+		{
+			text: "Enjoy the clutter-free writing experience? Consider buying me a coffee.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
 			text: "🚀 New tool → Case Converter",
 			url: "/case-converter",
 			active: false
