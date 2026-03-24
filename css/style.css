@@ -921,6 +921,7 @@ a {
 
 #changelog .changelog-timeline a {
   color: #284b63;
+  text-decoration: underline;
 }
 
 #changelog .changelog-footer {
