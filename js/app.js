@@ -13,12 +13,12 @@ $(document).ready(function () {
 		{
 			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "If this app saves you time, a coffee is a nice way to say thanks!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "This app runs without ads. If you value that, buy me a coffee.",
