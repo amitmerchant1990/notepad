@@ -204,6 +204,8 @@
     </button>
   </div>
 
+  <div id="breakVeil" class="break-veil" aria-hidden="true"></div>
+
   <div id="mainContainer">
     <div class="container" id="textareaContainer">
       <div class="starter-template">
@@ -1218,7 +1220,6 @@
               <a href="#" data-toggle="tooltip" title="Enable or disable the typewriter (Hermes Precisa 305 model) sound effect when typing">
                 <img src="img/tooltip.svg" alt="Tooltip" />
               </a>
-              <span class="new-badge">NEW</span>
             </label>
             <div class="col-sm-6 col-md-5">
               <div class="checkbox checbox-switch generic-flex typewriter-switch">
@@ -1232,6 +1233,24 @@
                     </div>
                     <span id="typewriterVolumeValue" title="Typewriter volume"></span>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-6 col-md-6 generic-flex">
+              Break Reminders
+              <a href="#" data-toggle="tooltip" title="Gently suggests a short break after long active writing sessions. Disabled by default and tracked locally only.">
+                <img src="img/tooltip.svg" alt="Tooltip" />
+              </a>
+              <span class="new-badge">NEW</span>
+            </label>
+            <div class="col-sm-6 col-md-5">
+              <div class="checkbox checbox-switch">
+                <label>
+                    <input type="checkbox" name="breakReminders" id="breakReminders"/>
+                    <span></span>
+                </label>
               </div>
             </div>
           </div>
@@ -1276,6 +1295,21 @@
               <span id="toastText"></span>
           </a>
         <button id="closeToastPopup" class="close-popup" aria-label="Close popup">&times;</button>
+    </div>
+  </div>
+
+  <div id="breakReminderPopup" class="toast-popup break-reminder-popup" aria-live="polite">
+    <div class="toast-content break-reminder-content">
+      <div class="break-reminder-copy">
+        <strong id="breakReminderTitle">Time for a 2-minute break?</strong>
+        <p id="breakReminderText">Stand up, stretch, or look away from the screen for a minute.</p>
+      </div>
+      <button id="closeBreakReminderPopup" class="close-popup" aria-label="Close break reminder popup">&times;</button>
+    </div>
+    <div id="breakReminderActions" class="break-reminder-actions">
+      <button id="takeBreakAction" class="break-reminder-button break-reminder-button-primary" type="button">Take break</button>
+      <button id="snoozeBreakAction" class="break-reminder-button" type="button">Snooze 10m</button>
+      <button id="dismissBreakAction" class="break-reminder-button" type="button">Dismiss</button>
     </div>
   </div>
 

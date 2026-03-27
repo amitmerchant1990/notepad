@@ -140,6 +140,200 @@ $(document).ready(function () {
 		}, 500);
 	}
 
+	const breakReminderConfig = {
+		// Show the reminder after this much active writing time.
+		thresholdMs: 30 * 60 * 1000,
+
+		// Ignore gaps longer than this so idle time does not count as writing.
+		idleWindowMs: 2 * 60 * 1000,
+
+		// Cap how much time a single input event can add to the session.
+		activitySliceMs: 15000,
+
+		// Hide the reminder for this long when the user snoozes it.
+		snoozeMs: 10 * 60 * 1000,
+
+		// Duration of the actual break countdown once started.
+		breakDurationMs: 2 * 60 * 1000,
+
+		// Keep the reminder suppressed for this long after dismissal.
+		dismissCooldownMs: 30 * 60 * 1000,
+
+		// localStorage key used to persist reminder state across reloads.
+		storageKey: 'breakReminderState'
+	};
+
+	const breakReminderDefaults = {
+		accumulatedMs: 0,
+		lastActivityAt: 0,
+		snoozedUntil: 0,
+		dismissedUntil: 0
+	};
+
+	let breakReminderState = loadBreakReminderState();
+	let breakReminderCountdownTimer = null;
+	let breakRemindersEnabled = false;
+
+	function loadBreakReminderState() {
+		const rawState = localStorage.getItem(breakReminderConfig.storageKey);
+
+		if (!rawState) {
+			return { ...breakReminderDefaults };
+		}
+
+		try {
+			return {
+				...breakReminderDefaults,
+				...JSON.parse(rawState)
+			};
+		} catch (error) {
+			return { ...breakReminderDefaults };
+		}
+	}
+
+	function persistBreakReminderState() {
+		localStorage.setItem(breakReminderConfig.storageKey, JSON.stringify(breakReminderState));
+	}
+
+	function clearBreakReminderState() {
+		breakReminderState = { ...breakReminderDefaults };
+		localStorage.removeItem(breakReminderConfig.storageKey);
+	}
+
+	function closeBreakReminderPopup() {
+		const $breakPopup = $('#breakReminderPopup');
+		$breakPopup.addClass('hide');
+		$('#breakVeil').removeClass('active');
+		setTimeout(function () {
+			$breakPopup.removeClass('show hide break-active');
+			$('#breakReminderActions').show();
+			$('#takeBreakAction').text('Take break');
+			$('#snoozeBreakAction').show();
+			$('#dismissBreakAction').show();
+			$('#breakReminderTitle').text('Time for a 2-minute break?');
+			$('#breakReminderText').text('Stand up, stretch, or look away from the screen for a minute.');
+		}, 300);
+
+		if (breakReminderCountdownTimer) {
+			clearInterval(breakReminderCountdownTimer);
+			breakReminderCountdownTimer = null;
+		}
+	}
+
+	function resetBreakReminderSession() {
+		breakReminderState.accumulatedMs = 0;
+		breakReminderState.lastActivityAt = 0;
+		persistBreakReminderState();
+	}
+
+	function disableBreakReminders() {
+		breakRemindersEnabled = false;
+		closeBreakReminderPopup();
+		clearBreakReminderState();
+	}
+
+	function enableBreakReminders() {
+		breakRemindersEnabled = true;
+		breakReminderState = loadBreakReminderState();
+	}
+
+	function shouldBlockBreakReminder(now) {
+		return now < breakReminderState.snoozedUntil || now < breakReminderState.dismissedUntil;
+	}
+
+	function showBreakReminderPopup() {
+		if (!breakRemindersEnabled) {
+			return;
+		}
+
+		if ($('#breakReminderPopup').hasClass('show')) {
+			return;
+		}
+
+		closeToastPopup();
+		const $breakPopup = $('#breakReminderPopup');
+		$breakPopup.removeClass('hide break-active').addClass('show');
+		$('#breakReminderActions').show();
+		$('#takeBreakAction').text('Take break');
+		$('#snoozeBreakAction').show();
+		$('#dismissBreakAction').show();
+		$('#breakReminderTitle').text('Time for a 2-minute break?');
+		$('#breakReminderText').text('Stand up, stretch, or look away from the screen for a minute.');
+	}
+
+	function maybeShowBreakReminder(now = Date.now()) {
+		if (!breakRemindersEnabled || document.hidden || shouldBlockBreakReminder(now)) {
+			return;
+		}
+
+		if (breakReminderState.accumulatedMs >= breakReminderConfig.thresholdMs) {
+			showBreakReminderPopup();
+		}
+	}
+
+	function trackWritingActivity() {
+		if (!breakRemindersEnabled || document.hidden) {
+			return;
+		}
+
+		const now = Date.now();
+
+		if (breakReminderState.lastActivityAt) {
+			const delta = now - breakReminderState.lastActivityAt;
+
+			if (delta <= breakReminderConfig.idleWindowMs) {
+				breakReminderState.accumulatedMs += Math.min(delta, breakReminderConfig.activitySliceMs);
+			}
+		}
+
+		breakReminderState.lastActivityAt = now;
+		persistBreakReminderState();
+		maybeShowBreakReminder(now);
+	}
+
+	function formatBreakCountdown(msRemaining) {
+		const totalSeconds = Math.max(0, Math.ceil(msRemaining / 1000));
+		const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+		const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+
+		return `${minutes}:${seconds}`;
+	}
+
+	function startBreakCountdown() {
+		const breakEndsAt = Date.now() + breakReminderConfig.breakDurationMs;
+
+		breakReminderState.snoozedUntil = breakEndsAt;
+		resetBreakReminderSession();
+		persistBreakReminderState();
+
+		$('#breakReminderPopup').addClass('break-active');
+		$('#breakVeil').addClass('active');
+		$('#breakReminderActions').show();
+		$('#breakReminderTitle').text(formatBreakCountdown(breakReminderConfig.breakDurationMs));
+		$('#breakReminderText').text('Relax your eyes. Unclench your jaw. Breathe.');
+		$('#takeBreakAction').text('Back to writing');
+		$('#snoozeBreakAction').hide();
+		$('#dismissBreakAction').hide();
+
+		if (breakReminderCountdownTimer) {
+			clearInterval(breakReminderCountdownTimer);
+		}
+
+		breakReminderCountdownTimer = setInterval(() => {
+			const msRemaining = breakEndsAt - Date.now();
+
+			if (msRemaining <= 0) {
+				clearInterval(breakReminderCountdownTimer);
+				breakReminderCountdownTimer = null;
+				closeBreakReminderPopup();
+				showToast('Break complete. Welcome back.');
+				return;
+			}
+
+			$('#breakReminderTitle').text(formatBreakCountdown(msRemaining));
+		}, 1000);
+	}
+
 	// Close toast popup
 	$('#closeToastPopup').on('click', function () {
 		closeToastPopup();
@@ -148,6 +342,36 @@ $(document).ready(function () {
 	// Close toast popup when link is clicked
 	$('#toastLink').on('click', function () {
 		closeToastPopup();
+	});
+
+	$('#closeBreakReminderPopup').on('click', function () {
+		breakReminderState.dismissedUntil = Date.now() + breakReminderConfig.dismissCooldownMs;
+		resetBreakReminderSession();
+		persistBreakReminderState();
+		closeBreakReminderPopup();
+	});
+
+	$('#takeBreakAction').on('click', function () {
+		if ($('#breakReminderPopup').hasClass('break-active')) {
+			closeBreakReminderPopup();
+			return;
+		}
+
+		startBreakCountdown();
+	});
+
+	$('#snoozeBreakAction').on('click', function () {
+		breakReminderState.snoozedUntil = Date.now() + breakReminderConfig.snoozeMs;
+		breakReminderState.lastActivityAt = 0;
+		persistBreakReminderState();
+		closeBreakReminderPopup();
+	});
+
+	$('#dismissBreakAction').on('click', function () {
+		breakReminderState.dismissedUntil = Date.now() + breakReminderConfig.dismissCooldownMs;
+		resetBreakReminderSession();
+		persistBreakReminderState();
+		closeBreakReminderPopup();
 	});
 	
 	// Show toast popup after a delay
@@ -461,6 +685,8 @@ you can buy me a coffee — the link of which is available in the About section.
 	});
 
 	notepad.note.on('input', (e) => {
+		trackWritingActivity();
+
 		if (!explodingEffectEnabled) {
 			pendingKeyburst = false;
 			pendingKeyburstTarget = null;
@@ -483,6 +709,13 @@ you can buy me a coffee — the link of which is available in the About section.
 		requestAnimationFrame(() => {
 			triggerKeyburst(target);
 		});
+	});
+
+	document.addEventListener('visibilitychange', () => {
+		if (document.hidden && breakRemindersEnabled) {
+			breakReminderState.lastActivityAt = 0;
+			persistBreakReminderState();
+		}
 	});
 
 	// Handle typewriter sound toggle
@@ -649,6 +882,20 @@ you can buy me a coffee — the link of which is available in the About section.
 		notepad.tabIndentation.prop('checked', state.userChosenTabIndentation === 'Yes');
 	} else {
 		notepad.tabIndentation.prop('checked', false);
+	}
+
+	if (state.userChosenBreakReminders) {
+		const isBreakRemindersEnabled = state.userChosenBreakReminders === 'Yes';
+		notepad.breakReminders.prop('checked', isBreakRemindersEnabled);
+
+		if (isBreakRemindersEnabled) {
+			enableBreakReminders();
+		} else {
+			disableBreakReminders();
+		}
+	} else {
+		notepad.breakReminders.prop('checked', editorConfig.defaultBreakReminders);
+		disableBreakReminders();
 	}
 
 	if (state.mode && state.mode === 'dark') {
@@ -908,6 +1155,17 @@ you can buy me a coffee — the link of which is available in the About section.
 		}
 	})
 
+	notepad.breakReminders.on('change', function () {
+		const isEnabled = $(this).is(':checked');
+		setState('userChosenBreakReminders', isEnabled ? 'Yes' : 'No');
+
+		if (isEnabled) {
+			enableBreakReminders();
+		} else {
+			disableBreakReminders();
+		}
+	})
+
 	notepad.resetPreferences.click(function () {
 		if (selector().state.userChosenFontSize) {
 			removeState('userChosenFontSize');
@@ -978,6 +1236,13 @@ you can buy me a coffee — the link of which is available in the About section.
 			$('#typewriterVolume').val(editorConfig.defaultTypewriterVolume);
 			$('#typewriterVolumeValue').text(editorConfig.defaultTypewriterVolume + '%');
 		}
+
+		if (selector().state.userChosenBreakReminders) {
+			removeState('userChosenBreakReminders');
+		}
+
+		disableBreakReminders();
+		notepad.breakReminders.prop('checked', editorConfig.defaultBreakReminders);
 
 		if (selector().state.userChosenExplodingEffect) {
 			removeState('userChosenExplodingEffect');
