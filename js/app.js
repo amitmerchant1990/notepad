@@ -394,6 +394,7 @@ The app serves the following features:
 - View Note Statistics.
 - Snapshots.
 - Ability to mimic typewriter sound when typing.
+- Optional break reminders after long writing sessions.
 - Keyboard shortcuts for common actions.
 - Focus mode to leave you with a barebones and pristine editor.
 - Full-screen mode for a distraction-free writing experience.
