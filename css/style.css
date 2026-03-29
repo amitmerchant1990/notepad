@@ -408,7 +408,14 @@ table tr td {
 
 .about-author-container {
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.about-author-line {
+  display: inline-flex;
+  align-items: center;
   gap: 5px;
 }
 
@@ -418,6 +425,13 @@ table tr td {
   align-items: center;
   justify-content: center;
   gap: 3px;
+}
+
+.about-origin-text {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #7d7d7d;
 }
 
 .modal-content {
@@ -574,7 +588,7 @@ table tr td {
 
 .tab-content .container {
   width: 100%;
-  padding: 20px 0px;
+  padding: 20px 0px 12px;
 }
 
 .word-count-container p {
