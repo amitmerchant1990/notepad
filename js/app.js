@@ -91,7 +91,7 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "Enjoying the clutter-free writing experience? Consider buying me a coffee.",
+			text: "Enjoying the clutter-free writing experience? Consider buying me a coffee for your support.",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
