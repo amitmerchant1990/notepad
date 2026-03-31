@@ -1009,281 +1009,306 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title custom-modal-title">Preferences</h4>
         </div>
-        <div class="modal-body modal-container form-horizontal">
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6" for="fontSize">Theme</label>
-            <div class="col-sm-6 col-md-5">
-              <div class="theme-switcher">
-                <input type="radio" id="device-theme" value="device" name="themes" />
-                <label for="device-theme">
-                  <span>
-                    <svg width="14" height="14" stroke-linejoin="round" viewBox="0 0 16 16" style="color: currentcolor;"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 3.25C1 1.45507 2.45507 0 4.25 0H11.75C13.5449 0 15 1.45507 15 3.25V15.25V16H14.25H1.75H1V15.25V3.25ZM4.25 1.5C3.2835 1.5 2.5 2.2835 2.5 3.25V14.5H13.5V3.25C13.5 2.2835 12.7165 1.5 11.75 1.5H4.25ZM4 4C4 3.44772 4.44772 3 5 3H11C11.5523 3 12 3.44772 12 4V10H4V4ZM9 13H12V11.5H9V13Z" fill="currentColor"></path></svg>
-                    Device
-                  </span>
-                </label>
-                <input type="radio" id="light-theme" value="light" name="themes" checked />
-                <label for="light-theme">
-                  <span>
-                    <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-                    </svg>
-                    Light
-                  </span>
-                </label>
-                <input type="radio" id="dark-theme" value="dark" name="themes" />
-                <label for="dark-theme">
-                  <span>
-                    <svg width="20" height="20" stroke-width="2" stroke="currentColor" viewBox="0 0 28 28" fill="none">
-                      <path d="M10.5 9.99914C10.5 14.1413 13.8579 17.4991 18 17.4991C19.0332 17.4991 20.0176 17.2902 20.9132 16.9123C19.7761 19.6075 17.109 21.4991 14 21.4991C9.85786 21.4991 6.5 18.1413 6.5 13.9991C6.5 10.8902 8.39167 8.22304 11.0868 7.08594C10.7089 7.98159 10.5 8.96597 10.5 9.99914Z" stroke="currentColor" stroke-linejoin="round"></path>
-                      <path d="M16.3561 6.50754L16.5 5.5L16.6439 6.50754C16.7068 6.94752 17.0525 7.29321 17.4925 7.35607L18.5 7.5L17.4925 7.64393C17.0525 7.70679 16.7068 8.05248 16.6439 8.49246L16.5 9.5L16.3561 8.49246C16.2932 8.05248 15.9475 7.70679 15.5075 7.64393L14.5 7.5L15.5075 7.35607C15.9475 7.29321 16.2932 6.94752 16.3561 6.50754Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M20.3561 11.5075L20.5 10.5L20.6439 11.5075C20.7068 11.9475 21.0525 12.2932 21.4925 12.3561L22.5 12.5L21.4925 12.6439C21.0525 12.7068 20.7068 13.0525 20.6439 13.4925L20.5 14.5L20.3561 13.4925C20.2932 13.0525 19.9475 12.7068 19.5075 12.6439L18.5 12.5L19.5075 12.3561C19.9475 12.2932 20.2932 11.9475 20.3561 11.5075Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    Dark
-                  </span>
-                </label>
-                <span class="slider"></span>
+        <div class="modal-body modal-container form-horizontal preferences-layout">
+          <div class="preferences-section">
+            <h5 class="preferences-section-title">Appearance</h5>
+            <div class="preferences-panel">
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6" for="fontSize">Theme</label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="theme-switcher">
+                    <input type="radio" id="device-theme" value="device" name="themes" />
+                    <label for="device-theme">
+                      <span>
+                        <svg width="14" height="14" stroke-linejoin="round" viewBox="0 0 16 16" style="color: currentcolor;"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 3.25C1 1.45507 2.45507 0 4.25 0H11.75C13.5449 0 15 1.45507 15 3.25V15.25V16H14.25H1.75H1V15.25V3.25ZM4.25 1.5C3.2835 1.5 2.5 2.2835 2.5 3.25V14.5H13.5V3.25C13.5 2.2835 12.7165 1.5 11.75 1.5H4.25ZM4 4C4 3.44772 4.44772 3 5 3H11C11.5523 3 12 3.44772 12 4V10H4V4ZM9 13H12V11.5H9V13Z" fill="currentColor"></path></svg>
+                        Device
+                      </span>
+                    </label>
+                    <input type="radio" id="light-theme" value="light" name="themes" checked />
+                    <label for="light-theme">
+                      <span>
+                        <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                        </svg>
+                        Light
+                      </span>
+                    </label>
+                    <input type="radio" id="dark-theme" value="dark" name="themes" />
+                    <label for="dark-theme">
+                      <span>
+                        <svg width="20" height="20" stroke-width="2" stroke="currentColor" viewBox="0 0 28 28" fill="none">
+                          <path d="M10.5 9.99914C10.5 14.1413 13.8579 17.4991 18 17.4991C19.0332 17.4991 20.0176 17.2902 20.9132 16.9123C19.7761 19.6075 17.109 21.4991 14 21.4991C9.85786 21.4991 6.5 18.1413 6.5 13.9991C6.5 10.8902 8.39167 8.22304 11.0868 7.08594C10.7089 7.98159 10.5 8.96597 10.5 9.99914Z" stroke="currentColor" stroke-linejoin="round"></path>
+                          <path d="M16.3561 6.50754L16.5 5.5L16.6439 6.50754C16.7068 6.94752 17.0525 7.29321 17.4925 7.35607L18.5 7.5L17.4925 7.64393C17.0525 7.70679 16.7068 8.05248 16.6439 8.49246L16.5 9.5L16.3561 8.49246C16.2932 8.05248 15.9475 7.70679 15.5075 7.64393L14.5 7.5L15.5075 7.35607C15.9475 7.29321 16.2932 6.94752 16.3561 6.50754Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M20.3561 11.5075L20.5 10.5L20.6439 11.5075C20.7068 11.9475 21.0525 12.2932 21.4925 12.3561L22.5 12.5L21.4925 12.6439C21.0525 12.7068 20.7068 13.0525 20.6439 13.4925L20.5 14.5L20.3561 13.4925C20.2932 13.0525 19.9475 12.7068 19.5075 12.6439L18.5 12.5L19.5075 12.3561C19.9475 12.2932 20.2932 11.9475 20.3561 11.5075Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Dark
+                      </span>
+                    </label>
+                    <span class="slider"></span>
+                  </div>
+                </div>  
               </div>
-            </div>  
-          </div>
 
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex" for="font">
-              Font
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <select name="font" id="font" class="form-control">
-                <option value="default">Default (System Font)</option>
-                <option value="serif">Serif</option>
-                <option value="monospaced">Monospaced</option>
-                <option value="handwritten">Handwritten</option>
-                <option value="humanist">Humanist</option>
-                <option value="dyslexic">Dyslexic</option>
-                <option value="pixel">Pixel</option>
-              </select> 
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6" for="fontSize">Font size</label>
-            <div class="col-sm-6 col-md-5">
-              <select name="fontSize" id="fontSize" class="form-control">
-                <option value="10">10</option>
-                <option value="12">12</option>
-                <option value="14">14</option>
-                <option value="16">16</option>
-                <option value="18">18</option>
-                <option value="20">20</option>
-                <option value="22">22</option>
-                <option value="24">24</option>
-                <option value="26">26</option>
-                <option value="28">28</option>
-                <option value="30">30</option>
-              </select> 
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6" for="fontWeight">Font style</label>
-            <div class="col-sm-6 col-md-5">
-              <select name="fontWeight" id="fontWeight" class="form-control">
-                <option value="normal">Normal</option>
-                <option value="bold">Bold</option>
-              </select> 
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex" for="lineHeight">
-              Line height
-              <a href="#" data-toggle="tooltip" title="Line height is a typographic term that refers to the vertical space between lines of text.">
-                <img src="img/tooltip.svg" alt="Tooltip Icon" />               
-              </a>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <select name="lineHeight" id="lineHeight" class="form-control">
-                <option value="18">18</option>
-                <option value="20">20</option>
-                <option value="22">22</option>
-                <option value="24">24</option>
-                <option value="26">26</option>
-                <option value="28">28</option>
-                <option value="30">30</option>
-                <option value="32">32</option>
-                <option value="34">34</option>
-                <option value="36">36</option>
-                <option value="38">38</option>
-                <option value="40">40</option>
-              </select> 
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6">Writing direction</label>
-            <div class="col-sm-6 col-md-5">
-              <select name="writeDirection" id="writeDirection" class="form-control">
-                <option value="ltr">Left to right</option>
-                <option value="rtl">Right to left</option>
-              </select> 
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex">
-              Texture
-              <a href="#" data-toggle="tooltip" title="Textures to add a unique feel to your notes area.">
-                <img src="img/tooltip.svg" alt="Tooltip Icon" />               
-              </a>
-              <span class="new-badge">NEW</span>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <select name="texture" id="texture" class="form-control">
-                <option value="normal">Normal Paper</option>
-                <option value="dotted">Dotted Paper</option>
-                <option value="graph">Graph Paper</option>
-                <option value="grain">Grainy Paper</option>
-                <option value="linen">Linen Weave</option>
-                <option value="recycled">Recycled Paper</option>
-                <option value="newspaper">Newspaper Print</option>
-                <option value="marble">Marble</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6">Character and word count</label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch">
-                <label>
-                    <input type="checkbox" name="showWordCountPill" id="showWordCountPill" checked="checked" />
-                    <span></span>
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Texture
+                  <a href="#" data-toggle="tooltip" title="Textures to add a unique feel to your notes area.">
+                    <img src="img/tooltip.svg" alt="Tooltip Icon" />               
+                  </a>
+                  <span class="new-badge">NEW</span>
                 </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group" id="frostedGlassPillPref">
-            <label class="control-label col-sm-6 col-md-6">Frosted glass word count pill</label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch">
-                <label>
-                    <input type="checkbox" name="transparentWordCountPill" id="transparentWordCountPill" checked="checked" />
-                    <span></span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex">
-              Optimal line length
-              <a href="#" data-toggle="tooltip" title="Optimal line length refers to the ideal number of characters (including spaces) per line of text that maximizes readability and comfort for readers.">
-                <img src="img/tooltip.svg" alt="Tooltip Icon" />                
-              </a>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch">
-                <label>
-                    <input type="checkbox" name="optimalLineLength" id="optimalLineLength" checked="checked" />
-                    <span></span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex">
-              Spellcheck
-              <a href="#" data-toggle="tooltip" title="Uses your system's spell-checker">
-                <img src="img/tooltip.svg" alt="Tooltip Icon" />                
-              </a>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch">
-                <label>
-                    <input type="checkbox" name="spellCheck" id="spellCheck"/>
-                    <span></span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex">
-              Tab Indentation
-              <a href="#" data-toggle="tooltip" title="Enables tab indentation for structured writing like lists, tables, code, etc.">
-                <img src="img/tooltip.svg" alt="Tooltip Icon" />                
-              </a>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch">
-                <label>
-                    <input type="checkbox" name="tabIndentation" id="tabIndentation"/>
-                    <span></span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex">
-              Typewriter sound
-              <a href="#" data-toggle="tooltip" title="Enable or disable the typewriter (Hermes Precisa 305 model) sound effect when typing">
-                <img src="img/tooltip.svg" alt="Tooltip" />
-              </a>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch generic-flex typewriter-switch">
-                <label>
-                    <input type="checkbox" name="typewriterSound" id="typewriterSound"/>
-                    <span></span>
-                </label>
-                <div class="typewriter-switch-volume">
-                    <div class="volume-control" id="typewriterVolumeControl">
-                        <input type="range" min="0" max="100" value="4" class="volume-slider" id="typewriterVolume">
-                    </div>
-                    <span id="typewriterVolumeValue" title="Typewriter volume"></span>
+                <div class="col-sm-6 col-md-5">
+                  <select name="texture" id="texture" class="form-control">
+                    <option value="normal">Normal Paper</option>
+                    <option value="dotted">Dotted Paper</option>
+                    <option value="graph">Graph Paper</option>
+                    <option value="grain">Grainy Paper</option>
+                    <option value="linen">Linen Weave</option>
+                    <option value="recycled">Recycled Paper</option>
+                    <option value="newspaper">Newspaper Print</option>
+                    <option value="marble">Marble</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex">
-              Break Reminders
-              <a href="#" data-toggle="tooltip" title="Gently suggests a short break after long active writing sessions. Disabled by default and tracked locally only.">
-                <img src="img/tooltip.svg" alt="Tooltip" />
-              </a>
-              <span class="new-badge">NEW</span>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch">
-                <label>
-                    <input type="checkbox" name="breakReminders" id="breakReminders"/>
-                    <span></span>
+          <div class="preferences-section">
+            <h5 class="preferences-section-title">Text</h5>
+            <div class="preferences-panel">
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex" for="font">
+                  Font
                 </label>
+                <div class="col-sm-6 col-md-5">
+                  <select name="font" id="font" class="form-control">
+                    <option value="default">Default (System Font)</option>
+                    <option value="serif">Serif</option>
+                    <option value="monospaced">Monospaced</option>
+                    <option value="handwritten">Handwritten</option>
+                    <option value="humanist">Humanist</option>
+                    <option value="dyslexic">Dyslexic</option>
+                    <option value="pixel">Pixel</option>
+                  </select> 
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6" for="fontSize">Font size</label>
+                <div class="col-sm-6 col-md-5">
+                  <select name="fontSize" id="fontSize" class="form-control">
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="22">22</option>
+                    <option value="24">24</option>
+                    <option value="26">26</option>
+                    <option value="28">28</option>
+                    <option value="30">30</option>
+                  </select> 
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6" for="fontWeight">Font style</label>
+                <div class="col-sm-6 col-md-5">
+                  <select name="fontWeight" id="fontWeight" class="form-control">
+                    <option value="normal">Normal</option>
+                    <option value="bold">Bold</option>
+                  </select> 
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex" for="lineHeight">
+                  Line height
+                  <a href="#" data-toggle="tooltip" title="Line height is a typographic term that refers to the vertical space between lines of text.">
+                    <img src="img/tooltip.svg" alt="Tooltip Icon" />               
+                  </a>
+                </label>
+                <div class="col-sm-6 col-md-5">
+                  <select name="lineHeight" id="lineHeight" class="form-control">
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="22">22</option>
+                    <option value="24">24</option>
+                    <option value="26">26</option>
+                    <option value="28">28</option>
+                    <option value="30">30</option>
+                    <option value="32">32</option>
+                    <option value="34">34</option>
+                    <option value="36">36</option>
+                    <option value="38">38</option>
+                    <option value="40">40</option>
+                  </select> 
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Optimal line length
+                  <a href="#" data-toggle="tooltip" title="Optimal line length refers to the ideal number of characters (including spaces) per line of text that maximizes readability and comfort for readers.">
+                    <img src="img/tooltip.svg" alt="Tooltip Icon" />                
+                  </a>
+                </label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="optimalLineLength" id="optimalLineLength" checked="checked" />
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="control-label col-sm-6 col-md-6 generic-flex">
-              Typing explosion effect
-              <a href="#" data-toggle="tooltip" title="Adds a playful explosion burst on each keystroke (Power Mode-style).">
-                <img src="img/tooltip.svg" alt="Tooltip" />
-              </a>
-              <span class="new-badge">NEW</span>
-            </label>
-            <div class="col-sm-6 col-md-5">
-              <div class="checkbox checbox-switch">
-                <label>
-                    <input type="checkbox" name="explodingEffect" id="explodingEffect"/>
-                    <span></span>
+          <div class="preferences-section">
+            <h5 class="preferences-section-title">Writing</h5>
+            <div class="preferences-panel">
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6">Writing direction</label>
+                <div class="col-sm-6 col-md-5">
+                  <select name="writeDirection" id="writeDirection" class="form-control">
+                    <option value="ltr">Left to right</option>
+                    <option value="rtl">Right to left</option>
+                  </select> 
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Spellcheck
+                  <a href="#" data-toggle="tooltip" title="Uses your system's spell-checker">
+                    <img src="img/tooltip.svg" alt="Tooltip Icon" />                
+                  </a>
                 </label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="spellCheck" id="spellCheck"/>
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Tab Indentation
+                  <a href="#" data-toggle="tooltip" title="Enables tab indentation for structured writing like lists, tables, code, etc.">
+                    <img src="img/tooltip.svg" alt="Tooltip Icon" />                
+                  </a>
+                </label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="tabIndentation" id="tabIndentation"/>
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Break Reminders
+                  <a href="#" data-toggle="tooltip" title="Gently suggests a short break after long active writing sessions. Disabled by default and tracked locally only.">
+                    <img src="img/tooltip.svg" alt="Tooltip" />
+                  </a>
+                  <span class="new-badge">NEW</span>
+                </label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="breakReminders" id="breakReminders"/>
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="preferences-section">
+            <h5 class="preferences-section-title">Interface</h5>
+            <div class="preferences-panel">
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6">Character and word count</label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="showWordCountPill" id="showWordCountPill" checked="checked" />
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group" id="frostedGlassPillPref">
+                <label class="control-label col-sm-6 col-md-6">Frosted glass word count pill</label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="transparentWordCountPill" id="transparentWordCountPill" checked="checked" />
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="preferences-section">
+            <h5 class="preferences-section-title">Effects</h5>
+            <div class="preferences-panel">
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Typewriter sound
+                  <a href="#" data-toggle="tooltip" title="Enable or disable the typewriter (Hermes Precisa 305 model) sound effect when typing">
+                    <img src="img/tooltip.svg" alt="Tooltip" />
+                  </a>
+                </label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch generic-flex typewriter-switch">
+                    <div class="typewriter-switch-volume">
+                        <div class="volume-control" id="typewriterVolumeControl">
+                            <input type="range" min="0" max="100" value="4" class="volume-slider" id="typewriterVolume">
+                        </div>
+                        <span id="typewriterVolumeValue" title="Typewriter volume"></span>
+                    </div>
+                    <label>
+                        <input type="checkbox" name="typewriterSound" id="typewriterSound"/>
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Typing explosion effect
+                  <a href="#" data-toggle="tooltip" title="Adds a playful explosion burst on each keystroke (Power Mode-style).">
+                    <img src="img/tooltip.svg" alt="Tooltip" />
+                  </a>
+                  <span class="new-badge">NEW</span>
+                </label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="explodingEffect" id="explodingEffect"/>
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group preferences-reset-row">
             <label class="control-label col-sm-6 col-md-6" for="company">&nbsp;</label>
             <div class="col-sm-6 col-md-5">
               <a href="javascript:void(0);" id="resetPreferences" title="Reset to default preferences">Reset preferences</a>

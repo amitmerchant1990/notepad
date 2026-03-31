@@ -763,7 +763,9 @@ you can buy me a coffee — the link of which is available in the About section.
 	notepad.wordCount.text(characterAndWordCountText);
 	notepad.note.val(noteItem);
 
-	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-toggle="tooltip"]').tooltip({
+		container: 'body'
+	});
 
 	if (!state.isUserPreferredTheme) {
 		setState('isUserPreferredTheme', 'false');
