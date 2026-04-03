@@ -13,6 +13,7 @@ body {
 .navbar-inverse {
   background-color: #1b222d;
   border-color: #080808;
+  padding: .7rem 1rem;
 }
 
 .flex-navbar {
@@ -21,7 +22,9 @@ body {
   font-weight: bold;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  margin-right: auto;
+  width: min(1107px, 100%);
+  margin-left: auto;
 }
 
 .brand-container {

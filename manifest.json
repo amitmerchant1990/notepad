@@ -135,6 +135,18 @@
       ]
     },
     {
+      "name": "Text Tools",
+      "short_name": "Text Tools",
+      "description": "Extract emails, URLs, and numbers from any text.",
+      "url": "/text-tools/",
+      "icons": [
+        {
+          "src": "img/icon-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
       "name": "Deep Breath",
       "short_name": "Deep Breath",
       "description": "A simple breathing exercise to help you de-stress yourself.",

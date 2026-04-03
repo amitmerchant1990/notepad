@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="A text utility tool for line operations, clean up, find and replace, and data extraction.">
+  <meta name="author" content="Amit Merchant">
+  <meta name="keywords" content="data extractor, text tools, lines, clean up, find and replace" />
+  <meta name="application-name" content="Text Tools" />
+  <meta name="theme-color" content="#343a40">
+
+  <meta property="og:title" content="Text Tools | notepad.js.org" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://notepad.js.org/text-tools/" />
+  <meta property="og:description" content="A text utility tool for line operations, clean up, find and replace, and data extraction." />
+  <meta property="og:image" content="https://notepad.js.org/art/cover.png" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Text Tools | notepad.js.org" />
+  <meta name="twitter:description" content="A text utility tool for line operations, clean up, find and replace, and data extraction." />
+  <meta property="twitter:image" content="https://notepad.js.org/art/cover.png" />
+
+  <title>Text Tools | notepad.js.org</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="page-shell nav-shell">
+      <div class="brand-container">
+        <a class="brand-title" href="/">Notepad</a>
+        <img src="../case-converter/img/icons/slash.svg" alt="Slash Icon" />
+        <span>Text Tools</span>
+      </div>
+      <div class="flex-navbar-right">
+        <a href="javascript:void(0);" class="about-link-button" data-toggle="modal" data-target="#aboutModal" title="About">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-shell tool-page">
+    <div class="page-intro">
+      <h1>Text Tools</h1>
+      <p>Line tools, clean-up actions, find and replace, and quick extraction in one place.</p>
+    </div>
+
+    <div class="tool-tabs-container">
+    <div class="btn-group tool-tabs" role="tablist" aria-label="Text tools">
+      <button id="tabExtract" class="btn btn-outline-secondary tool-tab active" type="button" data-panel="extractPanel">Extract</button>
+      <button id="tabLines" class="btn btn-outline-secondary tool-tab" type="button" data-panel="linesPanel">Lines</button>
+      <button id="tabCleanup" class="btn btn-outline-secondary tool-tab" type="button" data-panel="cleanupPanel">Clean Up</button>
+      <button id="tabFind" class="btn btn-outline-secondary tool-tab" type="button" data-panel="findPanel">Find &amp; Replace</button>
+    </div>
+    </div>
+
+    <div class="controls-container">
+      <div id="extractPanel" class="tool-panel active">
+      <button class="btn btn-light tool-action" type="button" data-action="extractEmails">Extract Emails</button>
+      <button class="btn btn-light tool-action" type="button" data-action="extractUrls">Extract URLs</button>
+      <button class="btn btn-light tool-action" type="button" data-action="extractNumbers">Extract Numbers</button>
+      </div>
+
+      <div id="linesPanel" class="tool-panel">
+      <button class="btn btn-light tool-action" type="button" data-action="sortAsc">Sort A-Z</button>
+      <button class="btn btn-light tool-action" type="button" data-action="sortDesc">Sort Z-A</button>
+      <button class="btn btn-light tool-action" type="button" data-action="sortLength">Sort by Length</button>
+      <button class="btn btn-light tool-action" type="button" data-action="reverseOrder">Reverse Order</button>
+      <button class="btn btn-light tool-action" type="button" data-action="shuffleLines">Shuffle</button>
+      <button class="btn btn-light tool-action" type="button" data-action="removeDuplicates">Remove Duplicates</button>
+      <button class="btn btn-light tool-action" type="button" data-action="addLineNumbers">Add Line Numbers</button>
+      <button class="btn btn-light tool-action" type="button" data-action="removeLineNumbers">Remove Line Numbers</button>
+      </div>
+
+      <div id="cleanupPanel" class="tool-panel">
+      <button class="btn btn-light tool-action" type="button" data-action="trimLines">Trim Lines</button>
+      <button class="btn btn-light tool-action" type="button" data-action="removeEmptyLines">Remove Empty Lines</button>
+      <button class="btn btn-light tool-action" type="button" data-action="removeExtraSpaces">Remove Extra Spaces</button>
+      <button class="btn btn-light tool-action" type="button" data-action="joinLines">Join Lines</button>
+      <button class="btn btn-light tool-action" type="button" data-action="wrap80">Wrap at 80</button>
+      <button class="btn btn-light tool-action" type="button" data-action="wrap120">Wrap at 120</button>
+      <button class="btn btn-light tool-action" type="button" data-action="encodeUrl">Encode URL</button>
+      <button class="btn btn-light tool-action" type="button" data-action="decodeUrl">Decode URL</button>
+      </div>
+
+      <div id="findPanel" class="tool-panel find-panel">
+      <input id="findInput" class="form-control panel-input" type="text" placeholder="Find ...">
+      <input id="replaceInput" class="form-control panel-input" type="text" placeholder="Replace with ...">
+      <label class="checkbox-inline regex-toggle">
+        <input id="useRegex" type="checkbox">
+        Use Regex
+      </label>
+      <button id="replaceBtn" class="btn btn-outline-secondary panel-button" type="button">Replace</button>
+      <button id="replaceAllBtn" class="btn btn-primary panel-button" type="button">Replace All</button>
+      </div>
+    </div>
+
+    <div id="resultPanel" class="result-panel" hidden>
+      <div class="result-header">
+        <div>
+          <p id="resultCount" class="result-count">Found 0 items</p>
+        </div>
+        <div class="result-actions">
+          <button id="copyResultsButton" class="btn btn-outline-secondary btn-sm" type="button">Copy All</button>
+        </div>
+      </div>
+      <textarea id="resultText" class="form-control" readonly></textarea>
+    </div>
+
+    <div class="editor-container">
+      <textarea id="inputText" class="form-control" placeholder="Enter or paste text here..." autofocus></textarea>
+      <div class="editor-toolbar">
+        <span id="statusText" class="status-text">Ready.</span>
+        <span id="statsText" class="stats-text">0 words • 0 chars • 0 lines</span>
+      </div>
+      <button id="copyButton" class="btn btn-outline-secondary" type="button">Copy</button>
+    </div>
+  </main>
+
+  <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title custom-modal-title" id="aboutModalLabel">Text Tools</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This tool brings together the lightweight text helpers shown in the editor screenshots into a single page.</p>
+          <ul>
+            <li>Line tools for sorting, numbering, shuffling, and deduping</li>
+            <li>Clean up helpers for spacing, wrapping, joining, and URL encoding</li>
+            <li>Find and replace with optional regex support</li>
+            <li>Data extraction for emails, URLs, and numbers</li>
+          </ul>
+          <p>Enjoy using this tool? If so, consider <a href="https://buymeacoffee.com/amitmerchant" target="_blank">buying me a coffee</a> so that I keep working on improving it further and the experience remains ad-free.</p>
+          <p class="text-center mb-0">
+            <b>Brought to you by <a href="https://notepad.js.org/" class="about-author-link">notepad.js.org</a></b>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">
+    <div class="toast-body"></div>
+  </div>
+
+  <script src="../js/libraries/jquery.min.js"></script>
+  <script src="../js/libraries/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43339302-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-43339302-6');
+  </script>
+</body>
+</html>
