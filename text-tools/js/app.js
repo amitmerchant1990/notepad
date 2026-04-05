@@ -18,6 +18,12 @@ const resultPanel = document.getElementById('resultPanel');
 const resultText = document.getElementById('resultText');
 const resultCount = document.getElementById('resultCount');
 const copyResultsButton = document.getElementById('copyResultsButton');
+const themeToggle = document.getElementById('themeToggle');
+const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+const themeStorageKey = 'notepad_text_tools_theme_v1';
+const lightThemeColor = '#343a40';
+const darkThemeColor = '#0e141a';
 
 let toastTimer = null;
 let lastFindIndex = -1;
@@ -43,6 +49,24 @@ function showToast(message) {
 
 function setStatus(message) {
   statusText.textContent = message;
+}
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.body.classList.toggle('dark', isDark);
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+
+  if (themeMeta) {
+    themeMeta.setAttribute('content', isDark ? darkThemeColor : lightThemeColor);
+  }
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+  localStorage.setItem(themeStorageKey, nextTheme);
+  applyTheme(nextTheme);
 }
 
 function persistText() {
@@ -376,6 +400,8 @@ copyResultsButton.addEventListener('click', () => {
   copyValue(resultText.value, copyResultsButton, 'Copy All');
 });
 
+themeToggle.addEventListener('click', toggleTheme);
+
 toolTabs.forEach((tab) => {
   tab.addEventListener('click', () => activatePanel(tab.dataset.panel));
 });
@@ -394,6 +420,7 @@ inputText.addEventListener('input', () => {
 });
 
 const savedText = localStorage.getItem(storageKey);
+const savedTheme = localStorage.getItem(themeStorageKey) || 'light';
 if (savedText) {
   inputText.value = savedText;
 } else {
@@ -401,5 +428,6 @@ if (savedText) {
   persistText();
 }
 
+applyTheme(savedTheme);
 updateStats();
 setStatus('Ready.');
