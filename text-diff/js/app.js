@@ -17,8 +17,31 @@ const statAdded = document.getElementById('statAdded');
 const statRemoved = document.getElementById('statRemoved');
 const statChanged = document.getElementById('statChanged');
 const statEqual = document.getElementById('statEqual');
+const themeToggle = document.getElementById('themeToggle');
+const themeMeta = document.querySelector('meta[name="theme-color"]');
 
 let diffTimer = null;
+const themeStorageKey = 'notepad_text_diff_theme_v1';
+const lightThemeColor = '#1b222d';
+const darkThemeColor = '#0e141a';
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.body.classList.toggle('dark', isDark);
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Toggle dark mode');
+  themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Toggle dark mode');
+
+  if (themeMeta) {
+    themeMeta.setAttribute('content', isDark ? darkThemeColor : lightThemeColor);
+  }
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+  localStorage.setItem(themeStorageKey, nextTheme);
+  applyTheme(nextTheme);
+}
 
 function scheduleDiff() {
   if (!autoCompare.checked) {
@@ -48,6 +71,8 @@ clearBtn.addEventListener('click', () => {
   rightInput.value = '';
   renderDiff();
 });
+
+themeToggle.addEventListener('click', toggleTheme);
 
 let copyTimer = null;
 
@@ -612,4 +637,5 @@ function findNearestLineIndex(lines, text, preferredIndex) {
   return bestIndex;
 }
 
+applyTheme(localStorage.getItem(themeStorageKey) || 'light');
 renderDiff();
