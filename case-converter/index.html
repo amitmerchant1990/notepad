@@ -169,11 +169,14 @@
                     ).join('');
                     break;
                 case 'title':
-                    const smallWords = ['a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'of'];
+                    const smallWords = ['a', 'an', 'the', 'and', 
+                                        'or', 'nor', 'but', 'in', 
+                                        'on', 'at', 'of', 'for', 
+                                        'by', 'to', 'with'];
                     const paragraphsTitle = inputText.value.split('\n').map(paragraph => {
-                        return paragraph.split(' ').map((word, index) => {
+                        return paragraph.trim().split(' ').map((word, index) => {
                             const lowerCaseWord = word.toLowerCase();
-                            if (index === 0 || index === paragraph.split(' ').length - 1 || !smallWords.includes(lowerCaseWord)) {
+                            if (index === 0 || index === paragraph.trim().split(' ').length - 1 || !smallWords.includes(lowerCaseWord)) {
                                 return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
                             }
                             return lowerCaseWord;
