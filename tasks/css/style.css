@@ -239,8 +239,22 @@ h1 {
   box-shadow: 0 50px 40px #00000003, 0 50px 40px #00000005, 0 20px 40px #0000000d, 0 3px 10px #00000014;
 }
 
+#taskContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-list {
+  min-height: 1px;
+}
+
 .card-body {
   width: 100%;
+  position: relative;
+}
+
+#activeTaskList .card-body {
+  padding-left: 2.1rem;
 }
 
 .delete-task {
@@ -255,6 +269,8 @@ h1 {
   text-align: left;
   padding-left: 14px;
   border-radius: 0.7rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  will-change: transform;
 }
 
 .btn {
@@ -281,6 +297,67 @@ h1 {
   font-weight: bold;
   color: #3b3b3b;
   font-size: 1rem;
+}
+
+.done-separator {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  margin: 18px 0 14px;
+  user-select: none;
+}
+
+.done-separator .label {
+  margin-bottom: 0;
+  color: #575757;
+  font-weight: bold;
+}
+
+.done-separator .divider {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #999999;
+}
+
+.task-drag-handle {
+  position: absolute;
+  left: -0.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  width: 8px;
+  min-width: 12px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: grab;
+  z-index: 2;
+  opacity: 0.95;
+}
+
+.task-drag-handle:hover {
+  cursor: move;
+}
+
+.task-drag-handle span {
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background-color: #b8b8b8;
+}
+
+.task-card[draggable="true"]:active .task-drag-handle {
+  cursor: grabbing;
+}
+
+.task-dragging {
+  opacity: 0.6;
+  transform: scale(0.985);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.14);
 }
 
 /* Centered no-tasks message */
@@ -616,6 +693,18 @@ footer {
   border: 1px solid #30363d;
 }
 
+.dark .done-separator {
+  color: #8b949e;
+}
+
+.dark .done-separator .label {
+  color: #c9d1d9;
+}
+
+.dark .done-separator .divider {
+  background-color: #30363d;
+}
+
 .dark .task-completed {
   background-color: #1a1f29;
   background-image: repeating-linear-gradient(45deg, #2d333b 0, #2d333b 1px, #21262d 0, #21262d 50%);
@@ -627,6 +716,10 @@ footer {
 
 .dark .task-completed .task-text {
   color: #8b949e;
+}
+
+.dark .task-drag-handle span {
+  background-color: #6e7681;
 }
 
 .dark #noTasksMessage {
