@@ -360,6 +360,21 @@ h1 {
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.14);
 }
 
+.active-empty-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 24px;
+  margin: 4px 0 20px;
+  border-radius: 12px;
+  color: #7b7b7b;
+  font-size: 1.05rem;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(180deg, #fbfbfb 0%, #f4f4f4 100%);
+  border: 1px dashed #dddddd;
+}
+
 /* Centered no-tasks message */
 #noTasksMessage {
   display: flex;
@@ -720,6 +735,12 @@ footer {
 
 .dark .task-drag-handle span {
   background-color: #6e7681;
+}
+
+.dark .active-empty-message {
+  color: #9da7b3;
+  background: linear-gradient(180deg, #151b23 0%, #11161d 100%);
+  border-color: #30363d;
 }
 
 .dark #noTasksMessage {

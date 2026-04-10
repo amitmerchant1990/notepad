@@ -303,6 +303,7 @@ $(document).ready(function() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         updateTaskCount();
         updateDoneSeparator();
+        toggleActiveEmptyMessage();
     }
 
     function loadTasks() {
@@ -318,6 +319,7 @@ $(document).ready(function() {
         toggleNoTasksMessage();
         updateTaskCount();
         updateDoneSeparator();
+        toggleActiveEmptyMessage();
     }
 
     function updateTaskCount() {
@@ -329,6 +331,12 @@ $(document).ready(function() {
     function updateDoneSeparator() {
         const hasCompletedTasks = $doneTaskList.find('.task-card').length > 0;
         $doneSeparator.toggle(hasCompletedTasks);
+    }
+
+    function toggleActiveEmptyMessage() {
+        const hasActiveTasks = $activeTaskList.find('.task-card').length > 0;
+        const hasCompletedTasks = $doneTaskList.find('.task-card').length > 0;
+        $('#activeEmptyMessage').toggle(!hasActiveTasks && hasCompletedTasks);
     }
 
     function toggleNoTasksMessage() {
