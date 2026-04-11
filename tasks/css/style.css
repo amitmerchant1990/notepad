@@ -350,14 +350,23 @@ h1 {
   background-color: #b8b8b8;
 }
 
-.task-card[draggable="true"]:active .task-drag-handle {
+.task-card:active .task-drag-handle {
   cursor: grabbing;
 }
 
 .task-dragging {
-  opacity: 0.6;
+  opacity: 0.92;
+  transform: scale(0.99);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.16);
+}
+
+.task-sort-chosen {
+  z-index: 3;
+}
+
+.task-sort-ghost {
+  opacity: 0.28;
   transform: scale(0.985);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.14);
 }
 
 .active-empty-message {

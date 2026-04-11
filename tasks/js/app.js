@@ -8,8 +8,6 @@ $(document).ready(function() {
     const $activeTaskList = $('#activeTaskList');
     const $doneTaskList = $('#doneTaskList');
     const $doneSeparator = $('#doneSeparator');
-    let draggedTask = null;
-    let dragArmedTask = null;
 
     function enableDarkMode() {
         $('body').addClass('dark');
@@ -87,6 +85,7 @@ $(document).ready(function() {
     setTimeout(showRandomAffiliateLink, 5000);
 
     $taskInput.focus();
+    initializeTaskSorting();
     loadTasks();
 
     $('#clearAllTasks').click(function() {
@@ -105,56 +104,6 @@ $(document).ready(function() {
     $taskInput.on('keydown', function(event) {
         if (event.key === 'Enter') {
             addTask();
-        }
-    });
-
-    $activeTaskList.on('mousedown touchstart', '.task-drag-handle', function() {
-        dragArmedTask = $(this).closest('.task-card')[0];
-    });
-
-    $(document).on('mouseup touchend touchcancel', function() {
-        if (!draggedTask) {
-            dragArmedTask = null;
-        }
-    });
-
-    $activeTaskList.on('dragstart', '.task-card[draggable="true"]', function(event) {
-        if (dragArmedTask !== this) {
-            event.preventDefault();
-            return;
-        }
-
-        draggedTask = this;
-        event.originalEvent.dataTransfer.effectAllowed = 'move';
-        event.originalEvent.dataTransfer.setData('text/plain', 'active-task');
-        $(this).addClass('task-dragging');
-    });
-
-    $activeTaskList.on('dragend', '.task-card[draggable="true"]', function() {
-        $(this).removeClass('task-dragging');
-        draggedTask = null;
-        dragArmedTask = null;
-        saveTasks();
-    });
-
-    $activeTaskList.on('dragover', function(event) {
-        if (!draggedTask) {
-            return;
-        }
-
-        event.preventDefault();
-        const afterElement = getDragAfterElement(this, event.originalEvent.clientY);
-
-        if (!afterElement) {
-            this.appendChild(draggedTask);
-        } else if (afterElement !== draggedTask) {
-            this.insertBefore(draggedTask, afterElement);
-        }
-    });
-
-    $activeTaskList.on('drop', function(event) {
-        if (draggedTask) {
-            event.preventDefault();
         }
     });
 
@@ -245,7 +194,6 @@ $(document).ready(function() {
 
     function createTaskCard(taskText, completed) {
         const checkedAttr = completed ? 'checked' : '';
-        const draggableAttr = completed ? 'false' : 'true';
         const completedClass = completed ? 'task-completed' : '';
         const dragHandle = completed ? '' : `
             <button class="task-drag-handle" type="button" tabindex="-1" aria-hidden="true" title="Drag to reorder">
@@ -254,7 +202,7 @@ $(document).ready(function() {
         `;
 
         return $(`
-            <div class="card task-card ${completedClass}" draggable="${draggableAttr}">
+            <div class="card task-card ${completedClass}">
                 <div class="card-body d-flex align-items-center">
                     ${dragHandle}
                     <div>
@@ -271,7 +219,6 @@ $(document).ready(function() {
 
     function setTaskCompletedState($taskCard, completed) {
         $taskCard.toggleClass('task-completed', completed);
-        $taskCard.attr('draggable', completed ? 'false' : 'true');
         $taskCard.find('.task-drag-handle').remove();
 
         if (!completed) {
@@ -339,6 +286,25 @@ $(document).ready(function() {
         $('#activeEmptyMessage').toggle(!hasActiveTasks && hasCompletedTasks);
     }
 
+    function initializeTaskSorting() {
+        if (!window.Sortable) {
+            return;
+        }
+
+        new Sortable($activeTaskList[0], {
+            animation: 180,
+            easing: 'cubic-bezier(0.2, 0, 0, 1)',
+            handle: '.task-drag-handle',
+            draggable: '.task-card',
+            ghostClass: 'task-sort-ghost',
+            chosenClass: 'task-sort-chosen',
+            dragClass: 'task-dragging',
+            onEnd: function() {
+                saveTasks();
+            }
+        });
+    }
+
     function toggleNoTasksMessage() {
         const hasTasks = $('.task-card').length > 0;
 
@@ -349,21 +315,6 @@ $(document).ready(function() {
             $('#noTasksMessage').show();
             $('#clearAllContainer').hide();
         }
-    }
-
-    function getDragAfterElement(container, pointerY) {
-        const draggableElements = [...container.querySelectorAll('.task-card:not(.task-dragging)')];
-
-        return draggableElements.reduce(function(closest, child) {
-            const box = child.getBoundingClientRect();
-            const offset = pointerY - box.top - box.height / 2;
-
-            if (offset < 0 && offset > closest.offset) {
-                return { offset, element: child };
-            }
-
-            return closest;
-        }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
     }
 
     function sanitizeInput(input) {

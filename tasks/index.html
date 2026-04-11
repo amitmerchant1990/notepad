@@ -195,17 +195,16 @@
     <script src="js/libs/popper.min.js"></script>
     <script src="js/libs/bootstrap.min.js"></script>
     <script src="js/libs/confetti.browser.min.js"></script>
+    <script src="js/libs/Sortable.min.js"></script>
     <script src="js/app.js"></script>
 
     <script type="module">
         import autoAnimate from "./js/libs/auto-animate.es.js";
 
         const taskContainer = document.querySelector('#taskContainer');
-        const activeList = document.querySelector('#activeTaskList');
         const doneList = document.querySelector('#doneTaskList');
 
         autoAnimate(taskContainer, { duration: 180, easing: 'ease-out' });
-        autoAnimate(activeList, { duration: 180, easing: 'ease-out' });
         autoAnimate(doneList, { duration: 180, easing: 'ease-out' });
     </script>
 
