@@ -92,6 +92,52 @@ function resizeCanvas() {
 canvas.freeDrawingBrush.color = 'black';
 canvas.freeDrawingBrush.width = 2; // Default to smallest size
 
+function createCursorDataUrl(svg) {
+    return `url("data:image/svg+xml;utf8,${encodeURIComponent(svg)}")`;
+}
+
+function getPenCursor(size) {
+    const penRadiusMap = {
+        2: 1,
+        5: 2,
+        10: 3,
+        20: 4
+    };
+    const radius = penRadiusMap[size] || 1;
+    const dimension = 20;
+    const center = 10;
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="${dimension}" height="${dimension}" viewBox="0 0 24 24" fill="#000000" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="${radius}" />
+        </svg>
+    `;
+
+    return `${createCursorDataUrl(svg)} ${center} ${center}, crosshair`;
+}
+
+function getEraserCursor() {
+    const svg = `
+        <svg viewBox="0 0 15 15" width="15" height="15" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.3" y="2.3" width="10.4" height="10.4" fill="#FFFFFF"/>
+            <path fill="#000000" d="M12.7,2.3v10.4H2.3V2.3H12.7 M13,1H2C1.4477,1,1,1.4477,1,2v11c0,0.5523,0.4477,1,1,1h11c0.5523,0,1-0.4477,1-1V2 C14,1.4477,13.5523,1,13,1L13,1z"></path>
+        </svg>
+    `;
+
+    return `${createCursorDataUrl(svg)} 4 20, auto`;
+}
+
+function updateCanvasCursor() {
+    const cursor = currentToolMode === 'eraser'
+        ? getEraserCursor()
+        : getPenCursor(currentPenSize);
+
+    canvas.freeDrawingCursor = cursor;
+
+    if (canvas.upperCanvasEl) {
+        canvas.upperCanvasEl.style.cursor = cursor;
+    }
+}
+
 // Tool mode functionality
 const toolModeButtons = document.querySelectorAll('.tool-mode');
 const penSizeButtons = document.querySelectorAll('.pen-size');
@@ -119,6 +165,7 @@ toolModeButtons.forEach(button => {
         
         // Apply current size to the new tool mode
         canvas.freeDrawingBrush.width = currentPenSize;
+        updateCanvasCursor();
     });
 });
 
@@ -134,6 +181,7 @@ penSizeButtons.forEach(button => {
         // Update pen size
         currentPenSize = parseInt(button.dataset.size);
         canvas.freeDrawingBrush.width = currentPenSize;
+        updateCanvasCursor();
     });
 });
 
@@ -173,3 +221,4 @@ document.getElementById('clear').addEventListener('click', () => {
 // Resize canvas on window resize
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas(); // Initial resize
+updateCanvasCursor();
