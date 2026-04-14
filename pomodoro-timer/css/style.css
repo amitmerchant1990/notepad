@@ -19,6 +19,28 @@
   --time-shadow: 0 10px 20px rgba(15, 23, 42, 0.4);
 }
 
+a:focus {
+  outline: revert;
+  outline-offset: revert;
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: revert;
+  outline-offset: revert;
+}
+
+input[type=file]:focus,
+input[type=checkbox]:focus,
+input[type=radio]:focus {
+  outline: revert;
+  outline-offset: revert;
+}
+
 body[data-theme="light"] {
   --bg-1: #f8fafc;
   --bg-2: #e2e8f0;
