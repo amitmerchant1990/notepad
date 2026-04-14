@@ -847,6 +847,20 @@ input[type="radio"]:checked:before {
     background: #18212b;
 }
 
+.dark #markdown code {
+    color: #d7e3ef;
+}
+
+.dark #markdown pre {
+    background: #1a2330;
+    color: #d7e3ef;
+}
+
+.dark #markdown pre code {
+    background: transparent;
+    color: inherit;
+}
+
 .dark #markdown pre,
 .dark #markdown table,
 .dark #markdown th,
