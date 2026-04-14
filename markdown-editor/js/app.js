@@ -20,11 +20,9 @@ window.onload = function () {
   // Restore theme preference from localStorage
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
-    const themeRadio = document.querySelector(`input[name="changeTheme"][value="${savedTheme}"]`);
-    if (themeRadio) {
-      themeRadio.checked = true;
-      changeTheme(themeRadio);
-    }
+    changeTheme({ value: savedTheme });
+  } else {
+    updateThemeToggle('light');
   }
 
   if (markdownText) {
