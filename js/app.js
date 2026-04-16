@@ -16,9 +16,9 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "If this app saves you time, a coffee is a nice way to say thanks!",
+			text: "If Notepad has been useful to you, buying me a coffee is a great way to support it.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "This app runs without ads. If you value that, buy me a coffee.",
@@ -48,7 +48,7 @@ $(document).ready(function () {
 		{
 			text: "Thank you for using this app. If you'd like to support the development, buy me a coffee.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
