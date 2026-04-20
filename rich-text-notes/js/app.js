@@ -19,6 +19,11 @@ $(document).ready(function () {
 		{
 			text: "Buy me a coffee if you enjoy using this little app! 😻",
 			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+        {
+			text: "This app runs without ads. If you value that, buy me a coffee.",
+			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
