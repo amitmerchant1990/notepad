@@ -1317,10 +1317,8 @@ a {
 }
 
 .love-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  align-items: start;
+  column-count: 2;
+  column-gap: 18px;
 }
 
 .love-card {
@@ -1333,6 +1331,11 @@ a {
   display: flex;
   flex-direction: column;
   min-height: 190px;
+  width: 100%;
+  margin: 0 0 18px;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .love-card::after {
@@ -1422,7 +1425,7 @@ a {
   }
 
   .love-grid {
-    grid-template-columns: 1fr;
+    column-count: 1;
   }
 }
 
