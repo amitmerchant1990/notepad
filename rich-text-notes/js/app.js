@@ -16,6 +16,11 @@ $(document).ready(function () {
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
+        {
+			text: "Buy me a coffee so that I don't have to rely on ads to run this app.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
 		{
 			text: "Buy me a coffee if you enjoy using this little app! 😻",
 			url: "https://buymeacoffee.com/amitmerchant",
@@ -24,7 +29,7 @@ $(document).ready(function () {
         {
 			text: "This app runs without ads. If you value that, buy me a coffee.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "🚀 New → Simple Kanban",
