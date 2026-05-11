@@ -424,6 +424,114 @@ body.dark input[type="checkbox"] {
     z-index: 1000;
 }
 
+.toast-popup {
+    position: fixed;
+    bottom: 18px;
+    left: 18px;
+    z-index: 1060;
+    display: none;
+    max-width: 320px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 14px 14px 14px 16px;
+    background-color: #dddddd;
+    background-image: radial-gradient(#646464 0.55px, transparent 0.55px), radial-gradient(#646464 0.55px, #dddddd 0.55px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+}
+
+.toast-popup.show {
+    display: block;
+    animation: toastSlideIn 240ms ease-out forwards;
+}
+
+.toast-popup.hide {
+    animation: toastSlideOut 180ms ease-in forwards;
+}
+
+body.dark .toast-popup {
+    border-color: rgba(255, 255, 255, 0.1);
+    background-image: radial-gradient(45.07% 92.4% at 51% 7.61%, #464646 0, #181e27 100%);
+    background-size: initial;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast-content a {
+    color: #2c3e50;
+    text-decoration: none;
+    flex-grow: 1;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.toast-content a:hover,
+.toast-content a:focus {
+    color: #0b5ed7;
+    text-decoration: none;
+}
+
+body.dark .toast-content a {
+    color: #e8edf3;
+}
+
+body.dark .toast-content a:hover,
+body.dark .toast-content a:focus {
+    color: #7fb3ff;
+}
+
+.close-popup {
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 6px;
+    line-height: 1;
+}
+
+.close-popup:hover,
+.close-popup:focus {
+    color: rgba(0, 0, 0, 0.88);
+    outline: none;
+}
+
+body.dark .close-popup {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+body.dark .close-popup:hover,
+body.dark .close-popup:focus {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+@keyframes toastSlideIn {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastSlideOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+}
+
 .modal-header {
     display: flex;
     align-items: flex-start;

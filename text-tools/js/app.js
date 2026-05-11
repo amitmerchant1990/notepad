@@ -6,6 +6,10 @@ const statusText = document.getElementById('statusText');
 const statsText = document.getElementById('statsText');
 const toast = document.getElementById('toast');
 const toastBody = toast.querySelector('.toast-body');
+const toastPopup = document.getElementById('toastPopup');
+const toastPopupText = document.getElementById('toastText');
+const toastPopupLink = document.getElementById('toastLink');
+const closeToastPopupButton = document.getElementById('closeToastPopup');
 const toolTabs = Array.from(document.querySelectorAll('.tool-tab'));
 const toolPanels = Array.from(document.querySelectorAll('.tool-panel'));
 const actionButtons = Array.from(document.querySelectorAll('.tool-action'));
@@ -24,9 +28,28 @@ const themeMeta = document.querySelector('meta[name="theme-color"]');
 const themeStorageKey = 'notepad_text_tools_theme_v1';
 const lightThemeColor = '#343a40';
 const darkThemeColor = '#0e141a';
+const donationToastStorageKey = 'notepad_text_tools_donation_toast_state_v1';
 
 let toastTimer = null;
 let lastFindIndex = -1;
+
+const donationToastLinks = [
+  {
+    text: 'Using Text Tools often? Consider buying me a coffee to support it.',
+    url: 'https://buymeacoffee.com/amitmerchant',
+    active: true
+  },
+  {
+    text: 'This app stays ad-free. If you value that, buy me a coffee. Thank you!',
+    url: 'https://buymeacoffee.com/amitmerchant',
+    active: true
+  },
+  {
+    text: 'Love the clutter-free experience? A coffee helps me keep improving it.',
+    url: 'https://buymeacoffee.com/amitmerchant',
+    active: true
+  }
+];
 
 const sampleText = [
   'Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do.',
@@ -45,6 +68,58 @@ function showToast(message) {
   toastTimer = setTimeout(() => {
     toast.style.display = 'none';
   }, 2200);
+}
+
+function loadDonationToastState() {
+  const defaults = { dismissedAt: 0 };
+
+  try {
+    const rawState = localStorage.getItem(donationToastStorageKey);
+    if (!rawState) {
+      return { ...defaults };
+    }
+
+    return { ...defaults, ...JSON.parse(rawState) };
+  } catch (error) {
+    return { ...defaults };
+  }
+}
+
+function persistDonationToastState(state) {
+  localStorage.setItem(donationToastStorageKey, JSON.stringify(state));
+}
+
+function showRandomDonationToast() {
+  if (!toastPopup || !toastPopupText || !toastPopupLink) {
+    return;
+  }
+
+  const activeLinks = donationToastLinks.filter((link) => link.active);
+  const link = activeLinks[Math.floor(Math.random() * activeLinks.length)];
+
+  if (!link) {
+    return;
+  }
+
+  toastPopupText.textContent = link.text;
+  toastPopupLink.setAttribute('href', link.url);
+  toastPopup.classList.remove('hide');
+  toastPopup.classList.add('show');
+}
+
+function closeDonationToast() {
+  if (!toastPopup) {
+    return;
+  }
+
+  toastPopup.classList.add('hide');
+  setTimeout(() => {
+    toastPopup.classList.remove('show', 'hide');
+  }, 220);
+
+  const state = loadDonationToastState();
+  state.dismissedAt = Date.now();
+  persistDonationToastState(state);
 }
 
 function setStatus(message) {
@@ -431,3 +506,19 @@ if (savedText) {
 applyTheme(savedTheme);
 updateStats();
 setStatus('Ready.');
+
+if (toastPopup && toastPopupLink) {
+  const donationToastState = loadDonationToastState();
+  const cooldownMs = 24 * 60 * 60 * 1000;
+  const canShowDonationToast = Date.now() - (donationToastState.dismissedAt || 0) > cooldownMs;
+
+  if (canShowDonationToast) {
+    setTimeout(showRandomDonationToast, 5000);
+  }
+
+  toastPopupLink.addEventListener('click', closeDonationToast);
+}
+
+if (closeToastPopupButton) {
+  closeToastPopupButton.addEventListener('click', closeDonationToast);
+}
