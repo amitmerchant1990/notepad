@@ -1,21 +1,73 @@
 html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden; /* Prevent scrolling */
+	height: 100%;
+	margin: 0;
+	overflow: hidden; /* Prevent scrolling */
+}
+
+:root {
+	--page-bg: #f4f4f4;
+	--page-text: #1b1f23;
+	--control-bg: #ffffff;
+	--control-text: #212529;
+	--control-border: #ced4da;
+	--icon-hover-bg: rgba(255, 255, 255, 0.12);
+	--toast-bg: #333333;
+	--toast-text: #ffffff;
+	--modal-bg: #ffffff;
+	--modal-text: #212529;
+	--modal-border: rgba(0, 0, 0, 0.15);
+}
+
+body.dark {
+	--page-bg: #0e141a;
+	--page-text: #e6edf3;
+	--control-bg: #131c24;
+	--control-text: #e6edf3;
+	--control-border: #2d3a45;
+	--icon-hover-bg: rgba(255, 255, 255, 0.12);
+	--toast-bg: #1b222d;
+	--toast-text: #e6edf3;
+	--modal-bg: #0f1720;
+	--modal-text: #e6edf3;
+	--modal-border: rgba(255, 255, 255, 0.12);
+}
+
+a:focus {
+  outline: revert;
+  outline-offset: revert;
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: revert;
+  outline-offset: revert;
+  box-shadow: none;
+}
+
+input[type=file]:focus,
+input[type=checkbox]:focus,
+input[type=radio]:focus {
+  outline: revert;
+  outline-offset: revert;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+	font-family: Arial, sans-serif;
+	background-color: var(--page-bg);
+	color: var(--page-text);
 }
 
 .toast {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    opacity: 0.9;
-    display: none; 
+	background-color: var(--toast-bg);
+	color: var(--toast-text);
+	padding: 10px;
+	border-radius: 5px;
+	opacity: 0.9;
+	display: none; 
     position: fixed; 
     bottom: 6px; 
     right: 20px; 
@@ -31,14 +83,69 @@ body {
     height: calc(100dvh - 200px);
 }
 
-.container textarea {
-    width: 100%;
-    height: 100%;
-}
+	.container textarea {
+	    width: 100%;
+	    height: 100%;
+	}
 
-.select-case-container select {
-    width: 35% !important;
-}
+	.form-control {
+	    background-color: var(--control-bg);
+	    color: var(--control-text);
+	}
+
+	body.dark .form-control {
+	    border-color: var(--control-border);
+	}
+
+	body.dark .form-control::placeholder {
+	    color: rgba(230, 237, 243, 0.55);
+	}
+
+	body.dark .form-control:focus {
+	    background-color: var(--control-bg);
+	    color: var(--control-text);
+	    border-color: rgba(108, 99, 255, 0.65);
+	    box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.25);
+	}
+
+	body.dark .btn-outline-secondary {
+	    color: rgba(230, 237, 243, 0.9);
+	    border-color: rgba(230, 237, 243, 0.35);
+	}
+
+	body.dark .btn-outline-secondary:hover,
+	body.dark .btn-outline-secondary:focus {
+	    background-color: rgba(230, 237, 243, 0.12);
+	}
+
+	body.dark .modal-content {
+	    background-color: var(--modal-bg);
+	    color: var(--modal-text);
+	    border-color: var(--modal-border);
+	}
+
+	body.dark .modal-header,
+	body.dark .modal-footer {
+	    border-color: var(--modal-border);
+	}
+
+	body.dark .modal-header .close {
+	    color: var(--modal-text);
+	    opacity: 0.85;
+	}
+
+	body.dark .modal-body a {
+	    color: rgba(138, 180, 248, 0.95);
+	}
+
+	body.dark .modal-body a:hover,
+	body.dark .modal-body a:focus {
+	    color: rgba(170, 204, 255, 1);
+	}
+
+	.select-case-container select {
+	    width: 35% !important;
+	}
 
 #copyButton {
     position: absolute; 
@@ -60,6 +167,10 @@ h2 {
     font-size: 1.2rem;
     margin: .3rem 0;
     font-weight: bold;
+}
+
+body.dark h2 {
+    color: rgba(230, 237, 243, 0.82);
 }
 
 .kanban-board {
@@ -122,6 +233,47 @@ input[type="text"]:focus {
 .generic-flex {
     display: flex;
     align-items: center;
+}
+
+.navbar-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 49px;
+    width: 38px;
+    border-radius: 10px;
+    padding: 0;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.navbar-icon-button:hover,
+.navbar-icon-button:focus {
+    background-color: transparent;
+    outline: none;
+}
+
+.theme-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.theme-icon svg {
+    display: block;
+}
+
+.theme-icon-light {
+    display: none;
+}
+
+body.dark .theme-icon-dark {
+    display: none;
+}
+
+body.dark .theme-icon-light {
+    display: inline-flex;
 }
 
 .select-case-container {
