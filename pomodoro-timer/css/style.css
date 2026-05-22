@@ -617,6 +617,7 @@ body[data-theme="light"] .theme-icon-moon {
 
 #pipContainer {
   display: none;
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
