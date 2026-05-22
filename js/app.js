@@ -8,6 +8,11 @@ $(document).ready(function () {
 		{
 			text: "If Notepad is part of your daily workflow, consider supporting it.",
 			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+		{
+			text: "Support the developer",
+			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
 		{
@@ -28,7 +33,7 @@ $(document).ready(function () {
 		{
 			text: "Buy me a coffee so that I don't have to rely on ads to run this app.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "🎉 Happy New Year! If this app made your year a little easier, you can buy me a coffee ☕️",
@@ -93,7 +98,7 @@ $(document).ready(function () {
 		{
 			text: "Enjoying the clutter-free writing experience? Consider buying me a coffee for your support.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "🚀 New tool → Case Converter",
