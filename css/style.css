@@ -1769,6 +1769,22 @@ a {
   background-image: radial-gradient(#50505080 1px, #0000 1px);
 }
 
+.chessboard-paper {
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.02) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.02) 75%, rgba(0, 0, 0, 0.02)),
+    linear-gradient(45deg, rgba(0, 0, 0, 0.02) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.02) 75%, rgba(0, 0, 0, 0.02));
+  background-position: 0 0, 26px 26px;
+  background-size: 52px 52px;
+}
+
+.chessboard-paper textarea {
+  border-color: transparent;
+}
+
+.dark.chessboard-paper {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.03) 75%, rgba(255, 255, 255, 0.03)),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.03) 75%, rgba(255, 255, 255, 0.03));
+}
+
 /* Heartbeat animation */
 @keyframes heartbeat {
   0% {

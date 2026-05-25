@@ -832,15 +832,17 @@ you can buy me a coffee — the link of which is available in the About section.
 	}
 
 	if (state.userChosenTexture) {
-		const allowedTextures = ['normal', 'dotted', 'graph', 'grain', 'linen', 'recycled', 'newspaper', 'marble'];
+		const allowedTextures = ['normal', 'dotted', 'graph', 'chessboard', 'grain', 'linen', 'recycled', 'newspaper', 'marble'];
 
 		if (allowedTextures.includes(state.userChosenTexture)) {
-			$(document.body).removeClass('dotted-paper graph-paper grain-paper linen-paper recycled-paper newspaper-paper marble-paper');
+			$(document.body).removeClass('dotted-paper graph-paper chessboard-paper grain-paper linen-paper recycled-paper newspaper-paper marble-paper');
 
 			if (state.userChosenTexture == 'dotted') {
 				$(document.body).addClass('dotted-paper');
 			} else if (state.userChosenTexture == 'graph') {
 				$(document.body).addClass('graph-paper');
+			} else if (state.userChosenTexture == 'chessboard') {
+				$(document.body).addClass('chessboard-paper');
 			} else if (state.userChosenTexture == 'grain') {
 				$(document.body).addClass('grain-paper');
 			} else if (state.userChosenTexture == 'linen') {
@@ -1090,12 +1092,14 @@ you can buy me a coffee — the link of which is available in the About section.
 	notepad.texture.on('change', function (e) {
 		const textureSelected = this.value;
 
-		$(document.body).removeClass('dotted-paper graph-paper grain-paper linen-paper recycled-paper newspaper-paper marble-paper');
+		$(document.body).removeClass('dotted-paper graph-paper chessboard-paper grain-paper linen-paper recycled-paper newspaper-paper marble-paper');
 
 		if (textureSelected == 'dotted') {
 			$(document.body).addClass('dotted-paper');
 		} else if (textureSelected == 'graph') {
 			$(document.body).addClass('graph-paper');
+		} else if (textureSelected == 'chessboard') {
+			$(document.body).addClass('chessboard-paper');
 		} else if (textureSelected == 'grain') {
 			$(document.body).addClass('grain-paper');
 		} else if (textureSelected == 'linen') {
