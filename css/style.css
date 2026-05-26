@@ -1785,6 +1785,28 @@ a {
     linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.03) 75%, rgba(255, 255, 255, 0.03));
 }
 
+.starfield-paper {
+  background-image:
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='320'%20height='320'%20viewBox='0%200%20320%20320'%3E%3Cg%20stroke='rgba(0%2C0%2C0%2C0.22)'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cline%20x1='48'%20y1='42'%20x2='48'%20y2='48'/%3E%3Cline%20x1='45'%20y1='45'%20x2='51'%20y2='45'/%3E%3Cline%20x1='186'%20y1='66'%20x2='186'%20y2='72'/%3E%3Cline%20x1='183'%20y1='69'%20x2='189'%20y2='69'/%3E%3Cline%20x1='278'%20y1='38'%20x2='278'%20y2='46'/%3E%3Cline%20x1='274'%20y1='42'%20x2='282'%20y2='42'/%3E%3Cline%20x1='96'%20y1='152'%20x2='96'%20y2='160'/%3E%3Cline%20x1='92'%20y1='156'%20x2='100'%20y2='156'/%3E%3Cline%20x1='240'%20y1='180'%20x2='240'%20y2='188'/%3E%3Cline%20x1='236'%20y1='184'%20x2='244'%20y2='184'/%3E%3Cline%20x1='62'%20y1='252'%20x2='62'%20y2='258'/%3E%3Cline%20x1='59'%20y1='255'%20x2='65'%20y2='255'/%3E%3Cline%20x1='162'%20y1='270'%20x2='162'%20y2='278'/%3E%3Cline%20x1='158'%20y1='274'%20x2='166'%20y2='274'/%3E%3Cline%20x1='286'%20y1='266'%20x2='286'%20y2='272'/%3E%3Cline%20x1='283'%20y1='269'%20x2='289'%20y2='269'/%3E%3C/g%3E%3Cg%20fill='rgba(0%2C0%2C0%2C0.18)'%3E%3Ccircle%20cx='118'%20cy='38'%20r='0.9'/%3E%3Ccircle%20cx='226'%20cy='112'%20r='0.8'/%3E%3Ccircle%20cx='34'%20cy='128'%20r='0.7'/%3E%3Ccircle%20cx='160'%20cy='150'%20r='0.85'/%3E%3Ccircle%20cx='204'%20cy='244'%20r='0.75'/%3E%3Ccircle%20cx='24'%20cy='286'%20r='0.7'/%3E%3Ccircle%20cx='304'%20cy='210'%20r='0.75'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='480'%20height='480'%20viewBox='0%200%20480%20480'%3E%3Cg%20stroke='rgba(0%2C0%2C0%2C0.14)'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cline%20x1='90'%20y1='92'%20x2='90'%20y2='100'/%3E%3Cline%20x1='86'%20y1='96'%20x2='94'%20y2='96'/%3E%3Cline%20x1='214'%20y1='208'%20x2='214'%20y2='214'/%3E%3Cline%20x1='211'%20y1='211'%20x2='217'%20y2='211'/%3E%3Cline%20x1='376'%20y1='160'%20x2='376'%20y2='168'/%3E%3Cline%20x1='372'%20y1='164'%20x2='380'%20y2='164'/%3E%3Cline%20x1='312'%20y1='342'%20x2='312'%20y2='350'/%3E%3Cline%20x1='308'%20y1='346'%20x2='316'%20y2='346'/%3E%3C/g%3E%3Cg%20fill='rgba(0%2C0%2C0%2C0.12)'%3E%3Ccircle%20cx='42'%20cy='310'%20r='0.85'/%3E%3Ccircle%20cx='178'%20cy='44'%20r='0.75'/%3E%3Ccircle%20cx='402'%20cy='66'%20r='0.8'/%3E%3Ccircle%20cx='452'%20cy='246'%20r='0.75'/%3E%3Ccircle%20cx='124'%20cy='418'%20r='0.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 320px 320px, 480px 480px;
+  background-position: 0 0, 80px 40px;
+  background-repeat: repeat;
+}
+
+.starfield-paper textarea {
+  border-color: transparent;
+}
+
+.dark.starfield-paper {
+  background-image:
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='320'%20height='320'%20viewBox='0%200%20320%20320'%3E%3Cg%20stroke='rgba(255%2C255%2C255%2C0.24)'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cline%20x1='48'%20y1='42'%20x2='48'%20y2='48'/%3E%3Cline%20x1='45'%20y1='45'%20x2='51'%20y2='45'/%3E%3Cline%20x1='186'%20y1='66'%20x2='186'%20y2='72'/%3E%3Cline%20x1='183'%20y1='69'%20x2='189'%20y2='69'/%3E%3Cline%20x1='278'%20y1='38'%20x2='278'%20y2='46'/%3E%3Cline%20x1='274'%20y1='42'%20x2='282'%20y2='42'/%3E%3Cline%20x1='96'%20y1='152'%20x2='96'%20y2='160'/%3E%3Cline%20x1='92'%20y1='156'%20x2='100'%20y2='156'/%3E%3Cline%20x1='240'%20y1='180'%20x2='240'%20y2='188'/%3E%3Cline%20x1='236'%20y1='184'%20x2='244'%20y2='184'/%3E%3Cline%20x1='62'%20y1='252'%20x2='62'%20y2='258'/%3E%3Cline%20x1='59'%20y1='255'%20x2='65'%20y2='255'/%3E%3Cline%20x1='162'%20y1='270'%20x2='162'%20y2='278'/%3E%3Cline%20x1='158'%20y1='274'%20x2='166'%20y2='274'/%3E%3Cline%20x1='286'%20y1='266'%20x2='286'%20y2='272'/%3E%3Cline%20x1='283'%20y1='269'%20x2='289'%20y2='269'/%3E%3C/g%3E%3Cg%20fill='rgba(255%2C255%2C255%2C0.18)'%3E%3Ccircle%20cx='118'%20cy='38'%20r='0.9'/%3E%3Ccircle%20cx='226'%20cy='112'%20r='0.8'/%3E%3Ccircle%20cx='34'%20cy='128'%20r='0.7'/%3E%3Ccircle%20cx='160'%20cy='150'%20r='0.85'/%3E%3Ccircle%20cx='204'%20cy='244'%20r='0.75'/%3E%3Ccircle%20cx='24'%20cy='286'%20r='0.7'/%3E%3Ccircle%20cx='304'%20cy='210'%20r='0.75'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='480'%20height='480'%20viewBox='0%200%20480%20480'%3E%3Cg%20stroke='rgba(255%2C255%2C255%2C0.14)'%20stroke-width='1'%20stroke-linecap='round'%3E%3Cline%20x1='90'%20y1='92'%20x2='90'%20y2='100'/%3E%3Cline%20x1='86'%20y1='96'%20x2='94'%20y2='96'/%3E%3Cline%20x1='214'%20y1='208'%20x2='214'%20y2='214'/%3E%3Cline%20x1='211'%20y1='211'%20x2='217'%20y2='211'/%3E%3Cline%20x1='376'%20y1='160'%20x2='376'%20y2='168'/%3E%3Cline%20x1='372'%20y1='164'%20x2='380'%20y2='164'/%3E%3Cline%20x1='312'%20y1='342'%20x2='312'%20y2='350'/%3E%3Cline%20x1='308'%20y1='346'%20x2='316'%20y2='346'/%3E%3C/g%3E%3Cg%20fill='rgba(255%2C255%2C255%2C0.12)'%3E%3Ccircle%20cx='42'%20cy='310'%20r='0.85'/%3E%3Ccircle%20cx='178'%20cy='44'%20r='0.75'/%3E%3Ccircle%20cx='402'%20cy='66'%20r='0.8'/%3E%3Ccircle%20cx='452'%20cy='246'%20r='0.75'/%3E%3Ccircle%20cx='124'%20cy='418'%20r='0.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 320px 320px, 480px 480px;
+  background-position: 0 0, 80px 40px;
+  background-repeat: repeat;
+}
+
 /* Heartbeat animation */
 @keyframes heartbeat {
   0% {

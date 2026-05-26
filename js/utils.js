@@ -137,6 +137,7 @@ function resetTexture(defaultTexture) {
     $(document.body).removeClass('dotted-paper');
     $(document.body).removeClass('graph-paper');
     $(document.body).removeClass('chessboard-paper');
+    $(document.body).removeClass('starfield-paper');
     $(document.body).removeClass('grain-paper');
     $(document.body).removeClass('linen-paper');
     $(document.body).removeClass('recycled-paper');
