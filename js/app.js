@@ -3,7 +3,7 @@ $(document).ready(function () {
 		{
 			text: "Support Notepad's sustainable development — Buy me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "If Notepad is part of your daily workflow, consider supporting it.",
@@ -13,7 +13,7 @@ $(document).ready(function () {
 		{
 			text: "Support the developer",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "I work on this app in my spare time. Buy me a coffee for your support!",
@@ -43,7 +43,7 @@ $(document).ready(function () {
 		{
 			text: "This app is intentionally kept ad-free. If you appreciate that, buy me a coffee. Thank you! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "I strive to craft this app to perfection. If you admire the effort, consider buying me a coffee!",
