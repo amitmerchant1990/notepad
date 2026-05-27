@@ -16,6 +16,7 @@ const actionButtons = Array.from(document.querySelectorAll('.tool-action'));
 const findInput = document.getElementById('findInput');
 const replaceInput = document.getElementById('replaceInput');
 const useRegex = document.getElementById('useRegex');
+const caseInsensitive = document.getElementById('caseInsensitive');
 const replaceBtn = document.getElementById('replaceBtn');
 const replaceAllBtn = document.getElementById('replaceAllBtn');
 const resultPanel = document.getElementById('resultPanel');
@@ -250,7 +251,14 @@ function buildFindRegex(globalMode) {
 
   try {
     const pattern = useRegex.checked ? query : escapeRegExp(query);
-    return new RegExp(pattern, globalMode ? 'g' : '');
+    let flags = '';
+    if (globalMode) {
+      flags += 'g';
+    }
+    if (caseInsensitive && caseInsensitive.checked) {
+      flags += 'i';
+    }
+    return new RegExp(pattern, flags);
   } catch (error) {
     showToast('Invalid regular expression.');
     return null;
@@ -487,6 +495,24 @@ actionButtons.forEach((button) => {
 
 replaceBtn.addEventListener('click', replaceNext);
 replaceAllBtn.addEventListener('click', replaceAll);
+
+findInput.addEventListener('input', () => {
+  lastFindIndex = -1;
+});
+
+replaceInput.addEventListener('input', () => {
+  lastFindIndex = -1;
+});
+
+useRegex.addEventListener('change', () => {
+  lastFindIndex = -1;
+});
+
+if (caseInsensitive) {
+  caseInsensitive.addEventListener('change', () => {
+    lastFindIndex = -1;
+  });
+}
 
 inputText.addEventListener('input', () => {
   persistText();
