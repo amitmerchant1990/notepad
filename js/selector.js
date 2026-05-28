@@ -100,7 +100,7 @@ function selector() {
             defaultWriteDirection: 'ltr',
             defaultTexture: 'normal',
             defaultOptimalLineLength: false,
-            defaultOptimalLineLengthPadding: '15px 24px 40px',
+            defaultOptimalLineLengthPadding: '15px 24px 60px',
             defaultSpellCheck: true,
             defaultTabIndentation: false,
             defaultTransparentWordCountPillSelected: false,
