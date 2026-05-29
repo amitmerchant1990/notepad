@@ -690,6 +690,31 @@ you can buy me a coffee — the link of which is available in the About section.
 		}
 	});
 
+	// Handle editor auto-scroll for long notes
+	var styles = window.getComputedStyle(notepad.note[0]);
+    var paddingBottom = parseInt(styles.paddingBottom, 10) || 0;
+
+	let pendingAutoScrollRaf = null;
+	let pendingAutoScrollEl = null;
+
+	notepad.note.on('input', (e) => {
+		pendingAutoScrollEl = e.target;
+
+		if (pendingAutoScrollRaf) return;
+
+		pendingAutoScrollRaf = requestAnimationFrame(() => {
+			pendingAutoScrollRaf = null;
+
+			const textarea = pendingAutoScrollEl;
+			if (!textarea) return;
+
+			if (textarea.selectionStart >= textarea.value.length) {
+				textarea.scrollTop = textarea.scrollHeight + paddingBottom;
+			}
+		});
+	});
+	// Handle editor auto-scroll for long notes
+
 	notepad.note.on('input', (e) => {
 		trackWritingActivity();
 
