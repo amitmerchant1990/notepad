@@ -2838,6 +2838,10 @@ a {
   margin-bottom: 10px;
 }
 
+.chime-container > * {
+  cursor: pointer;
+}
+
 .chime-container input {
   margin: 0;
   color-scheme: none;
