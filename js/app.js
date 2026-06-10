@@ -23,12 +23,12 @@ $(document).ready(function () {
 		{
 			text: "If Notepad has been useful to you, buying me a coffee is a great way to support it.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "This app runs without ads. If you value that, buy me a coffee.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Buy me a coffee so that I don't have to rely on ads to run this app.",
@@ -43,7 +43,7 @@ $(document).ready(function () {
 		{
 			text: "This app is intentionally kept ad-free. If you appreciate that, buy me a coffee. Thank you! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "I strive to craft this app to perfection. If you admire the effort, consider buying me a coffee!",
@@ -58,7 +58,7 @@ $(document).ready(function () {
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Your support keeps this app going — leave a tip if you can! ❤️",
@@ -68,12 +68,12 @@ $(document).ready(function () {
 		{
 			text: "Love the ad-free experience? Buy me a coffee to keep it that way!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "I hate ads on my Notepad. If you feel the same, consider buying me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Send anonymous feature suggestions",
@@ -98,7 +98,12 @@ $(document).ready(function () {
 		{
 			text: "Enjoying the clutter-free writing experience? Consider buying me a coffee for your support.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
+		},
+		{
+			text: "Support the development of this app and help me dedicate more time to improving it.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
 		},
 		{
 			text: "🚀 New tool → Case Converter",
