@@ -1,3 +1,55 @@
+:root {
+    color-scheme: light;
+    --page-bg: #f5f5f5;
+    --page-text: #333;
+    --muted-text: #6c757d;
+    --surface-bg: #ffffff;
+    --surface-border: rgba(0, 0, 0, 0.08);
+    --surface-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --title-color: #2c3e50;
+    --recording-time: #333;
+    --recording-date: #495057;
+    --recording-meta: #6c757d;
+    --empty-state-text: #6c757d;
+    --empty-state-border: #dee2e6;
+    --note-border: #dee2e6;
+    --note-focus-border: #86b7fe;
+    --note-focus-shadow: rgba(13, 110, 253, 0.1);
+    --saved-bg: rgba(255, 255, 255, 0.98);
+    --saved-text: #198754;
+    --modal-bg: #ffffff;
+    --modal-text: #333;
+    --modal-border: rgba(0, 0, 0, 0.1);
+    --icon-hover-bg: rgba(255, 255, 255, 0.12);
+    --icon-color: #fff;
+    --header-gap: 0.25rem;
+}
+
+body.dark {
+    color-scheme: dark;
+    --page-bg: #10161d;
+    --page-text: #e8edf3;
+    --muted-text: #9ba8b5;
+    --surface-bg: #18212b;
+    --surface-border: #263342;
+    --surface-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+    --title-color: #f5f7fa;
+    --recording-time: #edf2f7;
+    --recording-date: #d4dde6;
+    --recording-meta: #9fb0c0;
+    --empty-state-text: #9ba8b5;
+    --empty-state-border: #314152;
+    --note-border: #314152;
+    --note-focus-border: #6ea8fe;
+    --note-focus-shadow: rgba(110, 168, 254, 0.22);
+    --saved-bg: rgba(17, 25, 34, 0.98);
+    --saved-text: #75b798;
+    --modal-bg: #18212b;
+    --modal-text: #e8edf3;
+    --modal-border: #263342;
+    --icon-hover-bg: rgba(255, 255, 255, 0.08);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,29 +58,82 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: var(--page-bg);
+    color: var(--page-text);
     line-height: 1.6;
     padding-top: 60px;
+    transition: background-color 180ms ease, color 180ms ease;
 }
 
 .navbar-brand a:hover {
     opacity: 0.8;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--header-gap);
+}
+
+.navbar-icon-button {
+    border: none;
+    background: transparent;
+    color: var(--icon-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0;
+    transition: background-color 160ms ease, opacity 160ms ease;
+}
+
+.navbar-icon-button:hover,
+.navbar-icon-button:focus {
+    background-color: var(--icon-hover-bg);
+    outline: none;
+}
+
+.theme-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+}
+
+.theme-icon svg {
+    display: block;
+}
+
+.theme-icon-light {
+    display: none;
+}
+
+body.dark .theme-icon-dark {
+    display: none;
+}
+
+body.dark .theme-icon-light {
+    display: inline-flex;
+}
+
 .recorder-container {
     max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: white;
+    background-color: var(--surface-bg);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--surface-shadow);
+    border: 1px solid var(--surface-border);
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #2c3e50;
+    color: var(--title-color);
 }
 
 .recorder-controls {
@@ -90,7 +195,7 @@ h1 {
 .recording-time {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: var(--recording-time);
     margin: 1rem 0;
     text-align: center;
     position: relative;
@@ -146,21 +251,22 @@ h1 {
 
 .recording-date {
     font-size: 0.9rem;
-    color: #495057;
+    color: var(--recording-date);
     font-weight: 500;
 }
 
 .recording-time-ago {
     font-size: 0.85rem;
-    color: #6c757d;
+    color: var(--recording-meta);
 }
 
 .recording-item {
-    background: #fff;
+    background: var(--surface-bg);
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1rem;
     box-shadow: 0 1px 4px rgb(0 0 0 / 17%);
+    border: 1px solid var(--surface-border);
 }
 
 .recording-item audio {
@@ -216,9 +322,9 @@ h1 {
     align-items: center;
     justify-content: center;
     padding: 3rem 1rem;
-    color: #6c757d;
+    color: var(--empty-state-text);
     text-align: center;
-    border: 2px dashed #dee2e6;
+    border: 2px dashed var(--empty-state-border);
     border-radius: 8px;
     will-change: opacity;
     transition: opacity 0.3s ease-in-out;
@@ -249,10 +355,11 @@ h1 {
 }
 
 .about-notice {
-    background-color: #f8f9fa;
+    background-color: rgba(13, 110, 253, 0.06);
     padding: 1rem;
     border-radius: 8px;
     margin-top: 1.5rem;
+    color: var(--page-text);
 }
 
 .about-author-container {
@@ -295,6 +402,18 @@ h1 {
     padding: 1rem 1.5rem;
 }
 
+.modal-content {
+    background: var(--modal-bg);
+    color: var(--modal-text);
+    border: 1px solid var(--modal-border);
+}
+
+.modal-body,
+.modal-header,
+.modal-footer {
+    color: var(--modal-text);
+}
+
 .btn-close:focus {
     box-shadow: none;
 }
@@ -328,18 +447,20 @@ h1 {
     width: 100%;
     margin: 0.75rem 0;
     padding: 0.5rem;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--note-border);
     border-radius: 10px;
     font-size: 0.9rem;
     min-height: 70px;
     resize: vertical;
     transition: border-color 0.2s ease-in-out;
+    background: var(--surface-bg);
+    color: var(--page-text);
 }
 
 .recording-notes:focus {
     outline: none;
-    border-color: #86b7fe;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+    border-color: var(--note-focus-border);
+    box-shadow: 0 0 0 0.25rem var(--note-focus-shadow);
 }
 
 .notes-saved {
@@ -347,8 +468,8 @@ h1 {
     right: 5px;
     bottom: 24px;
     font-size: 0.7rem;
-    color: #198754;
-    background: rgb(255 255 255 / 98%);
+    color: var(--saved-text);
+    background: var(--saved-bg);
     padding: 3px 6px;
     border-radius: 4px;
     display: flex;

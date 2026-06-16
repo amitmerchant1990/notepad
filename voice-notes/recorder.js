@@ -1,3 +1,49 @@
+const THEME_STORAGE_KEY = 'voice_notes_theme_v1';
+const LIGHT_THEME_COLOR = '#f5f5f5';
+const DARK_THEME_COLOR = '#10161d';
+
+function getPreferredTheme() {
+    try {
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedTheme === 'dark' || savedTheme === 'light') {
+            return savedTheme;
+        }
+    } catch (error) {
+        console.warn('Unable to read saved theme:', error);
+    }
+
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+    const isDark = theme === 'dark';
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+    document.body.classList.toggle('dark', isDark);
+    document.documentElement.setAttribute('data-bs-theme', theme);
+
+    if (themeMeta) {
+        themeMeta.setAttribute('content', isDark ? DARK_THEME_COLOR : LIGHT_THEME_COLOR);
+    }
+
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+        themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+}
+
+function setTheme(theme) {
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (error) {
+        console.warn('Unable to save theme:', error);
+    }
+
+    applyTheme(theme);
+}
+
 class VoiceRecorder {
     constructor() {
         this.mediaRecorder = null;
@@ -16,7 +62,9 @@ class VoiceRecorder {
         this.recordingsList = document.getElementById('recordings');
         this.emptyState = document.getElementById('emptyState');
         this.processingLoader = document.getElementById('processingLoader');
+        this.themeToggle = document.getElementById('themeToggle');
 
+        setTheme(getPreferredTheme());
         this.initializeDB();
         this.setupEventListeners();
     }
@@ -90,6 +138,13 @@ class VoiceRecorder {
                 this.startRecording();
             }
         });
+
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => {
+                const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+                setTheme(nextTheme);
+            });
+        }
     }
 
     async initializeRecorder() {
