@@ -2,22 +2,22 @@ $(document).ready(function () {
     // Affiliate links data
 	const affiliateLinks = [
 		{
-			text: "Video Tap — Effortlessly turn your videos into text-based content",
-			url: "https://videotap.com?via=amitmerchant",
-			active: false
-		},
-		{
 			text: "Support Notepad's sustainable development — Buy me a coffee! ❤️",
-			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
-		},
-        {
-			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
         {
+			text: "I work on this app in my spare time. Buy me a coffee for your support!",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+        {
 			text: "Buy me a coffee so that I don't have to rely on ads to run this app.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+        {
+			text: "Support the development of this app and help me dedicate more time to improving it.",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
