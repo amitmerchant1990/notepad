@@ -193,6 +193,8 @@ table tr td {
   display: flex;
   align-items: center;
   gap: 2px;
+  flex-wrap: wrap;
+  row-gap: 8px;
 }
 
 .about-icon-container {
