@@ -2990,6 +2990,10 @@ body.dark .stat-value {
   color: #585656;
 }
 
+#keyboardShortcutsModal .modal-dialog {
+  max-width: 800px;
+}
+
 @media (max-width: 480px) {
   .statistics-grid {
     gap: 15px;
