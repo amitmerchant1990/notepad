@@ -498,6 +498,10 @@ table tr td {
   overflow: hidden;
 }
 
+.unicode-picker-modal .custom-modal-title {
+  gap: 5px;
+}
+
 .unicode-picker-header {
   padding-bottom: 16px;
 }
