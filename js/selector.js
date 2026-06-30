@@ -66,6 +66,11 @@ function selector() {
             focusModeCloseButton: selectById('focusModeCloseButton'),
             statisticsModal: selectById('statisticsModal'),
             serif: selectById('serif'),
+            unicodePickerModal: selectById('unicodePickerModal'),
+            unicodePickerTrigger: selectById('unicodePickerTrigger'),
+            unicodePickerSearch: selectById('unicodePickerSearch'),
+            unicodePickerGrid: selectById('unicodePickerGrid'),
+            unicodePickerCategory: selectById('unicodePickerCategory'),
         },
         state: {
             note: getState('note'),

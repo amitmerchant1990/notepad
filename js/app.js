@@ -439,6 +439,8 @@ you can buy me a coffee — the link of which is available in the About section.
 		darkMetaColor,
 		metaThemeColor
 	};
+	
+	initUnicodePicker(notepad);
 
 	const noteItem = state.note && state.note != '' ? state.note : welcomeText;
 	const characterAndWordCountText = calculateCharactersAndWords(noteItem);
@@ -1449,6 +1451,16 @@ you can buy me a coffee — the link of which is available in the About section.
 
 			$('.modal').modal('hide');
 			notepad.keyboardShortcutsModal.modal('show');
+		}
+
+		if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.code === 'KeyO') {
+			event.preventDefault();
+
+			if (notepad.unicodePickerModal.hasClass('in'))
+				return;
+
+			$('.modal').modal('hide');
+			notepad.unicodePickerModal.modal('show');
 		}
 
 		if (event.altKey && event.code === 'KeyC') {
