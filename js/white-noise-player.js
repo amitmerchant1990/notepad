@@ -74,6 +74,30 @@ class WhiteNoisePlayer {
                 playing: false,
                 loading: false
             },
+            'inside-a-train': {
+                url: 'sounds/inside-a-train.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'morse-code': {
+                url: 'sounds/morse-code.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'rain-on-umbrella': {
+                url: 'sounds/rain-on-umbrella.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
+            'walk-in-snow': {
+                url: 'sounds/walk-in-snow.mp3',
+                audio: null,
+                playing: false,
+                loading: false
+            },
             'white-noise': {
                 url: 'sounds/white-noise.mp3',
                 audio: null,

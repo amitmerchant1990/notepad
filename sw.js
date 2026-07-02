@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v34';
+let CACHE_VERSION = 'app-v35';
 let CACHE_FILES = [
     '/',
     'index.html',
@@ -36,6 +36,10 @@ let CACHE_FILES = [
     'img/amitmerchant-icon.svg',
     'fonts/OpenDyslexic-Regular.otf',
     'fonts/Cookie-Regular.ttf',
+    'sounds/inside-a-train.mp3',
+    'sounds/morse-code.mp3',
+    'sounds/rain-on-umbrella.mp3',
+    'sounds/walk-in-snow.mp3',
     'sounds/typewriter/typewriter-key-press-02.mp3',
     'sounds/typewriter/typewriter-carriage-return-01.mp3',
     'sounds/typewriter/space.mp3',
