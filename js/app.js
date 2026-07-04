@@ -43,7 +43,7 @@ $(document).ready(function () {
 		{
 			text: "This app is intentionally kept ad-free. If you appreciate that, buy me a coffee. Thank you! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "I strive to craft this app to perfection. If you admire the effort, consider buying me a coffee!",
