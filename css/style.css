@@ -2578,32 +2578,28 @@ a {
 }
 
 .ambient-noise-icon {
+  display: inline-block;
   position: relative;
 }
 
-.floating-notes {
+.ambient-noise-status-dot {
+  display: none;
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  right: 0px;
+  bottom: 0px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2ecc71;
+  box-shadow: 0 0 5px 1px #1f252f94;
+}
+
+.ambient-noise-icon.is-playing .ambient-noise-status-dot {
+  display: block;
 }
 
 .about-link {
   padding-right: 0 !important;
-}
-
-@keyframes floatNote {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-80px) scale(0.8);
-    opacity: 0;
-  }
 }
 
 .toast-popup {
