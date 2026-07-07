@@ -706,6 +706,18 @@ class WhiteNoisePlayer {
         });
     }
 
+    stopAll() {
+        Object.keys(this.sounds).forEach(soundKey => {
+            const sound = this.sounds[soundKey];
+
+            this.pauseSound(soundKey);
+
+            if (sound?.audio) {
+                sound.audio.currentTime = 0;
+            }
+        });
+    }
+
     setVolume(soundKey, volume) {
         const sound = this.sounds[soundKey];
         if (!sound) return;
@@ -721,9 +733,13 @@ class WhiteNoisePlayer {
 
     updateMuteButtonVisibility() {
 		const muteButton = document.getElementById('globalMuteButton');
+        const stopButton = document.getElementById('globalStopButton');
         const ambientNoiseIcon = document.querySelector('.ambient-noise-icon');
-		muteButton.style.display = this.isAnySoundPlaying() ? 'block' : 'none';
-        ambientNoiseIcon?.classList.toggle('is-playing', this.isAnySoundPlaying());
+        const isPlaying = this.isAnySoundPlaying();
+
+		muteButton.style.display = isPlaying ? 'block' : 'none';
+        stopButton.style.display = isPlaying ? 'block' : 'none';
+        ambientNoiseIcon?.classList.toggle('is-playing', isPlaying);
 	}
 }
 
@@ -766,4 +782,12 @@ $(document).ready(() => {
 		// Initially hide the mute button
 		muteButton.style.display = 'none';
 	}
+
+    const stopButton = document.getElementById('globalStopButton');
+    if (stopButton) {
+        stopButton.addEventListener('click', () => {
+            window.whiteNoisePlayer.stopAll();
+        });
+        stopButton.style.display = 'none';
+    }
 });

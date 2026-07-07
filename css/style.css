@@ -3012,8 +3012,30 @@ a {
   transition: background-color 0.2s;
 }
 
+.global-stop-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  display: none;
+}
+
 .global-mute-button.muted svg {
   color: #ff3333;
+}
+
+.global-stop-button svg {
+  color: #c7d0da;
+}
+
+.global-stop-button:hover svg,
+.global-stop-button:focus svg {
+  color: #ff7676;
+}
+
+.sound-controls {
+  display: inline-flex;
 }
 
 .custom-modal-title {
