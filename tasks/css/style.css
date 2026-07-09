@@ -965,6 +965,15 @@ footer {
   color: #c9d1d9;
 }
 
+.dark .form-control[type="datetime-local"] {
+  color-scheme: light;
+}
+
+.dark .form-control[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.7);
+  opacity: 0.9;
+}
+
 .dark .form-control:focus {
   background-color: #21262d;
   border-color: #58a6ff;
