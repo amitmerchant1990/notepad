@@ -18,7 +18,7 @@ $(document).ready(function () {
 		{
 			text: "I work on this app in my spare time. Buy me a coffee for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "If Notepad has been useful to you, buying me a coffee is a great way to support it.",
@@ -58,7 +58,7 @@ $(document).ready(function () {
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Your support keeps this app going — leave a tip if you can! ❤️",
@@ -68,12 +68,12 @@ $(document).ready(function () {
 		{
 			text: "Love the ad-free experience? Buy me a coffee to keep it that way!",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "I hate ads on my Notepad. If you feel the same, consider buying me a coffee! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Send anonymous feature suggestions",
@@ -88,22 +88,22 @@ $(document).ready(function () {
 		{
 			text: "Using Notepad every day? Buy me a coffee and support its upkeep.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "If Notepad has become part of your workflow, a coffee helps me improve it.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "Enjoying the clutter-free writing experience? Consider buying me a coffee for your support.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "Support the development of this app and help me dedicate more time to improving it.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "🚀 New tool → Case Converter",
