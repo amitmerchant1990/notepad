@@ -55,12 +55,27 @@
     </nav>
 
     <div class="main-container">
+        <div class="breathing-selector">
+            <label class="breathing-selector__label" for="breathingPreset">Breathing technique</label>
+            <div class="breathing-selector__control">
+                <select id="breathingPreset" class="breathing-selector__select" aria-label="Breathing technique">
+                    <option value="box">Box Breathing</option>
+                    <option value="478">4-7-8 Breathing</option>
+                    <option value="pursed">Pursed Lip Breathing</option>
+                    <option value="resonant">Resonant Breathing</option>
+                    <option value="diaphragmatic">Diaphragmatic Breathing</option>
+                </select>
+            </div>
+        </div>
+
         <div class="c-deep-breathing-tool__frame">
             <div class="c-deep-breathing-tool__outer-circle">
                 <div class="c-deep-breathing-tool__inner-circle"></div>
             </div>
             <div class="c-deep-breathing-tool__message" id="message">When you're ready...</div>
         </div>
+
+        <div class="breathing-description" id="breathingDescription" aria-live="polite"></div>
 
         <a id="startButton" class="c-button c-button--yellow c-deep-breathing-tool__animation-toggle">Start breathing
             exercise</a>
@@ -83,7 +98,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>A simple breathing exercise (also called <b>"square breathing"</b>) to help you de-stress
+                    <p>A simple breathing exercise (also called <b>"box breathing"</b>) to help you de-stress
                         yourself.</p>
                     <p>You can also use this to unwind yourself after a long writing session.</p>
                     <p>Get relaxed with four easy steps:</p>

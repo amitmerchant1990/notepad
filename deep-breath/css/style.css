@@ -261,6 +261,8 @@ input[type="text"]:focus {
     height: calc(100% - 54px);
     background-color: #0b1215;
     gap: 30px;
+    padding: 1.5rem;
+    box-sizing: border-box;
 }
 
 main,
@@ -412,6 +414,76 @@ label {
     animation: fade-in-out 4s infinite;
 }
 
+.breathing-selector {
+    width: min(100%, 400px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.breathing-selector__label {
+    color: #d9e4ea;
+    font-family: "DM Sans", Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.breathing-selector__control {
+    position: relative;
+}
+
+.breathing-selector__control::after {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    content: "";
+    height: 10px;
+    pointer-events: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-65%) rotate(-45deg);
+    width: 10px;
+}
+
+.breathing-selector__select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #0f1b20;
+    border: 2px solid #2a3940;
+    border-radius: .5rem;
+    color: #f4f7f8;
+    cursor: pointer;
+    display: block;
+    font-family: "DM Sans", Helvetica, Arial, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: .9rem 3rem .9rem 1rem;
+    width: 100%;
+}
+
+.breathing-selector__select:focus {
+    outline: 2px solid #78c0c8;
+    outline-offset: 3px;
+}
+
+.breathing-description {
+    color: #aab7be;
+    font-family: "DM Sans", Helvetica, Arial, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 560px;
+    min-height: 4.5rem;
+    text-align: left;
+    width: min(100%, 560px);
+}
+
+.breathing-description strong {
+    color: #ffffff;
+}
+
 .c-button--yellow {
     background-color: #78c0c8 !important;
     border-color: #027a89 !important;
@@ -443,6 +515,17 @@ label {
 
 #startButton, #stopButton {
     width: 300px;
+}
+
+@media (max-width: 480px) {
+    #startButton,
+    #stopButton {
+        width: 100%;
+    }
+
+    .breathing-description {
+        font-size: 1rem;
+    }
 }
 
 #stopButton {
