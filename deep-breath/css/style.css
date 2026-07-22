@@ -349,7 +349,6 @@ label {
 
 .c-deep-breathing-tool__frame {
     background-color: #0a1215;
-    margin-bottom: 1.5rem;
     position: relative;
 }
 
@@ -454,7 +453,7 @@ label {
     background-color: #0f1b20;
     border: 2px solid #2a3940;
     border-radius: .5rem;
-    color: #f4f7f8;
+    color: #d1d1d1;
     cursor: pointer;
     display: block;
     font-family: "DM Sans", Helvetica, Arial, sans-serif;
@@ -475,13 +474,13 @@ label {
     font-size: 0.8rem;
     line-height: 1.6;
     max-width: 560px;
-    min-height: 4.5rem;
+    /* min-height: 4.5rem; */
     text-align: center;
     width: min(100%, 560px);
 }
 
 .breathing-description strong {
-    color: #ffffff;
+    color: #d1d1d1;
 }
 
 .c-button--yellow {
