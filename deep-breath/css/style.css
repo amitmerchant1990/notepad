@@ -458,9 +458,9 @@ label {
     cursor: pointer;
     display: block;
     font-family: "DM Sans", Helvetica, Arial, sans-serif;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 700;
-    padding: .9rem 3rem .9rem 1rem;
+    padding: .6rem 3rem .6rem 1rem;
     width: 100%;
 }
 
@@ -472,11 +472,11 @@ label {
 .breathing-description {
     color: #aab7be;
     font-family: "DM Sans", Helvetica, Arial, sans-serif;
-    font-size: 1.05rem;
+    font-size: 0.8rem;
     line-height: 1.6;
     max-width: 560px;
     min-height: 4.5rem;
-    text-align: left;
+    text-align: center;
     width: min(100%, 560px);
 }
 
