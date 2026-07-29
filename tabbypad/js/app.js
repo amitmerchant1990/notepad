@@ -9,10 +9,37 @@ const downloadNoteBtn = document.getElementById('downloadNoteBtn');
 const sortToggleBtn = document.getElementById('sortToggleBtn');
 const sortText = document.querySelector('.sort-text');
 const themeToggleBtn = document.getElementById('themeToggle');
+const toastPopup = document.getElementById('toastPopup');
+const toastLink = document.getElementById('toastLink');
+const toastText = document.getElementById('toastText');
+const closeToastPopupBtn = document.getElementById('closeToastPopup');
 let currentNoteId = null; // To track the index of the current note being edited
 let sortOrder = 'newest'; // 'newest' or 'oldest'
 
 let notes = [], db;
+
+const toastLinks = [
+    {
+        text: "Support Tabbypad's sustainable development — Buy me a coffee! ❤️",
+        url: "https://buymeacoffee.com/amitmerchant",
+        active: false
+    },
+    {
+        text: "If Tabbypad is part of your daily workflow, consider supporting it.",
+        url: "https://buymeacoffee.com/amitmerchant",
+        active: true
+    },
+    {
+        text: "This app runs without ads. If you value that, buy me a coffee.",
+        url: "https://buymeacoffee.com/amitmerchant",
+        active: false
+    },
+    {
+        text: "I work on this app in my spare time. Buy me a coffee for your support! ❤️",
+        url: "https://buymeacoffee.com/amitmerchant",
+        active: true
+    }
+];
 
 const themeStorageKey = 'tabbypadTheme';
 const darkMetaColor = '#0f131a';
@@ -67,6 +94,37 @@ function initTheme() {
             systemThemeQuery.addListener(handleDeviceChange);
         }
     }
+}
+
+function showRandomToastLink() {
+    if (!toastPopup || !toastLink || !toastText) {
+        return;
+    }
+
+    const activeLinks = toastLinks.filter(link => link.active);
+    const randomIndex = Math.floor(Math.random() * activeLinks.length);
+    const link = activeLinks[randomIndex];
+
+    if (!link) {
+        return;
+    }
+
+    toastText.textContent = link.text;
+    toastLink.setAttribute('href', link.url);
+    toastLink.setAttribute('target', '_blank');
+    toastLink.setAttribute('rel', 'noopener noreferrer');
+    toastPopup.classList.add('show');
+}
+
+function closeToastPopup() {
+    if (!toastPopup) {
+        return;
+    }
+
+    toastPopup.classList.add('hide');
+    setTimeout(() => {
+        toastPopup.classList.remove('show', 'hide');
+    }, 500);
 }
 
 function initIndexedDB() {
@@ -646,6 +704,16 @@ document.getElementById('floatingAddBtn').addEventListener('click', () => {
 
 // Initialize theme
 initTheme();
+
+if (closeToastPopupBtn) {
+    closeToastPopupBtn.addEventListener('click', closeToastPopup);
+}
+
+if (toastLink) {
+    toastLink.addEventListener('click', closeToastPopup);
+}
+
+setTimeout(showRandomToastLink, 9000);
 
 // Initialize IndexedDB
 initIndexedDB();
