@@ -2358,7 +2358,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2425,7 +2425,7 @@ a {
   border-top: 1px solid #ececec;
   background: #ffffff;
   color: #2f2f35;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
 }
 
