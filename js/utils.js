@@ -158,7 +158,34 @@ function resetOptimalLineLength(defaultEditorPadding, defaultOption) {
 }
 
 function countWords(str) {
-    return str.trim().split(/\s+/).length;
+    const trimmedText = str.trim();
+
+    if (trimmedText === '') {
+        return 0;
+    }
+
+    return trimmedText.split(/\s+/).length;
+}
+
+function extractWordTokens(str) {
+    return str.toLowerCase().match(/\b[a-z']+\b/g) || [];
+}
+
+function countSyllables(word) {
+    const cleanedWord = word.toLowerCase().replace(/[^a-z']/g, '');
+
+    if (cleanedWord.length === 0) {
+        return 0;
+    }
+
+    let syllableCount = cleanedWord
+        .replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
+        .replace(/^y/, '')
+        .match(/[aeiouy]{1,2}/g);
+
+    syllableCount = syllableCount ? syllableCount.length : 1;
+
+    return syllableCount;
 }
 
 function calculateCharactersAndWords(str) {
@@ -182,12 +209,17 @@ function calculateNoteStatistics(str) {
             readingTime: '0 min',
             uniqueWords: 0,
             lexicalDensity: '0%',
-            mostCommonWord: 'N/A'
+            lexicalDensityScore: '0%',
+            mostCommonWord: 'N/A',
+            readabilityScore: '0.0',
+            estimatedPages: '0 pages',
+            estimatedSpeakingTime: '0 min'
         };
     }
 
     const characters = str.length;
     const words = countWords(str);
+    const wordTokens = extractWordTokens(str);
     
     // Count sentences (split by . ! ?)
     const sentences = str.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
@@ -203,12 +235,11 @@ function calculateNoteStatistics(str) {
     const readingTime = readingTimeMinutes === 1 ? '1 min' : `${readingTimeMinutes} mins`;
     
     // Calculate unique words and most common word
-    const wordList = str.toLowerCase().match(/\b[a-z']+\b/g) || [];
     const wordFrequency = {};
     let maxCount = 0;
     let mostCommonWord = 'N/A';
     
-    wordList.forEach(word => {
+    wordTokens.forEach(word => {
         wordFrequency[word] = (wordFrequency[word] || 0) + 1;
         if (wordFrequency[word] > maxCount) {
             maxCount = wordFrequency[word];
@@ -217,7 +248,23 @@ function calculateNoteStatistics(str) {
     });
     
     const uniqueWords = Object.keys(wordFrequency).length;
-    const lexicalDensity = words > 0 ? ((uniqueWords / words) * 100).toFixed(1) : 0;
+    const contentWords = wordTokens.filter(word => !STOP_WORDS.has(word));
+    const lexicalDensityScore = words > 0 ? ((contentWords.length / words) * 100).toFixed(1) : 0;
+
+    const syllableCount = wordTokens.reduce((total, word) => total + countSyllables(word), 0);
+    const averageWordsPerSentence = sentences > 0 ? words / sentences : words;
+    const averageSyllablesPerWord = words > 0 ? syllableCount / words : 0;
+    const readabilityScore = sentences > 0 && words > 0
+        ? Math.max(0, Math.min(100, 206.835 - (1.015 * averageWordsPerSentence) - (84.6 * averageSyllablesPerWord))).toFixed(1)
+        : '0.0';
+
+    const estimatedPagesValue = Math.round((words / 250) * 10) / 10;
+    const estimatedPages = estimatedPagesValue === 0
+        ? '0.0 pages'
+        : `${estimatedPagesValue.toFixed(1)} ${estimatedPagesValue === 1 ? 'page' : 'pages'}`;
+
+    const speakingTimeMinutes = Math.ceil(words / 130);
+    const estimatedSpeakingTime = speakingTimeMinutes === 1 ? '1 min' : `${speakingTimeMinutes} mins`;
     
     return {
         characters,
@@ -227,10 +274,36 @@ function calculateNoteStatistics(str) {
         averageWordLength,
         readingTime,
         uniqueWords,
-        lexicalDensity: `${lexicalDensity}%`,
-        mostCommonWord: mostCommonWord.charAt(0).toUpperCase() + mostCommonWord.slice(1)
+        lexicalDensity: `${lexicalDensityScore}%`,
+        mostCommonWord: mostCommonWord.charAt(0).toUpperCase() + mostCommonWord.slice(1),
+        readabilityScore,
+        estimatedPages,
+        estimatedSpeakingTime,
+        lexicalDensityScore: `${lexicalDensityScore}%`
     };
 }
+
+const STOP_WORDS = new Set([
+    'a', 'about', 'above', 'after', 'again', 'against', 'all', 'am', 'an', 'and', 'any', 'are', 'as', 'at',
+    'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by',
+    'can', 'cannot', 'could',
+    'did', 'do', 'does', 'doing', 'down', 'during',
+    'each',
+    'few', 'for', 'from', 'further',
+    'had', 'has', 'have', 'having', 'he', 'her', 'here', 'hers', 'herself', 'him', 'himself', 'his', 'how',
+    'i', 'if', 'in', 'into', 'is', 'it', 'its', 'itself',
+    'just',
+    'me', 'more', 'most', 'my', 'myself',
+    'no', 'nor', 'not', 'now',
+    'of', 'off', 'on', 'once', 'only', 'or', 'other', 'our', 'ours', 'ourselves', 'out', 'over', 'own',
+    'same', 'she', 'should', 'so', 'some', 'such',
+    'than', 'that', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'there', 'these', 'they', 'this',
+    'those', 'through', 'to', 'too',
+    'under', 'until', 'up',
+    'very',
+    'was', 'we', 'were', 'what', 'when', 'where', 'which', 'while', 'who', 'whom', 'why', 'will', 'with',
+    'you', 'your', 'yours', 'yourself', 'yourselves'
+]);
 
 function copyNotesToClipboard(note) {
     navigator.clipboard.writeText(note).then(function () {

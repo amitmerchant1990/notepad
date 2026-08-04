@@ -1093,6 +1093,10 @@ you can buy me a coffee — the link of which is available in the About section.
 		$('#statReadingTime').text(stats.readingTime);
 		$('#statUniqueWords').text(stats.uniqueWords);
 		$('#statMostCommonWord').text(stats.mostCommonWord);
+		$('#statLexicalDensity').text(stats.lexicalDensityScore);
+		$('#statReadabilityScore').text(stats.readabilityScore);
+		$('#statEstimatedPages').text(stats.estimatedPages);
+		$('#statEstimatedSpeakingTime').text(stats.estimatedSpeakingTime);
 	});
 
 	notepad.closeDonationPopup.click(function () {

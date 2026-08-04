@@ -3271,7 +3271,7 @@ body.dark .focus-mode-close-btn button:hover {
 /* Statistics Modal Styles */
 .statistics-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin: 20px 0;
 }
@@ -3325,6 +3325,13 @@ body.dark .stat-value {
 
 #keyboardShortcutsModal .modal-dialog {
   max-width: 800px;
+}
+
+@media (max-width: 720px) {
+  .statistics-grid {
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
