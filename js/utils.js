@@ -234,21 +234,28 @@ function calculateNoteStatistics(str) {
     const readingTimeMinutes = Math.ceil(words / 200);
     const readingTime = readingTimeMinutes === 1 ? '1 min' : `${readingTimeMinutes} mins`;
     
-    // Calculate unique words and most common word
+    const contentWords = wordTokens.filter(word => !STOP_WORDS.has(word));
+
+    // Calculate unique words from the full token set
     const wordFrequency = {};
-    let maxCount = 0;
-    let mostCommonWord = 'N/A';
-    
     wordTokens.forEach(word => {
         wordFrequency[word] = (wordFrequency[word] || 0) + 1;
-        if (wordFrequency[word] > maxCount) {
-            maxCount = wordFrequency[word];
+    });
+
+    // Calculate most common content word separately so stop words are excluded
+    const contentWordFrequency = {};
+    let maxCount = 0;
+    let mostCommonWord = 'N/A';
+
+    contentWords.forEach(word => {
+        contentWordFrequency[word] = (contentWordFrequency[word] || 0) + 1;
+        if (contentWordFrequency[word] > maxCount) {
+            maxCount = contentWordFrequency[word];
             mostCommonWord = word;
         }
     });
-    
+
     const uniqueWords = Object.keys(wordFrequency).length;
-    const contentWords = wordTokens.filter(word => !STOP_WORDS.has(word));
     const lexicalDensityScore = words > 0 ? ((contentWords.length / words) * 100).toFixed(1) : 0;
 
     const syllableCount = wordTokens.reduce((total, word) => total + countSyllables(word), 0);
@@ -275,7 +282,7 @@ function calculateNoteStatistics(str) {
         readingTime,
         uniqueWords,
         lexicalDensity: `${lexicalDensityScore}%`,
-        mostCommonWord: mostCommonWord.charAt(0).toUpperCase() + mostCommonWord.slice(1),
+        mostCommonWord: mostCommonWord === 'N/A' ? mostCommonWord : mostCommonWord.charAt(0).toUpperCase() + mostCommonWord.slice(1),
         readabilityScore,
         estimatedPages,
         estimatedSpeakingTime,
