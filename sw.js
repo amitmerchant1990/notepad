@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v35';
+let CACHE_VERSION = 'app-v36';
 let CACHE_FILES = [
     '/',
     'index.html',
@@ -57,17 +57,11 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-    let online = navigator.onLine
-    if (!online) {
-        event.respondWith(
-            caches.match(event.request).then(function (res) {
-                if (res) {
-                    return res;
-                }
-                requestBackend(event);
-            })
-        )
-    }
+    event.respondWith(
+        fetch(event.request).catch(function () {
+            return caches.match(event.request).then(res => res || caches.match('index.html'));
+        })
+    );
 });
 
 self.addEventListener('activate', function (event) {
