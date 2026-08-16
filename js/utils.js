@@ -147,7 +147,7 @@ function resetTexture(defaultTexture) {
 }
 
 function resetFont(defaultFont) {
-    $('#note').removeClass('dyslexic monospaced serif handwritten humanist pixel');
+    $('#note').removeClass('dyslexic monospaced serif handwritten humanist pixel typewriter crayon');
     $('#font').val(defaultFont);
 }
 

@@ -3070,15 +3070,42 @@ a {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'SpecialElite';
+  src: url('../fonts/SpecialElite-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Schoolbell';
+  src: url('../fonts/Schoolbell-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Dyslexic font class */
 .dyslexic {
   font-family: 'OpenDyslexic', sans-serif !important;
   line-height: 1.6;
+  letter-spacing: -1.6px;
 }
 
 .pixel {
   font-family: 'DepartureMono', sans-serif !important;
   line-height: 1.6;
+}
+
+.typewriter {
+  font-family: 'SpecialElite', serif !important;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+.crayon {
+  font-family: 'Schoolbell', serif !important;
+  line-height: 1.6;
+  letter-spacing: 1px;
 }
 
 .new-tag {

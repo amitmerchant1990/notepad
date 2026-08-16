@@ -1520,7 +1520,7 @@ you can buy me a coffee — the link of which is available in the About section.
 	// Apply font based on selection
 	function applyFont(fontType) {
 		// Remove all font classes first
-		notepad.note.removeClass('dyslexic monospaced serif handwritten humanist pixel');
+		notepad.note.removeClass('dyslexic monospaced serif handwritten humanist pixel typewriter crayon');
 		
 		// Add the selected font class
 		switch(fontType) {
@@ -1541,6 +1541,12 @@ you can buy me a coffee — the link of which is available in the About section.
 				break;
 			case 'pixel':
 				notepad.note.addClass('pixel');
+				break;
+			case 'typewriter':
+				notepad.note.addClass('typewriter');
+				break;
+			case 'crayon':
+				notepad.note.addClass('crayon');
 				break;
 			// 'default' case doesn't need any class
 		}
