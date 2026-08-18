@@ -1,6 +1,6 @@
 importScripts('js/libraries/cache-polyfill.js');
 
-let CACHE_VERSION = 'app-v37';
+let CACHE_VERSION = 'app-v38';
 let CACHE_FILES = [
     '/',
     'index.html',
@@ -12,6 +12,10 @@ let CACHE_FILES = [
     'js/utils.js',
     'js/selector.js',
     'js/snapshots.js',
+    'js/timer.js',
+    'js/unicode-picker.js',
+    'js/unicode-symbols.js',
+    'js/white-noise-player.js',
     'css/bootstrap.min.css',
     'css/style.css',
     'css/snapshots.css',
