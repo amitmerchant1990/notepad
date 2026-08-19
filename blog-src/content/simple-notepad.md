@@ -9,7 +9,7 @@ ogImage: "/blog/images/simple-notepad.png"
 
 We've turned note-taking into a productivity system. Maybe we've forgotten that sometimes the best place for a thought is simply a blank page.
 
-Somewhere along the way, taking notes stopped being just about taking notes. We started calling our collections of notes a "second brain" and building elaborate systems around them. There are apps for linked notes, knowledge graphs, databases, tags, backlinks, templates, automatic organization, and now AI that promises to remember everything for us.
+Somewhere along the way, taking notes stopped being just about taking notes. We started calling our collections of notes a **"second brain"** and building elaborate systems around them. There are apps for linked notes, knowledge graphs, databases, tags, backlinks, templates, automatic organization, and now AI that promises to remember everything for us.
 
 I understand the appeal. The idea of having a searchable external memory is genuinely useful. If you are a researcher, writer, developer, student, or someone who deals with a lot of information, having a system for keeping and retrieving that information can make a real difference.
 

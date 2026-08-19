@@ -91,9 +91,43 @@ h1 {
 }
 
 .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:flex-start;
+    gap: 18px 20px;
     margin-top: 24px;
     color: var(--muted);
-    font-size: 0.88rem;
+    font-size: 13px;
+}
+
+.meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.meta-author {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.meta-author img {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+}
+
+.meta-icon {
+    width: 1em;
+    height: 1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
 }
 
 .article-content h2 {
@@ -311,6 +345,7 @@ h1 {
     color: var(--muted);
     font-size: 1.05rem;
     line-height: 1.6;
+    text-wrap: balance;
 }
 
 .button {
