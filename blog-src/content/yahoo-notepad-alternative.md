@@ -37,6 +37,11 @@ Notepad.js.org deliberately keeps things simple. There is no account to create a
 - **Works offline** — you can use it without an internet connection.
 - **Installable** — install it as a PWA and use it like a desktop app.
 - **No ads** — the writing experience stays uncluttered.
+- **Customizations** — a lot of customizations to make the app yours.
+- **Ambient sounds** — play background sounds to help you focus while you write.
+- **Writing timers** — set timers to track your writing sessions.
+
+And bunch of other features that you can only experience once you start exploring the app.
 
 ## Yahoo Notepad vs. Notepad.js.org
 
