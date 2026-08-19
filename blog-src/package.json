@@ -1,0 +1,16 @@
+{
+  "name": "notepad-js-blog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "chokidar": "^5.0.0"
+  }
+}

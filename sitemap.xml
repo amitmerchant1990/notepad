@@ -74,4 +74,20 @@
     <lastmod>2026-04-03T00:00:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
+  <url>
+    <loc>https://notepad.js.org/blog/</loc>
+    <lastmod>2026-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://notepad.js.org/blog/yahoo-notepad-alternative/</loc>
+    <lastmod>2026-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://notepad.js.org/blog/simple-notepad/</loc>
+    <lastmod>2026-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://notepad.js.org/blog/plain-text-notepad/</loc>
+    <lastmod>2026-08-19</lastmod>
+  </url>
 </urlset>

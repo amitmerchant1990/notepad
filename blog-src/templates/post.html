@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{title}} | Notepad.js.org</title>
+
+    <meta name="description" content="{{description}}">
+
+    <link rel="canonical" href="{{url}}">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:url" content="{{url}}">
+    <meta property="og:site_name" content="Notepad.js.org">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{title}}">
+    <meta name="twitter:description" content="{{description}}">
+
+    <meta property="og:image" content="{{ogImage}}">
+    <meta property="og:image:alt" content="{{title}}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ogImage}}">
+
+    <script type="application/ld+json">
+  {{jsonLd}}
+  </script>
+
+    <link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a href="/">Notepad.js.org</a>
+        <a href="/blog/">Blog</a>
+    </header>
+
+    <main class="article">
+
+        <header class="article-header">
+
+            <p class="eyebrow">{{category}}</p>
+
+            <h1>{{title}}</h1>
+
+            <p class="intro">{{description}}</p>
+
+            <p class="meta">
+                {{date}} · {{readingTime}} min read
+            </p>
+
+        </header>
+
+        <article class="article-content">
+
+            {{content}}
+
+        </article>
+
+        <div class="cta">
+            <h2>{{ctaTitle}}</h2>
+
+            <p>{{ctaDescription}}</p>
+
+            <a class="button" href="/">
+                Open Notepad.js.org
+            </a>
+        </div>
+
+        <footer class="article-footer">
+            <a href="/blog/">← All articles</a>
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
