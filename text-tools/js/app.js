@@ -38,18 +38,23 @@ const donationToastLinks = [
   {
     text: 'Using Text Tools often? Consider buying me a coffee to support it.',
     url: 'https://buymeacoffee.com/amitmerchant',
-    active: true
+    active: false
   },
   {
     text: 'This app stays ad-free. If you value that, buy me a coffee. Thank you!',
     url: 'https://buymeacoffee.com/amitmerchant',
-    active: true
+    active: false
   },
   {
     text: 'Love the clutter-free experience? A coffee helps me keep improving it.',
     url: 'https://buymeacoffee.com/amitmerchant',
+    active: false
+  },
+  {
+    text: "I'm an indie developer behind this app. Click here to support my work if you appreciate the effort.",
+    url: "https://buymeacoffee.com/amitmerchant",
     active: true
-  }
+  },
 ];
 
 const sampleText = [
