@@ -8,7 +8,8 @@ const timerConfig = {
     ],
     timer: null,
     isRunning: false,
-    remainingTime: 0
+    remainingTime: 0,
+    endTime: null
 };
 
 const timerPillRightPositionWithoutWordCount = '1.4em';
@@ -68,7 +69,9 @@ function startTimer(minutes) {
         stopTimer();
     }
 
-    timerConfig.remainingTime = minutes * 60;
+    const durationInSeconds = minutes * 60;
+    timerConfig.endTime = Date.now() + (durationInSeconds * 1000);
+    timerConfig.remainingTime = durationInSeconds;
     timerConfig.isRunning = true;
     timerConfig.timer = setInterval(updateTimer, 1000);
     
@@ -87,13 +90,23 @@ function stopTimer() {
     if (timerConfig.timer) {
         clearInterval(timerConfig.timer);
     }
+    timerConfig.timer = null;
     timerConfig.isRunning = false;
     timerConfig.remainingTime = 0;
+    timerConfig.endTime = null;
     $('.timer-pill').hide();
     $('.timer-display').text('00:00');
 }
 
 function updateTimer() {
+    // Interval callbacks can be throttled while the tab is in the background.
+    // Calculate the remaining time from the deadline so that throttling only
+    // delays the display update; it does not pause the timer itself.
+    timerConfig.remainingTime = Math.max(
+        0,
+        Math.ceil((timerConfig.endTime - Date.now()) / 1000)
+    );
+
     if (timerConfig.remainingTime <= 0) {
         if (localStorage.getItem('timerChime') && localStorage.getItem('timerChime') == 'true') {
             playChimeSound();
@@ -130,4 +143,12 @@ $(document).on('click', '.timer-option', function() {
 
 $(document).on('click', '#stopTimer', function() {
     stopTimer();
+});
+
+// Refresh immediately when returning to the tab. Browsers may pause or
+// heavily throttle interval callbacks while a page is hidden.
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden && timerConfig.isRunning) {
+        updateTimer();
+    }
 });
