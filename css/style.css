@@ -1540,6 +1540,27 @@ a {
   align-items: center;
 }
 
+.timer-pill.timer-ending {
+  animation: timer-pill-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes timer-pill-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timer-pill.timer-ending {
+    animation: none;
+  }
+}
+
 .pip .timer-pill {
   display: none;
 }

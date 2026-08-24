@@ -76,7 +76,7 @@ function startTimer(minutes) {
     timerConfig.timer = setInterval(updateTimer, 1000);
     
     // Show timer pill
-    $('.timer-pill').show();
+    $('.timer-pill').show().removeClass('timer-ending');
     updateTimerDisplay();
 
     // check if word-count-container is hidden and 
@@ -94,7 +94,7 @@ function stopTimer() {
     timerConfig.isRunning = false;
     timerConfig.remainingTime = 0;
     timerConfig.endTime = null;
-    $('.timer-pill').hide();
+    $('.timer-pill').hide().removeClass('timer-ending');
     $('.timer-display').text('00:00');
 }
 
@@ -115,8 +115,8 @@ function updateTimer() {
         stopTimer();
         return;
     }
-    
-    timerConfig.remainingTime--;
+
+    $('.timer-pill').toggleClass('timer-ending', timerConfig.remainingTime <= 10);
     updateTimerDisplay();
 }
 
