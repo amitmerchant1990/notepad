@@ -14,12 +14,12 @@ $(document).ready(function () {
         {
 			text: "Buy me a coffee so that I don't have to rely on ads to run this app.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
         {
 			text: "Using Notepad every day? Buy me a coffee and support its upkeep.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
         {
 			text: "Support the development of this app and help me dedicate more time to improving it.",
@@ -33,6 +33,11 @@ $(document).ready(function () {
 		},
         {
 			text: "This app runs without ads. If you value that, buy me a coffee.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+        {
+			text: "I'm an indie developer behind this app. Click here to support my work if you appreciate the effort.",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
