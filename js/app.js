@@ -415,7 +415,7 @@ The app serves the following features:
 - Full-screen mode for a distraction-free writing experience.
 - Floating window (in supported browsers) to effectively take notes across other apps.
 - Download notes as plain text, PDF, HTML, and DOCX file.
-- Ability to play ambient noise to help you focus.
+- Ability to play 20+ ambient sounds to help you focus.
 - It's proudly open-source!
 
 CAUTION: Since the app uses the browser's localStorage to store your notes, 
