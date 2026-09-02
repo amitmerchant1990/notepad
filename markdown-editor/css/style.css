@@ -116,7 +116,10 @@ body {
 }
 
 #textPanel {
-    width: 50%;
+    width: calc((100% - 5px) / 2);
+    flex: 0 0 auto;
+    min-width: 0;
+    float: none;
     padding: 0;
     position: relative;
     background: var(--surface);
@@ -124,7 +127,10 @@ body {
 }
 
 #previewPanel {
-    width: 50%;
+    width: calc((100% - 5px) / 2);
+    flex: 0 0 auto;
+    min-width: 0;
+    float: none;
     background-color: var(--surface);
     position: relative;
     color: var(--text);
@@ -157,8 +163,8 @@ body {
     width: 18px;
     height: 52px;
     background-color: transparent;
-    border-left: 1px solid rgba(95, 107, 122, 0.4);
-    border-right: 1px solid rgba(95, 107, 122, 0.4);
+    border-left: 2px dashed rgba(95, 107, 122, 0.4);
+    border-right: 2px dashed rgba(95, 107, 122, 0.4);
     opacity: 0;
     transition: opacity 0.2s ease;
 }

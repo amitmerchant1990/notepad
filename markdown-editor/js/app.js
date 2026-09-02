@@ -221,15 +221,48 @@ const previewPanel = document.getElementById('previewPanel');
 const editArea = document.getElementById('editArea');
 
 let isResizing = false;
+const resizerWidth = 5;
+const minPanelRatio = 0.2;
+let panelRatio = 0.5;
+let resizeFrame = null;
+let refreshFrame = null;
 
 // Save initial panel widths to localStorage
 const savedTextWidth = localStorage.getItem('textPanelWidth');
 const savedPreviewWidth = localStorage.getItem('previewPanelWidth');
 
 if (savedTextWidth && savedPreviewWidth) {
-  textPanel.style.width = savedTextWidth;
-  previewPanel.style.width = savedPreviewWidth;
+  const savedTextPixels = parseFloat(savedTextWidth);
+  const savedPreviewPixels = parseFloat(savedPreviewWidth);
+  const savedPanelWidth = savedTextPixels + savedPreviewPixels;
+
+  if (savedPanelWidth > 0) {
+    panelRatio = savedTextPixels / savedPanelWidth;
+  }
 }
+
+const applyPanelWidths = (containerWidth, ratio = panelRatio) => {
+  const availableWidth = Math.max(0, containerWidth - resizerWidth);
+  const minPanelWidth = availableWidth * minPanelRatio;
+  const maxPanelWidth = availableWidth * (1 - minPanelRatio);
+  const textWidth = Math.min(maxPanelWidth, Math.max(minPanelWidth, availableWidth * ratio));
+  const previewWidth = availableWidth - textWidth;
+
+  panelRatio = availableWidth > 0 ? textWidth / availableWidth : ratio;
+  textPanel.style.width = `${textWidth}px`;
+  previewPanel.style.width = `${previewWidth}px`;
+};
+
+const refreshCodeMirror = () => {
+  if (refreshFrame) return;
+
+  refreshFrame = requestAnimationFrame(() => {
+    refreshFrame = null;
+    cm.refresh();
+  });
+};
+
+applyPanelWidths(editArea.getBoundingClientRect().width);
 
 resizer.addEventListener('mousedown', (e) => {
   isResizing = true;
@@ -245,8 +278,9 @@ document.addEventListener('mousemove', (e) => {
   const mouseX = e.clientX - editAreaRect.left;
   
   // Calculate new widths (minimum 20% for each panel)
-  const minPanelWidth = editAreaRect.width * 0.2;
-  const maxPanelWidth = editAreaRect.width * 0.8;
+  const availableWidth = editAreaRect.width - resizerWidth;
+  const minPanelWidth = availableWidth * minPanelRatio;
+  const maxPanelWidth = availableWidth * (1 - minPanelRatio);
   
   let newTextWidth = mouseX;
   
@@ -254,14 +288,11 @@ document.addEventListener('mousemove', (e) => {
   if (newTextWidth < minPanelWidth) newTextWidth = minPanelWidth;
   if (newTextWidth > maxPanelWidth) newTextWidth = maxPanelWidth;
   
-  const newPreviewWidth = editAreaRect.width - newTextWidth - 5; // 5px for resizer
-  
-  // Apply new widths
-  textPanel.style.width = newTextWidth + 'px';
-  previewPanel.style.width = newPreviewWidth + 'px';
+  panelRatio = availableWidth > 0 ? newTextWidth / availableWidth : panelRatio;
+  applyPanelWidths(editAreaRect.width);
   
   // Refresh CodeMirror to handle resize
-  cm.refresh();
+  refreshCodeMirror();
 });
 
 document.addEventListener('mouseup', () => {
@@ -278,23 +309,13 @@ document.addEventListener('mouseup', () => {
 
 // Handle window resize to maintain proportions
 window.addEventListener('resize', () => {
-  const editAreaRect = editArea.getBoundingClientRect();
-  const textWidth = parseFloat(textPanel.style.width) || (editAreaRect.width * 0.5);
-  const previewWidth = editAreaRect.width - textWidth - 5;
-  
-  // Ensure panels don't become too small on window resize
-  const minPanelWidth = editAreaRect.width * 0.2;
-  
-  if (textWidth < minPanelWidth) {
-    textPanel.style.width = minPanelWidth + 'px';
-    previewPanel.style.width = (editAreaRect.width - minPanelWidth - 5) + 'px';
-  } else if (previewWidth < minPanelWidth) {
-    previewPanel.style.width = minPanelWidth + 'px';
-    textPanel.style.width = (editAreaRect.width - minPanelWidth - 5) + 'px';
-  }
-  
-  // Refresh CodeMirror
-  cm.refresh();
+  if (resizeFrame) return;
+
+  resizeFrame = requestAnimationFrame(() => {
+    resizeFrame = null;
+    applyPanelWidths(editArea.getBoundingClientRect().width);
+    refreshCodeMirror();
+  });
 });
 
 function downloadMarkdown() {
