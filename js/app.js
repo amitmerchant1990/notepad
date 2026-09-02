@@ -395,9 +395,9 @@ $(document).ready(function () {
 	// Setup coffee icon hover animation
 	setupCoffeeIconAnimation();
 
-	const welcomeText = `Welcome! This is an offline-capable Notepad which is a Progressive Web App.
+	const welcomeText = `Welcome! This is an offline-capable, no-frills Notepad that is also a Progressive Web App (PWA).
 
-The app serves the following features:
+The app offers the following set of features:
 
 - Your notes are saved in real-time as you type.
 - Installable on supported browsers for offline usage.
