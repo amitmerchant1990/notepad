@@ -27,7 +27,7 @@ const toastLinks = [
     {
         text: "If Tabbypad is part of your daily workflow, consider supporting it.",
         url: "https://buymeacoffee.com/amitmerchant",
-        active: true
+        active: false
     },
     {
         text: "This app runs without ads. If you value that, buy me a coffee.",
@@ -36,6 +36,11 @@ const toastLinks = [
     },
     {
         text: "I work on this app in my spare time. Buy me a coffee for your support! ❤️",
+        url: "https://buymeacoffee.com/amitmerchant",
+        active: false
+    },
+    {
+        text: "A small independent project, built with considerable care. Your support helps me keep building.",
         url: "https://buymeacoffee.com/amitmerchant",
         active: true
     }

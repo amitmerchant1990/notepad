@@ -51,9 +51,9 @@ $(document).ready(function () {
 			active: true
 		},
 		{
-			text: "Thank you for using this app. If you'd like to support the development, buy me a coffee.",
+			text: "A small independent project, built with considerable care. Your support helps me keep building.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",

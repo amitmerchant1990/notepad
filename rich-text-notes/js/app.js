@@ -41,6 +41,11 @@ $(document).ready(function () {
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
+        {
+			text: "A small independent project, built with considerable care. Your support helps me keep building.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
 		{
 			text: "🚀 New → Simple Kanban",
 			url: "/kanban",
