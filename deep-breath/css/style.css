@@ -258,11 +258,19 @@ input[type="text"]:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 54px);
+    height: calc(100% - 50px);
     background-color: #0b1215;
     gap: 30px;
     padding: 1.5rem;
     box-sizing: border-box;
+}
+
+.modal-content {
+    border-radius: .9rem;
+}
+
+.btn {
+    border-radius: .55rem;
 }
 
 main,
@@ -531,8 +539,12 @@ label {
     display: none;
 }
 
-#muteButton {
-    position: absolute; top: 70px; right: 26px;
+.icons-container {
+    gap: 10px;
+}
+
+.icons-container a {
+    color: #ffffff;
 }
 
 #speakerIcon {
