@@ -56,6 +56,11 @@ $(document).ready(function () {
 			active: true
 		},
 		{
+			text: "Join 100+ people supporting Notepad's development!",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
+		{
 			text: "If you enjoy using this app, consider buying me a coffee to support it! ❤️",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: false

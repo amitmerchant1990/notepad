@@ -46,6 +46,11 @@ $(document).ready(function () {
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
+        {
+			text: "Join 100+ people supporting Notepad's development!",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: true
+		},
 		{
 			text: "🚀 New → Simple Kanban",
 			url: "/kanban",
