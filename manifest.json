@@ -47,6 +47,12 @@
       "type": "image/png",
       "form_factor": "wide",
       "sizes": "2460x1674"
+    },
+    {
+      "src": "img/screenshot-tool-wide.png",
+      "type": "image/png",
+      "form_factor": "wide",
+      "sizes": "2460x1674"
     }
   ],
   "shortcuts": [
