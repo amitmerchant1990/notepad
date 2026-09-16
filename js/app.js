@@ -48,10 +48,15 @@ $(document).ready(function () {
 		{
 			text: "I'm an indie developer behind this app. Click here to support my work if you appreciate the effort.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: true
+			active: false
 		},
 		{
 			text: "A small independent project, built with considerable care. Your support helps me keep building.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
+		},
+		{
+			text: "Notepad is 100% free and open-source with no paywalls. Your sponsorship directly fuels ongoing updates and new features.",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
 		},
