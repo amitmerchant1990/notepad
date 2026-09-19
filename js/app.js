@@ -1082,6 +1082,17 @@ you can buy me a coffee — the link of which is available in the About section.
 		toggleFullScreen();
 	})
 
+	$('#navbarNavToggle').on('click', function () {
+		const isExpanded = $(this).attr('aria-expanded') === 'true';
+		const nextExpandedState = !isExpanded;
+
+		$(this)
+			.attr('aria-expanded', nextExpandedState)
+			.attr('aria-label', nextExpandedState ? 'Hide navigation tools' : 'Show navigation tools')
+			.attr('title', nextExpandedState ? 'Hide navigation tools' : 'Show navigation tools');
+		$('.navbar-flex').toggleClass('navbar-nav-expanded', nextExpandedState);
+	})
+
 	notepad.focusModeButton.click(function () {
 		toggleFocusMode(notepad);
 	})

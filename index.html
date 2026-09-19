@@ -184,6 +184,22 @@
               <svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 98.82 98.82" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M96.82,85.474H86.357c6.945-9.213,10.77-20.733,10.77-32.438c0-28.343-21.406-51.402-47.72-51.402 c-26.313,0-47.72,23.06-47.72,51.402c0,11.707,3.823,23.227,10.767,32.438H2c-1.104,0-2,0.896-2,2v7.714c0,1.104,0.896,2,2,2 h28.551c1.104,0,2-0.896,2-2v-8.593c0-0.476-0.169-0.935-0.477-1.296l-0.111-0.131c-0.112-0.133-0.242-0.25-0.385-0.348 c-9.826-6.81-15.931-18.988-15.931-31.785c0-20.646,15.145-37.442,33.76-37.442c18.614,0,33.759,16.797,33.759,37.442 c0,12.851-6.143,25.055-16.029,31.851c-0.543,0.373-0.867,0.989-0.867,1.647v8.653c0,1.104,0.896,2,2,2H96.82c1.104,0,2-0.896,2-2 v-7.714C98.82,86.369,97.926,85.474,96.82,85.474z"></path> </g> </g></svg>
             </a>
           </li>
+          <li class="navbar-nav-toggle">
+            <button
+              type="button"
+              id="navbarNavToggle"
+              class="navbar-nav-toggle-button"
+              aria-expanded="false"
+              aria-controls="navbar"
+              aria-label="Show navigation tools"
+              title="Show navigation tools"
+            >
+              <svg class="navbar-nav-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path class="navbar-nav-toggle-arrow-forward" d="M8.5 5L15.5 12L8.5 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path class="navbar-nav-toggle-arrow-back" d="M15.5 5L8.5 12L15.5 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </li>
           <li class="fullscreen-icon">
             <a href="javascript:void(0);" id="fullScreenButton" title="Toggle Full Screen">
               <svg xmlns="http://www.w3.org/2000/svg" id="arrowPointsOut" height="18px" width="18px" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#fff" class="size-6">
@@ -194,7 +210,7 @@
               </svg>              
             </a>
           </li>
-          <li><a href="#about" data-toggle="modal" data-target="#aboutModal" class="about-link">About</a></li>
+          <li class="about-nav-item"><a href="#about" data-toggle="modal" data-target="#aboutModal" class="about-link">About</a></li>
         </ul>
       </div>
     </div>
@@ -737,6 +753,11 @@
             <div id="changelog" class="container tab-pane fade">
               <div class="changelog-card">
                 <div class="changelog-timeline">
+                  <h4>19th Sep, 2026</h4>
+                  <ul>
+                    <li>Implemented collapsible menu for the items in the right navbar for a cleaner look.</li>
+                  </ul>
+
                   <h4>24th Aug, 2026</h4>
                   <ul>
                     <li>Fixed timer countdown when switching browser tabs.</li>
