@@ -1082,7 +1082,44 @@ you can buy me a coffee — the link of which is available in the About section.
 		toggleFullScreen();
 	})
 
-	$('#navbarNavToggle').on('click', function () {
+	const navbarNav = $('.navbar-flex');
+	const navbarNavToggle = $('#navbarNavToggle');
+	let navbarNavCollapseTimer;
+	const navbarNavAutoCloseDelay = 4000;
+
+	const clearNavbarNavCollapseTimer = () => {
+		clearTimeout(navbarNavCollapseTimer);
+	};
+
+	const collapseNavbarNav = () => {
+		clearNavbarNavCollapseTimer();
+		navbarNavToggle
+			.attr('aria-expanded', 'false')
+			.attr('aria-label', 'Show navigation tools')
+			.attr('title', 'Show navigation tools');
+		navbarNav.removeClass('navbar-nav-expanded');
+	};
+
+	const scheduleNavbarNavCollapse = () => {
+		clearNavbarNavCollapseTimer();
+
+		if (
+			navbarNavToggle.attr('aria-expanded') !== 'true' ||
+			navbarNav.is(':hover') ||
+			navbarNav.find(':focus').length
+		) {
+			return;
+		}
+
+		navbarNavCollapseTimer = setTimeout(collapseNavbarNav, navbarNavAutoCloseDelay);
+	};
+
+	navbarNav.on('mouseenter mousemove focusin', clearNavbarNavCollapseTimer);
+	navbarNav.on('mouseleave focusout', function () {
+		setTimeout(scheduleNavbarNavCollapse, 0);
+	});
+
+	navbarNavToggle.on('click', function () {
 		const isExpanded = $(this).attr('aria-expanded') === 'true';
 		const nextExpandedState = !isExpanded;
 
@@ -1090,7 +1127,8 @@ you can buy me a coffee — the link of which is available in the About section.
 			.attr('aria-expanded', nextExpandedState)
 			.attr('aria-label', nextExpandedState ? 'Hide navigation tools' : 'Show navigation tools')
 			.attr('title', nextExpandedState ? 'Hide navigation tools' : 'Show navigation tools');
-		$('.navbar-flex').toggleClass('navbar-nav-expanded', nextExpandedState);
+		navbarNav.toggleClass('navbar-nav-expanded', nextExpandedState);
+		clearNavbarNavCollapseTimer();
 	})
 
 	notepad.focusModeButton.click(function () {
