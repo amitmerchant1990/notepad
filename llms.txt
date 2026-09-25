@@ -1,0 +1,32 @@
+# Notepad
+
+> Notepad is a free, offline-capable web app for writing plain-text notes, with additional tools for markdown editing, rich-text notes, task management, kanban boards, text transformation, drawing, and focus.
+
+Notepad stores notes locally in the browser and works offline. It does not require an account or send note contents to a server.
+
+## Main app
+
+- [Notepad](https://notepad.js.org/): Write and manage plain-text notes locally in your browser. It also has ambient sounds to create focused environments.
+
+## Tools
+
+- [Markdown Editor](https://notepad.js.org/markdown-editor/): Write and edit Markdown.
+- [Rich Text Notes](https://notepad.js.org/rich-text-notes/): Create formatted rich-text notes.
+- [Tasks](https://notepad.js.org/tasks/): Manage personal tasks.
+- [Kanban](https://notepad.js.org/kanban/): Organize work on a Kanban board.
+- [Case Converter](https://notepad.js.org/case-converter/): Convert text between different letter cases.
+- [Text Tools](https://notepad.js.org/text-tools/): Use utilities for working with text.
+- [Text Diff](https://notepad.js.org/text-diff/): Compare two pieces of text.
+- [Voice Notes](https://notepad.js.org/voice-notes/): Create voice notes.
+- [Drawingpad](https://notepad.js.org/drawingpad/): Draw and sketch in the browser.
+- [Pomodoro Timer](https://notepad.js.org/pomodoro-timer/): Use a timer for focused work.
+- [Deep Breath](https://notepad.js.org/deep-breath/): Use a guided breathing tool.
+- [Teleprompter](https://notepad.js.org/teleprompter/): Display text as a teleprompter.
+- [Tabbypad](https://notepad.js.org/tabbypad/): Work with multiple text tabs.
+
+## Blog
+
+- [Notepad Blog](https://notepad.js.org/blog/): Articles about Notepad and plain-text writing.
+- [Simple Notepad](https://notepad.js.org/blog/simple-notepad/): Information about the simple notepad.
+- [Yahoo Notepad Alternative](https://notepad.js.org/blog/yahoo-notepad-alternative/): An alternative to Yahoo Notepad.
+- [Plain-Text Notepad](https://notepad.js.org/blog/plain-text-notepad/): Information about plain-text note taking.
