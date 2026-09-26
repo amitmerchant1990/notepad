@@ -850,14 +850,17 @@ you can buy me a coffee — the link of which is available in the About section.
 		if (userChosenWordCountPillSelected === 'Yes') {
 			notepad.wordCountContainer.show();
 			notepad.frostedGlassPillPref.show();
+			notepad.wordCountPref.removeClass('remove-border-bottom');
 		} else {
 			notepad.wordCountContainer.hide();
 			notepad.frostedGlassPillPref.hide();
+			notepad.wordCountPref.addClass('remove-border-bottom');
 		}
 		notepad.showWordCountPill.prop('checked', userChosenWordCountPillSelected === 'Yes');
 	} else {
 		notepad.wordCountContainer.show();
 		notepad.frostedGlassPillPref.show();
+		notepad.wordCountPref.removeClass('remove-border-bottom');
 		notepad.showWordCountPill.prop('checked', true);
 	}
 
@@ -1223,10 +1226,12 @@ you can buy me a coffee — the link of which is available in the About section.
 		if ($(this).is(':checked')) {
 			notepad.wordCountContainer.show();
 			notepad.frostedGlassPillPref.show();
+			notepad.wordCountPref.removeClass('remove-border-bottom');
 			setState('userChosenWordCountPillSelected', 'Yes');
 		} else {
 			notepad.wordCountContainer.hide();
 			notepad.frostedGlassPillPref.hide();
+			notepad.wordCountPref.addClass('remove-border-bottom');
 			setState('userChosenWordCountPillSelected', 'No');
 		}
 	});
