@@ -45,7 +45,7 @@ h2 {
     margin: 10px 0; /* Margin for spacing */
     overflow-y: auto; /* Enable vertical scrolling */
     border: 1px solid oklab(19.1251% -7.45058e-9 0/.06); /* Optional: add a border for better visibility */
-    border-radius: 5px; /* Optional: rounded corners */
+    border-radius: 7px; /* Optional: rounded corners */
     padding: 5px; /* Optional: padding for inner spacing */
     display: flex; /* Enable flexbox for task items */
     flex-direction: column; /* Stack task items vertically */
@@ -53,7 +53,7 @@ h2 {
 
 .task-item {
     background-color: #dfe3ff;
-    border-radius: 5px;
+    border-radius: 7px;
     padding: 13px;
     margin-bottom: 5px;
     cursor: move;
@@ -149,6 +149,7 @@ h2 {
 .task-text {
     margin-right: 10px;
     word-break: break-word;
+    font-size: 0.9em;
 }
 
 .task-edit-input {
@@ -262,8 +263,8 @@ input[type="text"]:focus {
 }
 
 .sortable-chosen {
-    background-color: rgba(255, 204, 0, 0.3); /* Light yellow background with transparency */
-    border: 2px solid rgba(0, 4, 216, 0.5); /* Solid border for visibility */
+    background-color: rgba(108, 99, 255, 0.2); /* Light purple background with transparency */
+    border: 2px solid rgba(108, 99, 255, 0.5); /* Solid border for visibility */
 }
 
 .about-button {
@@ -403,8 +404,8 @@ input[type="text"]:focus {
 }
 
 .dark .sortable-chosen {
-    background-color: rgba(255, 206, 80, 0.2);
-    border: 2px solid rgba(255, 206, 80, 0.5);
+    background-color: rgba(88, 166, 255, 0.2);
+    border: 2px solid rgba(88, 166, 255, 0.5);
 }
 
 .dark .task-item::before {
