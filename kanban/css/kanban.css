@@ -12,7 +12,7 @@ body {
 h2 {
     text-align: center;
     color: #4b4a4a;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: .3rem 0;
     font-weight: bold;
 }
@@ -31,7 +31,7 @@ h2 {
 
 .column {
     background-color: white;
-    border: 1px solid #ccc;
+    border: 1px solid oklab(19.1251% -7.45058e-9 0/.06);
     width: 30%;
     padding: 10px;
     display: flex;
@@ -44,7 +44,7 @@ h2 {
     flex-grow: 1; /* Allow task list to grow and fill available space */
     margin: 10px 0; /* Margin for spacing */
     overflow-y: auto; /* Enable vertical scrolling */
-    border: 1px solid #ccc; /* Optional: add a border for better visibility */
+    border: 1px solid oklab(19.1251% -7.45058e-9 0/.06); /* Optional: add a border for better visibility */
     border-radius: 5px; /* Optional: rounded corners */
     padding: 5px; /* Optional: padding for inner spacing */
     display: flex; /* Enable flexbox for task items */
@@ -82,6 +82,22 @@ h2 {
 
 #done .task-list > .task-item::before {
     background-color: #2ecc71;
+}
+
+.dark #todo .task-list > .task-item .task-text {
+    color: #9590e6;
+}
+
+#todo .task-list > .task-item .task-text {
+    color: #4943b5;
+}
+
+#in-progress .task-list > .task-item .task-text {
+    color: #bd6d21;
+}
+
+#done .task-list > .task-item .task-text {
+    color: #1e8349;
 }
 
 .task-item.editing::before {
@@ -152,7 +168,7 @@ h2 {
 input[type="text"] {
     padding: 10px 15px; /* Add padding */
     font-size: 16px; /* Increase font size */
-    border: 1px solid #ccc; /* Border color */
+    border: 1px solid oklab(19.1251% -7.45058e-9 0/.06); /* Border color */
     border-radius: 5px; /* Rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     transition: border-color 0.3s; /* Smooth transition for focus effect */
@@ -401,6 +417,18 @@ input[type="text"]:focus {
 
 .dark #done .task-list > .task-item::before {
     background-color: #3fb950;
+}
+
+.dark .task-item .task-text {
+    color: #58a6ff;
+}
+
+.dark #in-progress .task-list > .task-item .task-text {
+    color: #d29922;
+}
+
+.dark #done .task-list > .task-item .task-text {
+    color: #3fb950;
 }
 
 .dark #mobile-message {
