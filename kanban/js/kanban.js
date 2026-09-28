@@ -348,6 +348,7 @@ function createTaskElement(taskText) {
         // Disable drag functionality while editing
         taskItem.draggable = false;
         taskItem.style.cursor = 'text';
+        taskItem.classList.add('editing');
         
         // Flag to track if editing is still active
         let isEditing = true;
@@ -369,6 +370,7 @@ function createTaskElement(taskText) {
             taskTextElement.style.display = '';
             taskItem.draggable = true;
             taskItem.style.cursor = 'move';
+            taskItem.classList.remove('editing');
             isEditing = false;
             // Ensure the blur event listener is removed during cleanup
             input.removeEventListener('blur', saveEdit);

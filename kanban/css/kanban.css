@@ -60,7 +60,32 @@ h2 {
     font-weight: bold;
     position: relative;
     padding-right: 50px;
+    padding-left: 13px;
     transition: background-color 0.2s;
+}
+
+.task-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: #6c63ff;
+    border-radius: 5px 5px 5px 5px;
+    margin: 4px;
+}
+
+#in-progress .task-list > .task-item::before {
+    background-color: #ff9f43;
+}
+
+#done .task-list > .task-item::before {
+    background-color: #2ecc71;
+}
+
+.task-item.editing::before {
+    display: none;
 }
 
 .task-item:hover {
@@ -364,6 +389,18 @@ input[type="text"]:focus {
 .dark .sortable-chosen {
     background-color: rgba(255, 206, 80, 0.2);
     border: 2px solid rgba(255, 206, 80, 0.5);
+}
+
+.dark .task-item::before {
+    background-color: #58a6ff;
+}
+
+.dark #in-progress .task-list > .task-item::before {
+    background-color: #d29922;
+}
+
+.dark #done .task-list > .task-item::before {
+    background-color: #3fb950;
 }
 
 .dark #mobile-message {
