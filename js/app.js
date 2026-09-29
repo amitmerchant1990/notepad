@@ -56,9 +56,14 @@ $(document).ready(function () {
 			active: false
 		},
 		{
-			text: "Notepad is 100% free and open-source with no paywalls. Your sponsorship directly fuels ongoing updates and new features.",
+			text: "Notepad is 100% free and open-source with no ads, accounts, or clutter. Click here for your support!",
 			url: "https://buymeacoffee.com/amitmerchant",
 			active: true
+		},
+		{
+			text: "Notepad is maintained independently and intentionally has no ads, accounts, or clutter. Your support helps pay for the ongoing development and new features.",
+			url: "https://buymeacoffee.com/amitmerchant",
+			active: false
 		},
 		{
 			text: "Join 100+ people supporting Notepad's development!",
