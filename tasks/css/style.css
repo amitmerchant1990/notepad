@@ -399,13 +399,14 @@ h1 {
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 6px;
+  margin-left: 10px;
 }
 
 .task-meta-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  border-radius: 999px;
+  border-radius: 6px;
   padding: 0.22rem 0.6rem;
   font-size: 0.74rem;
   font-weight: 700;

@@ -57,7 +57,6 @@ h2 {
     padding: 13px;
     margin-bottom: 5px;
     cursor: move;
-    font-weight: bold;
     position: relative;
     padding-right: 50px;
     padding-left: 13px;
@@ -117,8 +116,13 @@ h2 {
 }
 
 .task-item:hover .task-actions,
-.task-item.active .task-actions {
+.task-item.active .task-actions,
+.task-item.editing .task-actions {
     display: flex;
+}
+
+.task-item.editing .task-actions {
+    right: 20px;
 }
 
 .task-btn {
@@ -146,6 +150,10 @@ h2 {
     color: #dc3545;
 }
 
+.save-btn {
+    color: #198754;
+}
+
 .task-text {
     margin-right: 10px;
     word-break: break-word;
@@ -155,7 +163,7 @@ h2 {
 .task-edit-input {
     background: #fff;
     border: 2px solid #007bff;
-    border-radius: 3px;
+    border-radius: 6px;
     padding: 8px;
     font-weight: bold;
     font-size: inherit;
@@ -164,11 +172,16 @@ h2 {
     box-sizing: border-box;
     outline: none;
     padding: 5px 8px !important;
+    display: block;
+    min-height: 32px;
+    line-height: 1.2;
+    resize: none;
+    overflow: hidden;
 }
 
 input[type="text"] {
     padding: 10px 15px; /* Add padding */
-    font-size: 16px; /* Increase font size */
+    font-size: 0.9em; /* Increase font size */
     border: 1px solid oklab(19.1251% -7.45058e-9 0/.06); /* Border color */
     border-radius: 5px; /* Rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -382,6 +395,10 @@ input[type="text"]:focus {
     color: #ff6b6b;
 }
 
+.dark .save-btn {
+    color: #3fb950;
+}
+
 .dark .modal-content {
     background-color: #141a22;
     border-color: #2c3642;
@@ -409,7 +426,7 @@ input[type="text"]:focus {
 }
 
 .dark .task-item::before {
-    background-color: #58a6ff;
+    background-color: #8780ff;
 }
 
 .dark #in-progress .task-list > .task-item::before {

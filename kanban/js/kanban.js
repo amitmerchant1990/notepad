@@ -270,10 +270,21 @@ function createTaskElement(taskText) {
         <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
     </svg>`;
     deleteBtn.title = 'Delete task';
+
+    // Create the save button used while editing
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'task-btn save-btn';
+    saveBtn.innerHTML = `<svg aria-hidden="true" focusable="false" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6" />
+    </svg>`;
+    saveBtn.title = 'Save task';
+    saveBtn.setAttribute('aria-label', 'Save task');
+    saveBtn.hidden = true;
     
     // Add buttons to actions container
     actionsDiv.appendChild(editBtn);
     actionsDiv.appendChild(deleteBtn);
+    actionsDiv.appendChild(saveBtn);
     
     // Add elements to task item
     taskItem.appendChild(taskTextElement);
@@ -335,11 +346,12 @@ function createTaskElement(taskText) {
         // Hide the action buttons immediately
         taskItem.classList.remove('active');
         
-        // Create input element for inline editing
-        const input = document.createElement('input');
-        input.type = 'text';
+        // Create a textarea so editing has the same footprint as the task text
+        const input = document.createElement('textarea');
         input.value = taskTextElement.textContent;
         input.className = 'task-edit-input';
+        input.rows = 1;
+        input.setAttribute('aria-label', 'Edit task');
         
         // Replace text element with input
         taskTextElement.style.display = 'none';
@@ -349,6 +361,9 @@ function createTaskElement(taskText) {
         taskItem.draggable = false;
         taskItem.style.cursor = 'text';
         taskItem.classList.add('editing');
+        editBtn.hidden = true;
+        deleteBtn.hidden = true;
+        saveBtn.hidden = false;
         
         // Flag to track if editing is still active
         let isEditing = true;
@@ -371,9 +386,10 @@ function createTaskElement(taskText) {
             taskItem.draggable = true;
             taskItem.style.cursor = 'move';
             taskItem.classList.remove('editing');
+            editBtn.hidden = false;
+            deleteBtn.hidden = false;
+            saveBtn.hidden = true;
             isEditing = false;
-            // Ensure the blur event listener is removed during cleanup
-            input.removeEventListener('blur', saveEdit);
         }
         
         // Save on Enter key
@@ -411,8 +427,19 @@ function createTaskElement(taskText) {
             }
         });
         
-        // Save when clicking outside
-        input.addEventListener('blur', saveEdit);
+        // Keep the editor compact while still allowing longer task text.
+        function resizeEditor() {
+            input.style.height = 'auto';
+            input.style.height = `${input.scrollHeight}px`;
+        }
+
+        input.addEventListener('input', resizeEditor);
+        resizeEditor();
+
+        saveBtn.onclick = function(e) {
+            e.stopPropagation();
+            saveEdit();
+        };
         
         // Prevent drag events on the input
         input.addEventListener('mousedown', function(e) {
