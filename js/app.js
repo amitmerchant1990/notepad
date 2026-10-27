@@ -48,7 +48,7 @@ $(document).ready(function () {
 		{
 			text: "I'm an indie developer behind this app. Click here to support my work if you appreciate the effort.",
 			url: "https://buymeacoffee.com/amitmerchant",
-			active: false
+			active: true
 		},
 		{
 			text: "A small independent project, built with considerable care. Your support helps me keep building.",
