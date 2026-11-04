@@ -72,6 +72,7 @@ function selector() {
             unicodePickerSearch: selectById('unicodePickerSearch'),
             unicodePickerGrid: selectById('unicodePickerGrid'),
             unicodePickerCategory: selectById('unicodePickerCategory'),
+            autoPairing: selectById('autoPairing'),
         },
         state: {
             note: getState('note'),
@@ -95,7 +96,8 @@ function selector() {
             userChosenTypewriterVolume: getState('userChosenTypewriterVolume'),
             userChosenBreakReminders: getState('userChosenBreakReminders'),
             userChosenExplodingEffect: getState('userChosenExplodingEffect'),
-            selectedFont: getState('selectedFont')
+            selectedFont: getState('selectedFont'),
+            userChosenAutoPairing: getState('userChosenAutoPairing'),
         },
         defaultConfig: {
             defaultFontSize: 18,
@@ -114,6 +116,7 @@ function selector() {
             defaultTypewriterVolume: 25,
             defaultBreakReminders: false,
             defaultExplodingEffect: false,
+            defaultAutoPairing: false,
         },
         get,
         getState,

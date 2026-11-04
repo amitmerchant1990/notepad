@@ -796,6 +796,12 @@ you can buy me a coffee — the link of which is available in the About section.
 		explodingEffectEnabled = isEnabled;
 	});
 
+	// Handle auto-pairing toggle
+	$('#autoPairing').on('change', function() {
+		const isEnabled = $(this).is(':checked');
+		setState('userChosenAutoPairing', isEnabled ? 'Yes' : 'No');
+	});
+
 	// Handle typewriter volume change
 	let volumePreviewTimer = null;
 	$('#typewriterVolume').on('input', function() {
@@ -965,6 +971,12 @@ you can buy me a coffee — the link of which is available in the About section.
 		disableBreakReminders();
 	}
 
+	if (state.userChosenAutoPairing) {
+		notepad.autoPairing.prop('checked', state.userChosenAutoPairing === 'Yes');
+	} else {
+		notepad.autoPairing.prop('checked', editorConfig.defaultAutoPairing);
+	}
+
 	if (state.mode && state.mode === 'dark') {
 		enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
 
@@ -1004,6 +1016,7 @@ you can buy me a coffee — the link of which is available in the About section.
 
 	notepad.note.keydown(function (e) {
 		const tabIndentation = notepad.tabIndentation.prop('checked');
+		const autoPairing = notepad.autoPairing.prop('checked');
 
 		if (e.key === "Tab" && tabIndentation) {
 			e.preventDefault(); 
@@ -1034,6 +1047,55 @@ you can buy me a coffee — the link of which is available in the About section.
 					let indentedLines = lines.map(line => tabCharacter + line);
 					document.execCommand("insertText", false, indentedLines.join("\n"));
 				}
+			}
+		}
+
+		// Auto-pair brackets and quotes
+		if (autoPairing && !e.ctrlKey && !e.metaKey && !e.altKey) {
+			const pairs = {
+				'(': ')',
+				'[': ']',
+				'{': '}',
+				'"': '"',
+				"'": "'"
+			};
+
+			const char = e.key;
+			const closingChar = pairs[char];
+
+			if (closingChar) {
+				const textarea = e.target;
+				const start = textarea.selectionStart;
+				const end = textarea.selectionEnd;
+				const value = textarea.value;
+
+				// Check if the next character is the matching closing character
+				if (start === end && start < value.length && value[start] === closingChar) {
+					// Skip over the existing closing character
+					e.preventDefault();
+					textarea.selectionStart = textarea.selectionEnd = start + 1;
+					return;
+				}
+
+				// For quotes, check if the previous character is a letter (contraction case)
+				if ((char === '"' || char === "'") && start > 0) {
+					const prevChar = value[start - 1];
+					if (/[a-zA-Z]/.test(prevChar)) {
+						// Don't auto-pair if it's likely a contraction
+						return;
+					}
+				}
+
+				// Insert both opening and closing characters
+				e.preventDefault();
+				const newText = value.substring(0, start) + char + closingChar + value.substring(end);
+				textarea.value = newText;
+				
+				// Position cursor between the pair
+				textarea.selectionStart = textarea.selectionEnd = start + 1;
+				
+				// Trigger input event to save state
+				textarea.dispatchEvent(new Event('input', { bubbles: true }));
 			}
 		}
 	});
