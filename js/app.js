@@ -802,6 +802,12 @@ you can buy me a coffee — the link of which is available in the About section.
 		setState('userChosenAutoPairing', isEnabled ? 'Yes' : 'No');
 	});
 
+	// Handle smart auto-list toggle
+	$('#autoListContinuation').on('change', function() {
+		const isEnabled = $(this).is(':checked');
+		setState('userChosenAutoListContinuation', isEnabled ? 'Yes' : 'No');
+	});
+
 	// Handle typewriter volume change
 	let volumePreviewTimer = null;
 	$('#typewriterVolume').on('input', function() {
@@ -977,6 +983,12 @@ you can buy me a coffee — the link of which is available in the About section.
 		notepad.autoPairing.prop('checked', editorConfig.defaultAutoPairing);
 	}
 
+	if (state.userChosenAutoListContinuation) {
+		notepad.autoListContinuation.prop('checked', state.userChosenAutoListContinuation === 'Yes');
+	} else {
+		notepad.autoListContinuation.prop('checked', editorConfig.defaultAutoListContinuation);
+	}
+
 	if (state.mode && state.mode === 'dark') {
 		enableDarkMode(lightmodeText, darkMetaColor, metaThemeColor);
 
@@ -1014,9 +1026,123 @@ you can buy me a coffee — the link of which is available in the About section.
 		updateWordCountPill(get(this).val());
 	}, 500));
 
+	function romanToNumber(value) {
+		const roman = value.toUpperCase();
+		if (!/^(?=[MDCLXVI])M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.test(roman)) {
+			return null;
+		}
+
+		const values = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+		let total = 0;
+		for (let i = 0; i < roman.length; i++) {
+			const current = values[roman[i]];
+			const next = values[roman[i + 1]] || 0;
+			total += current < next ? -current : current;
+		}
+		return total;
+	}
+
+	function numberToRoman(value) {
+		if (value < 1 || value > 3999) return null;
+
+		const numerals = [
+			[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
+			[100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'],
+			[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']
+		];
+		let result = '';
+		for (const [number, numeral] of numerals) {
+			while (value >= number) {
+				result += numeral;
+				value -= number;
+			}
+		}
+		return result;
+	}
+
+	function incrementListMarker(marker) {
+		if (/^\d+$/.test(marker)) {
+			return String(Number(marker) + 1);
+		}
+
+		if (/^[-*+]$/.test(marker)) {
+			return marker;
+		}
+
+		const romanValue = romanToNumber(marker);
+		// Single lowercase letters are normally alphabetic list markers. Treat
+		// lowercase Roman numerals as Roman only once they are unambiguous
+		// (for example, ii. or iv.); uppercase markers remain Roman-compatible.
+		const isUnambiguousRoman = marker.length > 1 || marker === marker.toUpperCase();
+		if (romanValue !== null && isUnambiguousRoman) {
+			const nextRoman = numberToRoman(romanValue + 1);
+			return marker === marker.toUpperCase() ? nextRoman : nextRoman.toLowerCase();
+		}
+
+		if (/^[a-z]+$/i.test(marker)) {
+			const isUpperCase = marker === marker.toUpperCase();
+			let value = 0;
+			for (const character of marker.toUpperCase()) {
+				value = value * 26 + character.charCodeAt(0) - 64;
+			}
+			value += 1;
+			let result = '';
+			while (value > 0) {
+				value -= 1;
+				result = String.fromCharCode(65 + (value % 26)) + result;
+				value = Math.floor(value / 26);
+			}
+			return isUpperCase ? result : result.toLowerCase();
+		}
+
+		return null;
+	}
+
+	function continueListOnEnter(textarea) {
+		if (textarea.selectionStart !== textarea.selectionEnd) return false;
+
+		const cursor = textarea.selectionStart;
+		const lineStart = textarea.value.lastIndexOf('\n', cursor - 1) + 1;
+		const lineEndIndex = textarea.value.indexOf('\n', cursor);
+		const lineEnd = lineEndIndex === -1 ? textarea.value.length : lineEndIndex;
+		const beforeCursor = textarea.value.slice(lineStart, cursor);
+		const match = beforeCursor.match(/^(\s*)(?:(\d+|[A-Za-z]+)([.)])|([-*+]))([ \t]+)(.*)$/);
+
+		if (!match) return false;
+
+		const indent = match[1];
+		const marker = match[2] || match[4];
+		const delimiter = match[3] || '';
+		const whitespace = match[5];
+		const contentBeforeCursor = match[6];
+		const nextMarker = incrementListMarker(marker);
+
+		// Pressing Enter on an empty item exits the list without affecting ordinary notes.
+		if (cursor >= lineEnd && contentBeforeCursor.trim() === '') {
+			textarea.setRangeText('\n', lineStart, cursor, 'end');
+			textarea.dispatchEvent(new Event('input', { bubbles: true }));
+			return true;
+		}
+
+		if (nextMarker === null) return false;
+
+		const continuation = `\n${indent}${nextMarker}${delimiter}${whitespace}`;
+		textarea.setRangeText(continuation, cursor, cursor, 'end');
+		textarea.dispatchEvent(new Event('input', { bubbles: true }));
+		return true;
+	}
+
 	notepad.note.keydown(function (e) {
 		const tabIndentation = notepad.tabIndentation.prop('checked');
 		const autoPairing = notepad.autoPairing.prop('checked');
+		const autoListContinuation = notepad.autoListContinuation.prop('checked');
+
+		if (e.key === 'Enter' && autoListContinuation && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey) {
+			if (continueListOnEnter(e.target)) {
+				e.preventDefault();
+				return;
+			}
+		}
 
 		if (e.key === "Tab" && tabIndentation) {
 			e.preventDefault(); 
@@ -1431,6 +1557,9 @@ you can buy me a coffee — the link of which is available in the About section.
 
 		disableBreakReminders();
 		notepad.breakReminders.prop('checked', editorConfig.defaultBreakReminders);
+
+		removeState('userChosenAutoListContinuation');
+		notepad.autoListContinuation.prop('checked', editorConfig.defaultAutoListContinuation);
 
 		if (selector().state.userChosenExplodingEffect) {
 			removeState('userChosenExplodingEffect');

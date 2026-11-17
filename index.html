@@ -790,6 +790,22 @@
             <div id="changelog" class="container tab-pane fade">
               <div class="changelog-card">
                 <div class="changelog-timeline">
+                  <h4>17th Nov, 2026</h4>
+                  <ul>
+                    <li>Added a new <b>Smart Auto-Lists</b> option in preference.</li>
+                    <li>Disabled by default, so regular note-taking is unaffected.</li>
+                    <li>Supports:
+                      <ul>
+                        <li><code>1.</code> → <code>2.</code></li>
+                        <li><code>a.</code> → <code>b.</code></li>
+                        <li><code>I.</code> → <code>II.</code></li>
+                        <li><code>-</code>, <code>*</code>, and <code>+</code> bullets</li>
+                        <li>Indented lists.</li>
+                        <li>Empty-list <kbd style="display: inline-block;">Enter</kbd> to exit the list.</li>
+                      </ul>
+                    </li>
+                  </ul>
+
                   <h4>4th Nov, 2026</h4>
                   <ul>
                     <li>Added <b>Smart Auto-Pairing</b> in preferences to automatically close brackets ((, [, {) and quotation marks (&quot;, ') as you type for faster structured writing.</li>
@@ -1541,6 +1557,24 @@
                   <div class="checkbox checbox-switch">
                     <label>
                         <input type="checkbox" name="autoPairing" id="autoPairing"/>
+                        <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-6 col-md-6 generic-flex">
+                  Smart Auto-Lists
+                  <a href="#" data-toggle="tooltip" title="Continues numbered, alphabetic, Roman-numeral, and bullet lists when you press Enter.">
+                    <img src="img/tooltip.svg" alt="Tooltip Icon" />
+                  </a>
+                  <span class="new-badge">NEW</span>
+                </label>
+                <div class="col-sm-6 col-md-5">
+                  <div class="checkbox checbox-switch">
+                    <label>
+                        <input type="checkbox" name="autoListContinuation" id="autoListContinuation"/>
                         <span></span>
                     </label>
                   </div>

@@ -73,6 +73,7 @@ function selector() {
             unicodePickerGrid: selectById('unicodePickerGrid'),
             unicodePickerCategory: selectById('unicodePickerCategory'),
             autoPairing: selectById('autoPairing'),
+            autoListContinuation: selectById('autoListContinuation'),
         },
         state: {
             note: getState('note'),
@@ -98,6 +99,7 @@ function selector() {
             userChosenExplodingEffect: getState('userChosenExplodingEffect'),
             selectedFont: getState('selectedFont'),
             userChosenAutoPairing: getState('userChosenAutoPairing'),
+            userChosenAutoListContinuation: getState('userChosenAutoListContinuation'),
         },
         defaultConfig: {
             defaultFontSize: 18,
@@ -117,6 +119,7 @@ function selector() {
             defaultBreakReminders: false,
             defaultExplodingEffect: false,
             defaultAutoPairing: false,
+            defaultAutoListContinuation: false,
         },
         get,
         getState,
