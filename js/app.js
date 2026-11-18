@@ -1098,6 +1098,18 @@ you can buy me a coffee — the link of which is available in the About section.
 		return null;
 	}
 
+	function insertTextWithUndo(textarea, text, start, end) {
+		textarea.focus();
+		textarea.setSelectionRange(start, end);
+
+		// execCommand keeps the insertion in the browser's native undo history.
+		if (document.execCommand('insertText', false, text)) return;
+
+		// Fallback for browsers that no longer support execCommand.
+		textarea.setRangeText(text, start, end, 'end');
+		textarea.dispatchEvent(new Event('input', { bubbles: true }));
+	}
+
 	function continueListOnEnter(textarea) {
 		if (textarea.selectionStart !== textarea.selectionEnd) return false;
 
@@ -1119,16 +1131,14 @@ you can buy me a coffee — the link of which is available in the About section.
 
 		// Pressing Enter on an empty item exits the list without affecting ordinary notes.
 		if (cursor >= lineEnd && contentBeforeCursor.trim() === '') {
-			textarea.setRangeText('\n', lineStart, cursor, 'end');
-			textarea.dispatchEvent(new Event('input', { bubbles: true }));
+			insertTextWithUndo(textarea, '\n', lineStart, cursor);
 			return true;
 		}
 
 		if (nextMarker === null) return false;
 
 		const continuation = `\n${indent}${nextMarker}${delimiter}${whitespace}`;
-		textarea.setRangeText(continuation, cursor, cursor, 'end');
-		textarea.dispatchEvent(new Event('input', { bubbles: true }));
+		insertTextWithUndo(textarea, continuation, cursor, cursor);
 		return true;
 	}
 
@@ -1214,14 +1224,10 @@ you can buy me a coffee — the link of which is available in the About section.
 
 				// Insert both opening and closing characters
 				e.preventDefault();
-				const newText = value.substring(0, start) + char + closingChar + value.substring(end);
-				textarea.value = newText;
-				
-				// Position cursor between the pair
+				insertTextWithUndo(textarea, char + closingChar, start, end);
+
+				// Position cursor between the pair while retaining native undo history.
 				textarea.selectionStart = textarea.selectionEnd = start + 1;
-				
-				// Trigger input event to save state
-				textarea.dispatchEvent(new Event('input', { bubbles: true }));
 			}
 		}
 	});
