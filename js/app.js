@@ -1110,6 +1110,18 @@ you can buy me a coffee — the link of which is available in the About section.
 		textarea.dispatchEvent(new Event('input', { bubbles: true }));
 	}
 
+	function deleteTextWithUndo(textarea, start, end) {
+		textarea.focus();
+		textarea.setSelectionRange(start, end);
+
+		// Keep paired-character deletion in the browser's native undo history.
+		if (document.execCommand('delete')) return;
+
+		// Fallback for browsers that no longer support execCommand.
+		textarea.setRangeText('', start, end, 'start');
+		textarea.dispatchEvent(new Event('input', { bubbles: true }));
+	}
+
 	function continueListOnEnter(textarea) {
 		if (textarea.selectionStart !== textarea.selectionEnd) return false;
 
@@ -1195,6 +1207,24 @@ you can buy me a coffee — the link of which is available in the About section.
 				'"': '"',
 				"'": "'"
 			};
+
+			if (e.key === 'Backspace') {
+				const textarea = e.target;
+				const start = textarea.selectionStart;
+				const end = textarea.selectionEnd;
+				const value = textarea.value;
+				const openingCharacter = value[start - 1];
+
+				if (
+					start === end &&
+					start > 0 &&
+					pairs[openingCharacter] === value[start]
+				) {
+					e.preventDefault();
+					deleteTextWithUndo(textarea, start - 1, start + 1);
+					return;
+				}
+			}
 
 			const char = e.key;
 			const closingChar = pairs[char];
